@@ -50,6 +50,7 @@ class App extends Component {
             render={() => <MessagingWindow user="1234" receiver="9876" />}
           />
           <Route path="/login" component={Login} />
+          <Route path="/post" render={() => <MakePost userid="Ryan" />} />
         </Router>
       </div>
     );
