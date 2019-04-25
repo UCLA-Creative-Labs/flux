@@ -16,6 +16,7 @@ class NewsFeed extends Component {
   render() {
     return (
       <div>
+        <MakePost />
         <ShowPost uid={this.state.uid} displayNum={this.state.displayNum} />
         <ShowPost uid={this.state.uid} displayNum={this.state.displayNum + 1} />
         <ShowPost uid={this.state.uid} displayNum={this.state.displayNum + 2} />
