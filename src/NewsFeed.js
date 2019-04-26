@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import MakePost from './MakePost.js';
-import ShowPost from './ShowPost.js';
-
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import MakePost from "./MakePost.js";
+import ShowPost from "./ShowPost.js";
 
 class NewsFeed extends Component {
   constructor(props, context) {
