@@ -1,32 +1,36 @@
-import React, {Component} from "react";
-import "./MessagingWindow.css"; 
+import React, { Component } from "react";
+import "./MessagingWindow.css";
 
 import Firebase from "firebase";
 
 class MessagingWindow extends Component {
   constructor(props) {
     super(props);
-    
 
     this.state = {
       messages: [],
       user: this.props.user,
       receiver: this.props.receiver,
-      text: '' 
+      text: ""
     };
   }
 
   componentDidMount() {
-    this.tempRef= Firebase.database().ref("users/"+this.props.user+"/friends/"+this.props.receiver+"/");
+    this.tempRef = Firebase.database().ref(
+      "users/" + this.props.user + "/friends/" + this.props.receiver + "/"
+    );
     this.tempRef.on("value", snapshot1 => {
-      Firebase.database().ref("/conversations/"+snapshot1.val()+"/messages/").on("value", snapshot2 => {
-        this.setState({
-          messages: snapshot2.val()
+      Firebase.database()
+        .ref("/conversations/" + snapshot1.val() + "/messages/")
+        .on("value", snapshot2 => {
+          this.setState({
+            messages: snapshot2.val()
+          });
+          console.log(this.state);
+          this.conversationRef = Firebase.database().ref(
+            "/conversations/" + snapshot1.val() + "/messages/"
+          );
         });
-        console.log(this.state);
-        this.conversationRef = Firebase.database().ref("/conversations/"+snapshot1.val()+"/messages/");
-      });
-    
     });
   }
 
@@ -34,31 +38,33 @@ class MessagingWindow extends Component {
     this.setState({ text: e.target.value });
   };
 
-  
-
   handleClick = e => {
     e.preventDefault();
 
-    const message = {text: this.state.text, user_id: this.state.user}
+    const message = { text: this.state.text, user_id: this.state.user };
     this.conversationRef.push(message);
     this.setState({
       text: ""
     });
   };
 
-
   render() {
-
     return (
       <div>
         <h1>Temporary Messaging Window</h1>
 
         {/* TODO: Display all messages in from state, left indented if received, right indented if sent (To be changed later!)*/}
-        {Object.keys(this.state.messages).map((m, i) => <li key={i}> {this.state.messages[m].text} </li>)}
+        {Object.keys(this.state.messages).map((m, i) => (
+          <li key={i}> {this.state.messages[m].text} </li>
+        ))}
 
         {/* TODO: Have a simple form with one text field and one submit button to send a message */}
         <form>
-          <input type="text" onChange={this.handleChange} value={this.state.text} />
+          <input
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.text}
+          />
           <button onClick={this.handleClick} type="submit">
             Send!
           </button>
@@ -69,4 +75,3 @@ class MessagingWindow extends Component {
 }
 
 export default MessagingWindow;
-

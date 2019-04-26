@@ -27,7 +27,7 @@ class App extends Component {
       <div className="App">
         {/* <Example example={this.state.example} />
         <ExampleFirebase /> */}
-      <MessagingWindow user="1234" receiver="9876" ></MessagingWindow> {/*For testing! */}
+        <MessagingWindow user="1234" receiver="9876" /> {/*For testing! */}
       </div>
     );
   }
