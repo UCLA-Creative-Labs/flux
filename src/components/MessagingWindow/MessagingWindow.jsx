@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./MessagingWindow.css";
-import Message from "./message"
+import Message from "./message";
 
 import Firebase from "firebase";
 
@@ -50,17 +50,18 @@ class MessagingWindow extends Component {
   };
 
   render() {
-    
     return (
       <div>
         <h1>Temporary Messaging Window</h1>
 
         {/* TODO: Display all messages in from state, left indented if received, right indented if sent (To be changed later!)*/}
-        {Object.keys(this.state.messages).map((m, i) => (
-            this.state.messages[m].user_id === this.state.user ? 
-          <Message key={i} text={this.state.messages[m].text} sent={true}/> :
-          <Message key={i} text={this.state.messages[m].text} sent={false}/>
-        ))}
+        {Object.keys(this.state.messages).map((m, i) =>
+          this.state.messages[m].user_id === this.state.user ? (
+            <Message key={i} text={this.state.messages[m].text} sent={true} />
+          ) : (
+            <Message key={i} text={this.state.messages[m].text} sent={false} />
+          )
+        )}
 
         {/* TODO: Have a simple form with one text field and one submit button to send a message */}
         <form>
