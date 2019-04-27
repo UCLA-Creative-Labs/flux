@@ -14,10 +14,7 @@ class MessageManager extends Component {
     };
   }
 
-  componentDidMount() {
-
-  }
-
+  componentDidMount() {}
 
   render() {
     return (
@@ -25,7 +22,6 @@ class MessageManager extends Component {
         <h1>Temporary Message Manager</h1>
 
         {/* TODO: Display list of friends */}
-
       </div>
     );
   }

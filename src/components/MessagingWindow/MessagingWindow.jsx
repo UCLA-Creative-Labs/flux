@@ -25,7 +25,7 @@ class MessagingWindow extends Component {
         .ref("/conversations/" + snapshot1.val() + "/messages/")
         .on("value", snapshot2 => {
           this.setState({
-            messages: snapshot2.val()  //gives complete list of messages in given conversation node
+            messages: snapshot2.val() //gives complete list of messages in given conversation node
           });
           console.log(this.state);
           this.conversationRef = Firebase.database().ref(
