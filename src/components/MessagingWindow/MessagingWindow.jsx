@@ -1,35 +1,36 @@
 import React, { Component } from "react";
 import "./MessagingWindow.css";
-import Message from "./Message";
-
 import Firebase from "firebase";
+import Message from "./Message";
+import PropTypes from 'prop-types';
 
 class MessagingWindow extends Component {
   constructor(props) {
     super(props);
 
+    const { user, receiver } = this.props;
     this.state = {
       messages: [],
-      user: this.props.user,
-      receiver: this.props.receiver,
-      text: "" //temporary local variable used to handle text from the "send-message" text field
+      user,
+      receiver,
+      text: "" // temporary local variable used to handle text from the "send-message" text field
     };
   }
 
   componentDidMount() {
+    const { user, receiver } = this.props;
     this.tempRef = Firebase.database().ref(
-      "users/" + this.props.user + "/friends/" + this.props.receiver + "/"
-    ); //temporary reference to extract conversation reference
+      `users/${user}/friends/${receiver}/`
+    ); // temporary reference to extract conversation reference
     this.tempRef.on("value", snapshot1 => {
       Firebase.database()
-        .ref("/conversations/" + snapshot1.val() + "/messages/")
+        .ref(`/conversations/${snapshot1.val()}/messages/`)
         .on("value", snapshot2 => {
           this.setState({
-            messages: snapshot2.val()  //gives complete list of messages in given conversation node
+            messages: snapshot2.val() // gives complete list of messages in given conversation node
           });
-          console.log(this.state);
           this.conversationRef = Firebase.database().ref(
-            "/conversations/" + snapshot1.val() + "/messages/"
+            `/conversations/${snapshot1.val()}/messages/`
           );
         });
     });
@@ -42,7 +43,8 @@ class MessagingWindow extends Component {
   handleClick = e => {
     e.preventDefault();
 
-    const message = { text: this.state.text, user_id: this.state.user };
+    const { text, user } = this.state;
+    const message = { text, user_id: user };
     this.conversationRef.push(message);
     this.setState({
       text: ""
@@ -50,16 +52,17 @@ class MessagingWindow extends Component {
   };
 
   render() {
+    const {text: val, messages, user } = this.state;
     return (
       <div>
         <h1>Temporary Messaging Window</h1>
 
-        {/* Display all messages from state, white bg if received, blue bg if sent (To be changed later!)*/}
-        {Object.keys(this.state.messages).map((m, i) =>
-          this.state.messages[m].user_id === this.state.user ? (
-            <Message key={i} text={this.state.messages[m].text} sent={true} />
+        {/* Display all messages from state, white bg if received, blue bg if sent (To be changed later!) */}
+        {Object.keys(messages).map((m) =>
+          messages[m].user_id === user ? (
+            <Message key={m} text={messages[m].text} sent />
           ) : (
-            <Message key={i} text={this.state.messages[m].text} sent={false} />
+            <Message key={m} text={messages[m].text} sent={false} />
           )
         )}
 
@@ -68,7 +71,7 @@ class MessagingWindow extends Component {
           <input
             type="text"
             onChange={this.handleChange}
-            value={this.state.text}
+            value={val}
           />
           <button onClick={this.handleClick} type="submit">
             Send!
@@ -78,5 +81,10 @@ class MessagingWindow extends Component {
     );
   }
 }
+
+MessagingWindow.propTypes = {
+    user: PropTypes.string.isRequired,
+    receiver: PropTypes.string.isRequired
+};
 
 export default MessagingWindow;

@@ -1,17 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Message extends Component {
-  constructor() {
-    super();
+function Message({ text, sent }) {
+    var styling = sent ? styles.sent : styles.received;
+    return (
+        <div style={styling}>{text}</div>
+    );
   }
 
-  render() {
-    var styling = this.props.sent ? styles.sent : styles.received;
-    return <div style={styling}>{this.props.text}</div>;
-  }
-}
-
-var styles = {
+const styles = {
   sent: {
     width: "40%",
     backgroundColor: "blue"
@@ -21,4 +17,5 @@ var styles = {
     backgroundColor: "white"
   }
 };
+
 export default Message;
