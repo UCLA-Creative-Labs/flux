@@ -13,9 +13,6 @@ class App extends Component {
       Firebase.initializeApp(firebaseConfig);
     }
 
-    this.state = {
-      example: "this is a string acting as an example property"
-    };
   }
 
   render() {

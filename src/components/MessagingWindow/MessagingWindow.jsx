@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./MessagingWindow.css";
 import Firebase from "firebase";
+import PropTypes from "prop-types";
 import Message from "./Message";
-import PropTypes from 'prop-types';
 
 class MessagingWindow extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class MessagingWindow extends Component {
   }
 
   componentDidMount() {
-    const { user, receiver } = this.props;
+    const { user, receiver } = this.state;
     this.tempRef = Firebase.database().ref(
       `users/${user}/friends/${receiver}/`
     ); // temporary reference to extract conversation reference
@@ -52,13 +52,13 @@ class MessagingWindow extends Component {
   };
 
   render() {
-    const {text: val, messages, user } = this.state;
+    const { text: val, messages, user } = this.state;
     return (
       <div>
         <h1>Temporary Messaging Window</h1>
 
         {/* Display all messages from state, white bg if received, blue bg if sent (To be changed later!) */}
-        {Object.keys(messages).map((m) =>
+        {Object.keys(messages).map(m =>
           messages[m].user_id === user ? (
             <Message key={m} text={messages[m].text} sent />
           ) : (
@@ -68,11 +68,7 @@ class MessagingWindow extends Component {
 
         {/* A Simple form with one text field and one submit button to send a message */}
         <form>
-          <input
-            type="text"
-            onChange={this.handleChange}
-            value={val}
-          />
+          <input type="text" onChange={this.handleChange} value={val} />
           <button onClick={this.handleClick} type="submit">
             Send!
           </button>
@@ -83,8 +79,8 @@ class MessagingWindow extends Component {
 }
 
 MessagingWindow.propTypes = {
-    user: PropTypes.string.isRequired,
-    receiver: PropTypes.string.isRequired
+  user: PropTypes.string.isRequired,
+  receiver: PropTypes.string.isRequired
 };
 
 export default MessagingWindow;

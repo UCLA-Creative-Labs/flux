@@ -1,12 +1,5 @@
 import React from "react";
 
-function Message({ text, sent }) {
-    var styling = sent ? styles.sent : styles.received;
-    return (
-        <div style={styling}>{text}</div>
-    );
-  }
-
 const styles = {
   sent: {
     width: "40%",
@@ -17,5 +10,15 @@ const styles = {
     backgroundColor: "white"
   }
 };
+
+function Message({ text, sent }) {
+  const styling = sent ? styles.sent : styles.received;
+  return <div style={styling}>{text}</div>;
+}
+
+Message.propTypes = {
+    text: PropTypes.string.isRequired,
+    sent: PropTypes.bool.isRequired
+  };
 
 export default Message;
