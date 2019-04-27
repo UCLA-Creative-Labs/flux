@@ -7,7 +7,7 @@ import App from "./App";
 ReactDOM.render(<App />, document.getElementById("root"));
 =======
 import Firebase, { FirebaseContext } from "./Firebase";
-import NewsFeed from "./NewsFeed.js";
+import NewsFeed from "./NewsFeed.jsx";
 /*ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>
     <App />
