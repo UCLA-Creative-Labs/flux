@@ -12,20 +12,20 @@ class MessagingWindow extends Component {
       messages: [],
       user: this.props.user,
       receiver: this.props.receiver,
-      text: ""
+      text: "" //temporary local variable used to handle text from the "send-message" text field
     };
   }
 
   componentDidMount() {
     this.tempRef = Firebase.database().ref(
       "users/" + this.props.user + "/friends/" + this.props.receiver + "/"
-    );
+    ); //temporary reference to extract conversation reference
     this.tempRef.on("value", snapshot1 => {
       Firebase.database()
         .ref("/conversations/" + snapshot1.val() + "/messages/")
         .on("value", snapshot2 => {
           this.setState({
-            messages: snapshot2.val()
+            messages: snapshot2.val()  //gives complete list of messages in given conversation node
           });
           console.log(this.state);
           this.conversationRef = Firebase.database().ref(
@@ -54,7 +54,7 @@ class MessagingWindow extends Component {
       <div>
         <h1>Temporary Messaging Window</h1>
 
-        {/* TODO: Display all messages in from state, left indented if received, right indented if sent (To be changed later!)*/}
+        {/* Display all messages from state, white bg if received, blue bg if sent (To be changed later!)*/}
         {Object.keys(this.state.messages).map((m, i) =>
           this.state.messages[m].user_id === this.state.user ? (
             <Message key={i} text={this.state.messages[m].text} sent={true} />
@@ -63,7 +63,7 @@ class MessagingWindow extends Component {
           )
         )}
 
-        {/* TODO: Have a simple form with one text field and one submit button to send a message */}
+        {/* A Simple form with one text field and one submit button to send a message */}
         <form>
           <input
             type="text"
