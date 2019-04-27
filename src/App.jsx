@@ -16,14 +16,14 @@ class App extends Component {
 
     this.state = {
       example: "this is a string acting as an example property"
-      // db: firebase.database()
     };
   }
 
   render() {
+    const { example } = this.state;
     return (
       <div className="App">
-        <Example example={this.state.example} />
+        <Example example={example} />
         <ExampleFirebase />
       </div>
     );

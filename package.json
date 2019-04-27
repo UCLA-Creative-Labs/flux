@@ -14,7 +14,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "prettier --write '**/*.{js,jsx}'; eslint src/**/*.jsx"
+    "lint": "prettier --write '**/*.{js,jsx}'; eslint --ext .jsx src/"
   },
   "eslintConfig": {
     "extends": "react-app"
