@@ -12,7 +12,6 @@ class App extends Component {
     if (!Firebase.apps.length) {
       Firebase.initializeApp(firebaseConfig);
     }
-
   }
 
   render() {

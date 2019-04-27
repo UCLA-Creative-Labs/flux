@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const styles = {
   sent: {
@@ -17,8 +18,8 @@ function Message({ text, sent }) {
 }
 
 Message.propTypes = {
-    text: PropTypes.string.isRequired,
-    sent: PropTypes.bool.isRequired
-  };
+  text: PropTypes.string.isRequired,
+  sent: PropTypes.bool.isRequired
+};
 
 export default Message;
