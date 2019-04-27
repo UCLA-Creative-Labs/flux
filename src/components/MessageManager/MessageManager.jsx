@@ -10,6 +10,7 @@ class MessageManager extends Component {
 
     this.state = {
       friends: [],
+      friendClicked: {},
       user: this.props.user
     };
   }
@@ -20,11 +21,26 @@ class MessageManager extends Component {
     ); //reference to friends
     this.friendsRef.on("value", snapshot => {
       this.setState({
-        friends: snapshot.val() //gives complete list of friends
+        friends: snapshot.val(), //gives complete list of friends
+      }, ()=>{
+          let newClickedList={};
+        Object.keys(this.state.friends).map((f, i) => (
+            newClickedList[f]=false
+          ));
+        this.setState({
+            friendClicked: newClickedList
+        });
       });
     });
   }
-  
+
+  handleFriendClick= (f)=> {
+    
+    let prevFriendClicked= this.state.friendClicked;
+    prevFriendClicked[f]=!this.state.friendClicked[f];
+    this.setState({friendClicked: prevFriendClicked});
+}
+
 
   render() {
     return (
@@ -33,12 +49,14 @@ class MessageManager extends Component {
 
         {/* TODO: Display list of friends */}
         {console.log(this.state)}
-        {Object.keys(this.state.friends).map((f, i) =>
-            <div key={i}>
-                <p onClick= {this.handleFriendClick}>{f}</p>
-                <MessagingWindow user={this.state.user} receiver={f} />
+        {Object.keys(this.state.friends).map((f, i) => (
+          <div key={i}>
+            <button className="friend-name" onClick={() => this.handleFriendClick(f)}> Friend {f} </button>
+            <div style={{display: + this.state.friendClicked[f] ? 'inline' : 'none'}}>
+                <MessagingWindow  user={this.state.user} receiver={f} />
             </div>
-        )}
+          </div>
+        ))}
       </div>
     );
   }
