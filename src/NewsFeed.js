@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import MakePost from "./MakePost.js";
+import MakePost from "./MakePost.jsx";
 import ShowPost from "./ShowPost.js";
 
 class NewsFeed extends Component {
@@ -15,7 +15,7 @@ class NewsFeed extends Component {
   render() {
     return (
       <div>
-        <MakePost />
+        <MakePost userid="abcd" />
         <ShowPost uid={this.state.uid} displayNum={this.state.displayNum} />
         <ShowPost uid={this.state.uid} displayNum={this.state.displayNum + 1} />
         <ShowPost uid={this.state.uid} displayNum={this.state.displayNum + 2} />
