@@ -16,14 +16,15 @@ class MessageManager extends Component {
 
   componentDidMount() {
     this.friendsRef = Firebase.database().ref(
-        "users/" + this.props.user + "/friends/" 
-      ); //reference to friends
-      this.friendsRef.on("value", snapshot => {
-        this.setState({
-            friends: snapshot.val() //gives complete list of friends with conversation ids
-          });
+      "users/" + this.props.user + "/friends/"
+    ); //reference to friends
+    this.friendsRef.on("value", snapshot => {
+      this.setState({
+        friends: snapshot.val() //gives complete list of friends
       });
+    });
   }
+  
 
   render() {
     return (
@@ -32,6 +33,12 @@ class MessageManager extends Component {
 
         {/* TODO: Display list of friends */}
         {console.log(this.state)}
+        {Object.keys(this.state.friends).map((f, i) =>
+            <div key={i}>
+                <p onClick= {this.handleFriendClick}>{f}</p>
+                <MessagingWindow user={this.state.user} receiver={f} />
+            </div>
+        )}
       </div>
     );
   }
