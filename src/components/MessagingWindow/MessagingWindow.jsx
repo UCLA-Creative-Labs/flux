@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./MessagingWindow.css";
-import Message from "./message";
+import Message from "./Message";
 
 import Firebase from "firebase";
 
