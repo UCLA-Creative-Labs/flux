@@ -22,15 +22,16 @@ class MessagingWindow extends Component {
     this.tempRef = Firebase.database().ref(
       `users/${user}/friends/${receiver}/`
     ); // temporary reference to extract conversation reference
-    this.tempRef.on("value", snapshot1 => {
+    this.tempRef.once("value", snapshot1 => {
+      const id = snapshot1.val();
       Firebase.database()
-        .ref(`/conversations/${snapshot1.val()}/messages/`)
+        .ref(`/conversations/${id}/messages/`)
         .on("value", snapshot2 => {
           this.setState({
             messages: snapshot2.val() // gives complete list of messages in given conversation node
           });
           this.conversationRef = Firebase.database().ref(
-            `/conversations/${snapshot1.val()}/messages/`
+            `/conversations/${id}/messages/`
           );
         });
     });
@@ -52,23 +53,23 @@ class MessagingWindow extends Component {
   };
 
   render() {
-    const { text: val, messages, user } = this.state;
+    const { text: text, messages, user } = this.state;
     return (
       <div>
         <h1>Temporary Messaging Window</h1>
 
         {/* Display all messages from state, white bg if received, blue bg if sent (To be changed later!) */}
-        {Object.keys(messages).map(m =>
-          messages[m].user_id === user ? (
-            <Message key={m} text={messages[m].text} sent />
+        {Object.keys(messages).map(messageId =>
+          messages[messageId].user_id === user ? (
+            <Message key={messageId} text={messages[messageId].text} sent />
           ) : (
-            <Message key={m} text={messages[m].text} sent={false} />
+            <Message key={messageId} text={messages[messageId].text} sent={false} />
           )
         )}
 
         {/* A Simple form with one text field and one submit button to send a message */}
         <form>
-          <input type="text" onChange={this.handleChange} value={val} />
+          <input type="text" onChange={this.handleChange} value={text} />
           <button onClick={this.handleClick} type="submit">
             Send!
           </button>
