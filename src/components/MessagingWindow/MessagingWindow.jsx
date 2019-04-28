@@ -53,7 +53,7 @@ class MessagingWindow extends Component {
   };
 
   render() {
-    const { text: text, messages, user } = this.state;
+    const { text, messages, user } = this.state;
     return (
       <div>
         <h1>Temporary Messaging Window</h1>
@@ -63,7 +63,11 @@ class MessagingWindow extends Component {
           messages[messageId].user_id === user ? (
             <Message key={messageId} text={messages[messageId].text} sent />
           ) : (
-            <Message key={messageId} text={messages[messageId].text} sent={false} />
+            <Message
+              key={messageId}
+              text={messages[messageId].text}
+              sent={false}
+            />
           )
         )}
 
