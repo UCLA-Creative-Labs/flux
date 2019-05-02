@@ -49,8 +49,7 @@ class MakePost extends React.Component {
               month: "2-digit",
               day: "2-digit",
               hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit"
+              minute: "2-digit"
             }).format(time)
           });
         });
@@ -66,8 +65,7 @@ class MakePost extends React.Component {
           month: "2-digit",
           day: "2-digit",
           hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit"
+          minute: "2-digit"
         }).format(Date.now())
       });
     }
@@ -83,6 +81,7 @@ class MakePost extends React.Component {
           className="post"
           type="text"
           value={this.state.text}
+          placeholder="Type something..."
           onChange={this.textInputHandler}
         />
         <div>
@@ -95,7 +94,7 @@ class MakePost extends React.Component {
         </div>
         <div>
           <button type="submit" onClick={this.postSubmitHandler}>
-            Submit
+            Post
           </button>
         </div>
       </div>
