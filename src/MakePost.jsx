@@ -8,10 +8,7 @@ import { POINT_CONVERSION_UNCOMPRESSED } from "constants";
 class MakePost extends React.Component {
   constructor(props) {
     super(props);
-    this.postref = Firebase.database().ref("testposts");
-    this.storageref = Firebase.storage()
-      .ref()
-      .child("pic.jpg");
+    this.postref = Firebase.database().ref("posts");
     this.state = {
       uid: this.props.userid,
       text: "",
@@ -34,21 +31,46 @@ class MakePost extends React.Component {
 
   postSubmitHandler = event => {
     event.preventDefault();
-    this.storageref.put(this.state.photo);
-    this.postref.push({
-      user_id: this.state.uid,
-      text: this.state.text,
-      //photo: this.storageref.child("pic.jpg").getDownloadURL(),
-      likes: this.state.likes,
-      timestamp: new Intl.DateTimeFormat("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
-      }).format(Date.now())
-    });
+    if (this.state.photo !== null) {
+      let time = Date.now();
+      this.storageref = Firebase.storage()
+        .ref()
+        .child("users/" + this.props.userid + time + ".jpg");
+      this.storageref.put(this.state.photo);
+      this.storageref.getDownloadURL().then(url => {
+        let photoURL = url;
+        this.postref.push({
+          user_id: this.state.uid,
+          text: this.state.text,
+          photo: photoURL,
+          likes: this.state.likes,
+          timestamp: new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+          }).format(time)
+        });
+      });
+    } else {
+      this.postref.push({
+        user_id: this.state.uid,
+        text: this.state.text,
+        //photo: photoURL,
+        likes: this.state.likes,
+        timestamp: new Intl.DateTimeFormat("en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        }).format(Date.now())
+      });
+    }
+
     this.setState({ text: "", photo: null, likes: 0, timestamp: null });
   };
 
