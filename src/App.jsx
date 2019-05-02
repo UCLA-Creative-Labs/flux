@@ -1,23 +1,58 @@
 import React, { Component } from "react";
-import Firebase from "firebase";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import firebase from "firebase";
 
 import { firebaseConfig } from "./config/firebase";
+import Login from "./components/Login";
+import MessagingWindow from "./components/MessagingWindow";
 import "./App.css";
-import MessagingWindow from "./components/MessagingWindow/MessagingWindow";
 
 class App extends Component {
   constructor() {
     super();
 
-    if (!Firebase.apps.length) {
-      Firebase.initializeApp(firebaseConfig);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
     }
+
+    this.state = {
+      userId: ""
+    };
   }
 
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ userId: user.uid });
+      } else {
+        this.setState({ userId: "" });
+      }
+    });
+  }
+
+  handleLogout = event => {
+    event.preventDefault();
+    firebase.auth().signOut();
+  };
+
   render() {
+    const { userId } = this.state;
+
     return (
       <div className="App">
-        <MessagingWindow user="1234" receiver="9876" /> {/* For testing! */}
+        <button type="submit" onClick={this.handleLogout}>
+          Logout
+        </button>
+        <p>You userId is {userId}</p>
+
+        <Router>
+          <Route
+            path="/"
+            exact
+            render={() => <MessagingWindow user="1234" receiver="9876" />}
+          />
+          <Route path="/login" component={Login} />
+        </Router>
       </div>
     );
   }
