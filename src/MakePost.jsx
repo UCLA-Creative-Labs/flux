@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import Firebase from "firebase";
 import "./MakePost.css";
 import ReactDOM from "react-dom";
+import { publicDecrypt } from "crypto";
+import { POINT_CONVERSION_UNCOMPRESSED } from "constants";
 
 class MakePost extends React.Component {
   constructor(props) {
     super(props);
     this.postref = Firebase.database().ref("testposts");
+    this.storageref = Firebase.storage()
+      .ref()
+      .child("pic.jpg");
     this.state = {
       uid: this.props.userid,
       text: "",
@@ -23,15 +28,17 @@ class MakePost extends React.Component {
   };
 
   fileUploadHandler = event => {
-    this.setState({ photo: URL.createObjectURL(event.target.files[0]) });
+    var pic = document.getElementById("fileItem").files[0];
+    this.setState({ photo: pic });
   };
 
   postSubmitHandler = event => {
     event.preventDefault();
+    this.storageref.put(this.state.photo);
     this.postref.push({
       user_id: this.state.uid,
       text: this.state.text,
-      photo: this.state.photo,
+      //photo: this.storageref.child("pic.jpg").getDownloadURL(),
       likes: this.state.likes,
       timestamp: new Intl.DateTimeFormat("en-US", {
         year: "numeric",
@@ -47,7 +54,7 @@ class MakePost extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="MakePost">
         <h1>Make a Post</h1>
         <textarea
           className="post"
@@ -56,6 +63,7 @@ class MakePost extends React.Component {
         />
         <div>
           <input
+            id="fileItem"
             type="file"
             accept="image/*"
             onChange={this.fileUploadHandler}
