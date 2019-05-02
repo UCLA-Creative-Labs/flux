@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import firebase from "firebase";
+import firebaseWrapper from "./firebaseWrapper";
 
-import { firebaseConfig } from "./config/firebase";
 import Login from "./components/Login";
 import MessagingWindow from "./components/MessagingWindow";
 import "./App.css";
@@ -11,9 +10,7 @@ class App extends Component {
   constructor() {
     super();
 
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
+    firebaseWrapper.initialize();
 
     this.state = {
       userId: ""
@@ -21,18 +18,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.setState({ userId: user.uid });
-      } else {
-        this.setState({ userId: "" });
-      }
-    });
+    const onLogin = user => {
+      this.setState({ userId: user.uid });
+    };
+    const onLogout = () => {
+      this.setState({ userId: "" });
+    };
+
+    firebaseWrapper.listenForAuthStateChange(onLogin, onLogout);
   }
 
   handleLogout = event => {
     event.preventDefault();
-    firebase.auth().signOut();
+    firebaseWrapper.logout();
   };
 
   render() {
