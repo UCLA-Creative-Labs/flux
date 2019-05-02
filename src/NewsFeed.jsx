@@ -14,13 +14,13 @@ class NewsFeed extends Component {
   }
 
   componentDidMount() {
-    let postRef = Firebase.database().ref("testposts");
+    let postRef = Firebase.database().ref("posts");
     postRef.on("value", snapshot => {
       console.log(snapshot.val());
       this.setState({
         posts: snapshot.val()
       });
-      console.log(this.state.posts);
+      //console.log(this.state.posts);
     });
   }
 
