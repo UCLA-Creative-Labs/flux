@@ -36,22 +36,23 @@ class MakePost extends React.Component {
       this.storageref = Firebase.storage()
         .ref()
         .child("users/" + this.props.userid + time + ".jpg");
-      this.storageref.put(this.state.photo);
-      this.storageref.getDownloadURL().then(url => {
-        let photoURL = url;
-        this.postref.push({
-          user_id: this.state.uid,
-          text: this.state.text,
-          photo: photoURL,
-          likes: this.state.likes,
-          timestamp: new Intl.DateTimeFormat("en-US", {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit"
-          }).format(time)
+      this.storageref.put(this.state.photo).then(() => {
+        this.storageref.getDownloadURL().then(url => {
+          let photoURL = url;
+          this.postref.push({
+            user_id: this.state.uid,
+            text: this.state.text,
+            photo: photoURL,
+            likes: this.state.likes,
+            timestamp: new Intl.DateTimeFormat("en-US", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit"
+            }).format(time)
+          });
         });
       });
     } else {
@@ -81,6 +82,7 @@ class MakePost extends React.Component {
         <textarea
           className="post"
           type="text"
+          value={this.state.text}
           onChange={this.textInputHandler}
         />
         <div>
