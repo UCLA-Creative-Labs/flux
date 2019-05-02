@@ -10,7 +10,7 @@ class MakePost extends React.Component {
     super(props);
     this.postref = Firebase.database().ref("posts");
     this.state = {
-      uid: this.props.userid,
+      uid: this.props.userID,
       text: "",
       photo: null,
       likes: 0,
@@ -36,12 +36,12 @@ class MakePost extends React.Component {
       let time = Date.now();
       this.storageref = Firebase.storage()
         .ref()
-        .child("users/" + this.props.userid + time + ".jpg");
+        .child("users/" + this.props.userID + time + ".jpg");
       this.storageref.put(this.state.photo).then(() => {
         this.storageref.getDownloadURL().then(url => {
           let photoURL = url;
           this.postref.push({
-            user_id: this.state.uid,
+            userID: this.state.uid,
             text: this.state.text,
             photo: photoURL,
             likes: this.state.likes,
@@ -53,11 +53,12 @@ class MakePost extends React.Component {
               minute: "2-digit"
             }).format(time)
           });
+          this.setState({ text: "", photo: null, likes: 0, timestamp: null });
         });
       });
     } else {
       this.postref.push({
-        user_id: this.state.uid,
+        userID: this.state.uid,
         text: this.state.text,
         //photo: photoURL,
         likes: this.state.likes,
@@ -69,9 +70,8 @@ class MakePost extends React.Component {
           minute: "2-digit"
         }).format(Date.now())
       });
+      this.setState({ text: "", photo: null, likes: 0, timestamp: null });
     }
-
-    this.setState({ text: "", photo: null, likes: 0, timestamp: null });
   };
 
   render() {

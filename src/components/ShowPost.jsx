@@ -5,34 +5,34 @@ import Firebase from "firebase";
 
 class ShowPost extends Component {
   incrementLike(likes, postID) {
-    likes++;
+    const { id } = this.props;
+    const newLikes = likes + 1;
     Firebase.database()
       .ref("posts")
-      .child(this.props.id)
-      .update({ likes: likes });
+      .child(id)
+      .update({ likes: newLikes });
     Firebase.database()
       .ref("posts")
-      .child(this.props.id)
+      .child(id)
       .update({ likedPosts: [postID] });
   }
+
   render() {
+    const { postID, id } = this.props;
+
     return (
       <div id="ShowPostContainer">
-        <p>post: {this.props.id}</p>
-        <p>user_id: {this.props.post_id.user_id}</p>
-        <p>timestamp: {this.props.post_id.timestamp}</p>
-        <p>text: {this.props.post_id.text}</p>
-        <p>photo: {this.props.post_id.photo}</p>
-        <p>likes: {this.props.post_id.likes}</p>
-        <p>likedPosts: {this.props.post_id.likedPosts}</p>
+        <p>post: {id}</p>
+        <p>user_id: {postID.userID}</p>
+        <p>timestamp: {postID.timestamp}</p>
+        <p>text: {postID.text}</p>
+        <p>photo: {postID.photo}</p>
+        <p>likes: {postID.likes}</p>
+        <p>likedPosts: {postID.likedPosts}</p>
         <button
           type="submit"
           onClick={() => {
-            this.incrementLike(
-              this.props.post_id.likes,
-              this.props.id,
-              this.props.post_id.likedPosts
-            );
+            this.incrementLike(postID.likes, id, postID.likedPosts);
           }}
         >
           Like!
@@ -43,11 +43,12 @@ class ShowPost extends Component {
 }
 
 ShowPost.propTypes = {
-  user_id: PropTypes.number,
-  timestamp: PropTypes.string,
-  text: PropTypes.string,
-  likes: PropTypes.number,
+  postID: PropTypes.number,
   id: PropTypes.string.isRequired
+};
+
+ShowPost.defaultProps = {
+  postID: 0
 };
 
 export default ShowPost;
