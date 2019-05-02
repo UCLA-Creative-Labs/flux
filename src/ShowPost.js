@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./ShowPost.css";
-import Firebase from 'firebase';
+import Firebase from "firebase";
 
 class ShowPost extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.lastEightPosts = Firebase.database().ref("posts");//.OrderByKey().limitToLast(8); //get last 8 posts
+    this.lastEightPosts = Firebase.database().ref("posts"); //.OrderByKey().limitToLast(8); //get last 8 posts
     this.lastEightPosts.on(
       "value",
-      function (snapshot) {
+      function(snapshot) {
         console.log(snapshot.val().post_id);
         console.log(snapshot.val().uid);
         console.log(snapshot.val().timestamp);
@@ -18,7 +18,7 @@ class ShowPost extends Component {
         console.log(snapshot.val().photo);
         console.log(snapshot.val().likes);
       },
-      function (errorObject) {
+      function(errorObject) {
         console.log("The read failed: " + errorObject.code);
       }
     );
