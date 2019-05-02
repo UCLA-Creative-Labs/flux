@@ -8,6 +8,14 @@ const isInitialized = () => {
   return !(firebase.apps.length === 0);
 };
 
+const getConversationId = (user, receiver) => {
+    let tempRef = firebase.database().ref(`users/${user}/friends/${receiver}/`);
+    tempRef.once("value", snapshot => {
+        console.log(snapshot.val());
+        return snapshot.val();
+    });
+};
+
 /**
  * App Functions
  */
@@ -37,9 +45,27 @@ const logout = () => {
 /**
  * Messaging Functions
  */
-// const sendMessage = (conversationId, userId, message) => {};
-// const getAllConversations = userId => {};
-// const listenForMessages = conversationId => {};
+const sendMessage = (user, receiver, message) => {
+    firebase.database().ref(
+    `users/${user}/friends/${receiver}/`).on(
+        "value", snapshot => {
+            const conversationId = snapshot.val();
+            firebase.database().ref(`/conversations/${conversationId}/messages/`).push(message);
+        });   
+};
+//const getAllConversations = userId => {};
+const listenForMessages = (updateMessages, user, receiver) => {
+    let tempRef = firebase.database().ref(
+    `users/${user}/friends/${receiver}/`);
+    tempRef.once("value", snapshot1 => {
+        const id = snapshot1.val();
+        firebase.database()
+        .ref(`/conversations/${id}/messages/`)
+        .on("value", snapshot2 => {
+            updateMessages(snapshot2.val());
+        });
+    });
+};
 
 /**
  * Post Functions
@@ -55,11 +81,12 @@ const logout = () => {
 
 export default {
   initialize,
+  getConversationId,
   listenForAuthStateChange,
-  logout
-  // sendMessage,
+  logout,
+  sendMessage,
   // getAllConversations,
-  // listenForMessages,
+  listenForMessages
   // sendPost,
   // getAllPosts,
   // listenForPosts,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "./MessagingWindow.css";
-import Firebase from "firebase";
 import PropTypes from "prop-types";
+import "./MessagingWindow.css";
+import firebaseWrapper from "../../firebaseWrapper";
 import Message from "./Message";
 
 class MessagingWindow extends Component {
@@ -19,22 +19,29 @@ class MessagingWindow extends Component {
 
   componentDidMount() {
     const { user, receiver } = this.state;
-    this.tempRef = Firebase.database().ref(
-      `users/${user}/friends/${receiver}/`
-    ); // temporary reference to extract conversation reference
-    this.tempRef.once("value", snapshot1 => {
-      const id = snapshot1.val();
-      Firebase.database()
-        .ref(`/conversations/${id}/messages/`)
-        .on("value", snapshot2 => {
-          this.setState({
-            messages: snapshot2.val() // gives complete list of messages in given conversation node
-          });
-          this.conversationRef = Firebase.database().ref(
-            `/conversations/${id}/messages/`
-          );
-        });
-    });
+    //let conversationId = firebaseWrapper.getConversationId(user, receiver);
+    const updateMessages = (messages) => {
+        this.setState({
+            messages: messages
+        }); 
+    };
+    firebaseWrapper.listenForMessages(updateMessages, user, receiver); 
+    // this.tempRef = Firebase.database().ref(
+    //   `users/${user}/friends/${receiver}/`
+    // ); // temporary reference to extract conversation reference
+    // this.tempRef.once("value", snapshot1 => {
+    //   const id = snapshot1.val();
+    //   Firebase.database()
+    //     .ref(`/conversations/${id}/messages/`)
+    //     .on("value", snapshot2 => {
+    //       this.setState({
+    //         messages: snapshot2.val() // gives complete list of messages in given conversation node
+    //       });
+    //       this.conversationRef = Firebase.database().ref(
+    //         `/conversations/${id}/messages/`
+    //       );
+    //     });
+    // });
   }
 
   handleChange = e => {
@@ -44,9 +51,9 @@ class MessagingWindow extends Component {
   handleClick = e => {
     e.preventDefault();
 
-    const { text, user } = this.state;
+    const { text, user, receiver } = this.state;
     const message = { text, user_id: user };
-    this.conversationRef.push(message);
+    firebaseWrapper.sendMessage(user, receiver, message);
     this.setState({
       text: ""
     });
