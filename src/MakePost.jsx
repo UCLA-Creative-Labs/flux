@@ -14,7 +14,8 @@ class MakePost extends React.Component {
       text: "",
       photo: null,
       likes: 0,
-      timestamp: null
+      timestamp: null,
+      likedPosts: ["hello"]
     };
   }
 

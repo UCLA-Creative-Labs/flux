@@ -28,13 +28,15 @@ class NewsFeed extends Component {
     return (
       <div>
         <MakePost userid="abcd" />
-        {Object.keys(this.state.posts).map(post_id => (
-          <ShowPost
-            post_id={this.state.posts[post_id]}
-            key={post_id}
-            id={post_id}
-          />
-        ))}
+        {Object.keys(this.state.posts)
+          .reverse()
+          .map(post_id => (
+            <ShowPost
+              post_id={this.state.posts[post_id]}
+              key={post_id}
+              id={post_id}
+            />
+          ))}
       </div>
     );
   }
