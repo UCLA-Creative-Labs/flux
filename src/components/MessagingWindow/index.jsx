@@ -19,29 +19,12 @@ class MessagingWindow extends Component {
 
   componentDidMount() {
     const { user, receiver } = this.state;
-    //let conversationId = firebaseWrapper.getConversationId(user, receiver);
-    const updateMessages = (messages) => {
-        this.setState({
-            messages: messages
-        }); 
+    const updateMessages = messages => {
+      this.setState({
+        messages: messages
+      });
     };
-    firebaseWrapper.listenForMessages(updateMessages, user, receiver); 
-    // this.tempRef = Firebase.database().ref(
-    //   `users/${user}/friends/${receiver}/`
-    // ); // temporary reference to extract conversation reference
-    // this.tempRef.once("value", snapshot1 => {
-    //   const id = snapshot1.val();
-    //   Firebase.database()
-    //     .ref(`/conversations/${id}/messages/`)
-    //     .on("value", snapshot2 => {
-    //       this.setState({
-    //         messages: snapshot2.val() // gives complete list of messages in given conversation node
-    //       });
-    //       this.conversationRef = Firebase.database().ref(
-    //         `/conversations/${id}/messages/`
-    //       );
-    //     });
-    // });
+    firebaseWrapper.listenForMessages(updateMessages, user, receiver);
   }
 
   handleChange = e => {
