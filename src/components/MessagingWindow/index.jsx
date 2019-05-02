@@ -21,7 +21,7 @@ class MessagingWindow extends Component {
     const { user, receiver } = this.state;
     const updateMessages = messages => {
       this.setState({
-        messages: messages
+        messages
       });
     };
     firebaseWrapper.listenForMessages(updateMessages, user, receiver);

@@ -49,7 +49,7 @@ const sendMessage = (user, receiver, message) => {
         .push(message);
     });
 };
-//const getAllConversations = userId => {};
+// const getAllConversations = userId => {};
 const listenForMessages = (updateMessages, user, receiver) => {
   const tempRef = firebase.database().ref(`users/${user}/friends/${receiver}/`);
   tempRef.once("value", snapshot1 => {
