@@ -75,7 +75,7 @@ class MessagingWindow extends Component {
 
 MessagingWindow.propTypes = {
   user: PropTypes.string.isRequired,
-  conversationdId: PropTypes.string.isRequired
+  conversationId: PropTypes.string.isRequired
 };
 
 export default MessagingWindow;
