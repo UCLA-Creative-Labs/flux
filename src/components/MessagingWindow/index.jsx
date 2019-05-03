@@ -8,7 +8,6 @@ class MessagingWindow extends Component {
   constructor(props) {
     super(props);
 
-    const { conversationId, userId } = this.props;
     this.state = {
       messages: [],
       text: "" // temporary local variable used to handle text from the "send-message" text field
@@ -73,7 +72,7 @@ class MessagingWindow extends Component {
 }
 
 MessagingWindow.propTypes = {
-  user: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
   conversationId: PropTypes.string.isRequired
 };
 
