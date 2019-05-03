@@ -47,7 +47,9 @@ class App extends Component {
           <Route
             path="/"
             exact
-            render={() => <MessagingWindow user="31415" conversationId="asdf"/>}
+            render={() => (
+              <MessagingWindow user="31415" conversationId="asdf" />
+            )}
           />
           <Route path="/login" component={Login} />
         </Router>
