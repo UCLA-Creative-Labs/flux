@@ -37,9 +37,21 @@ const logout = () => {
 /**
  * Messaging Functions
  */
-// const sendMessage = (conversationId, userId, message) => {};
+const sendMessage = (conversationId, message) => {
+  const conversationRef = firebase
+    .database()
+    .ref(`/conversations/${conversationId}/messages/`);
+  conversationRef.push(message);
+};
 // const getAllConversations = userId => {};
-// const listenForMessages = conversationId => {};
+const listenForMessages = (conversationId, done) => {
+  const conversationRef = firebase
+    .database()
+    .ref(`/conversations/${conversationId}/messages/`);
+  conversationRef.on("value", snapshot => {
+    done(snapshot.val());
+  });
+};
 
 /**
  * Post Functions
@@ -56,10 +68,10 @@ const logout = () => {
 export default {
   initialize,
   listenForAuthStateChange,
-  logout
-  // sendMessage,
+  logout,
+  sendMessage,
   // getAllConversations,
-  // listenForMessages,
+  listenForMessages
   // sendPost,
   // getAllPosts,
   // listenForPosts,
