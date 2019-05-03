@@ -8,21 +8,23 @@ class MessagingWindow extends Component {
   constructor(props) {
     super(props);
 
-    const { user } = this.props;
+    const { conversationId, user } = this.props;
     this.state = {
       messages: [],
       user,
+      conversationId,
       text: "" // temporary local variable used to handle text from the "send-message" text field
     };
   }
 
   componentDidMount() {
-    const done = messages => {
+    const { conversationId } = this.state;
+    const updateMessages = messages => {
       this.setState({
         messages
       });
     };
-    firebaseWrapper.listenForMessages("asdf", done);
+    firebaseWrapper.listenForMessages(conversationId, updateMessages);
   }
 
   handleChange = e => {
@@ -32,9 +34,9 @@ class MessagingWindow extends Component {
   handleClick = e => {
     e.preventDefault();
 
-    const { text, user } = this.state;
+    const { text, user, conversationId } = this.state;
     const message = { text, user_id: user };
-    firebaseWrapper.sendMessage("asdf", user, message);
+    firebaseWrapper.sendMessage(conversationId, message);
     this.setState({
       text: ""
     });
