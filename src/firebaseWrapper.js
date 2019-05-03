@@ -38,15 +38,19 @@ const logout = () => {
  * Messaging Functions
  */
 const sendMessage = (conversationId, message) => {
-    const conversationRef = firebase.database().ref(`/conversations/${conversationId}/messages/`);
-    conversationRef.push(message);
-}
+  const conversationRef = firebase
+    .database()
+    .ref(`/conversations/${conversationId}/messages/`);
+  conversationRef.push(message);
+};
 // const getAllConversations = userId => {};
 const listenForMessages = (conversationId, done) => {
-    const conversationRef = firebase.database().ref(`/conversations/${conversationId}/messages/`);
-    conversationRef.on("value", snapshot => {
-        done(snapshot.val());
-    });
+  const conversationRef = firebase
+    .database()
+    .ref(`/conversations/${conversationId}/messages/`);
+  conversationRef.on("value", snapshot => {
+    done(snapshot.val());
+  });
 };
 
 /**

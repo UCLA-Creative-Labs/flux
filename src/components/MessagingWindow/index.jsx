@@ -8,11 +8,10 @@ class MessagingWindow extends Component {
   constructor(props) {
     super(props);
 
-    const { user, receiver } = this.props;
+    const { user } = this.props;
     this.state = {
       messages: [],
       user,
-      receiver,
       text: "" // temporary local variable used to handle text from the "send-message" text field
     };
   }
