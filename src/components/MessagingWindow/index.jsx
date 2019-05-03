@@ -18,13 +18,12 @@ class MessagingWindow extends Component {
   }
 
   componentDidMount() {
-    const { user, receiver } = this.state;
-    const updateMessages = messages => {
+    const done = messages => {
       this.setState({
         messages
       });
     };
-    firebaseWrapper.listenForMessages(updateMessages, user, receiver);
+    firebaseWrapper.listenForMessages("asdf", done);
   }
 
   handleChange = e => {
@@ -34,9 +33,9 @@ class MessagingWindow extends Component {
   handleClick = e => {
     e.preventDefault();
 
-    const { text, user, receiver } = this.state;
+    const { text, user } = this.state;
     const message = { text, user_id: user };
-    firebaseWrapper.sendMessage(user, receiver, message);
+    firebaseWrapper.sendMessage("asdf", user, message);
     this.setState({
       text: ""
     });
