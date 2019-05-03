@@ -32,8 +32,8 @@ class MessagingWindow extends Component {
     e.preventDefault();
 
     const { text } = this.state;
-    const { user, conversationId } = this.props;
-    const message = { text, user_id: user };
+    const { userId, conversationId } = this.props;
+    const message = { text, user_id: userId };
     firebaseWrapper.sendMessage(conversationId, message);
     this.setState({
       text: ""
@@ -41,14 +41,15 @@ class MessagingWindow extends Component {
   };
 
   render() {
-    const { text, messages, user } = this.state;
+    const { text, messages } = this.state;
+    const { userId } = this.props;
     return (
       <div>
         <h1>Temporary Messaging Window</h1>
 
         {/* Display all messages from state, white bg if received, blue bg if sent (To be changed later!) */}
         {Object.keys(messages).map(messageId =>
-          messages[messageId].user_id === user ? (
+          messages[messageId].user_id === userId ? (
             <Message key={messageId} text={messages[messageId].text} sent />
           ) : (
             <Message
