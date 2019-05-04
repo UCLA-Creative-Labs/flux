@@ -1,12 +1,11 @@
 import React from "react";
-import Firebase from "firebase";
 import "./MakePost.css";
 import PropTypes from "prop-types";
+import firebaseWrapper from "../../firebaseWrapper";
 
 class MakePost extends React.Component {
   constructor(props) {
     super(props);
-    this.postref = Firebase.database().ref("posts");
     this.state = {
       text: "",
       photo: null,
@@ -26,44 +25,14 @@ class MakePost extends React.Component {
   postSubmitHandler = event => {
     const { userId } = this.props;
     const { photo, text, likes } = this.state;
+    const resetState = () => {
+      this.setState({ text: "", photo: null, likes: 0 });
+    };
     event.preventDefault();
     if (photo !== null) {
-      const time = Date.now();
-      this.storageref = Firebase.storage()
-        .ref()
-        .child(`users/${userId}${time}.jpg`);
-      this.storageref.put(photo).then(() => {
-        this.storageref.getDownloadURL().then(url => {
-          const photoURL = url;
-          this.postref.push({
-            userId,
-            text,
-            photo: photoURL,
-            likes,
-            timestamp: new Intl.DateTimeFormat("en-US", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-              hour: "2-digit",
-              minute: "2-digit"
-            }).format(time)
-          });
-          this.setState({ text: "", photo: null, likes: 0 });
-        });
-      });
+      firebaseWrapper.sendPostWithPhoto(userId, text, likes, photo, resetState);
     } else {
-      this.postref.push({
-        userId,
-        text,
-        likes,
-        timestamp: new Intl.DateTimeFormat("en-US", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit"
-        }).format(Date.now())
-      });
+      firebaseWrapper.sendPost(userId, text, likes);
       this.setState({ text: "", photo: null, likes: 0 });
     }
   };
