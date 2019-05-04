@@ -1,8 +1,8 @@
 import React from "react";
 import Firebase from "firebase";
 import "./MakePost.css";
-import { sendPost } from "../../firebaseWrapper";
 import PropTypes from "prop-types";
+import sendPost from "../../firebaseWrapper";
 
 class MakePost extends React.Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class MakePost extends React.Component {
         });
       });
     } else {
-      /*this.postref.push({
+      /*  this.postref.push({
         userId,
         text,
         likes,
@@ -64,7 +64,7 @@ class MakePost extends React.Component {
           hour: "2-digit",
           minute: "2-digit"
         }).format(Date.now())
-      });*/
+      }); */
       sendPost(userId, text, likes);
       this.setState({ text: "", photo: null, likes: 0 });
     }

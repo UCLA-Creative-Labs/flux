@@ -57,7 +57,7 @@ const listenForMessages = (conversationId, done) => {
  * Post Functions
  */
 const sendPost = (userId, text, likes) => {
-  const postref = Firebase.database().ref("posts");
+  const postref = firebase.database().ref("posts");
   postref.push({
     userId,
     text,
@@ -74,8 +74,9 @@ const sendPost = (userId, text, likes) => {
 
 const sendPostWithPhoto = (userId, text, likes, photo) => {
   const time = Date.now();
-  const postref = Firebase.database().ref("posts");
-  const storageref = Firebase.storage()
+  const postref = firebase.database().ref("posts");
+  const storageref = firebase
+    .storage()
     .ref()
     .child(`users/${userId}${time}.jpg`);
   storageref.put(photo).then(() => {
@@ -114,8 +115,9 @@ export default {
   logout,
   sendMessage,
   // getAllConversations,
-  listenForMessages
-  // sendPost,
+  listenForMessages,
+  sendPost,
+  sendPostWithPhoto
   // getAllPosts,
   // listenForPosts,
   // getAllFriends
