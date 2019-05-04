@@ -43,6 +43,6 @@ class NewsFeed extends Component {
 }
 
 NewsFeed.propTypes = {
-  userId: PropTypes.number.isRequired
+  userId: PropTypes.string.isRequired
 };
 export default NewsFeed;
