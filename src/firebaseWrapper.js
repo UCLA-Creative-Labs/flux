@@ -56,6 +56,52 @@ const listenForMessages = (conversationId, done) => {
 /**
  * Post Functions
  */
+
+const sendPost = (userId, text, likes, photo, done) => {
+  const postref = firebase.database().ref("posts");
+  if (photo !== null) {
+    const time = Date.now();
+    const storageref = firebase
+      .storage()
+      .ref()
+      .child(`users/${userId}${time}.jpg`);
+    storageref.put(photo).then(() => {
+      storageref.getDownloadURL().then(url => {
+        const photoURL = url;
+        postref.push({
+          userId,
+          text,
+          photo: photoURL,
+          likes,
+          timestamp: new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit"
+          }).format(time),
+          likedPosts: ["hello"]
+        });
+        done();
+      });
+    });
+  } else {
+    postref.push({
+      userId,
+      text,
+      likes,
+      timestamp: new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      }).format(Date.now())
+    });
+  }
+};
+
+/*
 const sendPost = (userId, text, likes) => {
   const postref = firebase.database().ref("posts");
   postref.push({
@@ -100,6 +146,7 @@ const sendPostWithPhoto = (userId, text, likes, photo, done) => {
     });
   });
 };
+*/
 
 // const getAllPosts = () => {};
 // const listenForPosts = () => {};
@@ -116,8 +163,7 @@ export default {
   sendMessage,
   // getAllConversations,
   listenForMessages,
-  sendPost,
-  sendPostWithPhoto
+  sendPost
   // getAllPosts,
   // listenForPosts,
   // getAllFriends

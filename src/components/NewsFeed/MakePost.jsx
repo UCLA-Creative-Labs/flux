@@ -29,12 +29,8 @@ class MakePost extends React.Component {
       this.setState({ text: "", photo: null, likes: 0 });
     };
     event.preventDefault();
-    if (photo !== null) {
-      firebaseWrapper.sendPostWithPhoto(userId, text, likes, photo, resetState);
-    } else {
-      firebaseWrapper.sendPost(userId, text, likes);
-      this.setState({ text: "", photo: null, likes: 0 });
-    }
+    firebaseWrapper.sendPost(userId, text, likes, photo, resetState);
+    this.setState({ text: "", photo: null, likes: 0 });
   };
 
   render() {
