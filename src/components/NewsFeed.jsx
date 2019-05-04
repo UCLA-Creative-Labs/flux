@@ -1,41 +1,34 @@
 import React, { Component } from "react";
-import MakePost from "./MakePost.jsx";
-import ShowPost from "./ShowPost.jsx";
 import Firebase from "firebase";
+import MakePost from "./MakePost";
+import ShowPost from "./ShowPost";
 
-let posts = {};
 class NewsFeed extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      uid: 0,
       posts: {}
     };
   }
 
   componentDidMount() {
-    let postRef = Firebase.database().ref("posts");
+    const postRef = Firebase.database().ref("posts");
     postRef.on("value", snapshot => {
-      //console.log(snapshot.val());
       this.setState({
         posts: snapshot.val()
       });
-      //console.log(this.state.posts);
     });
   }
 
   render() {
+    const { posts } = this.state;
     return (
       <div>
         <MakePost userID="abcd" />
-        {Object.keys(this.state.posts)
+        {Object.keys(posts)
           .reverse()
-          .map(post_id => (
-            <ShowPost
-              postID={this.state.posts[post_id]}
-              key={post_id}
-              id={post_id}
-            />
+          .map(postID => (
+            <ShowPost postID={posts[postID]} key={postID} id={postID} />
           ))}
       </div>
     );

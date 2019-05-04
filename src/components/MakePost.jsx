@@ -1,21 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import Firebase from "firebase";
 import "./MakePost.css";
-import ReactDOM from "react-dom";
-import { publicDecrypt } from "crypto";
-import { POINT_CONVERSION_UNCOMPRESSED } from "constants";
+import PropTypes from "prop-types";
 
 class MakePost extends React.Component {
   constructor(props) {
     super(props);
     this.postref = Firebase.database().ref("posts");
+    const { userID } = this.props;
     this.state = {
-      uid: this.props.userID,
+      uid: userID,
       text: "",
       photo: null,
-      likes: 0,
-      timestamp: null,
-      likedPosts: []
+      likes: 0
     };
   }
 
@@ -25,26 +22,28 @@ class MakePost extends React.Component {
     this.setState({ text: event.target.value });
   };
 
-  fileUploadHandler = event => {
-    var pic = document.getElementById("fileItem").files[0];
+  fileUploadHandler = () => {
+    const pic = document.getElementById("fileItem").files[0];
     this.setState({ photo: pic });
   };
 
   postSubmitHandler = event => {
+    const { userID } = this.props;
+    const { photo, uid, text, likes } = this.state;
     event.preventDefault();
-    if (this.state.photo !== null) {
-      let time = Date.now();
+    if (photo !== null) {
+      const time = Date.now();
       this.storageref = Firebase.storage()
         .ref()
-        .child("users/" + this.props.userID + time + ".jpg");
-      this.storageref.put(this.state.photo).then(() => {
+        .child(`users/${userID}${time}.jpg`);
+      this.storageref.put(photo).then(() => {
         this.storageref.getDownloadURL().then(url => {
-          let photoURL = url;
+          const photoURL = url;
           this.postref.push({
-            userID: this.state.uid,
-            text: this.state.text,
+            userID: uid,
+            text,
             photo: photoURL,
-            likes: this.state.likes,
+            likes,
             timestamp: new Intl.DateTimeFormat("en-US", {
               year: "numeric",
               month: "2-digit",
@@ -54,15 +53,14 @@ class MakePost extends React.Component {
             }).format(time),
             likedPosts: ["hello"]
           });
-          this.setState({ text: "", photo: null, likes: 0, timestamp: null });
+          this.setState({ text: "", photo: null, likes: 0 });
         });
       });
     } else {
       this.postref.push({
-        userID: this.state.uid,
-        text: this.state.text,
-        //photo: photoURL,
-        likes: this.state.likes,
+        userID: uid,
+        text,
+        likes,
         timestamp: new Intl.DateTimeFormat("en-US", {
           year: "numeric",
           month: "2-digit",
@@ -71,18 +69,19 @@ class MakePost extends React.Component {
           minute: "2-digit"
         }).format(Date.now())
       });
-      this.setState({ text: "", photo: null, likes: 0, timestamp: null });
+      this.setState({ text: "", photo: null, likes: 0 });
     }
   };
 
   render() {
+    const { text } = this.state;
     return (
       <div className="MakePost">
         <h1>Make a Post</h1>
         <textarea
           className="post"
           type="text"
-          value={this.state.text}
+          value={text}
           placeholder="Type something..."
           onChange={this.textInputHandler}
         />
@@ -103,5 +102,9 @@ class MakePost extends React.Component {
     );
   }
 }
+
+MakePost.propTypes = {
+  userID: PropTypes.string.isRequired
+};
 
 export default MakePost;

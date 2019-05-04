@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./ShowPost.css";
-import PropTypes from "prop-types";
 import Firebase from "firebase";
+import PropTypes from "prop-types";
 
 class ShowPost extends Component {
   incrementLike(likes, postID) {
@@ -44,7 +44,13 @@ class ShowPost extends Component {
 }
 
 ShowPost.propTypes = {
-  postID: PropTypes.number,
+  postID: PropTypes.shape({
+    userID: PropTypes.number,
+    timestamp: PropTypes.string,
+    text: PropTypes.string,
+    photo: PropTypes.string,
+    likes: PropTypes.number
+  }),
   id: PropTypes.string.isRequired
 };
 
