@@ -12,9 +12,10 @@ class ShowPost extends Component {
       .child(id)
       .update({ likes: newLikes });
 
+    const { userId } = this.props;
     Firebase.database()
       .ref("users")
-      .child(this.props.userId)
+      .child(userId)
       .child("/likedPosts")
       .push()
       .set({ postId: id });
@@ -53,7 +54,8 @@ ShowPost.propTypes = {
     photo: PropTypes.string,
     likes: PropTypes.number
   }),
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  userId: PropTypes.number.isRequired
 };
 
 ShowPost.defaultProps = {
