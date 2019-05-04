@@ -10,7 +10,7 @@ class MessageManager extends Component {
 
     this.state = {
       friends: [],
-      friendClicked: {},
+      friendClicked: {}
     };
   }
 
@@ -26,7 +26,7 @@ class MessageManager extends Component {
         () => {
           let newFriendClicked = {};
           Object.keys(this.state.friends).map(
-            (friend) => (newFriendClicked[friend] = false)
+            friend => (newFriendClicked[friend] = false)
           );
           this.setState({
             friendClicked: newFriendClicked //initializes every friend's "clicked" property to false
@@ -37,9 +37,11 @@ class MessageManager extends Component {
   }
 
   handleFriendClick = friend => {
-    let prevFriendClicked = this.state.friendClicked;
-    prevFriendClicked[friend] = !this.state.friendClicked[friend];
-    this.setState({ friendClicked: prevFriendClicked }); //inverts "clicked" property for given friend
+    this.setState(prevState => {
+        let prevFriendClicked = prevState.friendClicked;
+        prevFriendClicked[friend] = !prevFriendClicked[friend];
+        return { friendClicked: prevFriendClicked };
+      }); //inverts "clicked" property for given friend
   };
 
   render() {
@@ -54,8 +56,7 @@ class MessageManager extends Component {
               className="friend-name"
               onClick={() => this.handleFriendClick(friend)}
             >
-              
-              Friend {friend}  
+              Friend {friend}
             </button>
             <div
               style={{
