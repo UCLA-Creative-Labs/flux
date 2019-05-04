@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./MessageManager.css";
-import MessagingWindow from "../MessagingWindow/MessagingWindow";
-
 import Firebase from "firebase";
+import PropTypes from "prop-types";
+import MessagingWindow from "../MessagingWindow/index";
 
 class MessageManager extends Component {
   constructor(props) {
@@ -15,21 +15,21 @@ class MessageManager extends Component {
   }
 
   componentDidMount() {
-    this.friendsRef = Firebase.database().ref(
-      "users/" + this.props.user + "/friends/"
-    ); //reference to friends
+    const { user } = this.props;
+    this.friendsRef = Firebase.database().ref(`users/ ${user}  /friends/`); // reference to friends
     this.friendsRef.on("value", snapshot => {
       this.setState(
         {
-          friends: snapshot.val() //gives complete list of friends
+          friends: snapshot.val() // gives complete list of friends
         },
         () => {
-          let newFriendClicked = {};
-          Object.keys(this.state.friends).map(
-            friend => (newFriendClicked[friend] = false)
-          );
+          const newFriendClicked = {};
+          const { friends } = this.state;
+          Object.keys(friends).forEach(friend => {
+            newFriendClicked[friend] = false;
+          });
           this.setState({
-            friendClicked: newFriendClicked //initializes every friend's "clicked" property to false
+            friendClicked: newFriendClicked // initializes every friend's "clicked" property to false
           });
         }
       );
@@ -38,32 +38,35 @@ class MessageManager extends Component {
 
   handleFriendClick = friend => {
     this.setState(prevState => {
-      let prevFriendClicked = prevState.friendClicked;
+      const prevFriendClicked = prevState.friendClicked;
       prevFriendClicked[friend] = !prevFriendClicked[friend];
       return { friendClicked: prevFriendClicked };
-    }); //inverts "clicked" property for given friend
+    }); // inverts "clicked" property for given friend
   };
 
   render() {
+    const { friends, friendClicked } = this.state;
+    const { user } = this.props;
     return (
       <div>
         <h1>Temporary Message Manager</h1>
-
         {/* Display list of friends */}
-        {Object.keys(this.state.friends).map((friend, index) => (
-          <div key={index}>
+
+        {Object.keys(friends).map(friendId => (
+          <div key={friendId}>
             <button
               className="friend-name"
-              onClick={() => this.handleFriendClick(friend)}
+              type="button"
+              onClick={() => this.handleFriendClick(friendId)}
             >
-              Friend {friend}
+              Friend {friendId}
             </button>
             <div
               style={{
-                display: this.state.friendClicked[friend] ? "inline" : "none"
+                display: friendClicked[friendId] ? "inline" : "none"
               }}
             >
-              <MessagingWindow user={this.props.user} receiver={friend} />
+              <MessagingWindow user={user} receiver={friendId} />
             </div>
           </div>
         ))}
@@ -71,5 +74,9 @@ class MessageManager extends Component {
     );
   }
 }
+
+MessageManager.propTypes = {
+  user: PropTypes.string.isRequired
+};
 
 export default MessageManager;
