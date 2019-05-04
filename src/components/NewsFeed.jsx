@@ -24,11 +24,16 @@ class NewsFeed extends Component {
     const { posts } = this.state;
     return (
       <div>
-        <MakePost userID="abcd" />
+        <MakePost userId={this.props.userId} />
         {Object.keys(posts)
           .reverse()
           .map(postID => (
-            <ShowPost postID={posts[postID]} key={postID} id={postID} />
+            <ShowPost
+              postID={posts[postID]}
+              key={postID}
+              id={postID}
+              userId={this.props.userId}
+            />
           ))}
       </div>
     );

@@ -53,7 +53,7 @@ class App extends Component {
             )}
           />
           <Route path="/login" component={Login} />
-          <Route path="/post" render={() => <NewsFeed />} />
+          <Route path="/post" render={() => <NewsFeed userId="2468" />} />
         </Router>
       </div>
     );

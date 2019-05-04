@@ -4,7 +4,7 @@ import Firebase from "firebase";
 import PropTypes from "prop-types";
 
 class ShowPost extends Component {
-  incrementLike(likes, postID) {
+  incrementLike(likes) {
     const { id } = this.props;
     const newLikes = likes + 1;
     Firebase.database()
@@ -13,9 +13,11 @@ class ShowPost extends Component {
       .update({ likes: newLikes });
 
     Firebase.database()
-      .ref("posts")
-      .child(id)
-      .update({ likedPosts: [postID] });
+      .ref("users")
+      .child(this.props.userId)
+      .child("/likedPosts")
+      .push()
+      .set({ postId: id });
   }
 
   render() {
@@ -29,11 +31,11 @@ class ShowPost extends Component {
         <p>text: {postID.text}</p>
         <p>photo: {postID.photo}</p>
         <p>likes: {postID.likes}</p>
-        <p>likedPosts: {postID.likedPosts}</p>
+        <p>likedPosts: </p>
         <button
           type="submit"
           onClick={() => {
-            this.incrementLike(postID.likes, id, postID.likedPosts);
+            this.incrementLike(postID.likes);
           }}
         >
           Like!
