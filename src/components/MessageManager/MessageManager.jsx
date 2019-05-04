@@ -11,7 +11,6 @@ class MessageManager extends Component {
     this.state = {
       friends: [],
       friendClicked: {},
-      user: this.props.user
     };
   }
 
@@ -25,22 +24,22 @@ class MessageManager extends Component {
           friends: snapshot.val() //gives complete list of friends
         },
         () => {
-          let newClickedList = {};
+          let newFriendClicked = {};
           Object.keys(this.state.friends).map(
-            (f, i) => (newClickedList[f] = false)
+            (friend) => (newFriendClicked[friend] = false)
           );
           this.setState({
-            friendClicked: newClickedList
+            friendClicked: newFriendClicked //initializes every friend's "clicked" property to false
           });
         }
       );
     });
   }
 
-  handleFriendClick = f => {
+  handleFriendClick = friend => {
     let prevFriendClicked = this.state.friendClicked;
-    prevFriendClicked[f] = !this.state.friendClicked[f];
-    this.setState({ friendClicked: prevFriendClicked });
+    prevFriendClicked[friend] = !this.state.friendClicked[friend];
+    this.setState({ friendClicked: prevFriendClicked }); //inverts "clicked" property for given friend
   };
 
   render() {
@@ -48,23 +47,22 @@ class MessageManager extends Component {
       <div>
         <h1>Temporary Message Manager</h1>
 
-        {/* TODO: Display list of friends */}
-        {console.log(this.state)}
-        {Object.keys(this.state.friends).map((f, i) => (
-          <div key={i}>
+        {/* Display list of friends */}
+        {Object.keys(this.state.friends).map((friend, index) => (
+          <div key={index}>
             <button
               className="friend-name"
-              onClick={() => this.handleFriendClick(f)}
+              onClick={() => this.handleFriendClick(friend)}
             >
-              {" "}
-              Friend {f}{" "}
+              
+              Friend {friend}  
             </button>
             <div
               style={{
-                display: +this.state.friendClicked[f] ? "inline" : "none"
+                display: this.state.friendClicked[friend] ? "inline" : "none"
               }}
             >
-              <MessagingWindow user={this.state.user} receiver={f} />
+              <MessagingWindow user={this.props.user} receiver={friend} />
             </div>
           </div>
         ))}
