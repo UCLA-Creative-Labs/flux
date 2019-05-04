@@ -28,7 +28,6 @@ class ProfilePage extends Component {
   }
 
   addFriend = () => {
-<<<<<<< e407210fc8dcf0cf2f53e25287d4dc2a6c308299
     const { match } = this.props;
     const { params } = match;
     const { profileId } = params;
@@ -48,29 +47,11 @@ class ProfilePage extends Component {
     const { match } = this.props;
     const { params } = match;
     const { profileId } = params;
-=======
-      const { userId: profileId } = this.props;
-      const currentUserId = "2468"; // this.props.match.params.userId;
-      const addedNewFriend = friends => {
-          this.setState({
-              friends
-          })
-      }
-      const newFriendData = {};
-      newFriendData[currentUserId] = "random";
-      firebaseWrapper.addFriend(profileId, newFriendData, addedNewFriend);
-  }
-
-  render() {
-    const { userId: profileId } = this.props;
-    const currentUserId = "2468" // this.props.match.params.userId;
->>>>>>> add new friend functionality implemented
     const { friends } = this.state;
     return (
       <div>
         <div>Profile Picture here</div>
         <h1>{profileId}</h1>
-<<<<<<< e407210fc8dcf0cf2f53e25287d4dc2a6c308299
         {profileId !== userId ? (
           <button type="button" onClick={this.addFriend}>
             Add Friend
@@ -78,9 +59,6 @@ class ProfilePage extends Component {
         ) : (
           <div />
         )}
-=======
-        {profileId !== currentUserId ? <button onClick={this.addFriend}>Add Friend</button> : <div/>}
->>>>>>> add new friend functionality implemented
         <FriendsList friends={friends} />
       </div>
     );

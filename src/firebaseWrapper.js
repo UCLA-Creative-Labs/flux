@@ -199,13 +199,13 @@ const addFriend = (userId, newFriendData, done) => {
 };
 
 const addFriend = (userId, newFriendData, done) => {
-    const friendsRef = firebase.database().ref(`/users/${userId}/friends/`);
-    friendsRef.update(newFriendData, () => {
-        friendsRef.on("value", snapshot => {
-            done(snapshot.val());
-        })
+  const friendsRef = firebase.database().ref(`/users/${userId}/friends/`);
+  friendsRef.update(newFriendData, () => {
+    friendsRef.on("value", snapshot => {
+      done(snapshot.val());
     });
-}
+  });
+};
 
 export default {
   initialize,
