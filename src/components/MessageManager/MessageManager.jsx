@@ -38,10 +38,10 @@ class MessageManager extends Component {
 
   handleFriendClick = friend => {
     this.setState(prevState => {
-        let prevFriendClicked = prevState.friendClicked;
-        prevFriendClicked[friend] = !prevFriendClicked[friend];
-        return { friendClicked: prevFriendClicked };
-      }); //inverts "clicked" property for given friend
+      let prevFriendClicked = prevState.friendClicked;
+      prevFriendClicked[friend] = !prevFriendClicked[friend];
+      return { friendClicked: prevFriendClicked };
+    }); //inverts "clicked" property for given friend
   };
 
   render() {
