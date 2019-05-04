@@ -5,6 +5,7 @@ import firebaseWrapper from "./firebaseWrapper";
 import Login from "./components/Login";
 import MessagingWindow from "./components/MessagingWindow";
 import "./App.css";
+import NewsFeed from "./components/NewsFeed";
 
 class App extends Component {
   constructor() {
@@ -50,7 +51,7 @@ class App extends Component {
             render={() => <MessagingWindow user="1234" receiver="9876" />}
           />
           <Route path="/login" component={Login} />
-          <Route path="/post" render={() => <MakePost userid="Ryan" />} />
+          <Route path="/post" render={() => <NewsFeed />} />
         </Router>
       </div>
     );
