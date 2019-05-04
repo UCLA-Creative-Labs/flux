@@ -5,4 +5,3 @@ import App from "./App";
 import NewsFeed from "./components/NewsFeed";
 
 ReactDOM.render(<App />, document.getElementById("root"));
-ReactDOM.render(<NewsFeed />, document.getElementById("NewsFeed"));
