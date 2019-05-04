@@ -1,30 +1,58 @@
 import React, { Component } from "react";
-import Firebase from "firebase";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import firebaseWrapper from "./firebaseWrapper";
 
-import Example from "./components/example";
-import ExampleFirebase from "./components/exampleFirebase";
-import { firebaseConfig } from "./config/firebase";
+import Login from "./components/Login";
+import MessagingWindow from "./components/MessagingWindow";
 import "./App.css";
 
 class App extends Component {
   constructor() {
     super();
 
-    if (!Firebase.apps.length) {
-      Firebase.initializeApp(firebaseConfig);
-    }
+    firebaseWrapper.initialize();
 
     this.state = {
-      example: "this is a string acting as an example property"
-      // db: firebase.database()
+      userId: ""
     };
   }
 
+  componentDidMount() {
+    const onLogin = user => {
+      this.setState({ userId: user.uid });
+    };
+    const onLogout = () => {
+      this.setState({ userId: "" });
+    };
+
+    firebaseWrapper.listenForAuthStateChange(onLogin, onLogout);
+  }
+
+  handleLogout = event => {
+    event.preventDefault();
+    firebaseWrapper.logout();
+  };
+
   render() {
+    const { userId } = this.state;
+
     return (
       <div className="App">
-        <Example example={this.state.example} />
-        <ExampleFirebase />
+        <button type="submit" onClick={this.handleLogout}>
+          Logout
+        </button>
+        <p>You userId is {userId}</p>
+
+        <Router>
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <MessagingWindow userId="31415" conversationId="asdf" />
+            )}
+          />
+          <Route path="/login" component={Login} />
+        </Router>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import MakePost from "./MakePost.jsx";
-import ShowPost from "./components/ShowPost.jsx";
+import ShowPost from "./ShowPost.jsx";
 import Firebase from "firebase";
 
 let posts = {};
@@ -16,7 +16,7 @@ class NewsFeed extends Component {
   componentDidMount() {
     let postRef = Firebase.database().ref("posts");
     postRef.on("value", snapshot => {
-      console.log(snapshot.val());
+      //console.log(snapshot.val());
       this.setState({
         posts: snapshot.val()
       });
