@@ -7,18 +7,29 @@ class ShowPost extends Component {
   incrementLike(likes) {
     const { id } = this.props;
     const newLikes = likes + 1;
-    Firebase.database()
-      .ref("posts")
-      .child(id)
-      .update({ likes: newLikes });
 
     const { userId } = this.props;
 
-    Firebase.database()
+    const likedPosts = Firebase.database()
       .ref("users")
       .child(userId)
-      .child("/likedPosts")
-      .push(id);
+      .child("/likedPosts");
+
+    let alreadyLiked = false;
+    likedPosts.once("value", function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        if (childSnapshot.val() === id) {
+          alreadyLiked = true;
+        }
+      });
+      if (alreadyLiked === false) {
+        likedPosts.push(id);
+        Firebase.database()
+          .ref("posts")
+          .child(id)
+          .update({ likes: newLikes });
+      }
+    });
   }
 
   render() {
@@ -56,7 +67,7 @@ ShowPost.propTypes = {
     likes: PropTypes.number
   }),
   id: PropTypes.string.isRequired,
-  userId: PropTypes.number.isRequired
+  userId: PropTypes.string.isRequired
 };
 
 ShowPost.defaultProps = {
