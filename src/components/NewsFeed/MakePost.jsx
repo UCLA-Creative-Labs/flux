@@ -46,8 +46,7 @@ class MakePost extends React.Component {
               day: "2-digit",
               hour: "2-digit",
               minute: "2-digit"
-            }).format(time),
-            likedPosts: ["hello"]
+            }).format(time)
           });
           this.setState({ text: "", photo: null, likes: 0 });
         });

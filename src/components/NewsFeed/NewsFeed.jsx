@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Firebase from "firebase";
+import PropTypes from "prop-types";
 import MakePost from "./MakePost";
 import ShowPost from "./ShowPost";
 
@@ -22,17 +23,26 @@ class NewsFeed extends Component {
 
   render() {
     const { posts } = this.state;
+    const { userId } = this.props;
     return (
       <div>
-        <MakePost userId="abcd" />
+        <MakePost userId={userId} />
         {Object.keys(posts)
           .reverse()
           .map(postId => (
-            <ShowPost postId={posts[postId]} key={postId} id={postId} />
+            <ShowPost
+              postId={posts[postId]}
+              key={postId}
+              id={postId}
+              userId={userId}
+            />
           ))}
       </div>
     );
   }
 }
 
+NewsFeed.propTypes = {
+  userId: PropTypes.number.isRequired
+};
 export default NewsFeed;
