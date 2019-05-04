@@ -72,7 +72,7 @@ const sendPost = (userId, text, likes) => {
   });
 };
 
-const sendPostWithPhoto = (userId, text, likes, photo) => {
+const sendPostWithPhoto = (userId, text, likes, photo, done) => {
   const time = Date.now();
   const postref = firebase.database().ref("posts");
   const storageref = firebase
@@ -96,7 +96,7 @@ const sendPostWithPhoto = (userId, text, likes, photo) => {
         }).format(time),
         likedPosts: ["hello"]
       });
-      this.setState({ text: "", photo: null, likes: 0 });
+      done();
     });
   });
 };

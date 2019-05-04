@@ -2,7 +2,7 @@ import React from "react";
 import Firebase from "firebase";
 import "./MakePost.css";
 import PropTypes from "prop-types";
-import sendPost from "../../firebaseWrapper";
+import firebaseWrapper from "../../firebaseWrapper";
 
 class MakePost extends React.Component {
   constructor(props) {
@@ -26,9 +26,12 @@ class MakePost extends React.Component {
   postSubmitHandler = event => {
     const { userId } = this.props;
     const { photo, text, likes } = this.state;
+    const resetState = () => {
+      this.setState({ text: "", photo: null, likes: 0 });
+    };
     event.preventDefault();
     if (photo !== null) {
-      const time = Date.now();
+      /*const time = Date.now();
       this.storageref = Firebase.storage()
         .ref()
         .child(`users/${userId}${time}.jpg`);
@@ -49,9 +52,9 @@ class MakePost extends React.Component {
             }).format(time),
             likedPosts: ["hello"]
           });
-          this.setState({ text: "", photo: null, likes: 0 });
         });
-      });
+      });*/
+      firebaseWrapper.sendPostWithPhoto(userId, text, likes, photo, resetState);
     } else {
       /*  this.postref.push({
         userId,
@@ -65,7 +68,7 @@ class MakePost extends React.Component {
           minute: "2-digit"
         }).format(Date.now())
       }); */
-      sendPost(userId, text, likes);
+      firebaseWrapper.sendPost(userId, text, likes);
       this.setState({ text: "", photo: null, likes: 0 });
     }
   };
