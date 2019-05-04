@@ -57,6 +57,7 @@ class App extends Component {
             exact
             render={() => <MessageManager userId={userId} />}
           />
+          <Route path="/login" component={Login}/>
         </Router>
       </div>
     );

@@ -1,21 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
-class FriendsList extends Component {
-  constructor(props) {
-    super(props);
-  }
+function FriendsList({ friends }) {
+    return (
+      <div>
+        Friends:
+        {Object.keys(friends).map(friendId => (
+          <div key={friendId}>{friendId}</div>
+        ))}
+      </div>
+    );
+}
 
-  render() {
-      const { friends } = this.props;
-      console.log(friends);
-      return (<div>
-          Friends:
-          {Object.keys(friends).map((friendId) =>
-            <div key={friendId}>{friendId}</div>
-            )}
-          </div>)
-      ;
-  }
+FriendsList.propTypes = {
+    friends: PropTypes.array.isRequired
 }
 
 export default FriendsList;

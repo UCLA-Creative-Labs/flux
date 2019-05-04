@@ -8,21 +8,21 @@ class ProfilePage extends Component {
     super(props);
 
     this.state = {
-    //   likedPosts: [],
-    //   userPosts: [],
+      //   likedPosts: [],
+      //   userPosts: [],
       friends: []
-    //   activeTab: ""
+      //   activeTab: ""
     };
   }
 
   componentDidMount() {
-      const { userId } = this.props; 
-      const updateFriends = friends => {
-          this.setState({
-              friends
-          });
-      };
-      firebaseWrapper.getAllFriends(userId, updateFriends);
+    const { userId } = this.props;
+    const updateFriends = friends => {
+      this.setState({
+        friends
+      });
+    };
+    firebaseWrapper.getAllFriends(userId, updateFriends);
   }
 
   render() {
@@ -32,7 +32,7 @@ class ProfilePage extends Component {
       <div>
         <div>Profile Picture here</div>
         <h1>{userId}</h1>
-        <FriendsList friends={friends}/>
+        <FriendsList friends={friends} />
       </div>
     );
   }
