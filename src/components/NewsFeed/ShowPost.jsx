@@ -26,7 +26,9 @@ class ShowPost extends Component {
         <p>user_id: {postID.userID}</p>
         <p>timestamp: {postID.timestamp}</p>
         <p>text: {postID.text}</p>
-        <p>photo: {postID.photo}</p>
+        <p>
+          <img className="photo" src={postID.photo} />
+        </p>
         <p>likes: {postID.likes}</p>
         <p>likedPosts: {postID.likedPosts}</p>
         <button

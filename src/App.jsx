@@ -5,7 +5,7 @@ import firebaseWrapper from "./firebaseWrapper";
 import Login from "./components/Login";
 import MessagingWindow from "./components/MessagingWindow";
 import "./App.css";
-import NewsFeed from "./components/NewsFeed";
+import NewsFeed from "./components/NewsFeed/NewsFeed";
 
 class App extends Component {
   constructor() {
