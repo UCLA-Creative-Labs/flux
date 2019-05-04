@@ -58,6 +58,7 @@ class App extends Component {
             render={() => <MessageManager userId={userId} />}
           />
           <Route path="/login" component={Login}/>
+          <Route path="/user/userId"/>
         </Router>
       </div>
     );
