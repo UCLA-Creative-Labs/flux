@@ -102,6 +102,7 @@ class App extends Component {
               );
             }}
           />
+          <Route path="/login" component={Login}/>
         </Router>
       );
     }
