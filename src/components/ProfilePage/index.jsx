@@ -26,27 +26,33 @@ class ProfilePage extends Component {
   }
 
   addFriend = () => {
-      const { userId: profileId } = this.props;
-      const currentUserId = "2468"; // this.props.match.params.userId;
-      const addedNewFriend = friends => {
-          this.setState({
-              friends
-          })
-      }
-      const newFriendData = {};
-      newFriendData[currentUserId] = "random";
-      firebaseWrapper.addFriend(profileId, newFriendData, addedNewFriend);
-  }
+    const { userId: profileId } = this.props;
+    const currentUserId = "2468"; // this.props.match.params.userId;
+    const addedNewFriend = friends => {
+      this.setState({
+        friends
+      });
+    };
+    const newFriendData = {};
+    newFriendData[currentUserId] = "random";
+    firebaseWrapper.addFriend(profileId, newFriendData, addedNewFriend);
+  };
 
   render() {
     const { userId: profileId } = this.props;
-    const currentUserId = "2468" // this.props.match.params.userId;
+    const currentUserId = "2468"; // this.props.match.params.userId;
     const { friends } = this.state;
     return (
       <div>
         <div>Profile Picture here</div>
         <h1>{profileId}</h1>
-        {profileId !== currentUserId ? <button onClick={this.addFriend}>Add Friend</button> : <div/>}
+        {profileId !== currentUserId ? (
+          <button type="button" onClick={this.addFriend}>
+            Add Friend
+          </button>
+        ) : (
+          <div />
+        )}
         <FriendsList friends={friends} />
       </div>
     );
