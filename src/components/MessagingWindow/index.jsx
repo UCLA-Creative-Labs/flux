@@ -1,40 +1,27 @@
 import React, { Component } from "react";
-import "./MessagingWindow.css";
-import Firebase from "firebase";
 import PropTypes from "prop-types";
+import "./MessagingWindow.css";
+import firebaseWrapper from "../../firebaseWrapper";
 import Message from "./Message";
 
 class MessagingWindow extends Component {
   constructor(props) {
     super(props);
 
-    const { user, receiver } = this.props;
     this.state = {
       messages: [],
-      user,
-      receiver,
       text: "" // temporary local variable used to handle text from the "send-message" text field
     };
   }
 
   componentDidMount() {
-    const { user, receiver } = this.state;
-    this.tempRef = Firebase.database().ref(
-      `users/${user}/friends/${receiver}/`
-    ); // temporary reference to extract conversation reference
-    this.tempRef.once("value", snapshot1 => {
-      const id = snapshot1.val();
-      Firebase.database()
-        .ref(`/conversations/${id}/messages/`)
-        .on("value", snapshot2 => {
-          this.setState({
-            messages: snapshot2.val() // gives complete list of messages in given conversation node
-          });
-          this.conversationRef = Firebase.database().ref(
-            `/conversations/${id}/messages/`
-          );
-        });
-    });
+    const { conversationId } = this.props;
+    const updateMessages = messages => {
+      this.setState({
+        messages
+      });
+    };
+    firebaseWrapper.listenForMessages(conversationId, updateMessages);
   }
 
   handleChange = e => {
@@ -44,23 +31,25 @@ class MessagingWindow extends Component {
   handleClick = e => {
     e.preventDefault();
 
-    const { text, user } = this.state;
-    const message = { text, user_id: user };
-    this.conversationRef.push(message);
+    const { text } = this.state;
+    const { userId, conversationId } = this.props;
+    const message = { text, userId };
+    firebaseWrapper.sendMessage(conversationId, message);
     this.setState({
       text: ""
     });
   };
 
   render() {
-    const { text, messages, user } = this.state;
+    const { text, messages } = this.state;
+    const { userId } = this.props;
     return (
       <div>
         <h1>Temporary Messaging Window</h1>
 
         {/* Display all messages from state, white bg if received, blue bg if sent (To be changed later!) */}
         {Object.keys(messages).map(messageId =>
-          messages[messageId].user_id === user ? (
+          messages[messageId].userId === userId ? (
             <Message key={messageId} text={messages[messageId].text} sent />
           ) : (
             <Message
@@ -84,8 +73,8 @@ class MessagingWindow extends Component {
 }
 
 MessagingWindow.propTypes = {
-  user: PropTypes.string.isRequired,
-  receiver: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired,
+  conversationId: PropTypes.string.isRequired
 };
 
 export default MessagingWindow;

@@ -11,6 +11,7 @@ class ShowPost extends Component {
       .ref("posts")
       .child(id)
       .update({ likes: newLikes });
+
     Firebase.database()
       .ref("posts")
       .child(id)
