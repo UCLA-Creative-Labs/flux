@@ -7,16 +7,12 @@ class MakePost extends React.Component {
   constructor(props) {
     super(props);
     this.postref = Firebase.database().ref("posts");
-    const { userID } = this.props;
     this.state = {
-      uid: userID,
       text: "",
       photo: null,
       likes: 0
     };
   }
-
-  componentDidMount() {}
 
   textInputHandler = event => {
     this.setState({ text: event.target.value });
@@ -28,19 +24,19 @@ class MakePost extends React.Component {
   };
 
   postSubmitHandler = event => {
-    const { userID } = this.props;
-    const { photo, uid, text, likes } = this.state;
+    const { userId } = this.props;
+    const { photo, text, likes } = this.state;
     event.preventDefault();
     if (photo !== null) {
       const time = Date.now();
       this.storageref = Firebase.storage()
         .ref()
-        .child(`users/${userID}${time}.jpg`);
+        .child(`users/${userId}${time}.jpg`);
       this.storageref.put(photo).then(() => {
         this.storageref.getDownloadURL().then(url => {
           const photoURL = url;
           this.postref.push({
-            userID: uid,
+            userId,
             text,
             photo: photoURL,
             likes,
@@ -58,7 +54,7 @@ class MakePost extends React.Component {
       });
     } else {
       this.postref.push({
-        userID: uid,
+        userId,
         text,
         likes,
         timestamp: new Intl.DateTimeFormat("en-US", {
@@ -85,26 +81,24 @@ class MakePost extends React.Component {
           placeholder="Type something..."
           onChange={this.textInputHandler}
         />
-        <div>
-          <input
-            id="fileItem"
-            type="file"
-            accept="image/*"
-            onChange={this.fileUploadHandler}
-          />
-        </div>
-        <div>
-          <button type="submit" onClick={this.postSubmitHandler}>
-            Post
-          </button>
-        </div>
+
+        <input
+          id="fileItem"
+          type="file"
+          accept="image/*"
+          onChange={this.fileUploadHandler}
+        />
+
+        <button type="submit" onClick={this.postSubmitHandler}>
+          Post
+        </button>
       </div>
     );
   }
 }
 
 MakePost.propTypes = {
-  userID: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired
 };
 
 export default MakePost;

@@ -19,23 +19,23 @@ class ShowPost extends Component {
   }
 
   render() {
-    const { postID, id } = this.props;
+    const { postId, id } = this.props;
 
     return (
       <div id="ShowPostContainer">
         <p>post: {id}</p>
-        <p>user_id: {postID.userID}</p>
-        <p>timestamp: {postID.timestamp}</p>
-        <p>text: {postID.text}</p>
+        <p>user_id: {postId.userID}</p>
+        <p>timestamp: {postId.timestamp}</p>
+        <p>text: {postId.text}</p>
         <p>
-          <img className="photo" src={postID.photo} alt="" />
+          <img className="photo" src={postId.photo} alt="" />
         </p>
-        <p>likes: {postID.likes}</p>
-        <p>likedPosts: {postID.likedPosts}</p>
+        <p>likes: {postId.likes}</p>
+        <p>likedPosts: {postId.likedPosts}</p>
         <button
           type="submit"
           onClick={() => {
-            this.incrementLike(postID.likes, id, postID.likedPosts);
+            this.incrementLike(postId.likes, id, postId.likedPosts);
           }}
         >
           Like!
@@ -46,7 +46,7 @@ class ShowPost extends Component {
 }
 
 ShowPost.propTypes = {
-  postID: PropTypes.shape({
+  postId: PropTypes.shape({
     userID: PropTypes.number,
     timestamp: PropTypes.string,
     text: PropTypes.string,
@@ -57,7 +57,7 @@ ShowPost.propTypes = {
 };
 
 ShowPost.defaultProps = {
-  postID: 0
+  postId: 0
 };
 
 export default ShowPost;
