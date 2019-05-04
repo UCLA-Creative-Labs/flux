@@ -56,35 +56,7 @@ const listenForMessages = (conversationId, done) => {
 /**
  * Post Functions
  */
-//const sendPost = (userId, text, photo) => {};
-
-/*const sendPostWithPhoto = (uid, text, photo, likes) => {
-  const time = Date.now();
-  this.storageref = firebase
-    .storage()
-    .ref()
-    .child(`users/${uid}${time}.jpg`);
-  this.storageref.put(photo).then(() => {
-    this.storageref.getDownloadURL().then(url => {
-      const photoURL = url;
-      this.postref.push({
-        userID: uid,
-        text,
-        photo: photoURL,
-        likes,
-        timestamp: new Intl.DateTimeFormat("en-US", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit"
-        }).format(time),
-        likedPosts: ["hello"]
-      });
-      this.setState({ text: "", photo: null, likes: 0 });
-    });
-  });
-};*/
+//  const sendPost = (userId, text, photo) => {};
 
 // const getAllPosts = () => {};
 // const listenForPosts = () => {};
