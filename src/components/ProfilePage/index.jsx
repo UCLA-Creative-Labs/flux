@@ -10,7 +10,7 @@ class ProfilePage extends Component {
     this.state = {
       //   likedPosts: [],
       //   userPosts: [],
-      friends: []
+      friends: {}
       //   activeTab: ""
     };
   }
