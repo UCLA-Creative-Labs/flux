@@ -30,12 +30,7 @@ class NewsFeed extends Component {
         {Object.keys(posts)
           .reverse()
           .map(post => (
-            <ShowPost
-              postObject={posts[post]}
-              key={post}
-              postId={post}
-              userId={userId}
-            />
+            <ShowPost postId={post} postObject={posts[post]} userId={userId} />
           ))}
       </div>
     );

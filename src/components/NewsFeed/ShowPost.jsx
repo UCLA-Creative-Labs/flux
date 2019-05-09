@@ -1,38 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import "./ShowPost.css";
-import firebaseWrapper from "../../firebaseWrapper";
 import PropTypes from "prop-types";
+import firebaseWrapper from "../../firebaseWrapper";
 
-class ShowPost extends Component {
-  render() {
-    const { postId, postObject } = this.props;
-
-    return (
-      <div id="ShowPostContainer">
-        <p>post: {postId}</p>
-        <p>user_id: {postObject.userId}</p>
-        <p>timestamp: {postObject.timestamp}</p>
-        <p>text: {postObject.text}</p>
-        <p>
-          <img className="photo" src={postObject.photo} alt="" />
-        </p>
-        <p>likes: {postObject.likes}</p>
-        <button
-          type="submit"
-          onClick={() => {
-            firebaseWrapper.incrementLike(
-              postObject.likes,
-              postId,
-              this.props.userId
-            );
-          }}
-        >
-          Like!
-        </button>
-      </div>
-    );
-  }
-}
+const ShowPost = ({ postId, postObject, userId }) => (
+  <div id="ShowPostContainer">
+    <p>post: {postId}</p>
+    <p>user_id: {postObject.userId}</p>
+    <p>timestamp: {postObject.timestamp}</p>
+    <p>text: {postObject.text}</p>
+    <p>
+      <img className="photo" src={postObject.photo} alt="" />
+    </p>
+    <p>likes: {postObject.likes}</p>
+    <button
+      type="submit"
+      onClick={() => {
+        firebaseWrapper.incrementLike(postObject.likes, postId, userId);
+      }}
+    >
+      Like!
+    </button>
+  </div>
+);
 
 ShowPost.propTypes = {
   postObject: PropTypes.shape({
@@ -41,7 +31,7 @@ ShowPost.propTypes = {
     text: PropTypes.string,
     photo: PropTypes.string,
     likes: PropTypes.number
-  }),
+  }).isRequired,
   postId: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired
 };
