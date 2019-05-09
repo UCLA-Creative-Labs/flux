@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 
 import Login from "./components/Login";
-import MessagingWindow from "./components/MessagingWindow";
+// import MessagingWindow from "./components/MessagingWindow";
 import "./App.css";
 import NewsFeed from "./components/NewsFeed/NewsFeed";
-import MessagingWindow from "./components/MessagingWindow/MessagingWindow";
+import MessageManager from "./components/MessageManager/MessageManager";
 
 class App extends Component {
   constructor() {
@@ -50,7 +50,8 @@ class App extends Component {
             path="/"
             exact
             render={() => (
-              <MessagingWindow userId="31415" conversationId="asdf" />
+              // <MessagingWindow userId="31415" conversationId="asdf" />
+              <MessageManager user="1234" />
             )}
           />
           <Route path="/login" component={Login} />

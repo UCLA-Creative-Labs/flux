@@ -53,6 +53,23 @@ const listenForMessages = (conversationId, done) => {
   });
 };
 
+const fetchMessages = (conversationId, done) => {
+  const conversationRef = firebase
+    .database()
+    .ref(`/conversations/${conversationId}/messages/`);
+  conversationRef.once("value", snapshot => {
+    done(snapshot.val());
+  });
+};
+
+const fetchFriends = (userId, done) => {
+  const friendsRef = firebase.database().ref(`users/${userId}/friends/`); // reference to friends
+  friendsRef.on("value", snapshot => {
+    console.log(snapshot.val());
+    done(snapshot.val());
+  });
+};
+
 /**
  * Post Functions
  */
@@ -191,6 +208,8 @@ export default {
   incrementLike,
   // getAllConversations,
   listenForMessages,
+  fetchMessages,
+  fetchFriends,
   sendPost
   // getAllPosts,
   // listenForPosts,

@@ -1,57 +1,43 @@
 import React, { Component } from "react";
 import "./MessageManager.css";
-import Firebase from "firebase";
 import PropTypes from "prop-types";
 import MessagingWindow from "../MessagingWindow/index";
+import firebaseWrapper from "../../firebaseWrapper";
 
 class MessageManager extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      friends: [],
-      friendClicked: {}
+      friends: {},
+      activeConversation: null
     };
   }
 
   componentDidMount() {
     const { user } = this.props;
-    this.friendsRef = Firebase.database().ref(`users/ ${user}  /friends/`); // reference to friends
-    this.friendsRef.on("value", snapshot => {
-      this.setState(
-        {
-          friends: snapshot.val() // gives complete list of friends
-        },
-        () => {
-          const newFriendClicked = {};
-          const { friends } = this.state;
-          Object.keys(friends).forEach(friend => {
-            newFriendClicked[friend] = false;
-          });
-          this.setState({
-            friendClicked: newFriendClicked // initializes every friend's "clicked" property to false
-          });
-        }
-      );
-    });
+    const getFriends = friends => {
+      this.setState({
+        friends
+      });
+    };
+    firebaseWrapper.fetchFriends(user, getFriends);
   }
 
   handleFriendClick = friend => {
-    this.setState(prevState => {
-      const prevFriendClicked = prevState.friendClicked;
-      prevFriendClicked[friend] = !prevFriendClicked[friend];
-      return { friendClicked: prevFriendClicked };
-    }); // inverts "clicked" property for given friend
+    this.setState({
+      activeConversation: friend
+    });
+    console.log(this.state);
   };
 
   render() {
-    const { friends, friendClicked } = this.state;
+    const { friends, activeConversation } = this.state;
     const { user } = this.props;
     return (
       <div>
-        <h1>Temporary Message Manager</h1>
+        {/* <h1>Temporary Message Manager</h1> */}
         {/* Display list of friends */}
-
         {Object.keys(friends).map(friendId => (
           <div key={friendId}>
             <button
@@ -61,15 +47,16 @@ class MessageManager extends Component {
             >
               Friend {friendId}
             </button>
-            <div
-              style={{
-                display: friendClicked[friendId] ? "inline" : "none"
-              }}
-            >
-              <MessagingWindow user={user} receiver={friendId} />
-            </div>
           </div>
         ))}
+        {activeConversation != null ? (
+          <MessagingWindow
+            userId={user}
+            conversationId={friends[activeConversation]}
+          />
+        ) : (
+          <p> Click a friend to get started! </p>
+        )}
       </div>
     );
   }
