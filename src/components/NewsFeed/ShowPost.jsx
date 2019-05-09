@@ -36,8 +36,4 @@ ShowPost.propTypes = {
   userId: PropTypes.string.isRequired
 };
 
-ShowPost.defaultProps = {
-  postId: 0
-};
-
 export default ShowPost;
