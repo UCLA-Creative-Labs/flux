@@ -1,54 +1,30 @@
 import React, { Component } from "react";
 import "./ShowPost.css";
-import Firebase from "firebase";
+import firebaseWrapper from "../../firebaseWrapper";
 import PropTypes from "prop-types";
 
 class ShowPost extends Component {
-  incrementLike(likes) {
-    const { id } = this.props;
-    const newLikes = likes + 1;
-
-    const { userId } = this.props;
-
-    const likedPosts = Firebase.database()
-      .ref("users")
-      .child(userId)
-      .child("/likedPosts");
-
-    let alreadyLiked = false;
-    likedPosts.once("value", function(snapshot) {
-      snapshot.forEach(function(childSnapshot) {
-        if (childSnapshot.val() === id) {
-          alreadyLiked = true;
-        }
-      });
-      if (alreadyLiked === false) {
-        likedPosts.push(id);
-        Firebase.database()
-          .ref("posts")
-          .child(id)
-          .update({ likes: newLikes });
-      }
-    });
-  }
-
   render() {
-    const { postId, id } = this.props;
+    const { postId, postObject } = this.props;
 
     return (
       <div id="ShowPostContainer">
-        <p>post: {id}</p>
-        <p>user_id: {postId.userId}</p>
-        <p>timestamp: {postId.timestamp}</p>
-        <p>text: {postId.text}</p>
+        <p>post: {postId}</p>
+        <p>user_id: {postObject.userId}</p>
+        <p>timestamp: {postObject.timestamp}</p>
+        <p>text: {postObject.text}</p>
         <p>
-          <img className="photo" src={postId.photo} alt="" />
+          <img className="photo" src={postObject.photo} alt="" />
         </p>
-        <p>likes: {postId.likes}</p>
+        <p>likes: {postObject.likes}</p>
         <button
           type="submit"
           onClick={() => {
-            this.incrementLike(postId.likes);
+            firebaseWrapper.incrementLike(
+              postObject.likes,
+              postId,
+              this.props.userId
+            );
           }}
         >
           Like!
@@ -59,14 +35,14 @@ class ShowPost extends Component {
 }
 
 ShowPost.propTypes = {
-  postId: PropTypes.shape({
+  postObject: PropTypes.shape({
     userID: PropTypes.number,
     timestamp: PropTypes.string,
     text: PropTypes.string,
     photo: PropTypes.string,
     likes: PropTypes.number
   }),
-  id: PropTypes.string.isRequired,
+  postId: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired
 };
 

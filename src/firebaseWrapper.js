@@ -79,8 +79,7 @@ const sendPost = (userId, text, photo, done) => {
             day: "2-digit",
             hour: "2-digit",
             minute: "2-digit"
-          }).format(time),
-          likedPosts: ["hello"]
+          }).format(time)
         });
         done();
       });
@@ -101,7 +100,34 @@ const sendPost = (userId, text, photo, done) => {
     done();
   }
 };
+/**
+ * Increment Likes Function
+ */
+const incrementLike = (likes, postId, userId) => {
+  const newLikes = likes + 1;
+  const likedPosts = firebase
+    .database()
+    .ref("users")
+    .child(userId)
+    .child("/likedPosts");
 
+  let alreadyLiked = false;
+  likedPosts.once("value", function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      if (childSnapshot.val() === postId) {
+        alreadyLiked = true;
+      }
+    });
+    if (alreadyLiked === false) {
+      likedPosts.push(postId);
+      firebase
+        .database()
+        .ref("posts")
+        .child(postId)
+        .update({ likes: newLikes });
+    }
+  });
+};
 /*
 const sendPost = (userId, text, likes) => {
   const postref = firebase.database().ref("posts");
@@ -162,6 +188,7 @@ export default {
   listenForAuthStateChange,
   logout,
   sendMessage,
+  incrementLike,
   // getAllConversations,
   listenForMessages,
   sendPost
