@@ -57,7 +57,7 @@ const listenForMessages = (conversationId, done) => {
  * Post Functions
  */
 
-const sendPost = (userId, text, likes, photo, done) => {
+const sendPost = (userId, text, photo, done) => {
   const postref = firebase.database().ref("posts");
   if (photo !== null) {
     const time = Date.now();
@@ -72,7 +72,7 @@ const sendPost = (userId, text, likes, photo, done) => {
           userId,
           text,
           photo: photoURL,
-          likes,
+          likes: 0,
           timestamp: new Intl.DateTimeFormat("en-US", {
             year: "numeric",
             month: "2-digit",
@@ -89,7 +89,7 @@ const sendPost = (userId, text, likes, photo, done) => {
     postref.push({
       userId,
       text,
-      likes,
+      likes: 0,
       timestamp: new Intl.DateTimeFormat("en-US", {
         year: "numeric",
         month: "2-digit",
@@ -98,6 +98,7 @@ const sendPost = (userId, text, likes, photo, done) => {
         minute: "2-digit"
       }).format(Date.now())
     });
+    done();
   }
 };
 

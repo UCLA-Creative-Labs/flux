@@ -8,8 +8,7 @@ class MakePost extends React.Component {
     super(props);
     this.state = {
       text: "",
-      photo: null,
-      likes: 0
+      photo: null
     };
   }
 
@@ -23,14 +22,13 @@ class MakePost extends React.Component {
   };
 
   postSubmitHandler = event => {
-    const { userId } = this.props;
-    const { photo, text, likes } = this.state;
     const resetState = () => {
-      this.setState({ text: "", photo: null, likes: 0 });
+      this.setState({ text: "", photo: null });
     };
+    const { userId } = this.props;
+    const { photo, text } = this.state;
     event.preventDefault();
-    firebaseWrapper.sendPost(userId, text, likes, photo, resetState);
-    this.setState({ text: "", photo: null, likes: 0 });
+    firebaseWrapper.sendPost(userId, text, photo, resetState);
   };
 
   render() {

@@ -29,11 +29,11 @@ class NewsFeed extends Component {
         <MakePost userId={userId} />
         {Object.keys(posts)
           .reverse()
-          .map(postId => (
+          .map(post => (
             <ShowPost
-              postId={posts[postId]}
-              key={postId}
-              id={postId}
+              postId={posts[post]}
+              key={post}
+              id={post}
               userId={userId}
             />
           ))}
