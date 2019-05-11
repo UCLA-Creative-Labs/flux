@@ -195,7 +195,7 @@ class App extends Component {
             )}
           />
           <Route path="/login" component={Login}/>
-          <Route path="/user/userId"/>
+          <Route path="/user/:profileId" component={ProfilePage}/>
         </Router>
       );
     }
