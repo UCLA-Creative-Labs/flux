@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 
 import Login from "./components/Login";
@@ -37,7 +37,6 @@ class App extends Component {
 
   render() {
     const { userId } = this.state;
-
     return (
       <div className="App">
         <button type="submit" onClick={this.handleLogout}>
@@ -58,7 +57,7 @@ class App extends Component {
             render={() => <MessageManager userId={userId} />}
           />
           <Route path="/login" component={Login}/>
-          <Route path="/user/userId"/>
+          <Route path="/user/:profileId" component={ProfilePage}/>
         </Router>
       </div>
     );
