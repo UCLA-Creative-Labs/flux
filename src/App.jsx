@@ -6,7 +6,7 @@ import Login from "./components/Login";
 // import MessagingWindow from "./components/MessagingWindow";
 import "./App.css";
 import NewsFeed from "./components/NewsFeed/NewsFeed";
-import MessageManager from "./components/MessageManager/MessageManager";
+import MessageManager from "./components/MessageManager";
 
 class App extends Component {
   constructor() {
