@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 
 import Login from "./components/Login";
-// import MessagingWindow from "./components/MessagingWindow";
-import "./App.css";
 import NewsFeed from "./components/NewsFeed/NewsFeed";
 import MessageManager from "./components/MessageManager";
+import "./App.css";
 
 class App extends Component {
   constructor() {
@@ -43,17 +42,10 @@ class App extends Component {
         <button type="submit" onClick={this.handleLogout}>
           Logout
         </button>
-        <p>You userId is {userId}</p>
+        <p>Your userId is {userId}</p>
 
         <Router>
-          <Route
-            path="/"
-            exact
-            render={() => (
-              // <MessagingWindow userId="31415" conversationId="asdf" />
-              <MessageManager user="1234" />
-            )}
-          />
+          <Route path="/" exact render={() => <MessageManager user="1234" />} />
           <Route path="/login" component={Login} />
           <Route path="/post" render={() => <NewsFeed userId="2468" />} />
         </Router>
