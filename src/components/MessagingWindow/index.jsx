@@ -10,18 +10,44 @@ class MessagingWindow extends Component {
 
     this.state = {
       messages: [],
-      text: "" // temporary local variable used to handle text from the "send-message" text field
+      text: ""
     };
   }
 
   componentDidMount() {
     const { conversationId } = this.props;
-    const updateMessages = messages => {
+    const { prevConversationRef } = this.state;
+
+    const updateMessages = (messages, prevRef) => {
       this.setState({
-        messages
+        messages,
+        prevConversationRef: prevRef
       });
     };
-    firebaseWrapper.listenForMessages(conversationId, updateMessages);
+
+    firebaseWrapper.listenForMessages(
+      prevConversationRef,
+      conversationId,
+      updateMessages
+    );
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { conversationId } = nextProps;
+    const { prevConversationRef } = this.state;
+
+    const updateMessages = (messages, prevRef) => {
+      this.setState({
+        messages,
+        prevConversationRef: prevRef
+      });
+    };
+
+    firebaseWrapper.listenForMessages(
+      prevConversationRef,
+      conversationId,
+      updateMessages
+    );
   }
 
   handleChange = e => {
@@ -42,11 +68,12 @@ class MessagingWindow extends Component {
 
   render() {
     const { text, messages } = this.state;
-    const { userId } = this.props;
+    const { userId, conversationId } = this.props;
+
     return (
       <div>
         <h1>Temporary Messaging Window</h1>
-
+        <h1>{conversationId}</h1>
         {/* Display all messages from state, white bg if received, blue bg if sent (To be changed later!) */}
         {Object.keys(messages).map(messageId =>
           messages[messageId].userId === userId ? (
@@ -59,7 +86,6 @@ class MessagingWindow extends Component {
             />
           )
         )}
-
         {/* A Simple form with one text field and one submit button to send a message */}
         <form>
           <input type="text" onChange={this.handleChange} value={text} />
