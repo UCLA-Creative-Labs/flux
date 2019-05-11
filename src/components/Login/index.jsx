@@ -21,7 +21,6 @@ class Login extends Component {
   }
 
   render() {
-      console.log(this.props.match.params);
     return (
       <div id="login-page">
         <div className="card">

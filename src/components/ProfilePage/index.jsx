@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import FriendsList from "./FriendsList";
 import NewsFeed from "../NewsFeed";
 import firebaseWrapper from "../../firebaseWrapper";
