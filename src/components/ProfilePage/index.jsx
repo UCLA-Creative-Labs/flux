@@ -31,19 +31,19 @@ class ProfilePage extends Component {
     const { match } = this.props;
     const { params } = match;
     const { profileId } = params;
-    const currentUserId = "31415";
+    const { userId } = this.props;
     const addedNewFriend = friends => {
       this.setState({
         friends
       });
     };
     const newFriendData = {};
-    newFriendData[currentUserId] = "random";
+    newFriendData[userId] = "random";
     firebaseWrapper.addFriend(profileId, newFriendData, addedNewFriend);
   };
 
   render() {
-    const currentUserId = "31415";
+    const { userId } = this.props;
     const { match } = this.props;
     const { params } = match;
     const { profileId } = params;
@@ -52,7 +52,7 @@ class ProfilePage extends Component {
       <div>
         <div>Profile Picture here</div>
         <h1>{profileId}</h1>
-        {profileId !== currentUserId ? (
+        {profileId !== userId ? (
           <button type="button" onClick={this.addFriend}>
             Add Friend
           </button>
@@ -66,7 +66,8 @@ class ProfilePage extends Component {
 }
 
 ProfilePage.propTypes = {
-  match: PropTypes.shape({}).isRequired
+  match: PropTypes.shape({}).isRequired,
+  userId: PropTypes.string.isRequired
 };
 
 export default ProfilePage;
