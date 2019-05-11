@@ -44,12 +44,16 @@ const sendMessage = (conversationId, message) => {
   conversationRef.push(message);
 };
 // const getAllConversations = userId => {};
-const listenForMessages = (conversationId, done) => {
+const listenForMessages = (prevRef, conversationId, done) => {
+  if (prevRef !== null && prevRef !== undefined) {
+    prevRef.off();
+  }
+
   const conversationRef = firebase
     .database()
     .ref(`/conversations/${conversationId}/messages/`);
   conversationRef.on("value", snapshot => {
-    done(snapshot.val());
+    done(snapshot.val(), conversationRef);
   });
 };
 
@@ -65,7 +69,6 @@ const fetchMessages = (conversationId, done) => {
 const fetchFriends = (userId, done) => {
   const friendsRef = firebase.database().ref(`users/${userId}/friends/`); // reference to friends
   friendsRef.on("value", snapshot => {
-    console.log(snapshot.val());
     done(snapshot.val());
   });
 };
