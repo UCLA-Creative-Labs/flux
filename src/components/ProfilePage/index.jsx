@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import FriendsList from "./FriendsList";
 import firebaseWrapper from "../../firebaseWrapper";
 
@@ -15,7 +16,9 @@ class ProfilePage extends Component {
   }
 
   componentDidMount() {
-    const { profileId } = this.props.match.params;
+    const { match } = this.props;
+    const { params } = match;
+    const { profileId } = params;
     const updateFriends = friends => {
       this.setState({
         friends
@@ -25,8 +28,10 @@ class ProfilePage extends Component {
   }
 
   addFriend = () => {
+    const { match } = this.props;
+    const { params } = match;
+    const { profileId } = params;
     const currentUserId = "31415";
-    const { profileId } = this.props.match.params; 
     const addedNewFriend = friends => {
       this.setState({
         friends
@@ -39,7 +44,9 @@ class ProfilePage extends Component {
 
   render() {
     const currentUserId = "31415";
-    const { profileId } = this.props.match.params; 
+    const { match } = this.props;
+    const { params } = match;
+    const { profileId } = params;
     const { friends } = this.state;
     return (
       <div>
@@ -57,5 +64,9 @@ class ProfilePage extends Component {
     );
   }
 }
+
+ProfilePage.propTypes = {
+  match: PropTypes.shape({}).isRequired
+};
 
 export default ProfilePage;
