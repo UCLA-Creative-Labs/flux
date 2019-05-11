@@ -189,8 +189,12 @@ class ProfilePage extends Component {
 
 ProfilePage.propTypes = {
   match: PropTypes.shape({}).isRequired,
+<<<<<<< b49696260011cc828f875c62f1d6879bcc007c75
   userId: PropTypes.string.isRequired,
   handleLogout: PropTypes.func.isRequired
+=======
+  userId: PropTypes.string.isRequired
+>>>>>>> pass userId as props to profilePage
 };
 
 Curve.propTypes = {
