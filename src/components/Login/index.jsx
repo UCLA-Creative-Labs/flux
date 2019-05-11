@@ -20,7 +20,6 @@ class Login extends Component {
   }
 
   render() {
-      console.log(this.props.match.params);
     return (
       <div>
         <h1>Login Page</h1>
