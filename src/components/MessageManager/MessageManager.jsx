@@ -25,16 +25,9 @@ class MessageManager extends Component {
   }
 
   handleFriendClick = friend => {
-    console.log("Friend clicked");
-    this.setState(
-      {
-        activeConversation: friend
-      },
-      () => {
-        console.log("state from MessageManager");
-        console.log(this.state);
-      }
-    );
+    this.setState({
+      activeConversation: friend
+    });
   };
 
   render() {

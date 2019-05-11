@@ -16,30 +16,38 @@ class MessagingWindow extends Component {
 
   componentDidMount() {
     const { conversationId } = this.props;
-    const { prevRef } = this.state;
+    const { prevConversationRef } = this.state;
 
-    console.log(`componentWillReceiveProps convoId ${conversationId}`);
     const updateMessages = (messages, prevRef) => {
       this.setState({
         messages,
-        prevRef
+        prevConversationRef: prevRef
       });
     };
-    firebaseWrapper.listenForMessages(prevRef, conversationId, updateMessages);
+
+    firebaseWrapper.listenForMessages(
+      prevConversationRef,
+      conversationId,
+      updateMessages
+    );
   }
 
   componentWillReceiveProps(nextProps) {
     const { conversationId } = nextProps;
-    const { prevRef } = this.state;
+    const { prevConversationRef } = this.state;
 
-    console.log(`componentWillReceiveProps convoId ${conversationId}`);
     const updateMessages = (messages, prevRef) => {
       this.setState({
         messages,
-        prevRef
+        prevConversationRef: prevRef
       });
     };
-    firebaseWrapper.listenForMessages(prevRef, conversationId, updateMessages);
+
+    firebaseWrapper.listenForMessages(
+      prevConversationRef,
+      conversationId,
+      updateMessages
+    );
   }
 
   handleChange = e => {
@@ -61,8 +69,7 @@ class MessagingWindow extends Component {
   render() {
     const { text, messages } = this.state;
     const { userId, conversationId } = this.props;
-    console.log("messages in messaging window state");
-    console.log(messages);
+
     return (
       <div>
         <h1>Temporary Messaging Window</h1>
