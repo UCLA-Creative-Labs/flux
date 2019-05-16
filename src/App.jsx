@@ -194,7 +194,7 @@ class App extends Component {
               </div>
             )}
           />
-          <Route path="/login" component={Login}/>
+          <Route path="/login" component={Login} />
           <Route
             path="/user/:profileId"
             render={props => <ProfilePage userId={userId} {...props} />}
