@@ -24,7 +24,7 @@ class ProfilePage extends Component {
         friends
       });
     };
-    firebaseWrapper.getAllFriends(profileId, updateFriends);
+    firebaseWrapper.getFriends(profileId, updateFriends);
   }
 
   addFriend = () => {
