@@ -1,13 +1,26 @@
 #ShowPostContainer {
-  width: 300px;
-  height: 420px;
-  border: 1px solid black;
-  margin: 10px auto;
-  padding: 10px;
+  width: 150px;
+  height: 150px;
+  border: 5px solid #edecec;
+  border-style: none solid solid solid;
+  margin-top: 0px;
+  /*padding: 10px;*/
+  margin-left: 40px;
+  margin-right: 40px;
   justify-content: center;
+  text-align: center;
+  /*box-shadow: 0px 5px 30px 2px;*/
 }
 
 .photo {
   height: 150px;
   width: 300px;
+}
+
+.colorbox {
+  display: inline-block;
+  background: #d7f0f3;
+  width: 150px;
+  height: 20px;
+  margin-bottom: 0px;
 }

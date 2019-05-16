@@ -24,6 +24,13 @@ const ShowPost = ({ postId, postObject, userId }) => (
   </div>
 );
 
+const ShowPost2 = ({ postId, postObject, userId }) => (
+  <div>
+    <div className="colorbox" />
+    <div id="ShowPostContainer" />
+  </div>
+);
+
 ShowPost.propTypes = {
   postObject: PropTypes.shape({
     userID: PropTypes.number,
@@ -36,4 +43,4 @@ ShowPost.propTypes = {
   userId: PropTypes.string.isRequired
 };
 
-export default ShowPost;
+export default ShowPost2;

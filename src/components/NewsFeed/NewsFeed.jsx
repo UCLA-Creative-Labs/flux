@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Firebase from "firebase";
 import PropTypes from "prop-types";
 import MakePost from "./MakePost";
-import ShowPost from "./ShowPost";
+import ShowPost2 from "./ShowPost";
+import "./NewsFeed.css";
 
 class NewsFeed extends Component {
   constructor(props, context) {
@@ -26,12 +27,20 @@ class NewsFeed extends Component {
     const { userId } = this.props;
     return (
       <div>
-        <MakePost userId={userId} />
-        {Object.keys(posts)
-          .reverse()
-          .map(post => (
-            <ShowPost postId={post} postObject={posts[post]} userId={userId} />
-          ))}
+        <div className="SearchBar">
+          <input className="search" placeholder="search" />
+        </div>
+        <div className="flex-container">
+          {Object.keys(posts)
+            .reverse()
+            .map(post => (
+              <ShowPost2
+                postId={post}
+                postObject={posts[post]}
+                userId={userId}
+              />
+            ))}
+        </div>
       </div>
     );
   }

@@ -1,0 +1,17 @@
+.flex-container {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 10vh;
+}
+
+.SearchBar {
+  padding-top: 5vh;
+  box-shadow: 0px 1px 6px 0px;
+  background: #d7f0f3;
+}
+
+.search {
+  width: 50vw;
+}

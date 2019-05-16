@@ -39,11 +39,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <button type="submit" onClick={this.handleLogout}>
-          Logout
-        </button>
-        <p>You userId is {userId}</p>
-
         <Router>
           <Route
             path="/"
