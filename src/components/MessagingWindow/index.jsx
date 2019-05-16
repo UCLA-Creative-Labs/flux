@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "./MessagingWindow.css";
 import firebaseWrapper from "../../firebaseWrapper";
 import Message from "./Message";
+import "./MessagingWindow.css";
 
 class MessagingWindow extends Component {
   constructor(props) {
@@ -74,7 +74,8 @@ class MessagingWindow extends Component {
       <div>
         <h1>Temporary Messaging Window</h1>
         <h1>{conversationId}</h1>
-        {/* Display all messages from state, white bg if received, blue bg if sent (To be changed later!) */}
+
+        {/* Display all messages */}
         {Object.keys(messages).map(messageId =>
           messages[messageId].userId === userId ? (
             <Message key={messageId} text={messages[messageId].text} sent />

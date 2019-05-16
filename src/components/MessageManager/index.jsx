@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./MessageManager.css";
 import PropTypes from "prop-types";
-import MessagingWindow from "../MessagingWindow/index";
 import firebaseWrapper from "../../firebaseWrapper";
+import MessagingWindow from "../MessagingWindow/index";
+import "./MessageManager.css";
 
 class MessageManager extends Component {
   constructor(props) {
@@ -15,13 +15,13 @@ class MessageManager extends Component {
   }
 
   componentDidMount() {
-    const { user } = this.props;
-    const getFriends = friends => {
+    const { userId } = this.props;
+    const updateFriends = friends => {
       this.setState({
         friends
       });
     };
-    firebaseWrapper.fetchFriends(user, getFriends);
+    firebaseWrapper.getFriends(userId, updateFriends);
   }
 
   handleFriendClick = friend => {
@@ -32,7 +32,7 @@ class MessageManager extends Component {
 
   render() {
     const { friends, activeConversation } = this.state;
-    const { user } = this.props;
+    const { userId } = this.props;
     return (
       <div>
         {/* <h1>Temporary Message Manager</h1> */}
@@ -50,7 +50,7 @@ class MessageManager extends Component {
         ))}
         {activeConversation != null ? (
           <MessagingWindow
-            userId={user}
+            userId={userId}
             conversationId={friends[activeConversation]}
           />
         ) : (
@@ -62,7 +62,7 @@ class MessageManager extends Component {
 }
 
 MessageManager.propTypes = {
-  user: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired
 };
 
 export default MessageManager;

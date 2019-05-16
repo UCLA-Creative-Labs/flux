@@ -1,7 +1,7 @@
 import React from "react";
-import "./MakePost.css";
 import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
+import "./MakePost.css";
 
 class MakePost extends React.Component {
   constructor(props) {

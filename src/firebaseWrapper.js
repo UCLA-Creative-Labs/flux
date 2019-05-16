@@ -8,6 +8,28 @@ const isInitialized = () => {
   return !(firebase.apps.length === 0);
 };
 
+const uploadPost = (userId, text, photoUrl, time) => {
+  const postsRef = firebase.database().ref("posts");
+
+  const post = {
+    userId,
+    text,
+    likes: 0,
+    timestamp: new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit"
+    }).format(time)
+  };
+  if (photoUrl !== null) {
+    post.photo = photoUrl;
+  }
+
+  return postsRef.push(post);
+};
+
 /**
  * App Functions
  */
@@ -43,12 +65,11 @@ const sendMessage = (conversationId, message) => {
     .ref(`/conversations/${conversationId}/messages/`);
   conversationRef.push(message);
 };
-// const getAllConversations = userId => {};
+
 const listenForMessages = (prevRef, conversationId, done) => {
   if (prevRef !== null && prevRef !== undefined) {
     prevRef.off();
   }
-
   const conversationRef = firebase
     .database()
     .ref(`/conversations/${conversationId}/messages/`);
@@ -57,164 +78,82 @@ const listenForMessages = (prevRef, conversationId, done) => {
   });
 };
 
-const fetchMessages = (conversationId, done) => {
-  const conversationRef = firebase
-    .database()
-    .ref(`/conversations/${conversationId}/messages/`);
-  conversationRef.once("value", snapshot => {
-    done(snapshot.val());
-  });
-};
-
-const fetchFriends = (userId, done) => {
-  const friendsRef = firebase.database().ref(`users/${userId}/friends/`); // reference to friends
-  friendsRef.on("value", snapshot => {
-    done(snapshot.val());
-  });
-};
-
 /**
  * Post Functions
  */
-
 const sendPost = (userId, text, photo, done) => {
-  const postref = firebase.database().ref("posts");
+  const time = Date.now();
+
   if (photo !== null) {
-    const time = Date.now();
-    const storageref = firebase
+    const storageRef = firebase
       .storage()
       .ref()
       .child(`users/${userId}${time}.jpg`);
-    storageref.put(photo).then(() => {
-      storageref.getDownloadURL().then(url => {
-        const photoURL = url;
-        postref.push({
-          userId,
-          text,
-          photo: photoURL,
-          likes: 0,
-          timestamp: new Intl.DateTimeFormat("en-US", {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit"
-          }).format(time)
-        });
-        done();
+    storageRef.put(photo).then(() => {
+      storageRef.getDownloadURL().then(photoUrl => {
+        uploadPost(userId, text, photoUrl, time).then(done);
       });
     });
   } else {
-    postref.push({
-      userId,
-      text,
-      likes: 0,
-      timestamp: new Intl.DateTimeFormat("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit"
-      }).format(Date.now())
-    });
-    done();
+    uploadPost(userId, text, photo, time).then(done);
   }
 };
-/**
- * Increment Likes Function
- */
+
+const listenForPosts = done => {
+  const postsRef = firebase.database().ref("posts");
+
+  postsRef.on("value", snapshot => {
+    done(snapshot.val());
+  });
+};
+
 const incrementLike = (likes, postId, userId) => {
-  const newLikes = likes + 1;
-  const likedPosts = firebase
+  const postsRef = firebase.database().ref("posts");
+  const likedPostsRef = firebase
     .database()
     .ref("users")
     .child(userId)
     .child("/likedPosts");
 
   let alreadyLiked = false;
-  likedPosts.once("value", function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
+  likedPostsRef.once("value", snapshot => {
+    snapshot.forEach(childSnapshot => {
       if (childSnapshot.val() === postId) {
         alreadyLiked = true;
       }
     });
     if (alreadyLiked === false) {
-      likedPosts.push(postId);
-      firebase
-        .database()
-        .ref("posts")
-        .child(postId)
-        .update({ likes: newLikes });
+      likedPostsRef.push(postId);
+      postsRef.child(postId).update({ likes: likes + 1 });
     }
   });
 };
-/*
-const sendPost = (userId, text, likes) => {
-  const postref = firebase.database().ref("posts");
-  postref.push({
-    userId,
-    text,
-    likes,
-    timestamp: new Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit"
-    }).format(Date.now())
-  });
-};
-
-const sendPostWithPhoto = (userId, text, likes, photo, done) => {
-  const time = Date.now();
-  const postref = firebase.database().ref("posts");
-  const storageref = firebase
-    .storage()
-    .ref()
-    .child(`users/${userId}${time}.jpg`);
-  storageref.put(photo).then(() => {
-    storageref.getDownloadURL().then(url => {
-      const photoURL = url;
-      postref.push({
-        userId,
-        text,
-        photo: photoURL,
-        likes,
-        timestamp: new Intl.DateTimeFormat("en-US", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit"
-        }).format(time),
-        likedPosts: ["hello"]
-      });
-      done();
-    });
-  });
-};
-*/
-
-// const getAllPosts = () => {};
-// const listenForPosts = () => {};
 
 /**
  * User Functions
  */
-// const getAllFriends = () => {};
+const getFriends = (userId, done) => {
+  const friendsRef = firebase.database().ref(`users/${userId}/friends/`); // reference to friends
+  friendsRef.on("value", snapshot => {
+    done(snapshot.val());
+  });
+};
+// const getUserPosts = (userId, done) => {};
+// const getLikedPosts = (userId, done) => {};
 
 export default {
   initialize,
   listenForAuthStateChange,
   logout,
+
   sendMessage,
-  incrementLike,
-  // getAllConversations,
   listenForMessages,
-  fetchMessages,
-  fetchFriends,
-  sendPost
-  // getAllPosts,
-  // listenForPosts,
-  // getAllFriends
+
+  sendPost,
+  listenForPosts,
+  incrementLike,
+
+  getFriends
+  // getUserPosts,
+  // getLikedPosts
 };

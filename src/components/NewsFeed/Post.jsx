@@ -1,10 +1,10 @@
 import React from "react";
-import "./ShowPost.css";
 import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
+import "./Post.css";
 
-const ShowPost = ({ postId, postObject, userId }) => (
-  <div id="ShowPostContainer">
+const Post = ({ postId, postObject, userId }) => (
+  <div className="post">
     <p>post: {postId}</p>
     <p>user_id: {postObject.userId}</p>
     <p>timestamp: {postObject.timestamp}</p>
@@ -24,7 +24,7 @@ const ShowPost = ({ postId, postObject, userId }) => (
   </div>
 );
 
-ShowPost.propTypes = {
+Post.propTypes = {
   postObject: PropTypes.shape({
     userID: PropTypes.number,
     timestamp: PropTypes.string,
@@ -36,4 +36,4 @@ ShowPost.propTypes = {
   userId: PropTypes.string.isRequired
 };
 
-export default ShowPost;
+export default Post;

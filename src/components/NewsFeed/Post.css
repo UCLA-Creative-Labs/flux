@@ -1,4 +1,4 @@
-#ShowPostContainer {
+.post {
   width: 300px;
   height: 420px;
   border: 1px solid black;
