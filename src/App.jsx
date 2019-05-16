@@ -36,9 +36,9 @@ class App extends Component {
 
   render() {
     const { userId } = this.state;
-
     return (
       <div className="App">
+        <p>{userId}</p>
         <Router>
           <Route
             path="/"

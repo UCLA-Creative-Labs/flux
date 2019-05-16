@@ -1,15 +1,24 @@
 #ShowPostContainer {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: 70px;
+  text-transform: capitalize;
   width: 150px;
-  height: 150px;
+  height: 130px;
   border: 5px solid #edecec;
-  border-style: none solid solid solid;
-  margin-top: 0px;
-  /*padding: 10px;*/
-  margin-left: 40px;
-  margin-right: 40px;
-  justify-content: center;
+  border-top: 0;
+  margin: 0px 40px 30px 40px;
+  vertical-align: middle;
   text-align: center;
-  /*box-shadow: 0px 5px 30px 2px;*/
+  line-height: 17vh;
+
+  background: #fff;
+  box-shadow:
+    /* The top layer shadow */ 0 1px 1px rgba(0, 0, 0, 0.15),
+    /* The second layer */ 0 10px 0 -5px #edecec,
+    /* The second layer shadow */ 0 10px 1px -4px rgba(0, 0, 0, 0.15),
+    /* The third layer */ 0 20px 0 -10px #edecec,
+    /* The third layer shadow */ 0 20px 1px -9px rgba(0, 0, 0, 0.15);
 }
 
 .photo {

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Firebase from "firebase";
 import PropTypes from "prop-types";
-import MakePost from "./MakePost";
 import ShowPost2 from "./ShowPost";
 import "./NewsFeed.css";
 
@@ -28,7 +27,7 @@ class NewsFeed extends Component {
     return (
       <div>
         <div className="SearchBar">
-          <input className="search" placeholder="search" />
+          <input className="search" placeholder="SEARCH" />
         </div>
         <div className="flex-container">
           {Object.keys(posts)

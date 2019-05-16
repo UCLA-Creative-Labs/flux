@@ -24,10 +24,12 @@ const ShowPost = ({ postId, postObject, userId }) => (
   </div>
 );
 
-const ShowPost2 = ({ postId, postObject, userId }) => (
+const ShowPost2 = ({ postObject }) => (
   <div>
     <div className="colorbox" />
-    <div id="ShowPostContainer" />
+    <div id="ShowPostContainer">
+      <div>{postObject.text[0]}</div>
+    </div>
   </div>
 );
 
@@ -41,6 +43,16 @@ ShowPost.propTypes = {
   }).isRequired,
   postId: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired
+};
+
+ShowPost2.propTypes = {
+  postObject: PropTypes.shape({
+    userID: PropTypes.number,
+    timestamp: PropTypes.string,
+    text: PropTypes.string,
+    photo: PropTypes.string,
+    likes: PropTypes.number
+  }).isRequired
 };
 
 export default ShowPost2;
