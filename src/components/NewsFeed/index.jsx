@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Firebase from "firebase";
 import PropTypes from "prop-types";
+import firebaseWrapper from "../../firebaseWrapper";
 import MakePost from "./MakePost";
-import ShowPost from "./ShowPost";
+import Post from "./Post";
 
 class NewsFeed extends Component {
   constructor(props, context) {
@@ -13,12 +13,13 @@ class NewsFeed extends Component {
   }
 
   componentDidMount() {
-    const postRef = Firebase.database().ref("posts");
-    postRef.on("value", snapshot => {
+    const updatePosts = posts => {
       this.setState({
-        posts: snapshot.val()
+        posts
       });
-    });
+    };
+
+    firebaseWrapper.listenForPosts(updatePosts);
   }
 
   render() {
@@ -30,7 +31,7 @@ class NewsFeed extends Component {
         {Object.keys(posts)
           .reverse()
           .map(post => (
-            <ShowPost postId={post} postObject={posts[post]} userId={userId} />
+            <Post postId={post} postObject={posts[post]} userId={userId} />
           ))}
       </div>
     );

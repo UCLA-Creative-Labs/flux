@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 
 import Login from "./components/Login";
-import NewsFeed from "./components/NewsFeed/NewsFeed";
+import NewsFeed from "./components/NewsFeed";
 import MessageManager from "./components/MessageManager";
 import "./App.css";
 
@@ -45,9 +45,13 @@ class App extends Component {
         <p>Your userId is {userId}</p>
 
         <Router>
-          <Route path="/" exact render={() => <MessageManager user="1234" />} />
-          <Route path="/login" component={Login} />
-          <Route path="/post" render={() => <NewsFeed userId="2468" />} />
+          <Route path="/" exact component={Login} />
+          <Route path="/newsfeed" render={() => <NewsFeed userId={userId} />} />
+          <Route
+            path="/messages"
+            exact
+            render={() => <MessageManager userId="1234" />}
+          />
         </Router>
       </div>
     );
