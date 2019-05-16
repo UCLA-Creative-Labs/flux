@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 
 import Login from "./components/Login";
@@ -56,7 +56,7 @@ class App extends Component {
             exact
             render={() => <MessageManager userId={userId} />}
           />
-          <Route path="/login" component={Login}/>
+          <Route path="/login" component={Login} />
           <Route
             path="/user/:profileId"
             render={props => <ProfilePage userId={userId} {...props} />}
