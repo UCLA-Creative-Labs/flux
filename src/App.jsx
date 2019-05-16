@@ -46,11 +46,12 @@ class App extends Component {
 
         <Router>
           <Route path="/" exact component={Login} />
+          {/* Change to `userId="1234"` if testing */}
           <Route path="/newsfeed" render={() => <NewsFeed userId={userId} />} />
           <Route
             path="/messages"
             exact
-            render={() => <MessageManager userId="1234" />}
+            render={() => <MessageManager userId={userId} />}
           />
         </Router>
       </div>
