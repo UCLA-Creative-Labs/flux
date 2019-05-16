@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 
 import Login from "./components/Login";
-import MessagingWindow from "./components/MessagingWindow";
+import NewsFeed from "./components/NewsFeed";
+import MessageManager from "./components/MessageManager";
 import "./App.css";
 import NewsFeed from "./components/NewsFeed/NewsFeed";
 
@@ -38,14 +39,19 @@ class App extends Component {
     const { userId } = this.state;
     return (
       <div className="App">
-        <p>{userId}</p>
+        <button type="submit" onClick={this.handleLogout}>
+          Logout
+        </button>
+        <p>Your userId is {userId}</p>
+
         <Router>
+          <Route path="/" exact component={Login} />
+          {/* Change to `userId="1234"` if testing */}
+          <Route path="/newsfeed" render={() => <NewsFeed userId={userId} />} />
           <Route
-            path="/"
+            path="/messages"
             exact
-            render={() => (
-              <MessagingWindow userId="31415" conversationId="asdf" />
-            )}
+            render={() => <MessageManager userId={userId} />}
           />
           <Route path="/login" component={Login} />
           <Route path="/post" render={() => <NewsFeed userId="2468" />} />
