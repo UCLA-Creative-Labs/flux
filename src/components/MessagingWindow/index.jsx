@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
 import Message from "./Message";
-import "./MessagingWindow.css";
 
 class MessagingWindow extends Component {
   constructor(props) {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
 import MessagingWindow from "../MessagingWindow/index";
-import "./MessageManager.css";
+import "./styles.css";
 
 class MessageManager extends Component {
   constructor(props) {
@@ -33,10 +33,12 @@ class MessageManager extends Component {
   render() {
     const { friends, activeConversation } = this.state;
     const { userId } = this.props;
+
     return (
       <div>
         {/* <h1>Temporary Message Manager</h1> */}
-        {/* Display list of friends */}
+
+        {/* List of friends */}
         {Object.keys(friends).map(friendId => (
           <div key={friendId}>
             <button
@@ -48,6 +50,7 @@ class MessageManager extends Component {
             </button>
           </div>
         ))}
+
         {activeConversation != null ? (
           <MessagingWindow
             userId={userId}

@@ -135,7 +135,12 @@ const incrementLike = (likes, postId, userId) => {
 const getFriends = (userId, done) => {
   const friendsRef = firebase.database().ref(`users/${userId}/friends/`); // reference to friends
   friendsRef.on("value", snapshot => {
-    done(snapshot.val());
+    let friends = snapshot.val();
+
+    if (friends === null) {
+      friends = {};
+    }
+    done(friends);
   });
 };
 // const getUserPosts = (userId, done) => {};
