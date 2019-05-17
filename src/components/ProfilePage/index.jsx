@@ -37,9 +37,7 @@ class ProfilePage extends Component {
         friends
       });
     };
-    const newFriendData = {};
-    newFriendData[userId] = "random";
-    firebaseWrapper.addFriend(profileId, newFriendData, addedNewFriend);
+    firebaseWrapper.addFriend(profileId, userId, addedNewFriend);
   };
 
   render() {

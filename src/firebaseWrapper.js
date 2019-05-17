@@ -189,11 +189,22 @@ const getLikedPosts = (userId, done) => {
   });
 };
 
-const addFriend = (userId, newFriendData, done) => {
-  const friendsRef = firebase.database().ref(`/users/${userId}/friends/`);
-  friendsRef.update(newFriendData, () => {
-    friendsRef.on("value", snapshot => {
-      done(snapshot.val());
+const generateConversationId = done => {
+  const conversationRef = firebase.database().ref(`/conversations/`);
+  const newConversationRef = conversationRef.push({ messages: {} });
+  done(newConversationRef.key);
+};
+
+const addFriend = (userId1, userId2, done) => {
+  generateConversationId(newConversationId => {
+    const user1Ref = firebase.database().ref(`/users/${userId1}/friends`);
+    user1Ref.update({ [userId2]: newConversationId }, () => {
+      const user2Ref = firebase.database().ref(`/users/${userId2}/friends`);
+      user2Ref.update({ [userId1]: newConversationId }, () => {
+        user1Ref.on("value", snapshot => {
+          done(snapshot.val());
+        });
+      });
     });
   });
 };
