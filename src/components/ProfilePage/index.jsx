@@ -58,7 +58,7 @@ class ProfilePage extends Component {
 
     return (
       <div>
-        <img src={profilePicture} />
+        <img src={profilePicture} alt="Profile" />
 
         <h1>{profileId}</h1>
         {profileId !== userId && !(userId in friends) ? (
