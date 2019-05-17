@@ -69,8 +69,6 @@ class MessagingWindow extends Component {
     const { text, messages } = this.state;
     const { userId, conversationId } = this.props;
 
-    console.log(`conversationId ${conversationId}`);
-
     return (
       <div>
         <h1>Temporary Messaging Window</h1>
