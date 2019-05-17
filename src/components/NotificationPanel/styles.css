@@ -1,0 +1,8 @@
+.NotificationPanel {
+  width: 400px;
+  height: 1000px;
+  border: 5px solid black;
+  position: relative;
+  left: 55%;
+  filter: blur(5px)
+}
