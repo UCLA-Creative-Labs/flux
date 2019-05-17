@@ -154,9 +154,9 @@ const getFriends = (userId, done) => {
 
 const getUserPosts = (userId, done) => {
   getPosts(posts => {
-    let userPostIds = Object.keys(posts).filter(postId => {
-      return posts[postId].userId === userId;
-    });
+    const userPostIds = Object.keys(posts).filter(
+      postId => posts[postId].userId === userId
+    );
 
     const userPosts = {};
     userPostIds.forEach(postId => {
@@ -169,6 +169,7 @@ const getUserPosts = (userId, done) => {
 
 const getLikedPosts = (userId, done) => {
   const likedPostsRef = firebase.database().ref(`users/${userId}/likedPosts/`);
+
   likedPostsRef.once("value", snapshot => {
     let postsBranch = snapshot.val();
     if (postsBranch === null) {

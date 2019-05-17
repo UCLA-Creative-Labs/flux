@@ -14,7 +14,7 @@ class NewsFeed extends Component {
   }
 
   componentDidMount() {
-    const { type, userId } = this.props;
+    const { type } = this.props;
 
     const updatePosts = posts => {
       this.setState({
@@ -66,6 +66,6 @@ class NewsFeed extends Component {
 
 NewsFeed.propTypes = {
   userId: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["home", "user", "liked"])
+  type: PropTypes.oneOf(["home", "user", "liked"]).isRequired
 };
 export default NewsFeed;
