@@ -14,8 +14,9 @@ class MessageManager extends Component {
     };
   }
 
-  componentDidMount() {
-    const { userId } = this.props;
+  componentWillReceiveProps(props) {
+    const { userId } = props;
+
     const updateFriends = friends => {
       this.setState({
         friends

@@ -5,6 +5,7 @@ import firebaseWrapper from "./firebaseWrapper";
 import Login from "./components/Login";
 import NewsFeed from "./components/NewsFeed";
 import MessageManager from "./components/MessageManager";
+import ProfilePage from "./components/ProfilePage";
 import "./App.css";
 
 class App extends Component {
@@ -36,7 +37,6 @@ class App extends Component {
 
   render() {
     const { userId } = this.state;
-
     return (
       <div className="App">
         <button type="submit" onClick={this.handleLogout}>
@@ -55,6 +55,11 @@ class App extends Component {
             path="/messages"
             exact
             render={() => <MessageManager userId={userId} />}
+          />
+          <Route path="/login" component={Login} />
+          <Route
+            path="/user/:profileId"
+            render={props => <ProfilePage userId={userId} {...props} />}
           />
         </Router>
       </div>

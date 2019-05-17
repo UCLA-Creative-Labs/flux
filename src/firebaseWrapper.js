@@ -30,6 +30,16 @@ const uploadPost = (userId, text, photoUrl, time) => {
   return postsRef.push(post);
 };
 
+const createConversation = (userId, done) => {
+  const conversationsRef = firebase.database().ref("conversations");
+  const newConversationRef = conversationsRef.push();
+  const messagesRef = newConversationRef.child("messages");
+
+  const message = { text: "Test Initial message", userId };
+
+  messagesRef.push(message).then(done(newConversationRef.key));
+};
+
 /**
  * App Functions
  */
@@ -189,6 +199,19 @@ const getLikedPosts = (userId, done) => {
   });
 };
 
+const addFriend = (userId1, userId2) => {
+  const user1FriendsRef = firebase.database().ref(`/users/${userId1}/friends`);
+  const user2FriendsRef = firebase.database().ref(`/users/${userId2}/friends`);
+
+  createConversation(userId1, conversationId => {
+    const friendForUser1 = { [userId2]: conversationId };
+    const friendForUser2 = { [userId1]: conversationId };
+
+    user1FriendsRef.update(friendForUser1);
+    user2FriendsRef.update(friendForUser2);
+  });
+};
+
 export default {
   initialize,
   listenForAuthStateChange,
@@ -201,6 +224,7 @@ export default {
   listenForPosts,
   incrementLike,
 
+  addFriend,
   getFriends,
   getUserPosts,
   getLikedPosts
