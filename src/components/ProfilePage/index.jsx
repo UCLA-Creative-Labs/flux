@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import FriendsList from "./FriendsList";
+import NewsFeed from "../NewsFeed";
 import firebaseWrapper from "../../firebaseWrapper";
 
 class ProfilePage extends Component {
@@ -59,6 +60,16 @@ class ProfilePage extends Component {
           <div />
         )}
         <FriendsList friends={friends} />
+
+        <div>
+          <h2>User Posts</h2>
+          <NewsFeed userId={userId} profileId={profileId} type="user" />
+        </div>
+
+        <div>
+          <h2>Liked Posts</h2>
+          <NewsFeed userId={userId} profileId={profileId} type="liked" />
+        </div>
       </div>
     );
   }
