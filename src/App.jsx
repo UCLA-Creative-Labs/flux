@@ -12,6 +12,7 @@ import NewsFeed from "./components/NewsFeed";
 import MessageManager from "./components/MessageManager";
 import ProfilePage from "./components/ProfilePage";
 import Navbar from "./components/Navbar";
+import NotificationPanel from "./components/NotificationPanel";
 import "./App.css";
 
 class App extends Component {
@@ -21,7 +22,57 @@ class App extends Component {
     firebaseWrapper.initialize();
 
     this.state = {
-      userId: ""
+      userId: "",
+      notifications: [
+        {
+          text: "flux",
+          color: "aqua"
+        },
+        {
+          text: "is",
+          color: "red"
+        },
+        {
+          text: "the",
+          color: "orange"
+        },
+        {
+          text: "best",
+          color: "yellow"
+        },
+        {
+          text: "you love milk",
+          color: "green"
+        },
+        {
+          text: "C's get degrees",
+          color: "blue"
+        },
+        {
+          text: "8clap",
+          color: "indigo"
+        },
+        {
+          text: "i want to play pokemon go",
+          color: "violet"
+        },
+        {
+          text: "image is a fb stickers",
+          color: "brown"
+        },
+        {
+          text: "called yuttari dragon",
+          color: "teal"
+        },
+        {
+          text: "its great but no one should see this",
+          color: "pink"
+        },
+        {
+          text: "12th notification",
+          color: "orange"
+        }
+      ]
     };
   }
 
@@ -45,6 +96,7 @@ class App extends Component {
     const { userId } = this.state;
 
     let routes;
+    const { notifications } = this.state;
 
     if (userId === "") {
       routes = (
@@ -72,6 +124,11 @@ class App extends Component {
           <Route
             path="/user/:profileId"
             render={props => <ProfilePage userId={userId} {...props} />}
+          />
+          <Route
+            path="/notificationpanel"
+            exact
+            render={() => <NotificationPanel notifications={notifications} />}
           />
         </Router>
       );
