@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 
 import Login from "./components/Login";
 import NewsFeed from "./components/NewsFeed";
 import MessageManager from "./components/MessageManager";
 import ProfilePage from "./components/ProfilePage";
+import Navbar from "./components/Navbar";
 import "./App.css";
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
 
   render() {
     const { userId } = this.state;
+
     return (
       <div className="App">
         <button type="submit" onClick={this.handleLogout}>
@@ -45,7 +47,16 @@ class App extends Component {
         <p>Your userId is {userId}</p>
 
         <Router>
-          <Route path="/" exact component={Login} />
+          {userId !== "" && <Navbar userId={userId} />}
+
+          <Route
+            path="/"
+            exact
+            render={() =>
+              userId === "" ? <Login /> : <Redirect to="/newsfeed" />
+            }
+          />
+
           {/* Change to `userId="1234"` if testing */}
           <Route
             path="/newsfeed"
@@ -56,7 +67,6 @@ class App extends Component {
             exact
             render={() => <MessageManager userId={userId} />}
           />
-          <Route path="/login" component={Login} />
           <Route
             path="/user/:profileId"
             render={props => <ProfilePage userId={userId} {...props} />}

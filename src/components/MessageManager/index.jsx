@@ -14,15 +14,34 @@ class MessageManager extends Component {
     };
   }
 
+  componentDidMount() {
+    const { userId } = this.props;
+    const { friendsRef } = this.state;
+
+    if (friendsRef === undefined) {
+      const updateFriends = (friends, newFriendsRef) => {
+        this.setState({
+          friends,
+          friendsRef: newFriendsRef
+        });
+      };
+      firebaseWrapper.listenForFriends(userId, updateFriends);
+    }
+  }
+
   componentWillReceiveProps(props) {
     const { userId } = props;
+    const { friendsRef } = this.state;
 
-    const updateFriends = friends => {
-      this.setState({
-        friends
-      });
-    };
-    firebaseWrapper.getFriends(userId, updateFriends);
+    if (friendsRef === undefined) {
+      const updateFriends = (friends, newFriendsRef) => {
+        this.setState({
+          friends,
+          friendsRef: newFriendsRef
+        });
+      };
+      firebaseWrapper.listenForFriends(userId, updateFriends);
+    }
   }
 
   handleFriendClick = friend => {
