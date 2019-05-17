@@ -142,7 +142,7 @@ const incrementLike = (likes, postId, userId) => {
 /**
  * User Functions
  */
-const getFriends = (userId, done) => {
+const listenForFriends = (userId, done) => {
   const friendsRef = firebase.database().ref(`users/${userId}/friends/`);
   friendsRef.on("value", snapshot => {
     let friends = snapshot.val();
@@ -150,7 +150,7 @@ const getFriends = (userId, done) => {
     if (friends === null) {
       friends = {};
     }
-    done(friends);
+    done(friends, friendsRef);
   });
 };
 
@@ -216,7 +216,7 @@ export default {
   listenForPosts,
   incrementLike,
 
-  getFriends,
+  listenForFriends,
   addFriend,
   listenForUserPosts,
   listenForLikedPosts
