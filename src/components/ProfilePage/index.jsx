@@ -32,12 +32,8 @@ class ProfilePage extends Component {
     const { params } = match;
     const { profileId } = params;
     const { userId } = this.props;
-    const addedNewFriend = friends => {
-      this.setState({
-        friends
-      });
-    };
-    firebaseWrapper.addFriend(profileId, userId, addedNewFriend);
+
+    firebaseWrapper.addFriend(userId, profileId);
   };
 
   render() {

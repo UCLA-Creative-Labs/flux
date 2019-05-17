@@ -30,6 +30,16 @@ const uploadPost = (userId, text, photoUrl, time) => {
   return postsRef.push(post);
 };
 
+const createConversation = (userId, done) => {
+  const conversationsRef = firebase.database().ref("conversations");
+  const newConversationRef = conversationsRef.push();
+  const messagesRef = newConversationRef.child("messages");
+
+  const message = { text: "Test Initial message", userId };
+
+  messagesRef.push(message).then(done(newConversationRef.key));
+};
+
 /**
  * App Functions
  */
@@ -189,24 +199,16 @@ const getLikedPosts = (userId, done) => {
   });
 };
 
-const generateConversationId = done => {
-  const conversationRef = firebase.database().ref(`/conversations/`);
-  const newConversationRef = conversationRef.push({ messages: {} });
-  newConversationRef.push("Who's this?");
-  done(newConversationRef.key);
-};
+const addFriend = (userId1, userId2) => {
+  const user1FriendsRef = firebase.database().ref(`/users/${userId1}/friends`);
+  const user2FriendsRef = firebase.database().ref(`/users/${userId2}/friends`);
 
-const addFriend = (userId1, userId2, done) => {
-  generateConversationId(newConversationId => {
-    const user1Ref = firebase.database().ref(`/users/${userId1}/friends`);
-    user1Ref.update({ [userId2]: newConversationId }, () => {
-      const user2Ref = firebase.database().ref(`/users/${userId2}/friends`);
-      user2Ref.update({ [userId1]: newConversationId }, () => {
-        user1Ref.on("value", snapshot => {
-          done(snapshot.val());
-        });
-      });
-    });
+  createConversation(userId1, conversationId => {
+    const friendForUser1 = { [userId2]: conversationId };
+    const friendForUser2 = { [userId1]: conversationId };
+
+    user1FriendsRef.update(friendForUser1);
+    user2FriendsRef.update(friendForUser2);
   });
 };
 
