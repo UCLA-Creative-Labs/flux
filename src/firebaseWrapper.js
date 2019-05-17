@@ -192,6 +192,7 @@ const getLikedPosts = (userId, done) => {
 const generateConversationId = done => {
   const conversationRef = firebase.database().ref(`/conversations/`);
   const newConversationRef = conversationRef.push({ messages: {} });
+  newConversationRef.push("Who's this?");
   done(newConversationRef.key);
 };
 
