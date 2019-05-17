@@ -51,7 +51,6 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={Login} />
-            <Route path="/" render={() => <Redirect to="/" />} />
           </Switch>
         </Router>
       );
