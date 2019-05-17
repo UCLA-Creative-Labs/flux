@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 
 import Login from "./components/Login";
@@ -39,24 +44,21 @@ class App extends Component {
   render() {
     const { userId } = this.state;
 
-    return (
-      <div className="App">
-        <button type="submit" onClick={this.handleLogout}>
-          Logout
-        </button>
-        <p>Your userId is {userId}</p>
+    let routes;
 
+    if (userId === "") {
+      routes = (
         <Router>
-          {userId !== "" && <Navbar userId={userId} />}
-
-          <Route
-            path="/"
-            exact
-            render={() =>
-              userId === "" ? <Login /> : <Redirect to="/newsfeed" />
-            }
-          />
-
+          <Switch>
+            <Route exact path="/" component={Login} />
+          </Switch>
+        </Router>
+      );
+    } else {
+      routes = (
+        <Router>
+          <Navbar userId={userId} />
+          <Route exact path="/" render={() => <Redirect to="/newsfeed" />} />
           {/* Change to `userId="1234"` if testing */}
           <Route
             path="/newsfeed"
@@ -72,6 +74,17 @@ class App extends Component {
             render={props => <ProfilePage userId={userId} {...props} />}
           />
         </Router>
+      );
+    }
+
+    return (
+      <div className="App">
+        <button type="submit" onClick={this.handleLogout}>
+          Logout
+        </button>
+        <p>Your userId is {userId}</p>
+
+        {routes}
       </div>
     );
   }

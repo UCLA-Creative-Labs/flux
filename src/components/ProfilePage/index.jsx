@@ -20,11 +20,19 @@ class ProfilePage extends Component {
     const { match } = this.props;
     const { params } = match;
     const { profileId } = params;
+
+    const updateProfilePicture = profilePicture => {
+      this.setState({
+        profilePicture
+      });
+    };
     const updateFriends = friends => {
       this.setState({
         friends
       });
     };
+
+    firebaseWrapper.getProfilePicture(profileId, updateProfilePicture);
     firebaseWrapper.listenForFriends(profileId, updateFriends);
   }
 
@@ -46,11 +54,12 @@ class ProfilePage extends Component {
         params: { profileId }
       }
     } = this.props;
-    const { friends } = this.state;
+    const { friends, profilePicture } = this.state;
 
     return (
       <div>
-        <div>Profile Picture here</div>
+        <img src={profilePicture} alt="Profile" />
+
         <h1>{profileId}</h1>
         {profileId !== userId && !(userId in friends) ? (
           <button type="button" onClick={this.addFriend}>
