@@ -6,7 +6,7 @@ function FriendsList({ friends }) {
     <div>
       Friends:
       {Object.keys(friends).map(friendId => (
-        <div key={friendId}>{friendId}</div>
+        <p key={friendId}>{friendId}</p>
       ))}
     </div>
   );

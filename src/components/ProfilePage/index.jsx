@@ -28,20 +28,25 @@ class ProfilePage extends Component {
   }
 
   addFriend = () => {
-    const { match } = this.props;
-    const { params } = match;
-    const { profileId } = params;
-    const { userId } = this.props;
+    const {
+      userId,
+      match: {
+        params: { profileId }
+      }
+    } = this.props;
 
     firebaseWrapper.addFriend(userId, profileId);
   };
 
   render() {
-    const { userId } = this.props;
-    const { match } = this.props;
-    const { params } = match;
-    const { profileId } = params;
+    const {
+      userId,
+      match: {
+        params: { profileId }
+      }
+    } = this.props;
     const { friends } = this.state;
+
     return (
       <div>
         <div>Profile Picture here</div>
