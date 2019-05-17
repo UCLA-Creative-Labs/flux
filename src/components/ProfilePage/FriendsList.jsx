@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function FriendsList({ friends }) {
+const FriendsList = ({ friends }) => {
   return (
     <div>
       Friends:
@@ -10,7 +10,7 @@ function FriendsList({ friends }) {
       ))}
     </div>
   );
-}
+};
 
 FriendsList.propTypes = {
   friends: PropTypes.shape({}).isRequired

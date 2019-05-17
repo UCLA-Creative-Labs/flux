@@ -14,8 +14,6 @@ class MessageManager extends Component {
     };
   }
 
-  componentDidMount() {}
-
   componentWillReceiveProps(props) {
     const { userId } = props;
 
