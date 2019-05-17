@@ -221,7 +221,8 @@ export default {
   sendPost,
   listenForPosts,
   incrementLike,
-
+  
+  addFriend,
   getFriends,
   getUserPosts,
   getLikedPosts
