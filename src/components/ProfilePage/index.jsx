@@ -50,7 +50,7 @@ class ProfilePage extends Component {
       <div>
         <div>Profile Picture here</div>
         <h1>{profileId}</h1>
-        {profileId !== userId ? (
+        {profileId !== userId && !(userId in friends) ? (
           <button type="button" onClick={this.addFriend}>
             Add Friend
           </button>
