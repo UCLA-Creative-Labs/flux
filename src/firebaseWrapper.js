@@ -40,6 +40,13 @@ const createConversation = (userId, done) => {
   messagesRef.push(message).then(done(newConversationRef.key));
 };
 
+const updateProfilePicture = user => {
+  const userRef = firebase.database().ref(`users/${user.uid}`);
+  userRef.update({
+    profilePicture: user.photoURL
+  });
+};
+
 /**
  * App Functions
  */
@@ -55,6 +62,7 @@ const initialize = () => {
 const listenForAuthStateChange = (onLogin, onLogout) => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
+      updateProfilePicture(user);
       onLogin(user);
     } else {
       onLogout();
@@ -204,6 +212,13 @@ const listenForLikedPosts = (userId, done) => {
   });
 };
 
+const getProfilePicture = (userId, done) => {
+  const picRef = firebase.database().ref(`users/${userId}/profilePicture`);
+  picRef.once("value", snapshot => {
+    done(snapshot.val());
+  });
+};
+
 export default {
   initialize,
   listenForAuthStateChange,
@@ -219,5 +234,6 @@ export default {
   listenForFriends,
   addFriend,
   listenForUserPosts,
-  listenForLikedPosts
+  listenForLikedPosts,
+  getProfilePicture
 };
