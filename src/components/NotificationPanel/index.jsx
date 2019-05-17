@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "./styles.css";
-import NotificationBox from "./NotificationBox.jsx";
+import NotificationBox from "./NotificationBox";
 
 const NotificationPanel = ({ notifications }) => (
   <div className="NotificationPanel">
