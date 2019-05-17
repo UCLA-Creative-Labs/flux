@@ -109,14 +109,6 @@ const sendPost = (userId, text, photo, done) => {
   }
 };
 
-const getPosts = done => {
-  const postsRef = firebase.database().ref("posts");
-
-  postsRef.once("value", snapshot => {
-    done(snapshot.val());
-  });
-};
-
 const listenForPosts = done => {
   const postsRef = firebase.database().ref("posts");
 
@@ -162,8 +154,21 @@ const getFriends = (userId, done) => {
   });
 };
 
-const getUserPosts = (userId, done) => {
-  getPosts(posts => {
+const addFriend = (userId1, userId2) => {
+  const user1FriendsRef = firebase.database().ref(`/users/${userId1}/friends`);
+  const user2FriendsRef = firebase.database().ref(`/users/${userId2}/friends`);
+
+  createConversation(userId1, conversationId => {
+    const friendForUser1 = { [userId2]: conversationId };
+    const friendForUser2 = { [userId1]: conversationId };
+
+    user1FriendsRef.update(friendForUser1);
+    user2FriendsRef.update(friendForUser2);
+  });
+};
+
+const listenForUserPosts = (userId, done) => {
+  listenForPosts(posts => {
     const userPostIds = Object.keys(posts).filter(
       postId => posts[postId].userId === userId
     );
@@ -177,10 +182,10 @@ const getUserPosts = (userId, done) => {
   });
 };
 
-const getLikedPosts = (userId, done) => {
+const listenForLikedPosts = (userId, done) => {
   const likedPostsRef = firebase.database().ref(`users/${userId}/likedPosts/`);
 
-  likedPostsRef.once("value", snapshot => {
+  likedPostsRef.on("value", snapshot => {
     let postsBranch = snapshot.val();
     if (postsBranch === null) {
       postsBranch = {};
@@ -188,7 +193,7 @@ const getLikedPosts = (userId, done) => {
 
     const likedPostIds = Object.values(postsBranch);
 
-    getPosts(posts => {
+    listenForPosts(posts => {
       const likedPosts = {};
       likedPostIds.forEach(postId => {
         likedPosts[postId] = posts[postId];
@@ -196,19 +201,6 @@ const getLikedPosts = (userId, done) => {
 
       done(likedPosts);
     });
-  });
-};
-
-const addFriend = (userId1, userId2) => {
-  const user1FriendsRef = firebase.database().ref(`/users/${userId1}/friends`);
-  const user2FriendsRef = firebase.database().ref(`/users/${userId2}/friends`);
-
-  createConversation(userId1, conversationId => {
-    const friendForUser1 = { [userId2]: conversationId };
-    const friendForUser2 = { [userId1]: conversationId };
-
-    user1FriendsRef.update(friendForUser1);
-    user2FriendsRef.update(friendForUser2);
   });
 };
 
@@ -224,8 +216,8 @@ export default {
   listenForPosts,
   incrementLike,
 
-  addFriend,
   getFriends,
-  getUserPosts,
-  getLikedPosts
+  addFriend,
+  listenForUserPosts,
+  listenForLikedPosts
 };

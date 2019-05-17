@@ -28,7 +28,7 @@ class NewsFeed extends Component {
   }
 
   componentWillReceiveProps(props) {
-    const { type, userId } = props;
+    const { type, profileId } = props;
 
     const updatePosts = posts => {
       this.setState({
@@ -37,18 +37,18 @@ class NewsFeed extends Component {
     };
 
     if (type === "user") {
-      firebaseWrapper.getUserPosts(userId, updatePosts);
+      firebaseWrapper.listenForUserPosts(profileId, updatePosts);
     } else if (type === "liked") {
-      firebaseWrapper.getLikedPosts(userId, updatePosts);
+      firebaseWrapper.listenForLikedPosts(profileId, updatePosts);
     }
   }
 
   render() {
     const { posts } = this.state;
-    const { userId } = this.props;
+    const { userId, type } = this.props;
     return (
       <div>
-        <MakePost userId={userId} />
+        {type === "home" && <MakePost userId={userId} />}
         {Object.keys(posts)
           .reverse()
           .map(postId => (
@@ -64,8 +64,13 @@ class NewsFeed extends Component {
   }
 }
 
+NewsFeed.defaultProps = {
+  profileId: ""
+};
+
 NewsFeed.propTypes = {
   userId: PropTypes.string.isRequired,
+  profileId: PropTypes.string,
   type: PropTypes.oneOf(["home", "user", "liked"]).isRequired
 };
 export default NewsFeed;
