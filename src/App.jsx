@@ -38,6 +38,7 @@ class App extends Component {
 
   render() {
     const { userId } = this.state;
+
     return (
       <div className="App">
         <button type="submit" onClick={this.handleLogout}>
