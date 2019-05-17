@@ -28,6 +28,7 @@ class MakePost extends React.Component {
     const { userId } = this.props;
     const { photo, text } = this.state;
     event.preventDefault();
+
     firebaseWrapper.sendPost(userId, text, photo, resetState);
   };
 

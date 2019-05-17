@@ -5,21 +5,42 @@ import MakePost from "./MakePost";
 import Post from "./Post";
 
 class NewsFeed extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
+
     this.state = {
       posts: {}
     };
   }
 
   componentDidMount() {
+    const { type } = this.props;
+
     const updatePosts = posts => {
       this.setState({
         posts
       });
     };
 
-    firebaseWrapper.listenForPosts(updatePosts);
+    if (type === "home") {
+      firebaseWrapper.listenForPosts(updatePosts);
+    }
+  }
+
+  componentWillReceiveProps(props) {
+    const { type, userId } = props;
+
+    const updatePosts = posts => {
+      this.setState({
+        posts
+      });
+    };
+
+    if (type === "user") {
+      firebaseWrapper.getUserPosts(userId, updatePosts);
+    } else if (type === "liked") {
+      firebaseWrapper.getLikedPosts(userId, updatePosts);
+    }
   }
 
   render() {
@@ -30,8 +51,13 @@ class NewsFeed extends Component {
         <MakePost userId={userId} />
         {Object.keys(posts)
           .reverse()
-          .map(post => (
-            <Post postId={post} postObject={posts[post]} userId={userId} />
+          .map(postId => (
+            <Post
+              key={postId}
+              postId={postId}
+              postObject={posts[postId]}
+              userId={userId}
+            />
           ))}
       </div>
     );
@@ -39,6 +65,7 @@ class NewsFeed extends Component {
 }
 
 NewsFeed.propTypes = {
-  userId: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["home", "user", "liked"]).isRequired
 };
 export default NewsFeed;

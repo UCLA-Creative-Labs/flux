@@ -47,7 +47,10 @@ class App extends Component {
         <Router>
           <Route path="/" exact component={Login} />
           {/* Change to `userId="1234"` if testing */}
-          <Route path="/newsfeed" render={() => <NewsFeed userId={userId} />} />
+          <Route
+            path="/newsfeed"
+            render={() => <NewsFeed userId={userId} type="home" />}
+          />
           <Route
             path="/messages"
             exact

@@ -99,6 +99,14 @@ const sendPost = (userId, text, photo, done) => {
   }
 };
 
+const getPosts = done => {
+  const postsRef = firebase.database().ref("posts");
+
+  postsRef.once("value", snapshot => {
+    done(snapshot.val());
+  });
+};
+
 const listenForPosts = done => {
   const postsRef = firebase.database().ref("posts");
 
@@ -133,7 +141,7 @@ const incrementLike = (likes, postId, userId) => {
  * User Functions
  */
 const getFriends = (userId, done) => {
-  const friendsRef = firebase.database().ref(`users/${userId}/friends/`); // reference to friends
+  const friendsRef = firebase.database().ref(`users/${userId}/friends/`);
   friendsRef.on("value", snapshot => {
     let friends = snapshot.val();
 
@@ -143,8 +151,43 @@ const getFriends = (userId, done) => {
     done(friends);
   });
 };
-// const getUserPosts = (userId, done) => {};
-// const getLikedPosts = (userId, done) => {};
+
+const getUserPosts = (userId, done) => {
+  getPosts(posts => {
+    const userPostIds = Object.keys(posts).filter(
+      postId => posts[postId].userId === userId
+    );
+
+    const userPosts = {};
+    userPostIds.forEach(postId => {
+      userPosts[postId] = posts[postId];
+    });
+
+    done(userPosts);
+  });
+};
+
+const getLikedPosts = (userId, done) => {
+  const likedPostsRef = firebase.database().ref(`users/${userId}/likedPosts/`);
+
+  likedPostsRef.once("value", snapshot => {
+    let postsBranch = snapshot.val();
+    if (postsBranch === null) {
+      postsBranch = {};
+    }
+
+    const likedPostIds = Object.values(postsBranch);
+
+    getPosts(posts => {
+      const likedPosts = {};
+      likedPostIds.forEach(postId => {
+        likedPosts[postId] = posts[postId];
+      });
+
+      done(likedPosts);
+    });
+  });
+};
 
 export default {
   initialize,
@@ -158,7 +201,7 @@ export default {
   listenForPosts,
   incrementLike,
 
-  getFriends
-  // getUserPosts,
-  // getLikedPosts
+  getFriends,
+  getUserPosts,
+  getLikedPosts
 };
