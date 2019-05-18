@@ -19,6 +19,7 @@ const NotificationPanel = ({ notifications }) => (
       <NotificationBox
         text={notifications[item].text}
         color={notifications[item].color}
+        time={notifications[item].time}
         key={item}
       />
     ))}
@@ -29,7 +30,8 @@ NotificationPanel.propTypes = {
   notifications: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string,
-      color: PropTypes.string
+      color: PropTypes.string,
+      time: PropTypes.string
     })
   ).isRequired
 };

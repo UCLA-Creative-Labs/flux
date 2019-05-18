@@ -8,6 +8,7 @@ const Navbar = ({ userId }) => {
       <Link to="/newsfeed">Home</Link>
       <Link to="/messages">Messages</Link>
       <Link to={`/user/${userId}`}>Profile</Link>
+      <Link to="/notificationpanel">Notification Panel</Link>
     </nav>
   );
 };

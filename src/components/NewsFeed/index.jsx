@@ -45,10 +45,12 @@ class NewsFeed extends Component {
 
   render() {
     const { posts } = this.state;
-    const { userId, type } = this.props;
+    const { userId, type, makeNotification } = this.props;
     return (
       <div>
-        {type === "home" && <MakePost userId={userId} />}
+        {type === "home" && (
+          <MakePost makeNotification={makeNotification} userId={userId} />
+        )}
         {Object.keys(posts)
           .reverse()
           .map(postId => (
@@ -71,6 +73,7 @@ NewsFeed.defaultProps = {
 NewsFeed.propTypes = {
   userId: PropTypes.string.isRequired,
   profileId: PropTypes.string,
-  type: PropTypes.oneOf(["home", "user", "liked"]).isRequired
+  type: PropTypes.oneOf(["home", "user", "liked"]).isRequired,
+  makeNotification: PropTypes.func.isRequired
 };
 export default NewsFeed;
