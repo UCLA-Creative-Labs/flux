@@ -117,11 +117,13 @@ class App extends Component {
   makeNotification = (text, color, time) => {
     const array = this.state.notifications;
     array.unshift({
-      text() {},
-      color() {},
-      time() {}
+      text: text,
+      color: color,
+      time: time
     });
-    this.setState({ notifications: array });
+    this.setState(array => {
+      return { notifications: array };
+    });
   };
 
   render() {
