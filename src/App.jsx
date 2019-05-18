@@ -39,6 +39,11 @@ class App extends Component {
   handleLogout = event => {
     event.preventDefault();
     firebaseWrapper.logout();
+
+    setTimeout(() => {
+      const redirectLocation = window.location.href.match(/.*\/\/.*?\//)[0];
+      window.location.replace(redirectLocation);
+    }, 100);
   };
 
   render() {
@@ -71,7 +76,13 @@ class App extends Component {
           />
           <Route
             path="/user/:profileId"
-            render={props => <ProfilePage userId={userId} {...props} />}
+            render={props => (
+              <ProfilePage
+                userId={userId}
+                handleLogout={this.handleLogout}
+                {...props}
+              />
+            )}
           />
         </Router>
       );
@@ -79,9 +90,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <button type="submit" onClick={this.handleLogout}>
-          Logout
-        </button>
         <p>Your userId is {userId}</p>
 
         {routes}

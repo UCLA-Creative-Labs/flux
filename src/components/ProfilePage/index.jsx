@@ -50,6 +50,7 @@ class ProfilePage extends Component {
   render() {
     const {
       userId,
+      handleLogout,
       match: {
         params: { profileId }
       }
@@ -58,6 +59,12 @@ class ProfilePage extends Component {
 
     return (
       <div>
+        <div>
+          <button type="submit" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+
         <img src={profilePicture} alt="Profile" />
 
         <h1>{profileId}</h1>
@@ -86,7 +93,8 @@ class ProfilePage extends Component {
 
 ProfilePage.propTypes = {
   match: PropTypes.shape({}).isRequired,
-  userId: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired,
+  handleLogout: PropTypes.func.isRequired
 };
 
 export default ProfilePage;
