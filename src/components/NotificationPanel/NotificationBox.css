@@ -4,10 +4,15 @@
   flex-wrap: nowrap;
   align-items: center;
   height: 50px;
-  border-bottom: 1px solid blue;
+  border: 0.5px solid rgb(92, 215, 249);
+  filter: blur(5px);
 }
 
-.color_type {
+.NotificationBox:active {
+  filter: blur(0);
+}
+
+.color-type {
   width: 10px;
   height: 50px;
   margin-right: 10px;

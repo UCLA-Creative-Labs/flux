@@ -1,8 +1,7 @@
 .NotificationPanel {
   width: 400px;
-  height: 1000px;
+  height: 100vh;
   border: 5px solid black;
   position: relative;
   left: 55%;
-  filter: blur(5px)
 }

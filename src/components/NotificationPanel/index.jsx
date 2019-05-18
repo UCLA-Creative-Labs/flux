@@ -3,22 +3,35 @@ import PropTypes from "prop-types";
 import "./styles.css";
 import NotificationBox from "./NotificationBox";
 
+/*window.onload = function() {
+  console.log("darkness");
+  document.getElementById("overlay").style = "display: block";
+};
+
+window.onunload = function() {
+  console.log("hello");
+  document.getElementById("overlay").style = "display: none";
+}; */
+
 const NotificationPanel = ({ notifications }) => (
   <div className="NotificationPanel">
-    {Object.keys(notifications)
-      .slice(0, 10)
-      .map(item => (
-        <NotificationBox
-          text={notifications[item].text}
-          color={notifications[item].color}
-          key={item}
-        />
-      ))}
+    {Object.keys(notifications).map(item => (
+      <NotificationBox
+        text={notifications[item].text}
+        color={notifications[item].color}
+        key={item}
+      />
+    ))}
   </div>
 );
 
 NotificationPanel.propTypes = {
-  notifications: PropTypes.isRequired
+  notifications: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string,
+      color: PropTypes.string
+    })
+  ).isRequired
 };
 
 export default NotificationPanel;
