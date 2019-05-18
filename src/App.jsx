@@ -93,16 +93,6 @@ class App extends Component {
     };
   }
 
-  makeNotification = (text, color, time) => {
-    let array = this.state.notifications;
-    array.unshift({
-      text: text,
-      color: color,
-      time: time
-    });
-    this.setState({ notifications: array });
-  };
-
   componentDidMount() {
     const onLogin = user => {
       this.setState({ userId: user.uid });
@@ -122,6 +112,16 @@ class App extends Component {
       const redirectLocation = window.location.href.match(/.*\/\/.*?\//)[0];
       window.location.replace(redirectLocation);
     }, 100);
+  };
+
+  makeNotification = (text, color, time) => {
+    const array = this.state.notifications;
+    array.unshift({
+      text: text,
+      color: color,
+      time: time
+    });
+    this.setState({ notifications: array });
   };
 
   render() {
