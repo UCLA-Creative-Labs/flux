@@ -29,8 +29,9 @@ class MakePost extends React.Component {
     const { photo, text } = this.state;
     event.preventDefault();
 
-    const d = new Date().toLocaleString("en-GB");
-    makeNotification(userId + " made a new post!", "blue", d);
+    const date = new Date().toLocaleString("en-GB");
+    const textStyle = userID + " made a new post!";
+    makeNotification(textStyle, "blue", date);
     firebaseWrapper.sendPost(userId, text, photo, resetState);
   };
 
