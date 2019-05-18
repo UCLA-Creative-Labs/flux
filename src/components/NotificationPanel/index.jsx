@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./styles.css";
 import NotificationBox from "./NotificationBox";
 
-/*window.onload = function() {
+/* window.onload = function() {
   console.log("darkness");
   document.getElementById("overlay").style = "display: block";
 };
