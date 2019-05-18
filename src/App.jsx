@@ -26,59 +26,82 @@ class App extends Component {
       notifications: [
         {
           text: "flux",
-          color: "aqua"
+          color: "aqua",
+          time: "before the beginning of time"
         },
         {
           text: "is",
-          color: "red"
+          color: "red",
+          time: "before the beginning of time"
         },
         {
           text: "the",
-          color: "orange"
+          color: "orange",
+          time: "before the beginning of time"
         },
         {
           text: "best",
-          color: "yellow"
+          color: "yellow",
+          time: "before the beginning of time"
         },
         {
           text: "you love milk",
-          color: "green"
+          color: "green",
+          time: "before the beginning of time"
         },
         {
           text: "C's get degrees",
-          color: "blue"
+          color: "blue",
+          time: "before the beginning of time"
         },
         {
           text: "8clap",
-          color: "indigo"
+          color: "indigo",
+          time: "before the beginning of time"
         },
         {
           text: "i want to play pokemon go",
-          color: "violet"
+          color: "violet",
+          time: "before the beginning of time"
         },
         {
           text: "image is a fb stickers",
-          color: "brown"
+          color: "brown",
+          time: "before the beginning of time"
         },
         {
           text: "called yuttari dragon",
-          color: "teal"
+          color: "teal",
+          time: "before the beginning of time"
         },
         {
           text: "its great but no one should see this",
-          color: "pink"
+          color: "pink",
+          time: "before the beginning of time"
         },
         {
           text: "12th notification",
-          color: "orange"
+          color: "orange",
+          time: "before the beginning of time"
         },
         {
           text: "hello there",
-          color: "gray"
+          color: "gray",
+          time: "before the beginning of time"
         }
       ]
     };
   }
+
+  makeNotification = (text, color, time) => {
+    let array = this.state.notifications;
+    array.unshift({
+      text: text,
+      color: color,
+      time: time
+    });
+    this.setState({ notifications: array });
+  };
 
   componentDidMount() {
     const onLogin = user => {
@@ -103,7 +126,7 @@ class App extends Component {
 
   render() {
     const { userId, notifications } = this.state;
-
+    const makeNotification = this.makeNotification;
     let routes;
 
     if (userId === "") {
@@ -125,7 +148,11 @@ class App extends Component {
               return (
                 <div>
                   <Navbar userId={userId} activeTab="home" />
-                  <NewsFeed userId={userId} type="home" />
+                  <NewsFeed
+                    makeNotification={makeNotification}
+                    userId={userId}
+                    type="home"
+                  />
                 </div>
               );
             }}
@@ -171,6 +198,12 @@ class App extends Component {
         <div id="overlay" />
         <button type="submit" onClick={this.handleLogout}>
           Logout
+        </button>
+        <button
+          type="submit"
+          onClick={() => this.makeNotification("random", "orange")}
+        >
+          make a notification
         </button>
         <p>Your userId is {userId}</p>
         {routes}

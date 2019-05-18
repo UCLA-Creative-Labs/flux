@@ -25,10 +25,13 @@ class MakePost extends React.Component {
     const resetState = () => {
       this.setState({ text: "", photo: null });
     };
-    const { userId } = this.props;
+    const { userId, makeNotification } = this.props;
     const { photo, text } = this.state;
     event.preventDefault();
 
+    let d = new Date().toLocaleString("en-GB");
+    console.log(d);
+    makeNotification(userId + " made a new post!", "blue", d);
     firebaseWrapper.sendPost(userId, text, photo, resetState);
   };
 
@@ -61,7 +64,8 @@ class MakePost extends React.Component {
 }
 
 MakePost.propTypes = {
-  userId: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired,
+  makeNotification: PropTypes.func.isRequired
 };
 
 export default MakePost;
