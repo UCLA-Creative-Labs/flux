@@ -1,0 +1,34 @@
+.profilePage {
+    display: flex;
+    flex-direction: column
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: row;
+    margin: 3em
+}
+
+.profilePicture {
+    height: 15em;
+    width: 15em;
+    border-radius: 50%;
+}
+
+.likedPosts {
+    display: flex;
+    background-color: #D7EFF2;
+}
+
+.userPosts {
+    display: flex;
+    background-color: #9CB1DB;
+}
+
+.hidden {
+    display: none;
+}
+
+.active {
+    height: 200%
+}

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import FriendsList from "./FriendsList";
 import NewsFeed from "../NewsFeed";
 import firebaseWrapper from "../../firebaseWrapper";
+import "./styles.css";
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -11,8 +12,8 @@ class ProfilePage extends Component {
     this.state = {
       //   likedPosts: [],
       //   userPosts: [],
-      friends: {}
-      //   activeTab: ""
+      friends: {},
+      activeTab: ""
     };
   }
 
@@ -47,6 +48,12 @@ class ProfilePage extends Component {
     firebaseWrapper.addFriend(userId, profileId);
   };
 
+  toggleActiveTab = activeTab => {
+    this.setState({
+      activeTab
+    });
+  };
+
   render() {
     const {
       userId,
@@ -55,36 +62,61 @@ class ProfilePage extends Component {
         params: { profileId }
       }
     } = this.props;
-    const { friends, profilePicture } = this.state;
-
+    const { friends, profilePicture, activeTab } = this.state;
+    let userPosts = "preview";
+    let likedPosts = "preview";
+    if (activeTab === "userPosts") {
+      userPosts = "active";
+      likedPosts = "hidden";
+    } else if (activeTab === "likedPosts") {
+      userPosts = "hidden";
+      likedPosts = "active";
+    }
+    userPosts = userPosts.concat(" userPosts");
+    likedPosts = likedPosts.concat(" likedPosts");
     return (
-      <div>
+      <div className="profilePage">
         <div>
           <button type="submit" onClick={handleLogout}>
             Logout
           </button>
         </div>
+        <div className="userInfo">
+          <img src={profilePicture} alt="Profile" className="profilePicture" />
 
-        <img src={profilePicture} alt="Profile" />
-
-        <h1>{profileId}</h1>
-        {profileId !== userId && !(userId in friends) ? (
-          <button type="button" onClick={this.addFriend}>
-            Add Friend
-          </button>
-        ) : (
-          <div />
-        )}
-        <FriendsList friends={friends} />
-
-        <div>
-          <h2>User Posts</h2>
-          <NewsFeed userId={userId} profileId={profileId} type="user" />
+          <h1>{profileId}</h1>
+          {profileId !== userId && !(userId in friends) ? (
+            <button type="button" onClick={this.addFriend}>
+              Add Friend
+            </button>
+          ) : (
+            <div />
+          )}
+          <FriendsList friends={friends} />
         </div>
 
         <div>
-          <h2>Liked Posts</h2>
-          <NewsFeed userId={userId} profileId={profileId} type="liked" />
+          <div
+            className={userPosts}
+            onClick={() => this.toggleActiveTab("userPosts")}
+            role="menuitem"
+            tabIndex="0"
+            onKeyDown={() => {}}
+          >
+            <h2>User Posts</h2>
+            <NewsFeed userId={userId} profileId={profileId} type="user" />
+          </div>
+
+          <div
+            className={likedPosts}
+            onClick={() => this.toggleActiveTab("likedPosts")}
+            role="menuitem"
+            tabIndex="-1"
+            onKeyDown={() => {}}
+          >
+            <h2>Liked Posts</h2>
+            <NewsFeed userId={userId} profileId={profileId} type="liked" />
+          </div>
         </div>
       </div>
     );
