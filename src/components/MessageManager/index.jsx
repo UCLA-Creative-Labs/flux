@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
 import MessagingWindow from "../MessagingWindow/index";
 import "./styles.css";
+import MessageTile from "../MessageTile";
 
 class MessageManager extends Component {
   constructor(props) {
@@ -62,69 +63,34 @@ class MessageManager extends Component {
           {/* List of friends */}
           {Object.keys(friends).map(friendId => (
             <div key={friendId}>
-              <button
+              {/* <button
                 className="friend-name"
                 type="button"
                 onClick={() => this.handleFriendClick(friendId)}
               >
                 Friend {friendId}
-              </button>
+              </button> */}
+              <MessageTile onClick={() => this.handleFriendClick(friendId)} />
             </div>
           ))}
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
-          <button className="friend-name" type="button">
-            Friend 09090
-          </button>
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
+          <MessageTile />
         </div>
 
         <div className="conversationWindow">

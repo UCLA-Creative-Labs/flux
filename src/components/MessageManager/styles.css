@@ -5,11 +5,10 @@
   width: inherit;
 }
 
-.wrapper {
-  height: 90%;
+.window-wrapper {
+  height: 87.5%;
   width: 100%;
-  display: inline-block;
-  position: absolute;
+  position: fixed;
 }
 .conversationWindow {
   display: inline-block;
@@ -25,4 +24,5 @@
   height: 100%;
   float: left;
   position: relative;
+  overflow-y: auto;
 }
