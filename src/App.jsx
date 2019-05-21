@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 
 import Login from "./components/Login";
 import NewsFeed from "./components/NewsFeed";
 import MessageManager from "./components/MessageManager";
 import ProfilePage from "./components/ProfilePage";
+import Navbar from "./components/Navbar";
 import "./App.css";
 
 class App extends Component {
@@ -33,19 +39,31 @@ class App extends Component {
   handleLogout = event => {
     event.preventDefault();
     firebaseWrapper.logout();
+
+    setTimeout(() => {
+      const redirectLocation = window.location.href.match(/.*\/\/.*?\//)[0];
+      window.location.replace(redirectLocation);
+    }, 100);
   };
 
   render() {
     const { userId } = this.state;
-    return (
-      <div className="App">
-        <button type="submit" onClick={this.handleLogout}>
-          Logout
-        </button>
-        <p>Your userId is {userId}</p>
 
+    let routes;
+
+    if (userId === "") {
+      routes = (
         <Router>
-          <Route path="/" exact component={Login} />
+          <Switch>
+            <Route exact path="/" component={Login} />
+          </Switch>
+        </Router>
+      );
+    } else {
+      routes = (
+        <Router>
+          <Navbar userId={userId} />
+          <Route exact path="/" render={() => <Redirect to="/newsfeed" />} />
           {/* Change to `userId="1234"` if testing */}
           <Route
             path="/newsfeed"
@@ -56,12 +74,25 @@ class App extends Component {
             exact
             render={() => <MessageManager userId={userId} />}
           />
-          <Route path="/login" component={Login} />
           <Route
             path="/user/:profileId"
-            render={props => <ProfilePage userId={userId} {...props} />}
+            render={props => (
+              <ProfilePage
+                userId={userId}
+                handleLogout={this.handleLogout}
+                {...props}
+              />
+            )}
           />
         </Router>
+      );
+    }
+
+    return (
+      <div className="App">
+        <p>Your userId is {userId}</p>
+
+        {routes}
       </div>
     );
   }

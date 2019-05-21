@@ -40,6 +40,13 @@ const createConversation = (userId, done) => {
   messagesRef.push(message).then(done(newConversationRef.key));
 };
 
+const updateProfilePicture = user => {
+  const userRef = firebase.database().ref(`users/${user.uid}`);
+  userRef.update({
+    profilePicture: user.photoURL
+  });
+};
+
 /**
  * App Functions
  */
@@ -55,6 +62,7 @@ const initialize = () => {
 const listenForAuthStateChange = (onLogin, onLogout) => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
+      updateProfilePicture(user);
       onLogin(user);
     } else {
       onLogout();
@@ -109,14 +117,6 @@ const sendPost = (userId, text, photo, done) => {
   }
 };
 
-const getPosts = done => {
-  const postsRef = firebase.database().ref("posts");
-
-  postsRef.once("value", snapshot => {
-    done(snapshot.val());
-  });
-};
-
 const listenForPosts = done => {
   const postsRef = firebase.database().ref("posts");
 
@@ -150,7 +150,7 @@ const incrementLike = (likes, postId, userId) => {
 /**
  * User Functions
  */
-const getFriends = (userId, done) => {
+const listenForFriends = (userId, done) => {
   const friendsRef = firebase.database().ref(`users/${userId}/friends/`);
   friendsRef.on("value", snapshot => {
     let friends = snapshot.val();
@@ -158,12 +158,25 @@ const getFriends = (userId, done) => {
     if (friends === null) {
       friends = {};
     }
-    done(friends);
+    done(friends, friendsRef);
   });
 };
 
-const getUserPosts = (userId, done) => {
-  getPosts(posts => {
+const addFriend = (userId1, userId2) => {
+  const user1FriendsRef = firebase.database().ref(`/users/${userId1}/friends`);
+  const user2FriendsRef = firebase.database().ref(`/users/${userId2}/friends`);
+
+  createConversation(userId1, conversationId => {
+    const friendForUser1 = { [userId2]: conversationId };
+    const friendForUser2 = { [userId1]: conversationId };
+
+    user1FriendsRef.update(friendForUser1);
+    user2FriendsRef.update(friendForUser2);
+  });
+};
+
+const listenForUserPosts = (userId, done) => {
+  listenForPosts(posts => {
     const userPostIds = Object.keys(posts).filter(
       postId => posts[postId].userId === userId
     );
@@ -177,10 +190,10 @@ const getUserPosts = (userId, done) => {
   });
 };
 
-const getLikedPosts = (userId, done) => {
+const listenForLikedPosts = (userId, done) => {
   const likedPostsRef = firebase.database().ref(`users/${userId}/likedPosts/`);
 
-  likedPostsRef.once("value", snapshot => {
+  likedPostsRef.on("value", snapshot => {
     let postsBranch = snapshot.val();
     if (postsBranch === null) {
       postsBranch = {};
@@ -188,7 +201,7 @@ const getLikedPosts = (userId, done) => {
 
     const likedPostIds = Object.values(postsBranch);
 
-    getPosts(posts => {
+    listenForPosts(posts => {
       const likedPosts = {};
       likedPostIds.forEach(postId => {
         likedPosts[postId] = posts[postId];
@@ -209,6 +222,13 @@ const addFriend = (userId1, userId2) => {
 
     user1FriendsRef.update(friendForUser1);
     user2FriendsRef.update(friendForUser2);
+  })
+}
+
+const getProfilePicture = (userId, done) => {
+  const picRef = firebase.database().ref(`users/${userId}/profilePicture`);
+  picRef.once("value", snapshot => {
+    done(snapshot.val());
   });
 };
 
@@ -224,8 +244,9 @@ export default {
   listenForPosts,
   incrementLike,
 
+  listenForFriends,
   addFriend,
-  getFriends,
-  getUserPosts,
-  getLikedPosts
+  listenForUserPosts,
+  listenForLikedPosts,
+  getProfilePicture
 };
