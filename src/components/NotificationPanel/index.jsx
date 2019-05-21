@@ -20,6 +20,7 @@ const NotificationPanel = ({ notifications }) => (
         text={notifications[item].text}
         color={notifications[item].color}
         time={notifications[item].time}
+        image={notifications[item].image}
         key={item}
       />
     ))}
@@ -31,7 +32,8 @@ NotificationPanel.propTypes = {
     PropTypes.shape({
       text: PropTypes.string,
       color: PropTypes.string,
-      time: PropTypes.string
+      time: PropTypes.string,
+      image: PropTypes.string
     })
   ).isRequired
 };
