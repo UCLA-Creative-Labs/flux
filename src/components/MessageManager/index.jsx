@@ -64,7 +64,10 @@ class MessageManager extends Component {
         <div className="conversationList">
           {/* List of friends */}
           {Object.keys(friends).map(friendId => (
-            <div key={friendId}>
+            <div
+              key={friendId}
+              onClick={() => this.handleFriendClick(friendId)}
+            >
               {/* <button
                 className="friend-name"
                 type="button"
@@ -72,27 +75,9 @@ class MessageManager extends Component {
               >
                 Friend {friendId}
               </button> */}
-              <MessageTile onClick={() => this.handleFriendClick(friendId)} />
+              <MessageTile userId={friendId} />
             </div>
           ))}
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
-          <MessageTile />
         </div>
 
         <div className="conversationWindow">

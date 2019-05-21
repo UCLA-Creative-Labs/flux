@@ -71,8 +71,8 @@ class MessagingWindow extends Component {
 
     return (
       <div>
-        <h1>Temporary Messaging Window</h1>
-        <h1>{conversationId}</h1>
+        <h1>Messaging Window</h1>
+        {/* <h1>{conversationId}</h1> replace this with the user photo */}
 
         {/* Display all messages */}
         {Object.keys(messages).map(messageId =>
