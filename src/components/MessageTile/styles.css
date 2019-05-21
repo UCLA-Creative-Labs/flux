@@ -3,7 +3,6 @@
   width: 100%;
   display: inline-block;
   position: relative;
-  border: 2px solid black;
 }
 .profile-picture {
   display: inline-block;
@@ -11,6 +10,12 @@
   height: 100%;
   float: left;
   overflow: hidden;
+}
+
+.profile-picture img {
+  max-width: 88%;
+  max-height: 88%;
+  border-radius: 50%;
 }
 
 .user-name {
@@ -24,4 +29,5 @@
   text-align: left;
   font-weight: bold;
   font-size: 20px;
+  font: "Poppins";
 }

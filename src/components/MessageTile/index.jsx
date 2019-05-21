@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import "../../colors.css";
 import firebaseWrapper from "../../firebaseWrapper";
 import "./styles.css";
 
@@ -9,7 +10,8 @@ class MessageTile extends Component {
 
     this.state = {
       name: "John Doe",
-      photoURL: ""
+      photoURL: "",
+      isSelected: false
     };
   }
 
@@ -31,12 +33,26 @@ class MessageTile extends Component {
     firebaseWrapper.getProfilePicture(userId, updatePicture);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isSelected != this.state.isSelected) {
+      this.setState({
+        isSelected: nextProps.isSelected
+      });
+    }
+  }
+
   render() {
     const { name, photoURL } = this.state;
+    const { isSelected } = this.props;
     return (
-      <div className="tile-wrapper">
+      <div
+        className="tile-wrapper"
+        style={{
+          "background-color": isSelected ? "var(--light-teal)" : "var(--white)"
+        }}
+      >
         <div className="profile-picture">
-          <img className="picture" src={photoURL} />
+          <img src={photoURL} />
         </div>
         <div className="user-name">
           <p>{name}</p>
@@ -47,7 +63,8 @@ class MessageTile extends Component {
 }
 
 MessageTile.propTypes = {
-  userId: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired,
+  isSelected: PropTypes.bool.isRequired
 };
 
 export default MessageTile;
