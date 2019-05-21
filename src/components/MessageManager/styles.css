@@ -1,4 +1,28 @@
-.friend-name{
-    height: 40px;
-    background-color: #cccccc
+.friend-name {
+  height: 40px;
+  background-color: #cccccc;
+  display: inline-block;
+  width: inherit;
+}
+
+.wrapper {
+  height: 90%;
+  width: 100%;
+  display: inline-block;
+  position: absolute;
+}
+.conversationWindow {
+  display: inline-block;
+  width: 70%;
+  height: 100%;
+  float: left;
+  position: relative;
+}
+
+.conversationList {
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+  float: left;
+  position: relative;
 }

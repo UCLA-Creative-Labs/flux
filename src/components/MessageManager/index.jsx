@@ -55,30 +55,88 @@ class MessageManager extends Component {
     const { userId } = this.props;
 
     return (
-      <div>
+      <div className="window-wrapper">
         {/* <h1>Temporary Message Manager</h1> */}
 
-        {/* List of friends */}
-        {Object.keys(friends).map(friendId => (
-          <div key={friendId}>
-            <button
-              className="friend-name"
-              type="button"
-              onClick={() => this.handleFriendClick(friendId)}
-            >
-              Friend {friendId}
-            </button>
-          </div>
-        ))}
+        <div className="conversationList">
+          {/* List of friends */}
+          {Object.keys(friends).map(friendId => (
+            <div key={friendId}>
+              <button
+                className="friend-name"
+                type="button"
+                onClick={() => this.handleFriendClick(friendId)}
+              >
+                Friend {friendId}
+              </button>
+            </div>
+          ))}
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+          <button className="friend-name" type="button">
+            Friend 09090
+          </button>
+        </div>
 
-        {activeConversation != null ? (
-          <MessagingWindow
-            userId={userId}
-            conversationId={friends[activeConversation]}
-          />
-        ) : (
-          <p> Click a friend to get started! </p>
-        )}
+        <div className="conversationWindow">
+          {activeConversation != null ? (
+            <MessagingWindow
+              userId={userId}
+              conversationId={friends[activeConversation]}
+            />
+          ) : (
+            <p> Click a friend to get started! </p>
+          )}
+        </div>
       </div>
     );
   }
