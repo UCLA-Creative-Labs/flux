@@ -14,8 +14,8 @@ import ProfilePage from "./components/ProfilePage";
 import Navbar from "./components/Navbar";
 import NotificationPanel from "./components/NotificationPanel";
 import "./App.css";
-import PlaceholderImage from "./components/NotificationPanel/placeholder.png";
-import PostImage from "./components/NotificationPanel/post.png";
+import PlaceholderImage from "./images/notifications/placeholder.png";
+import PostImage from "./images/notifications/post.png";
 
 class App extends Component {
   constructor() {
@@ -216,7 +216,9 @@ class App extends Component {
         </button>
         <button
           type="submit"
-          onClick={() => this.makeNotification("random", "orange")}
+          onClick={() =>
+            this.makeNotification("random", "orange", "time", PlaceholderImage)
+          }
         >
           make a notification
         </button>
