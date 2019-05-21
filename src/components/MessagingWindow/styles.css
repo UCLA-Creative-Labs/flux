@@ -1,0 +1,23 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  border: 2px solid black;
+}
+.friend-info {
+  display: inline-block;
+  width: 25%;
+  height: 25%;
+}
+
+.messages {
+  display: inline-block;
+  width: 100%;
+  height: 70%;
+  overflow-y: auto;
+}
+.input-bar {
+  width: 100%;
+  height: 5%;
+  display: inline-block;
+}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
 import Message from "./Message";
+import "./styles.css";
 
 class MessagingWindow extends Component {
   constructor(props) {
@@ -70,29 +71,35 @@ class MessagingWindow extends Component {
     const { userId, conversationId } = this.props;
 
     return (
-      <div>
-        <h1>Messaging Window</h1>
-        {/* <h1>{conversationId}</h1> replace this with the user photo */}
+      <div className="wrapper">
+        <div className="friend-info">
+          {/* <h1>{conversationId}</h1> replace this with the user photo */}
+        </div>
 
-        {/* Display all messages */}
-        {Object.keys(messages).map(messageId =>
-          messages[messageId].userId === userId ? (
-            <Message key={messageId} text={messages[messageId].text} sent />
-          ) : (
-            <Message
-              key={messageId}
-              text={messages[messageId].text}
-              sent={false}
-            />
-          )
-        )}
-        {/* A Simple form with one text field and one submit button to send a message */}
-        <form>
-          <input type="text" onChange={this.handleChange} value={text} />
-          <button onClick={this.handleClick} type="submit">
-            Send!
-          </button>
-        </form>
+        <div className="messages">
+          {/* Display all messages */}
+          {Object.keys(messages).map(messageId =>
+            messages[messageId].userId === userId ? (
+              <Message key={messageId} text={messages[messageId].text} sent />
+            ) : (
+              <Message
+                key={messageId}
+                text={messages[messageId].text}
+                sent={false}
+              />
+            )
+          )}
+        </div>
+
+        <div className="input-bar">
+          {/* A Simple form with one text field and one submit button to send a message */}
+          <form>
+            <input type="text" onChange={this.handleChange} value={text} />
+            <button onClick={this.handleClick} type="submit">
+              Send!
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
