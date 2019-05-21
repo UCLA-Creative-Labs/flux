@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const NotificationBox = ({ text, color, time, image }) => (
   <div className="NotificationBox">
     <div className="color-type" style={{ backgroundColor: color }} />
-    <img className="image" src={require(`${image}`)} alt="Notification Image" />
+    <img className="image" src={require(`${image}`)} alt="Notification" />
     <p>
       {text}
       <br /> {time}
