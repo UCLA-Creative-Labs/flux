@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
 import "./MakePost.css";
+import PostImage from "../NotificationPanel/post.png";
 
 class MakePost extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class MakePost extends React.Component {
     event.preventDefault();
 
     const date = new Date().toLocaleString("en-GB");
-    makeNotification(`${userId} made a new post!`, "blue", date, "./post.png");
+    makeNotification(`${userId} made a new post!`, "blue", date, PostImage);
     firebaseWrapper.sendPost(userId, text, photo, resetState);
   };
 
