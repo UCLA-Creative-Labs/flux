@@ -130,19 +130,18 @@ class App extends Component {
   };
 
   makeNotification = (text, color, time, image) => {
-    const array = this.state.notifications;
-    array.unshift({
-      text: text,
-      color: color,
-      time: time,
-      image: image
+    const { notifications } = this.state;
+    notifications.unshift({
+      text,
+      color,
+      time,
+      image
     });
-    this.setState({ notifications: array });
+    this.setState({ notifications });
   };
 
   render() {
     const { userId, notifications } = this.state;
-    const makeNotification = this.makeNotification;
     let routes;
 
     if (userId === "") {
