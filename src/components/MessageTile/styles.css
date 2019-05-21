@@ -13,22 +13,15 @@
   overflow: hidden;
 }
 
-.user-content {
+.user-name {
   display: inline-block;
   width: 70%;
   height: 100%;
 }
-.user-name {
-  width: 100%;
-  height: 50%;
-  float: left;
-  position: relative;
-  font-weight: bold;
-}
 
-.message {
-  width: 100%;
-  height: 50%;
-  float: left;
-  position: relative;
+.user-name p {
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 20px;
 }

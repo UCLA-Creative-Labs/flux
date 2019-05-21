@@ -8,38 +8,38 @@ class MessageTile extends Component {
     super(props);
 
     this.state = {
-      lastMessage: "",
-      user: {}
+      name: "John Doe",
+      photoURL: ""
     };
   }
 
   componentDidMount() {
-    // //Fetch user data!
-    // const updateMessages = (messages, prevRef) => {
-    //   this.setState({
-    //     messages,
-    //     prevConversationRef: prevRef
-    //   });
-    // };
-    // firebaseWrapper.listenForMessages(
-    //   //Listen for new message!
-    //   prevConversationRef,
-    //   conversationId,
-    //   updateMessages
-    // );
+    const { userId } = this.props;
+
+    //Fetch user data!
+    const updateName = name => {
+      this.setState({
+        name: name
+      });
+    };
+    const updatePicture = picurl => {
+      this.setState({
+        photoURL: picurl
+      });
+    };
+    //firebaseWrapper.getName(userId, updateName); Not implemented yet!
+    firebaseWrapper.getProfilePicture(userId, updatePicture);
   }
 
   render() {
+    const { name, photoURL } = this.state;
     return (
       <div className="tile-wrapper">
         <div className="profile-picture">
-          <img />
-          Insert Image Here Insert Image Here Insert Image Here Insert Image
-          Here
+          <img className="picture" src={photoURL} />
         </div>
-        <div className="user-content">
-          <div className="user-name">User</div>
-          <div className="message">Last Message</div>
+        <div className="user-name">
+          <p>{name}</p>
         </div>
       </div>
     );
