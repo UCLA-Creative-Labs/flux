@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
-import Message from "./Message";
 import "./styles.css";
 
 class MessageTile extends Component {
@@ -35,6 +34,8 @@ class MessageTile extends Component {
       <div className="tile-wrapper">
         <div className="profile-picture">
           <img />
+          Insert Image Here Insert Image Here Insert Image Here Insert Image
+          Here
         </div>
         <div className="user-content">
           <div className="user-name">User</div>
