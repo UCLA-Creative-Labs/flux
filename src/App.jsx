@@ -14,6 +14,8 @@ import ProfilePage from "./components/ProfilePage";
 import Navbar from "./components/Navbar";
 import NotificationPanel from "./components/NotificationPanel";
 import "./App.css";
+import PlaceholderImage from "./components/NotificationPanel/placeholder.png";
+import PostImage from "./components/NotificationPanel/post.png";
 
 class App extends Component {
   constructor() {
@@ -28,79 +30,79 @@ class App extends Component {
           text: "flux",
           color: "aqua",
           time: "before the beginning of time",
-          image: "./placeholder.png"
+          image: PlaceholderImage
         },
         {
           text: "is",
           color: "red",
           time: "before the beginning of time",
-          image: "./post.png"
+          image: PostImage
         },
         {
           text: "the",
           color: "orange",
           time: "before the beginning of time",
-          image: "./placeholder.png"
+          image: PlaceholderImage
         },
         {
           text: "best",
           color: "yellow",
           time: "before the beginning of time",
-          image: "./placeholder.png"
+          image: PlaceholderImage
         },
         {
           text: "you love milk",
           color: "green",
           time: "before the beginning of time",
-          image: "./placeholder.png"
+          image: PlaceholderImage
         },
         {
           text: "C's get degrees",
           color: "blue",
           time: "before the beginning of time",
-          image: "./placeholder.png"
+          image: PlaceholderImage
         },
         {
           text: "8clap",
           color: "indigo",
           time: "before the beginning of time",
-          image: "./placeholder.png"
+          image: PlaceholderImage
         },
         {
           text: "i want to play pokemon go",
           color: "violet",
           time: "before the beginning of time",
-          image: "./placeholder.png"
+          image: PlaceholderImage
         },
         {
           text: "image is a fb stickers",
           color: "brown",
           time: "before the beginning of time",
-          image: "./placeholder.png"
+          image: PlaceholderImage
         },
         {
           text: "called yuttari dragon",
           color: "teal",
           time: "before the beginning of time",
-          image: "./placeholder.png"
+          image: PlaceholderImage
         },
         {
           text: "its great but no one should see this",
           color: "pink",
           time: "before the beginning of time",
-          image: "./placeholder.png"
+          image: PlaceholderImage
         },
         {
           text: "12th notification",
           color: "orange",
           time: "before the beginning of time",
-          image: "./placeholder.png"
+          image: PlaceholderImage
         },
         {
           text: "hello there",
           color: "gray",
           time: "before the beginning of time",
-          image: "./placeholder.png"
+          image: PlaceholderImage
         }
       ]
     };
