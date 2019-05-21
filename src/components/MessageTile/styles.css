@@ -1,0 +1,35 @@
+.tile-wrapper {
+  height: 15%;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+}
+.profile-picture {
+  display: inline-block;
+  width: 30%;
+  height: 100%;
+  float: left;
+  position: relative;
+}
+
+.user-content {
+  position: relative;
+  width: 70%;
+  height: 100%;
+}
+.user-name {
+  display: inline-block;
+  width: 100%;
+  height: 50%;
+  float: left;
+  position: relative;
+  font-weight: bold;
+}
+
+.message {
+  display: inline-block;
+  width: 100%;
+  height: 50%;
+  float: left;
+  position: relative;
+}
