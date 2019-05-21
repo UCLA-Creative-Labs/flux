@@ -58,7 +58,9 @@ class MessageManager extends Component {
     return (
       <div className="window-wrapper">
         {/* <h1>Temporary Message Manager</h1> */}
-
+        <div className="topBar">
+          <p>Direct Messages</p>
+        </div>
         <div className="conversationList">
           {/* List of friends */}
           {Object.keys(friends).map(friendId => (
