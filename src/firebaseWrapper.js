@@ -212,19 +212,6 @@ const listenForLikedPosts = (userId, done) => {
   });
 };
 
-const addFriend = (userId1, userId2) => {
-  const user1FriendsRef = firebase.database().ref(`/users/${userId1}/friends`);
-  const user2FriendsRef = firebase.database().ref(`/users/${userId2}/friends`);
-
-  createConversation(userId1, conversationId => {
-    const friendForUser1 = { [userId2]: conversationId };
-    const friendForUser2 = { [userId1]: conversationId };
-
-    user1FriendsRef.update(friendForUser1);
-    user2FriendsRef.update(friendForUser2);
-  })
-}
-
 const getProfilePicture = (userId, done) => {
   const picRef = firebase.database().ref(`users/${userId}/profilePicture`);
   picRef.once("value", snapshot => {
