@@ -14,16 +14,20 @@ window.onunload = function() {
 }; */
 
 const NotificationPanel = ({ notifications }) => (
-  <div className="NotificationPanel">
-    {Object.keys(notifications).map(item => (
-      <NotificationBox
-        text={notifications[item].text}
-        color={notifications[item].color}
-        time={notifications[item].time}
-        image={notifications[item].image}
-        key={item}
-      />
-    ))}
+  <div>
+    <div className="overlay" />
+    <div className="NotificationPanelBackground" />
+    <div className="NotificationPanel">
+      {Object.keys(notifications).map(item => (
+        <NotificationBox
+          text={notifications[item].text}
+          color={notifications[item].color}
+          time={notifications[item].time}
+          image={notifications[item].image}
+          key={item}
+        />
+      ))}
+    </div>
   </div>
 );
 
