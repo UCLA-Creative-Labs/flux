@@ -27,67 +27,80 @@ class App extends Component {
         {
           text: "flux",
           color: "aqua",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./placeholder.png"
         },
         {
           text: "is",
           color: "red",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./post.png"
         },
         {
           text: "the",
           color: "orange",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./placeholder.png"
         },
         {
           text: "best",
           color: "yellow",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./placeholder.png"
         },
         {
           text: "you love milk",
           color: "green",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./placeholder.png"
         },
         {
           text: "C's get degrees",
           color: "blue",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./placeholder.png"
         },
         {
           text: "8clap",
           color: "indigo",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./placeholder.png"
         },
         {
           text: "i want to play pokemon go",
           color: "violet",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./placeholder.png"
         },
         {
           text: "image is a fb stickers",
           color: "brown",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./placeholder.png"
         },
         {
           text: "called yuttari dragon",
           color: "teal",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./placeholder.png"
         },
         {
           text: "its great but no one should see this",
           color: "pink",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./placeholder.png"
         },
         {
           text: "12th notification",
           color: "orange",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./placeholder.png"
         },
         {
           text: "hello there",
           color: "gray",
-          time: "before the beginning of time"
+          time: "before the beginning of time",
+          image: "./placeholder.png"
         }
       ]
     };
@@ -109,16 +122,15 @@ class App extends Component {
     firebaseWrapper.logout();
   };
 
-  makeNotification = (text, color, time) => {
+  makeNotification = (text, color, time, image) => {
     const array = this.state.notifications;
     array.unshift({
       text: text,
       color: color,
-      time: time
+      time: time,
+      image: image
     });
-    this.setState(array => {
-      return { notifications: array };
-    });
+    this.setState({ notifications: array });
   };
 
   render() {

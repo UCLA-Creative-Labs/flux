@@ -21,7 +21,6 @@
 .image {
   border-radius: 50%;
   width: 40px;
-  content: url("./image.png");
   height: 40px;
   border: 2px solid black;
   margin-right: 10px
