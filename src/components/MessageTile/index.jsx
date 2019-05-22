@@ -51,6 +51,12 @@ class MessageTile extends Component {
           "background-color": isSelected ? "var(--light-teal)" : "var(--white)"
         }}
       >
+        <div
+          className="empty-box"
+          style={{
+            "background-color": isSelected ? "var(--dark-teal)" : "var(--white)"
+          }}
+        />
         <div className="profile-picture">
           <img src={photoURL} />
         </div>
