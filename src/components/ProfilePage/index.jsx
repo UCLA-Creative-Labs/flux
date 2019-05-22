@@ -65,15 +65,23 @@ class ProfilePage extends Component {
     const { friends, profilePicture, activeTab } = this.state;
     let userPosts = "preview";
     let likedPosts = "preview";
+    let friendsList = "preview";
     if (activeTab === "userPosts") {
       userPosts = "active";
       likedPosts = "hidden";
+      friendsList = "hidden";
     } else if (activeTab === "likedPosts") {
       userPosts = "hidden";
       likedPosts = "active";
+      friendsList = "hidden";
+    } else if (activeTab === "friendsList") {
+      userPosts = "hidden";
+      likedPosts = "hidden";
+      friendsList = "active";
     }
     userPosts = userPosts.concat(" userPosts");
     likedPosts = likedPosts.concat(" likedPosts");
+    friendsList = friendsList.concat(" friendsList");
     return (
       <div className="profilePage">
         <div>
@@ -84,7 +92,7 @@ class ProfilePage extends Component {
         <div className="userInfo">
           <img src={profilePicture} alt="Profile" className="profilePicture" />
 
-          <h1>{profileId}</h1>
+          <h2>{profileId}</h2>
           {profileId !== userId && !(userId in friends) ? (
             <button type="button" onClick={this.addFriend}>
               Add Friend
@@ -92,15 +100,23 @@ class ProfilePage extends Component {
           ) : (
             <div />
           )}
-          <FriendsList friends={friends} />
         </div>
 
         <div>
           <div
+            className={friendsList}
+            onClick={() => this.toggleActiveTab("friendsList")}
+            role="menuitem"
+            tabIndex="0"
+            onKeyDown={() => {}}
+          >
+            <FriendsList friends={friends} />
+          </div>
+          <div
             className={userPosts}
             onClick={() => this.toggleActiveTab("userPosts")}
             role="menuitem"
-            tabIndex="0"
+            tabIndex="-1"
             onKeyDown={() => {}}
           >
             <h2>User Posts</h2>
