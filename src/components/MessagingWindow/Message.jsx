@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "../../colors.css";
 
 const styles = {
   sent: {
     width: "40%",
-    backgroundColor: "blue"
+    backgroundColor: "var(--light-teal)"
   },
   received: {
     width: "40%",
-    backgroundColor: "white"
+    backgroundColor: "var(--blueberry)"
   }
 };
 

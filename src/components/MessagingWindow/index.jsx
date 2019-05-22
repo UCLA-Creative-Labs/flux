@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import "../../colors.css";
 import firebaseWrapper from "../../firebaseWrapper";
 import Message from "./Message";
 import "./styles.css";
