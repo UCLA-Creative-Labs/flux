@@ -109,7 +109,7 @@ class ProfilePage extends Component {
             className={friendsListClass}
             onClick={() => this.toggleActiveTab("friendsList")}
             role="menuitem"
-            tabIndex="0"
+            tabIndex="-1"
             onKeyDown={() => {}}
           >
             <FriendsList friends={friends} />
