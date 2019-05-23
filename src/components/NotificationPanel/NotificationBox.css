@@ -5,11 +5,6 @@
   align-items: center;
   height: 50px;
   border: 0.5px solid rgb(92, 215, 249);
-  filter: blur(5px);
-}
-
-.NotificationBox:active {
-  filter: blur(0);
 }
 
 .color-type {

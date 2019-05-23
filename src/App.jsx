@@ -129,7 +129,15 @@ class App extends Component {
     }, 100);
   };
 
-  makeNotification = (text, color, time, image) => {
+  makeNotification = (type, text) => {
+    const time = "At " + new Date().toLocaleString("en-GB") + ",";
+    let image = PlaceholderImage;
+    let color = "orange";
+    if (type === "makePost") {
+      text = text + " has made a new post!";
+      color = "blue";
+      image = PostImage;
+    }
     const { notifications } = this.state;
     notifications.unshift({
       text,
@@ -217,7 +225,7 @@ class App extends Component {
         <button
           type="submit"
           onClick={() =>
-            this.makeNotification("random", "orange", "time", PlaceholderImage)
+            this.makeNotification("default", "default notification")
           }
         >
           make a notification
