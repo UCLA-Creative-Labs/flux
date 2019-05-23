@@ -139,7 +139,7 @@ class App extends Component {
       color = "blue";
       image = PostImage;
     }
-    /*this.setState(prevState => {
+    /* this.setState(prevState => {
       prevState.notifications.unshift({
         text,
         color,
@@ -147,7 +147,7 @@ class App extends Component {
         image
       });
     }); when I setState this way, the notification panel doesn't auto update with the notification.
-    You have to reload the page for it to appear*/
+    You have to reload the page for it to appear */
     const { notifications } = this.state;
     notifications.unshift({
       text,
