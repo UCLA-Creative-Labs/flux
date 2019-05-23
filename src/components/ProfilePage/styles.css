@@ -21,12 +21,13 @@
     border: .5rem solid #9CB1DB;
     margin-left: 3rem;
     margin-right: 3rem;
+    background-color: #9CB1DB
 }
 
 .likedPosts {
     display: flex;
     background-color: #D7EFF2;
-    z-index: 998;
+    z-index: 997;
     padding-top: 3rem;
     padding-left: 1rem;
 }
@@ -34,7 +35,7 @@
 .userPosts {
     display: flex;
     background-color: #9CB1DB;
-    z-index: 999;
+    z-index: 998;
     padding-top: 3rem;
     padding-left: 1rem;
 }
@@ -45,6 +46,7 @@
     background-color: blue;
     padding-top: 3rem;
     padding-left: 1rem;
+    z-index: 999
 }
 
 .hidden {
@@ -62,4 +64,8 @@
 
 .curves {
     display: inline
+}
+
+.profileId {
+    margin-bottom: .5rem;
 }
