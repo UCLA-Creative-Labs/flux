@@ -4,6 +4,7 @@
   flex-wrap: nowrap;
   align-items: center;
   height: 50px;
+  overflow: auto;
   border: 0.5px solid rgb(92, 215, 249);
 }
 
