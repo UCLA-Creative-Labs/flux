@@ -63,25 +63,29 @@ class ProfilePage extends Component {
       }
     } = this.props;
     const { friends, profilePicture, activeTab } = this.state;
-    let userPosts = "preview";
-    let likedPosts = "preview";
-    let friendsList = "preview";
+    let userPostsClass;
+    let likedPostsClass;
+    let friendsListClass;
     if (activeTab === "userPosts") {
-      userPosts = "active";
-      likedPosts = "hidden";
-      friendsList = "hidden";
+      userPostsClass = "active";
+      likedPostsClass = "hidden";
+      friendsListClass = "hidden";
     } else if (activeTab === "likedPosts") {
-      userPosts = "hidden";
-      likedPosts = "active";
-      friendsList = "hidden";
+      userPostsClass = "hidden";
+      likedPostsClass = "active";
+      friendsListClass = "hidden";
     } else if (activeTab === "friendsList") {
-      userPosts = "hidden";
-      likedPosts = "hidden";
-      friendsList = "active";
+      userPostsClass = "hidden";
+      likedPostsClass = "hidden";
+      friendsListClass = "active";
+    } else {
+        userPostsClass = "preview";
+        likedPostsClass = "preview";
+        friendsListClass = "preview";
     }
-    userPosts = userPosts.concat(" userPosts");
-    likedPosts = likedPosts.concat(" likedPosts");
-    friendsList = friendsList.concat(" friendsList");
+    userPostsClass = userPostsClass.concat(" userPosts");
+    likedPostsClass = likedPostsClass.concat(" likedPosts");
+    friendsListClass = friendsListClass.concat(" friendsList");
     return (
       <div className="profilePage">
         <div>
@@ -104,7 +108,7 @@ class ProfilePage extends Component {
 
         <div>
           <div
-            className={friendsList}
+            className={friendsListClass}
             onClick={() => this.toggleActiveTab("friendsList")}
             role="menuitem"
             tabIndex="0"
@@ -113,7 +117,7 @@ class ProfilePage extends Component {
             <FriendsList friends={friends} />
           </div>
           <div
-            className={userPosts}
+            className={userPostsClass}
             onClick={() => this.toggleActiveTab("userPosts")}
             role="menuitem"
             tabIndex="-1"
@@ -124,7 +128,7 @@ class ProfilePage extends Component {
           </div>
 
           <div
-            className={likedPosts}
+            className={likedPostsClass}
             onClick={() => this.toggleActiveTab("likedPosts")}
             role="menuitem"
             tabIndex="-1"
