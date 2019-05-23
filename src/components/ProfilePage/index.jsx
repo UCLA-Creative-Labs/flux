@@ -79,9 +79,9 @@ class ProfilePage extends Component {
       likedPostsClass = "hidden";
       friendsListClass = "active";
     } else {
-        userPostsClass = "preview";
-        likedPostsClass = "preview";
-        friendsListClass = "preview";
+      userPostsClass = "preview";
+      likedPostsClass = "preview";
+      friendsListClass = "preview";
     }
     userPostsClass = userPostsClass.concat(" userPosts");
     likedPostsClass = likedPostsClass.concat(" likedPosts");
@@ -97,12 +97,10 @@ class ProfilePage extends Component {
           <img src={profilePicture} alt="Profile" className="profilePicture" />
 
           <h2>{profileId}</h2>
-          {profileId !== userId && !(userId in friends) ? (
+          {profileId !== userId && !(userId in friends) && (
             <button type="button" onClick={this.addFriend}>
               Add Friend
             </button>
-          ) : (
-            <div />
           )}
         </div>
 
