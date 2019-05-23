@@ -130,10 +130,19 @@ class App extends Component {
     let text = input;
     let color = "orange";
     if (type === "makePost") {
-      text = `${text} has made a new post!`;
+      text = `${text} made a new post!`;
       color = "blue";
       image = PostImage;
     }
+    /*this.setState(prevState => {
+      prevState.notifications.unshift({
+        text,
+        color,
+        time,
+        image
+      });
+    }); when I setState this way, the notification panel doesn't auto update with the notification.
+    You have to reload the page for it to appear*/
     const { notifications } = this.state;
     notifications.unshift({
       text,
