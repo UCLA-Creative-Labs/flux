@@ -124,12 +124,13 @@ class App extends Component {
     firebaseWrapper.logout();
   };
 
-  makeNotification = (type, text) => {
-    const time = "At " + new Date().toLocaleString("en-GB") + ",";
+  makeNotification = (type, input) => {
+    const time = `At ${new Date().toLocaleString("en-GB")},`;
     let image = PlaceholderImage;
+    let text = input;
     let color = "orange";
     if (type === "makePost") {
-      text = text + " has made a new post!";
+      text = `${text} has made a new post!`;
       color = "blue";
       image = PostImage;
     }
