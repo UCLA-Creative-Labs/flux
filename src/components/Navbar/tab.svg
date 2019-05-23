@@ -1,11 +1,11 @@
-<svg width="185" height="58" viewBox="0 0 185 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="208" height="53" viewBox="0 0 208 53" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d)">
-<rect x="15" y="1" width="155" height="49" rx="8" fill="white"/>
+<path d="M22.6992 0H185.301V37C185.301 41.4183 181.719 45 177.301 45H30.6992C26.2809 45 22.6992 41.4183 22.6992 37V0Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23.5122 22.5V0H4C14.7763 0 23.5122 10.0736 23.5122 22.5Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M184.488 22.5V0H204C193.224 0 184.488 10.0736 184.488 22.5Z" fill="white"/>
 </g>
-<path d="M170 16.1249L155 0.624959L185 0.62496L176 7.62494L170 16.1249Z" fill="white"/>
-<path d="M15 16.5L30 0.99999L0 0.99999L9 7.99997L15 16.5Z" fill="white"/>
 <defs>
-<filter id="filter0_d" x="11" y="1" width="163" height="57" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d" x="0" y="0" width="208" height="53" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
 <feOffset dy="4"/>

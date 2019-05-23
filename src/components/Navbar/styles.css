@@ -18,24 +18,20 @@ ul li {
   flex: 1;
 }
 
+#control-blob {
+  flex: 3;
+}
+
 ul li a {
   display: block;
   padding: 15px 0;
   margin-bottom: 10px;
-  border-radius: 0 0 10px 10px;
 
   color: inherit;
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
 
+  width: 200px;
   background-image: url("./tab.svg");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
-#control-blob {
-  flex: 2;
-  margin: 0 50px;
-  background-image: none;
 }
