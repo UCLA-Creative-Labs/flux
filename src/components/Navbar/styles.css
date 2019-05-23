@@ -36,6 +36,6 @@ ul li a {
 }
 
 ul li.activeTab a {
-  background-image: url("./tab.svg");
+  background-image: url("../../images/Navbar/tab.svg");
   color: inherit;
 }
