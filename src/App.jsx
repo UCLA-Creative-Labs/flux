@@ -62,27 +62,45 @@ class App extends Component {
     } else {
       routes = (
         <Router>
-          <Navbar userId={userId} />
           <Route exact path="/" render={() => <Redirect to="/newsfeed" />} />
           {/* Change to `userId="1234"` if testing */}
           <Route
             path="/newsfeed"
-            render={() => <NewsFeed userId={userId} type="home" />}
+            render={() => {
+              return (
+                <div>
+                  <Navbar userId={userId} activeTab="home" />
+                  <NewsFeed userId={userId} type="home" />
+                </div>
+              );
+            }}
           />
           <Route
             path="/messages"
             exact
-            render={() => <MessageManager userId={userId} />}
+            render={() => {
+              return (
+                <div>
+                  <Navbar userId={userId} activeTab="messages" />
+                  <MessageManager userId={userId} />
+                </div>
+              );
+            }}
           />
           <Route
             path="/user/:profileId"
-            render={props => (
-              <ProfilePage
-                userId={userId}
-                handleLogout={this.handleLogout}
-                {...props}
-              />
-            )}
+            render={props => {
+              return (
+                <div>
+                  <Navbar userId={userId} activeTab="profile" />
+                  <ProfilePage
+                    userId={userId}
+                    handleLogout={this.handleLogout}
+                    {...props}
+                  />
+                </div>
+              );
+            }}
           />
         </Router>
       );

@@ -3,21 +3,21 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./styles.css";
 
-const Navbar = ({ userId }) => {
+const Navbar = ({ userId, activeTab }) => {
   return (
     <nav>
       <ul>
-        <li>
+        <li className={activeTab === "home" ? "activeTab" : ""}>
           <Link to="/newsfeed">Home</Link>
         </li>
-        <li>
+        <li className={activeTab === "messages" ? "activeTab" : ""}>
           <Link to="/messages">Messages</Link>
         </li>
         <li id="control-blob">Filler for control blob</li>
-        <li>
+        <li className={activeTab === "notifications" ? "activeTab" : ""}>
           <Link to="/notificationpanel">Notifications</Link>
         </li>
-        <li>
+        <li className={activeTab === "profile" ? "activeTab" : ""}>
           <Link to={`/user/${userId}`}>Profile</Link>
         </li>
       </ul>
@@ -26,7 +26,9 @@ const Navbar = ({ userId }) => {
 };
 
 Navbar.propTypes = {
-  userId: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired,
+  activeTab: PropTypes.oneOf(["home", "messages", "notifications", "profile"])
+    .isRequired
 };
 
 export default Navbar;
