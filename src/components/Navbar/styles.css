@@ -1,0 +1,41 @@
+nav {
+  background-color: #91affc;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+ul {
+  display: flex;
+  margin: 0;
+  list-style: none;
+  padding: 0 20px;
+}
+
+ul li {
+  flex: 1;
+}
+
+#control-blob {
+  flex: 3;
+}
+
+ul li a {
+  display: block;
+  padding: 15px 0;
+  margin-bottom: 10px;
+
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  width: 200px;
+}
+
+ul li.activeTab a {
+  background-image: url("../../images/Navbar/tab.svg");
+  color: inherit;
+}
