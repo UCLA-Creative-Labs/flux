@@ -94,14 +94,15 @@ class ProfilePage extends Component {
           </button>
         </div>
         <div className="userInfo">
-          <img src={profilePicture} alt="Profile" className="profilePicture" />
-
-          <h2>{profileId}</h2>
-          {profileId !== userId && !(userId in friends) && (
-            <button type="button" onClick={this.addFriend}>
-              Add Friend
-            </button>
-          )}
+          <img src={profilePicture} className="profilePicture" />
+            <div>
+                <h2 className="profileId">{profileId}</h2>
+                {profileId !== userId && !(userId in friends) && (
+                <button type="button" onClick={this.addFriend}>
+                Add Friend
+                </button>
+                )}
+            </div>
         </div>
 
         <div>
