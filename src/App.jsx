@@ -108,7 +108,6 @@ class App extends Component {
   render() {
     const { userId, notifications } = this.state;
     let routes;
-    console.log(notifications);
 
     if (userId === "") {
       routes = (

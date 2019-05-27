@@ -26,7 +26,7 @@ class NotificationBox extends Component {
     const { type, content } = this.props;
     if (type === "default") {
       this.setState({ text: content });
-    } else if (type == "makePost") {
+    } else if (type === "makePost") {
       this.setState({
         color: "blue",
         image: PostImage,
