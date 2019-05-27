@@ -68,7 +68,6 @@ class ProfilePage extends Component {
   };
 
   toggleActiveTab = activeTab => {
-      console.log(activeTab);
     this.setState({
       activeTab
     });
