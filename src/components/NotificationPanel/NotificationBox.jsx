@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./NotificationBox.css";
 import PropTypes from "prop-types";
 import PlaceholderImage from "../../images/notifications/placeholder.png";
@@ -14,10 +14,11 @@ import PostImage from "../../images/notifications/post.png";
 function NotificationBox({ content, type, time }) {
   let color = "orange";
   let image = PlaceholderImage;
+  let text = content;
   if (type === "makePost") {
     color = "blue";
     image = PostImage;
-    content = `${content} made a new post!`;
+    text = `${text} made a new post!`;
   }
   return (
     <div className="NotificationBox">
@@ -26,7 +27,7 @@ function NotificationBox({ content, type, time }) {
       <p className="content">
         {time}
         <br />
-        {content}
+        {text}
       </p>
     </div>
   );
