@@ -12,6 +12,7 @@ const NotificationPanel = ({ notifications }) => (
           <NotificationBox
             type={notifications[notificationId].type}
             content={notifications[notificationId].content}
+            time={notifications[notificationId].time}
             key={notificationId}
           />
         ))}
@@ -24,7 +25,8 @@ NotificationPanel.propTypes = {
   notifications: PropTypes.arrayOf(
     PropTypes.shape({
       type: PropTypes.string,
-      content: PropTypes.string
+      content: PropTypes.string,
+      time: PropTypes.string
     })
   ).isRequired
 };

@@ -26,55 +26,68 @@ class App extends Component {
       notifications: [
         {
           type: "default",
-          content: "flux"
+          content: "flux",
+          time: "before the beginning of time"
         },
         {
           type: "makePost",
-          content: "is"
+          content: "is",
+          time: "before the beginning of time"
         },
         {
           type: "default",
-          content: "the"
+          content: "the",
+          time: "before the beginning of time"
         },
         {
           type: "default",
-          content: "best"
+          content: "best",
+          time: "before the beginning of time"
         },
         {
           type: "default",
-          content: "you love milk"
+          content: "you love milk",
+          time: "before the beginning of time"
         },
         {
           type: "default",
-          content: "C's get degrees"
+          content: "C's get degrees",
+          time: "before the beginning of time"
         },
         {
           type: "default",
-          content: "8clap"
+          content: "8clap",
+          time: "before the beginning of time"
         },
         {
           type: "default",
-          content: "i want to play pokemon go"
+          content: "i want to play pokemon go",
+          time: "before the beginning of time"
         },
         {
           type: "default",
-          content: "image is a fb stickers"
+          content: "image is a fb stickers",
+          time: "before the beginning of time"
         },
         {
           type: "default",
-          content: "called yuttari dragon"
+          content: "called yuttari dragon",
+          time: "before the beginning of time"
         },
         {
           type: "default",
-          content: "its great but no one should see this"
+          content: "its great but no one should see this",
+          time: "before the beginning of time"
         },
         {
           type: "default",
-          content: "12th notification"
+          content: "12th notification",
+          time: "before the beginning of time"
         },
         {
           type: "default",
-          content: "hello there"
+          content: "hello there",
+          time: "before the beginning of time"
         }
       ]
     };
@@ -98,16 +111,21 @@ class App extends Component {
 
   makeNotification = (type, content) => {
     const { notifications } = this.state;
+    const time = `At ${new Date().toLocaleTimeString("en-GB")}, `;
     notifications.unshift({
       type,
-      content
+      content,
+      time
     });
     this.setState({ notifications });
+    console.log(notifications);
   };
 
   render() {
     const { userId, notifications } = this.state;
     let routes;
+    console.log("rerender");
+    console.log({ notifications });
 
     if (userId === "") {
       routes = (
@@ -159,7 +177,7 @@ class App extends Component {
         <button
           type="submit"
           onClick={() =>
-            this.makeNotification("default", "default notification")
+            this.makeNotification("default", "made notif using button")
           }
         >
           make a notification

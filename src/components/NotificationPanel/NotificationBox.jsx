@@ -12,39 +12,24 @@ import PostImage from "../../images/notifications/post.png";
 }; */
 
 class NotificationBox extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      time: `At ${new Date().toLocaleTimeString("en-GB")}, `,
-      color: "orange",
-      image: PlaceholderImage,
-      text: "default notification"
-    };
-  }
-
-  componentDidMount() {
-    const { type, content } = this.props;
-    if (type === "default") {
-      this.setState({ text: content });
-    } else if (type === "makePost") {
-      this.setState({
-        color: "blue",
-        image: PostImage,
-        text: `${content} made a new post!`
-      });
-    }
-  }
-
   render() {
-    const { color, image, time, text } = this.state;
+    const { type, time } = this.props;
+    let { content } = this.props;
+    let color = "orange";
+    let image = PlaceholderImage;
+    if (type === "makePost") {
+      color = "blue";
+      image = PostImage;
+      content = `${content} made a new post!`;
+    }
     return (
       <div className="NotificationBox">
         <div className="color-type" style={{ backgroundColor: color }} />
         <img className="image" src={image} alt="Notification" />
-        <p className="time">
+        <p className="content">
           {time}
           <br />
-          {text}
+          {content}
         </p>
       </div>
     );
@@ -53,6 +38,7 @@ class NotificationBox extends Component {
 
 NotificationBox.propTypes = {
   content: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired
 };
 export default NotificationBox;
