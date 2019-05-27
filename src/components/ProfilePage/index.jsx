@@ -133,6 +133,7 @@ class ProfilePage extends Component {
     likedPostsPath = likedPostsPath.concat(" likedPostsPath");
     friendsListClass = friendsListClass.concat(" friendsList");
     friendsListPath = friendsListPath.concat(" friendsListPath");
+
     return (
       <div className="profilePage">
         <div>
@@ -153,15 +154,18 @@ class ProfilePage extends Component {
         </div>
 
         <div>
-          <div className="curve">
-            <Curve
-              onClick1={() => {}}
-              className1="hidden"
-              onClick2={() => this.toggleActiveTab("friendsList")}
-              className2={friendsListPath}
-              activeTabAbove={false}
-            />
-          </div>
+          {(activeTab === "friendsList" || activeTab === "") && (
+            <div className="curve">
+              <Curve
+                onClick1={() => {}}
+                className1="hidden"
+                onClick2={() => this.toggleActiveTab("friendsList")}
+                className2={friendsListPath}
+                activeTabAbove={false}
+                hidden={false}
+              />
+            </div>
+          )}
 
           <div
             className={friendsListClass}
@@ -173,25 +177,19 @@ class ProfilePage extends Component {
             <FriendsList friends={friends} />
           </div>
 
-          <div className="curve">
-            {activeTab === "friendsList" ? (
+          {(activeTab === "userPosts" || activeTab === "") && (
+            <div className="curve">
               <Curve
                 onClick1={() => this.toggleActiveTab("friendsList")}
                 className1={friendsListPath}
                 onClick2={() => this.toggleActiveTab("userPosts")}
                 className2={userPostsPath}
                 activeTabAbove
+                hidden={false}
               />
-            ) : (
-              <Curve
-                onClick1={() => this.toggleActiveTab("friendsList")}
-                className1={friendsListPath}
-                onClick2={() => this.toggleActiveTab("userPosts")}
-                className2={userPostsPath}
-                activeTabAbove={false}
-              />
-            )}
-          </div>
+            </div>
+          )}
+
           <div
             className={userPostsClass}
             onClick={() => this.toggleActiveTab("userPosts")}
@@ -203,25 +201,18 @@ class ProfilePage extends Component {
             <NewsFeed userId={userId} profileId={profileId} type="user" />
           </div>
 
-          <div className="curve">
-            {activeTab === "userPosts" ? (
-              <Curve
-                onClick1={() => this.toggleActiveTab("userPosts")}
-                className1={userPostsPath}
-                onClick2={() => this.toggleActiveTab("likedPosts")}
-                className2={likedPostsPath}
-                activeTabAbove
-              />
-            ) : (
+          {(activeTab === "likedPosts" || activeTab === "") && (
+            <div className="curve">
               <Curve
                 onClick1={() => this.toggleActiveTab("userPosts")}
                 className1={userPostsPath}
                 onClick2={() => this.toggleActiveTab("likedPosts")}
                 className2={likedPostsPath}
                 activeTabAbove={false}
+                hidden={false}
               />
-            )}
-          </div>
+            </div>
+          )}
           <div
             className={likedPostsClass}
             onClick={() => this.toggleActiveTab("likedPosts")}
