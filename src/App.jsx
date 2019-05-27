@@ -103,10 +103,6 @@ class App extends Component {
             }}
           />
           <Route path="/login" component={Login} />
-          <Route
-            path="/user/:profileId"
-            render={props => <ProfilePage userId={userId} {...props} />}
-          />
         </Router>
       );
     }
