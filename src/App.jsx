@@ -123,14 +123,11 @@ class App extends Component {
       time
     });
     this.setState({ notifications });
-    console.log(notifications);
   };
 
   render() {
     const { userId, notifications } = this.state;
     let routes;
-    console.log("rerender");
-    console.log({ notifications });
 
     if (userId === "") {
       routes = (

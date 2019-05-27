@@ -11,29 +11,25 @@ import PostImage from "../../images/notifications/post.png";
   }
 }; */
 
-class NotificationBox extends Component {
-  render() {
-    const { type, time } = this.props;
-    let { content } = this.props;
-    let color = "orange";
-    let image = PlaceholderImage;
-    if (type === "makePost") {
-      color = "blue";
-      image = PostImage;
-      content = `${content} made a new post!`;
-    }
-    return (
-      <div className="NotificationBox">
-        <div className="color-type" style={{ backgroundColor: color }} />
-        <img className="image" src={image} alt="Notification" />
-        <p className="content">
-          {time}
-          <br />
-          {content}
-        </p>
-      </div>
-    );
+function NotificationBox({ content, type, time }) {
+  let color = "orange";
+  let image = PlaceholderImage;
+  if (type === "makePost") {
+    color = "blue";
+    image = PostImage;
+    content = `${content} made a new post!`;
   }
+  return (
+    <div className="NotificationBox">
+      <div className="color-type" style={{ backgroundColor: color }} />
+      <img className="image" src={image} alt="Notification" />
+      <p className="content">
+        {time}
+        <br />
+        {content}
+      </p>
+    </div>
+  );
 }
 
 NotificationBox.propTypes = {
