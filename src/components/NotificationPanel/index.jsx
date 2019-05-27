@@ -8,13 +8,11 @@ const NotificationPanel = ({ notifications }) => (
     <div className="NotificationPanelBackground">
       <p className="NotificationText">Notifications</p>
       <div className="NotificationPanel">
-        {Object.keys(notifications).map(item => (
+        {Object.keys(notifications).map(notificationId => (
           <NotificationBox
-            text={notifications[item].text}
-            color={notifications[item].color}
-            time={notifications[item].time}
-            image={notifications[item].image}
-            key={item}
+            type={notifications[notificationId].type}
+            content={notifications[notificationId].content}
+            key={notificationId}
           />
         ))}
       </div>
@@ -25,10 +23,8 @@ const NotificationPanel = ({ notifications }) => (
 NotificationPanel.propTypes = {
   notifications: PropTypes.arrayOf(
     PropTypes.shape({
-      text: PropTypes.string,
-      color: PropTypes.string,
-      time: PropTypes.string,
-      image: PropTypes.string
+      type: PropTypes.string,
+      content: PropTypes.string
     })
   ).isRequired
 };
