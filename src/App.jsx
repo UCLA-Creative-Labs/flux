@@ -14,8 +14,6 @@ import ProfilePage from "./components/ProfilePage";
 import Navbar from "./components/Navbar";
 import NotificationPanel from "./components/NotificationPanel";
 import "./App.css";
-import PlaceholderImage from "./images/notifications/placeholder.png";
-import PostImage from "./images/notifications/post.png";
 
 class App extends Component {
   constructor() {
@@ -27,82 +25,56 @@ class App extends Component {
       userId: "",
       notifications: [
         {
-          text: "flux",
-          color: "aqua",
-          time: "before the beginning of time",
-          image: PlaceholderImage
+          type: "default",
+          content: "flux"
         },
         {
-          text: "is",
-          color: "red",
-          time: "before the beginning of time",
-          image: PostImage
+          type: "makePost",
+          content: "is"
         },
         {
-          text: "the",
-          color: "orange",
-          time: "before the beginning of time",
-          image: PlaceholderImage
+          type: "default",
+          content: "the"
         },
         {
-          text: "best",
-          color: "yellow",
-          time: "before the beginning of time",
-          image: PlaceholderImage
+          type: "default",
+          content: "best"
         },
         {
-          text: "you love milk",
-          color: "green",
-          time: "before the beginning of time",
-          image: PlaceholderImage
+          type: "default",
+          content: "you love milk"
         },
         {
-          text: "C's get degrees",
-          color: "blue",
-          time: "before the beginning of time",
-          image: PlaceholderImage
+          type: "default",
+          content: "C's get degrees"
         },
         {
-          text: "8clap",
-          color: "indigo",
-          time: "before the beginning of time",
-          image: PlaceholderImage
+          type: "default",
+          content: "8clap"
         },
         {
-          text: "i want to play pokemon go",
-          color: "violet",
-          time: "before the beginning of time",
-          image: PlaceholderImage
+          type: "default",
+          content: "i want to play pokemon go"
         },
         {
-          text: "image is a fb stickers",
-          color: "brown",
-          time: "before the beginning of time",
-          image: PlaceholderImage
+          type: "default",
+          content: "image is a fb stickers"
         },
         {
-          text: "called yuttari dragon",
-          color: "teal",
-          time: "before the beginning of time",
-          image: PlaceholderImage
+          type: "default",
+          content: "called yuttari dragon"
         },
         {
-          text: "its great but no one should see this",
-          color: "pink",
-          time: "before the beginning of time",
-          image: PlaceholderImage
+          type: "default",
+          content: "its great but no one should see this"
         },
         {
-          text: "12th notification",
-          color: "orange",
-          time: "before the beginning of time",
-          image: PlaceholderImage
+          type: "default",
+          content: "12th notification"
         },
         {
-          text: "hello there",
-          color: "gray",
-          time: "before the beginning of time",
-          image: PlaceholderImage
+          type: "default",
+          content: "hello there"
         }
       ]
     };
@@ -124,31 +96,11 @@ class App extends Component {
     firebaseWrapper.logout();
   };
 
-  makeNotification = (type, input) => {
-    const time = `At ${new Date().toLocaleString("en-GB")},`;
-    let image = PlaceholderImage;
-    let text = input;
-    let color = "orange";
-    if (type === "makePost") {
-      text = `${text} made a new post!`;
-      color = "blue";
-      image = PostImage;
-    }
-    /* this.setState(prevState => {
-      prevState.notifications.unshift({
-        text,
-        color,
-        time,
-        image
-      });
-    }); when I setState this way, the notification panel doesn't auto update with the notification.
-    You have to reload the page for it to appear */
+  makeNotification = (type, content) => {
     const { notifications } = this.state;
     notifications.unshift({
-      text,
-      color,
-      time,
-      image
+      type,
+      content
     });
     this.setState({ notifications });
   };
@@ -156,6 +108,7 @@ class App extends Component {
   render() {
     const { userId, notifications } = this.state;
     let routes;
+    console.log(notifications);
 
     if (userId === "") {
       routes = (
@@ -201,7 +154,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div id="overlay" />
         <button type="submit" onClick={this.handleLogout}>
           Logout
         </button>

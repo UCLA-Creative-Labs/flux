@@ -3,14 +3,14 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  height: 50px;
-  overflow: auto;
+  height: 60px;
+  overflow-y: auto;
   border: 0.5px solid rgb(92, 215, 249);
 }
 
 .color-type {
   width: 10px;
-  height: 50px;
+  height: 60px;
   margin-right: 10px;
 }
 
@@ -19,4 +19,15 @@
   width: 40px;
   height: 40px;
   margin-right: 10px
+}
+
+.time {
+  text-align: left;
+}
+
+.text {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  justify-content: center;
 }
