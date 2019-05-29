@@ -14,7 +14,9 @@ const Navbar = ({ userId, activeTab }) => {
         <li className={activeTab === "messages" ? "activeTab" : ""}>
           <Link to="/messages">Messages</Link>
         </li>
-        <li id="control-blob">{activeTab === "home" && <ControlBlob />}</li>
+        <li id="control-blob">
+          <ControlBlob />
+        </li>
         <li className={activeTab === "notifications" ? "activeTab" : ""}>
           <Link to="/notificationpanel">Notifications</Link>
         </li>

@@ -36,7 +36,6 @@ class ControlBlob extends Component {
       <div id="control-blob">
         {this.generateIcons()}
         <div id="blob">
-          {/* <textarea placeholder="PLEASE TYPE YOUR MESSAGE" /> */}
           WHAT&apos;S ON
           <br />
           YOUR MIND?

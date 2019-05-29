@@ -61,11 +61,6 @@
   color: white;
 }
 
-#blob textarea {
-  width: 100%;
-  height: 100%;
-}
-
 #circle {
   position: absolute;
   left: 0;
