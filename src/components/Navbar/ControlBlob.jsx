@@ -1,21 +1,16 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import LikeIcon from "../../images/Navbar/like.svg";
 import DislikeIcon from "../../images/Navbar/dislike.svg";
 import "./styles.css";
 
 class ControlBlob extends Component {
-  constructor() {
-    super();
-  }
-
   generateIcons = () => {
     const numIcons = 16;
     const angleSpacing = 360 / numIcons;
 
-    let angleClasses = [];
+    const angleClasses = [];
 
-    for (let i = 0; i < numIcons; i++) {
+    for (let i = 0; i < numIcons; i += 1) {
       const angle = i * angleSpacing;
       angleClasses.push(angle.toString().replace(".", "_"));
     }
@@ -23,10 +18,10 @@ class ControlBlob extends Component {
     return (
       <div id="circle">
         {angleClasses.map((angle, i) => {
-          console.log(angle);
           return (
             <img
-              src={i % 2 == 0 ? LikeIcon : DislikeIcon}
+              src={i % 2 === 0 ? LikeIcon : DislikeIcon}
+              alt={i % 2 === 0 ? "like icon" : "dislike icon"}
               className={`icon deg${angle}`}
               key={angle}
             />
@@ -42,7 +37,7 @@ class ControlBlob extends Component {
         {this.generateIcons()}
         <div id="blob">
           {/* <textarea placeholder="PLEASE TYPE YOUR MESSAGE" /> */}
-          WHAT'S ON
+          WHAT&apos;S ON
           <br />
           YOUR MIND?
         </div>
