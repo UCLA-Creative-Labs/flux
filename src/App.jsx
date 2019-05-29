@@ -126,7 +126,7 @@ class App extends Component {
   };
 
   render() {
-    const { userId, notifications } = this.state;
+    const { userId, notifications, makeNotification } = this.state;
     let routes;
 
     if (userId === "") {
