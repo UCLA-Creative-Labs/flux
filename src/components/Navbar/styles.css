@@ -71,7 +71,6 @@
   left: 0;
   right: 0;
   bottom: -26vw;
-  /* bottom: -20vw; */
   margin: auto;
 
   height: 39vw;
@@ -79,4 +78,65 @@
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
   border: 5px solid #91affc;
+}
+
+#circle .icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+
+  height: 75px;
+  width: 75px;
+}
+
+.deg0 {
+  transform: rotate(-90deg) translate(19.5vw) rotate(90deg);
+}
+.deg22_5 {
+  transform: rotate(-67.5deg) translate(19.5vw) rotate(67.5deg);
+}
+.deg45 {
+  transform: rotate(-45deg) translate(19.5vw) rotate(45deg);
+}
+.deg67_5 {
+  transform: rotate(-22.5deg) translate(19.5vw) rotate(22.5deg);
+}
+.deg90 {
+  transform: translate(19.5vw);
+}
+.deg112_5 {
+  transform: rotate(22.5deg) translate(19.5vw) rotate(-22.5deg);
+}
+.deg135 {
+  transform: rotate(45deg) translate(19.5vw) rotate(-45deg);
+}
+.deg157_5 {
+  transform: rotate(67.5deg) translate(19.5vw) rotate(-67.5deg);
+}
+.deg180 {
+  transform: rotate(90deg) translate(19.5vw) rotate(-90deg);
+}
+.deg202_5 {
+  transform: rotate(-67.5deg) translate(-19.5vw) rotate(67.5deg);
+}
+.deg225 {
+  transform: rotate(-45deg) translate(-19.5vw) rotate(45deg);
+}
+.deg247_5 {
+  transform: rotate(-22.5deg) translate(-19.5vw) rotate(22.5deg);
+}
+.deg270 {
+  transform: translate(-19.5vw);
+}
+.deg292_5 {
+  transform: rotate(22.5deg) translate(-19.5vw) rotate(-22.5deg);
+}
+.deg315 {
+  transform: rotate(45deg) translate(-19.5vw) rotate(-45deg);
+}
+.deg337_5 {
+  transform: rotate(67.5deg) translate(-19.5vw) rotate(-67.5deg);
 }
