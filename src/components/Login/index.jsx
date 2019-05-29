@@ -23,7 +23,7 @@ class Login extends Component {
   render() {
     return (
       <div id="login-page">
-        <div className="center">
+        <div className="card">
           <h1>FLUX</h1>
           <div id="firebaseui-auth-container" />
         </div>

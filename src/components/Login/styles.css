@@ -2,20 +2,20 @@
   /* background-color: blue; */
   background-image: url("../../images/Login/background.svg");
   background-size: cover;
+  background-position: center center;
   height: 100vh;
   width: 100vw;
 }
 
-#login-page .center {
+#login-page .card {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
-  min-width: 300px;
-  width: 25vw;
-  height: 40vh;
+  width: 350px;
+  height: 300px;
   padding: 50px 0;
   background-color: white;
   border-radius: 10px;
