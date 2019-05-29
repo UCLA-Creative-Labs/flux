@@ -28,6 +28,11 @@
     background-color: #D7EFF2;
     z-index: 997;
     padding-left: 1rem;
+    padding-top: 1rem;
+}
+
+.likedPosts:focus{
+    outline-width: 0;
 }
 
 .likedPostsPath {
@@ -39,6 +44,11 @@
     background-color: #9CB1DB;
     z-index: 998;
     padding-left: 1rem;
+    padding-top: 1rem;
+}
+
+.userPosts:focus {
+    outline-width: 0;
 }
 
 .userPostsPath {
@@ -50,7 +60,12 @@
     justify-content: center;
     background-color: blue;
     padding-left: 1rem;
+    padding-top: 1rem;
     z-index: 999
+}
+
+.friendsList:focus {
+    outline-width: 0;
 }
 
 .friendsListPath {
