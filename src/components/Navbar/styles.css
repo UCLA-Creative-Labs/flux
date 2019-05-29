@@ -24,18 +24,59 @@
 
 #navbar ul li a {
   display: block;
-  padding: 15px 0;
+  padding: 11px 0;
   margin-bottom: 10px;
 
   color: white;
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
+  font-size: 20px;
 
   width: 200px;
 }
 
 #navbar ul li.activeTab a {
   background-image: url("../../images/Navbar/tab.svg");
+  background-repeat: no-repeat;
   color: inherit;
+}
+
+#blob {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -20vw;
+  margin: auto;
+
+  box-sizing: border-box;
+  height: 30vw;
+  width: 30vw;
+  padding: 3vw 7vw;
+  background: linear-gradient(#a4b0fc, white 60%);
+  border-radius: 50%;
+
+  text-align: center;
+  font-size: 2vw;
+  color: white;
+}
+
+#blob textarea {
+  width: 100%;
+  height: 100%;
+}
+
+#circle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -26vw;
+  /* bottom: -20vw; */
+  margin: auto;
+
+  height: 39vw;
+  width: 39vw;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  border: 5px solid #91affc;
 }
