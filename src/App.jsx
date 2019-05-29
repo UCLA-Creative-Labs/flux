@@ -126,7 +126,7 @@ class App extends Component {
   };
 
   render() {
-    const { userId, notifications, makeNotification } = this.state;
+    const { userId, notifications } = this.state;
     let routes;
 
     if (userId === "") {
@@ -149,7 +149,7 @@ class App extends Component {
                 <div>
                   <Navbar userId={userId} activeTab="home" />
                   <NewsFeed
-                    makeNotification={makeNotification}
+                    makeNotification={this.makeNotification}
                     userId={userId}
                     type="home"
                   />
