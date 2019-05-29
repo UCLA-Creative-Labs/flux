@@ -1,4 +1,4 @@
-nav {
+#navbar {
   background-color: #91affc;
   position: fixed;
   bottom: 0;
@@ -7,22 +7,22 @@ nav {
   margin: 0;
 }
 
-ul {
+#navbar ul {
   display: flex;
   margin: 0;
   list-style: none;
   padding: 0 20px;
 }
 
-ul li {
+#navbar ul li {
   flex: 1;
 }
 
-#control-blob {
+#navbar #control-blob {
   flex: 3;
 }
 
-ul li a {
+#navbar ul li a {
   display: block;
   padding: 15px 0;
   margin-bottom: 10px;
@@ -35,7 +35,7 @@ ul li a {
   width: 200px;
 }
 
-ul li.activeTab a {
+#navbar ul li.activeTab a {
   background-image: url("../../images/Navbar/tab.svg");
   color: inherit;
 }
