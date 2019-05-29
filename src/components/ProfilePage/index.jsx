@@ -15,7 +15,7 @@ const Curve = ({
   let topPathClass = className1;
   if (activeTabAbove) topPathClass = "hidden";
   return (
-    <svg className="svg" width="1400" height="78.867516">
+    <svg className="svg" width="100%" height="100%" viewBox="0 -5 1400 80">
       <path
         className={topPathClass}
         ref={ref => {
@@ -184,7 +184,7 @@ class ProfilePage extends Component {
                 className1={friendsListPath}
                 onClick2={() => this.toggleActiveTab("userPosts")}
                 className2={userPostsPath}
-                activeTabAbove
+                activeTabAbove={false}
                 hidden={false}
               />
             </div>
