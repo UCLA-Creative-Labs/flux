@@ -6,27 +6,27 @@ import firebaseWrapper from "../../firebaseWrapper";
 import "./styles.css";
 
 const Curve = ({
-  onClick1,
-  className1,
-  onClick2,
-  className2,
-  activeTabAbove
+  onClickTop,
+  classNameTop,
+  onClickBottom,
+  classNameBottom,
+  isAboveTabActive
 }) => {
-  let topPathClass = className1;
-  if (activeTabAbove) topPathClass = "hidden";
+  let topPathClass = classNameTop;
+  if (isAboveTabActive) topPathClass = "hidden";
   return (
     <svg className="svg" width="100%" height="100%" viewBox="0 -5 1400 80">
       <path
         className={topPathClass}
         ref={ref => {
-          if (ref) ref.addEventListener("click", onClick1);
+          if (ref) ref.addEventListener("click", onClickTop);
         }}
         d="M 0 0 L 0 28.867188 C 394.53125 107.77344 757.93205 -0.1059539 1114.7656 0 L 0 0 z M 1114.7656 0 C 1210.1568 0.02832431 1305.0781 7.7734375 1400 28.867188 L 1400 0 L 1114.7656 0 z "
       />
       <path
-        className={className2}
+        className={classNameBottom}
         ref={ref => {
-          if (ref) ref.addEventListener("click", onClick2);
+          if (ref) ref.addEventListener("click", onClickBottom);
         }}
         d="m 0,78.867513 v -50 c 500,99.999997 950,-100 1400,0 v 50 z"
       />
@@ -142,7 +142,7 @@ class ProfilePage extends Component {
           </button>
         </div>
         <div className="userInfo">
-          <img src={profilePicture} alt="" className="profilePicture" />
+          <img src={profilePicture} alt="Profile" className="profilePicture" />
           <div>
             <h2 className="profileId">{profileId}</h2>
             {profileId !== userId && !(userId in friends) && (
@@ -157,11 +157,11 @@ class ProfilePage extends Component {
           {(activeTab === "friendsList" || activeTab === "") && (
             <div className="curve">
               <Curve
-                onClick1={() => {}}
-                className1="hidden"
-                onClick2={() => this.toggleActiveTab("friendsList")}
-                className2={friendsListPath}
-                activeTabAbove={false}
+                onClickTop={() => {}}
+                classNameTop="hidden"
+                onClickBottom={() => this.toggleActiveTab("friendsList")}
+                classNameBottom={friendsListPath}
+                isAboveTabActive={false}
                 hidden={false}
               />
             </div>
@@ -180,11 +180,11 @@ class ProfilePage extends Component {
           {(activeTab === "userPosts" || activeTab === "") && (
             <div className="curve">
               <Curve
-                onClick1={() => this.toggleActiveTab("friendsList")}
-                className1={friendsListPath}
-                onClick2={() => this.toggleActiveTab("userPosts")}
-                className2={userPostsPath}
-                activeTabAbove={false}
+                onClickTop={() => this.toggleActiveTab("friendsList")}
+                classNameTop={friendsListPath}
+                onClickBottom={() => this.toggleActiveTab("userPosts")}
+                classNameBottom={userPostsPath}
+                isAboveTabActive={false}
                 hidden={false}
               />
             </div>
@@ -204,11 +204,11 @@ class ProfilePage extends Component {
           {(activeTab === "likedPosts" || activeTab === "") && (
             <div className="curve">
               <Curve
-                onClick1={() => this.toggleActiveTab("userPosts")}
-                className1={userPostsPath}
-                onClick2={() => this.toggleActiveTab("likedPosts")}
-                className2={likedPostsPath}
-                activeTabAbove={false}
+                onClickTop={() => this.toggleActiveTab("userPosts")}
+                classNameTop={userPostsPath}
+                onClickBottom={() => this.toggleActiveTab("likedPosts")}
+                classNameBottom={likedPostsPath}
+                isAboveTabActive={false}
                 hidden={false}
               />
             </div>
@@ -236,11 +236,11 @@ ProfilePage.propTypes = {
 };
 
 Curve.propTypes = {
-  onClick1: PropTypes.func.isRequired,
-  className1: PropTypes.string.isRequired,
-  onClick2: PropTypes.func.isRequired,
-  className2: PropTypes.string.isRequired,
-  activeTabAbove: PropTypes.bool.isRequired
+  onClickTop: PropTypes.func.isRequired,
+  classNameTop: PropTypes.string.isRequired,
+  onClickBottom: PropTypes.func.isRequired,
+  classNameBottom: PropTypes.string.isRequired,
+  isAboveTabActive: PropTypes.bool.isRequired
 };
 
 export default ProfilePage;
