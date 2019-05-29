@@ -5,7 +5,7 @@ import "./styles.css";
 
 const Navbar = ({ userId, activeTab }) => {
   return (
-    <nav>
+    <nav id="navbar">
       <ul>
         <li className={activeTab === "home" ? "activeTab" : ""}>
           <Link to="/newsfeed">Home</Link>

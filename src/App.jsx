@@ -106,13 +106,7 @@ class App extends Component {
       );
     }
 
-    return (
-      <div className="App">
-        <p>Your userId is {userId}</p>
-
-        {routes}
-      </div>
-    );
+    return <div className="App">{routes}</div>;
   }
 }
 
