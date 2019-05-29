@@ -187,12 +187,12 @@ class App extends Component {
           <Route
             path="/notificationpanel"
             exact
-            render={() => <NotificationPanel notifications={notifications} />}
-          />
-          <Route
-            path="/notificationpanel"
-            exact
-            render={() => <NotificationPanel notifications={notifications} />}
+            render={() => (
+              <div>
+                <Navbar userId={userId} activeTab="notifications" />
+                <NotificationPanel notifications={notifications} />
+              </div>
+            )}
           />
         </Router>
       );
