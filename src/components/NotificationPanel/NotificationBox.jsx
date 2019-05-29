@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const NotificationBox = ({ text, color }) => (
   <div className="NotificationBox">
-    <div className="color_type" style={{ backgroundColor: color }} />
+    <div className="color-type" style={{ backgroundColor: color }} />
     <div className="image" src="./image.png" />
     <p>{text}</p>
   </div>

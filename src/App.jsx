@@ -71,6 +71,10 @@ class App extends Component {
         {
           text: "12th notification",
           color: "orange"
+        },
+        {
+          text: "hello there",
+          color: "gray"
         }
       ]
     };
@@ -98,10 +102,9 @@ class App extends Component {
   };
 
   render() {
-    const { userId } = this.state;
+    const { userId, notifications } = this.state;
 
     let routes;
-    const { notifications } = this.state;
 
     if (userId === "") {
       routes = (
@@ -163,7 +166,16 @@ class App extends Component {
       );
     }
 
-    return <div className="App">{routes}</div>;
+    return (
+      <div className="App">
+        <div id="overlay" />
+        <button type="submit" onClick={this.handleLogout}>
+          Logout
+        </button>
+        <p>Your userId is {userId}</p>
+        {routes}
+      </div>
+    );
   }
 }
 
