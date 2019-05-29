@@ -12,6 +12,7 @@ import NewsFeed from "./components/NewsFeed";
 import MessageManager from "./components/MessageManager";
 import ProfilePage from "./components/ProfilePage";
 import Navbar from "./components/Navbar";
+import NotificationPanel from "./components/NotificationPanel";
 import "./App.css";
 
 class App extends Component {
@@ -21,7 +22,74 @@ class App extends Component {
     firebaseWrapper.initialize();
 
     this.state = {
-      userId: ""
+      userId: "",
+      notifications: [
+        {
+          type: "default",
+          content: "flux",
+          time: "before the beginning of time"
+        },
+        {
+          type: "makePost",
+          content: "is",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "the",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "best",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "you love milk",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "C's get degrees",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "8clap",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "i want to play pokemon go",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "image is a fb stickers",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "called yuttari dragon",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "its great but no one should see this",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "12th notification",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "hello there",
+          time: "before the beginning of time"
+        }
+      ]
     };
   }
 
@@ -46,9 +114,19 @@ class App extends Component {
     }, 100);
   };
 
-  render() {
-    const { userId } = this.state;
+  makeNotification = (type, content) => {
+    const { notifications } = this.state;
+    const time = `At ${new Date().toLocaleTimeString("en-GB")}, `;
+    notifications.unshift({
+      type,
+      content,
+      time
+    });
+    this.setState({ notifications });
+  };
 
+  render() {
+    const { userId, notifications } = this.state;
     let routes;
 
     if (userId === "") {
@@ -70,7 +148,11 @@ class App extends Component {
               return (
                 <div>
                   <Navbar userId={userId} activeTab="home" />
-                  <NewsFeed userId={userId} type="home" />
+                  <NewsFeed
+                    makeNotification={this.makeNotification}
+                    userId={userId}
+                    type="home"
+                  />
                 </div>
               );
             }}
@@ -101,6 +183,16 @@ class App extends Component {
                 </div>
               );
             }}
+          />
+          <Route
+            path="/notificationpanel"
+            exact
+            render={() => (
+              <div>
+                <Navbar userId={userId} activeTab="notifications" />
+                <NotificationPanel notifications={notifications} />
+              </div>
+            )}
           />
         </Router>
       );
