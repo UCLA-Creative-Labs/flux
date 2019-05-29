@@ -189,6 +189,11 @@ class App extends Component {
             exact
             render={() => <NotificationPanel notifications={notifications} />}
           />
+          <Route
+            path="/notificationpanel"
+            exact
+            render={() => <NotificationPanel notifications={notifications} />}
+          />
         </Router>
       );
     }
