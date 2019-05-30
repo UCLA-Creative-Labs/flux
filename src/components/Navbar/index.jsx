@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import ControlBlob from "./ControlBlob";
+// import ControlBlob from "./ControlBlob";
 import "./styles.css";
 
 const Navbar = ({ userId, activeTab }) => {
@@ -14,7 +14,10 @@ const Navbar = ({ userId, activeTab }) => {
         <li className={activeTab === "messages" ? "activeTab" : ""}>
           <Link to="/messages">Messages</Link>
         </li>
-        <li id="control-blob">{activeTab === "home" && <ControlBlob />}</li>
+        <li id="control-blob">
+          {/* uncomment if we decide to include ControlBlob in Navbar instead of App */}
+          {/* {activeTab === "home" && <ControlBlob />} */}
+        </li>
         <li className={activeTab === "notifications" ? "activeTab" : ""}>
           <Link to="/notificationpanel">Notifications</Link>
         </li>

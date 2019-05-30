@@ -13,6 +13,7 @@ import MessageManager from "./components/MessageManager";
 import ProfilePage from "./components/ProfilePage";
 import Navbar from "./components/Navbar";
 import NotificationPanel from "./components/NotificationPanel";
+import ControlBlob from "./components/ControlBlob";
 import "./App.css";
 
 class App extends Component {
@@ -148,6 +149,10 @@ class App extends Component {
               return (
                 <div>
                   <Navbar userId={userId} activeTab="home" />
+                  <ControlBlob
+                    userId={userId}
+                    makeNotification={this.makeNotification}
+                  />
                   <NewsFeed
                     makeNotification={this.makeNotification}
                     userId={userId}
