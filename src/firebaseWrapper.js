@@ -40,7 +40,6 @@ const createConversation = (userId, done) => {
   messagesRef.push(message).then(done(newConversationRef.key));
 };
 
-<<<<<<< 7b88fcd898b7a9bef86e86843e671120c7da9a1e
 const updateProfilePicture = user => {
   const userRef = firebase.database().ref(`users/${user.uid}`);
   userRef.update({
@@ -48,8 +47,6 @@ const updateProfilePicture = user => {
   });
 };
 
-=======
->>>>>>> fixed converstaion creation
 /**
  * App Functions
  */
