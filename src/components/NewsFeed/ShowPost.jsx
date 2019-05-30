@@ -26,7 +26,7 @@ const ShowPost = ({ postId, postObject, userId }) => (
   </div>
 );
 
-const ShowPost2 = ({ postObject, clickHandler }) => (
+const ShowPost2 = ({ postId, postObject, onClick }) => (
   <div>
     <div className="card">
       <div className="colorbox" />
@@ -37,7 +37,7 @@ const ShowPost2 = ({ postObject, clickHandler }) => (
         <button
           type="button"
           className="seemorebutton"
-          onClick={clickHandler}
+          onClick={() => onClick(postId)}
         />
       </div>
       <div className="r1" />

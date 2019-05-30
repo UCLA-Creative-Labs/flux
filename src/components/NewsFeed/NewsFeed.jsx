@@ -10,7 +10,7 @@ class NewsFeed extends Component {
     super(props, context);
     this.state = {
       posts: {},
-      openpost: null
+      selectedPost: ""
     };
   }
 
@@ -23,16 +23,15 @@ class NewsFeed extends Component {
     });
   }
 
-  seeMoreHandler = event => {
+  seeMoreHandler = postId => {
     console.log("CLicked btn");
-    this.setState({ openpost: event.target.postId });
+    this.setState({ selectedPost: postId });
   };
 
   render() {
-    const { posts, openpost } = this.state;
+    const { posts, selectedPost } = this.state;
     const { userId } = this.props;
-    // console.log(posts);
-    console.log(openpost);
+    console.log(selectedPost);
     return (
       <div>
         <div className="SearchBar">
@@ -46,12 +45,12 @@ class NewsFeed extends Component {
                 postId={post}
                 postObject={posts[post]}
                 userId={userId}
-                clickHandler={this.seeMoreHandler}
+                onClick={this.seeMoreHandler}
               />
             ))}
         </div>
-        {posts["-LePgZlvWiv0uZhjZGK_"] !== undefined && (
-          <ExpandedPost postObject={posts["-LePgZlvWiv0uZhjZGK_"]} />
+        {posts[selectedPost] !== undefined && (
+          <ExpandedPost postObject={posts[selectedPost]} />
         )}
       </div>
     );
