@@ -41,6 +41,8 @@ html, body   {
     flex-grow:1;
     display: flex;
     background-color: #D7EFF2;
+    margin-top: -1px;
+    margin-bottom: -2px;
     padding-left: 1rem;
     padding-top: 2rem;
     padding-bottom: 3rem;
@@ -58,6 +60,8 @@ html, body   {
     flex-grow:1;
     display: flex;
     background-color: #9CB1DB;
+    margin-top: -1px;
+    margin-bottom: -2px;
     padding-left: 1rem;
     padding-top: 2rem;
     padding-bottom: 3rem;
@@ -76,6 +80,8 @@ html, body   {
     flex-grow:1;
     justify-content: center;
     background-color: #7B90C6;
+    margin-top: -1px;
+    margin-bottom: -2px;
     padding-left: 1rem;
     padding-top: 2rem;
     padding-bottom: 3rem;
@@ -98,7 +104,8 @@ html, body   {
 }
 
 .preview {
-    width: 100%
+    width: 100%;
+    min-height: 1rem;
 }
 
 .active {
