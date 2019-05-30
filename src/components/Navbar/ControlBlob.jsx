@@ -1,10 +1,27 @@
 import React, { Component } from "react";
+import posed from "react-pose";
 import LikeIcon from "../../images/Navbar/like.svg";
 import DislikeIcon from "../../images/Navbar/dislike.svg";
 import "./styles.css";
 
+const Animate = posed.div({
+  visible: { y: 50 },
+  hidden: { y: 300 }
+});
+
 class ControlBlob extends Component {
-  generateIcons = () => {
+  constructor() {
+    super();
+    this.state = {
+      mounted: false
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ mounted: true });
+  }
+
+  generateBlobWithIcons = () => {
     const numIcons = 16;
     const angleSpacing = 360 / numIcons;
 
@@ -27,20 +44,22 @@ class ControlBlob extends Component {
             />
           );
         })}
-      </div>
-    );
-  };
-
-  render() {
-    return (
-      <div id="control-blob">
-        {this.generateIcons()}
         <div id="blob">
           WHAT&apos;S ON
           <br />
           YOUR MIND?
         </div>
       </div>
+    );
+  };
+
+  render() {
+    const { mounted } = this.state;
+
+    return (
+      <Animate pose={mounted ? "visible" : "hidden"} id="control-blob">
+        {this.generateBlobWithIcons()}
+      </Animate>
     );
   }
 }
