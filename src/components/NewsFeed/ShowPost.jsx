@@ -66,7 +66,8 @@ ShowPost2.propTypes = {
     photo: PropTypes.string,
     likes: PropTypes.number
   }).isRequired,
-  clickHandler: PropTypes.func.isRequired
+  postId: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default ShowPost2;
