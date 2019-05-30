@@ -46,7 +46,8 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -20vw;
+  bottom: 0;
+  top: 0;
   margin: auto;
 
   box-sizing: border-box;
@@ -83,8 +84,8 @@
   bottom: 0;
   margin: auto;
 
-  height: 75px;
-  width: 75px;
+  height: 5vw;
+  width: 5vw;
 }
 
 .deg0 {

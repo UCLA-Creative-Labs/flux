@@ -21,7 +21,7 @@ class ControlBlob extends Component {
     this.setState({ mounted: true });
   }
 
-  generateIcons = () => {
+  generateBlobWithIcons = () => {
     const numIcons = 16;
     const angleSpacing = 360 / numIcons;
 
@@ -44,6 +44,11 @@ class ControlBlob extends Component {
             />
           );
         })}
+        <div id="blob">
+          WHAT&apos;S ON
+          <br />
+          YOUR MIND?
+        </div>
       </div>
     );
   };
@@ -53,12 +58,7 @@ class ControlBlob extends Component {
 
     return (
       <Animate pose={mounted ? "visible" : "hidden"} id="control-blob">
-        {this.generateIcons()}
-        <div id="blob">
-          WHAT&apos;S ON
-          <br />
-          YOUR MIND?
-        </div>
+        {this.generateBlobWithIcons()}
       </Animate>
     );
   }
