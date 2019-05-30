@@ -198,23 +198,7 @@ class App extends Component {
       );
     }
 
-    return (
-      <div className="App">
-        <button type="submit" onClick={this.handleLogout}>
-          Logout
-        </button>
-        <button
-          type="submit"
-          onClick={() =>
-            this.makeNotification("default", "made notif using button")
-          }
-        >
-          make a notification
-        </button>
-        <p>Your userId is {userId}</p>
-        {routes}
-      </div>
-    );
+    return <div className="App">{routes}</div>;
   }
 }
 
