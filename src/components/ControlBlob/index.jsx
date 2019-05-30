@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import posed from "react-pose";
+import firebaseWrapper from "../../firebaseWrapper";
 import LikeIcon from "../../images/Navbar/like.svg";
 import DislikeIcon from "../../images/Navbar/dislike.svg";
 import "./styles.css";
 
 const Animate = posed.div({
-  visible: { y: 50, scale: 1 },
-  hidden: { y: 300 },
-  active: { y: -100, scale: 1.5 }
+  visible: { y: "91vh", scale: 1 },
+  hidden: { y: "150vh" },
+  active: { y: "70vh", scale: 1.5 }
 });
 
 class ControlBlob extends Component {
@@ -16,7 +17,8 @@ class ControlBlob extends Component {
     this.state = {
       mounted: false,
       active: false,
-      postText: ""
+      postText: "",
+      photo: null
     };
   }
 
@@ -25,37 +27,48 @@ class ControlBlob extends Component {
   }
 
   onBlobClick = () => {
-    this.setState(state => {
-      return { active: !state.active, postText: "" };
-    });
+    this.setState(
+      state => {
+        return { active: !state.active, postText: "" };
+      },
+      () => {
+        const textarea = this.textarea;
+
+        if (textarea !== null) {
+          textarea.focus();
+        }
+      }
+    );
   };
 
-  onTextAreaClick = event => {
+  onBlobContentClick = event => {
     event.stopPropagation();
-    this.setState({
-      postText: ""
-    });
   };
 
   handleTextareaChange = event => {
     this.setState({ postText: event.target.value });
   };
 
-  // onKeyDown = event => {
-  //   if (event.keyCode === 8) {
-  //     event.preventDefault();
+  fileUploadHandler = () => {
+    const pic = document.getElementById("fileItem").files[0];
+    this.setState({ photo: pic });
+  };
 
-  //     const { userId, makeNotification } = this.props;
-  //     const {  postText } = this.state;
+  onKeyDown = event => {
+    if (event.keyCode === 8) {
+      event.preventDefault();
 
-  //     const resetState = () => {
-  //       this.setState({ active: false, postText="" });
-  //     };
+      const { userId, makeNotification } = this.props;
+      const { postText, photo } = this.state;
 
-  //     makeNotification("makePost", `${userId}`);
-  //     firebaseWrapper.sendPost(userId, text, null, resetState);
-  //   }
-  // };
+      const resetState = () => {
+        this.setState({ active: false, postText: "", photo: null });
+      };
+
+      makeNotification("makePost", `${userId}`);
+      firebaseWrapper.sendPost(userId, postText, photo, resetState);
+    }
+  };
 
   render() {
     const { mounted, active, postText } = this.state;
@@ -87,13 +100,21 @@ class ControlBlob extends Component {
           })}
           <div id="blob" onClick={this.onBlobClick}>
             {active ? (
-              <textarea
-                onClick={this.onTextAreaClick}
-                value={postText}
-                onChange={this.handleTextareaChange}
-                placeholder="Please type your message..."
-                // onKeyDown={this.onKeyDown}
-              />
+              <div id="blob-content" onClick={this.onBlobContentClick}>
+                <textarea
+                  value={postText}
+                  onChange={this.handleTextareaChange}
+                  placeholder="Please type your message..."
+                  onKeyDown={this.onKeyDown}
+                  ref={element => (this.textarea = element)}
+                />
+                <input
+                  id="fileItem"
+                  type="file"
+                  accept="image/*"
+                  onChange={this.fileUploadHandler}
+                />
+              </div>
             ) : (
               <p>
                 WHAT&apos;S ON
