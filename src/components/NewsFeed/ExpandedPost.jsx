@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import "./ExpandedPost.css";
 import PropTypes from "prop-types";
-import firebaseWrapper from "../../firebaseWrapper";
 
 const ExpandedPost = ({ postObject }) => (
   <div className="contain">
@@ -9,7 +8,11 @@ const ExpandedPost = ({ postObject }) => (
       <h1 className="name">{postObject.userId}</h1>
     </div>
     <div className="post">
-      <img className="profpic" src="https://picsum.photos/id/736/200/200" />
+      <img
+        className="profpic"
+        src="https://picsum.photos/id/736/200/200"
+        alt=""
+      />
       <p className="text">
         <span className="dropcap">{postObject.text[0]}</span>
         {postObject.text.substr(1)}

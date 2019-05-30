@@ -3,7 +3,7 @@ import "./ShowPost.css";
 import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
 import Polygon from "../../images/Polygon.svg";
-import see_more from "../../images/see_more.svg";
+import seeMore from "../../images/seeMore.svg";
 
 const ShowPost = ({ postId, postObject, userId }) => (
   <div id="ShowPostContainer">
@@ -32,8 +32,8 @@ const ShowPost2 = ({ postObject, clickHandler }) => (
       <div className="colorbox" />
       <div className="ShowPostContainer">
         <span className="letter">{postObject.text[0]}</span>
-        <img className="arrow" src={Polygon} />
-        <img className="seemore" src={see_more} />
+        <img className="arrow" src={Polygon} alt="" />
+        <img className="seemore" src={seeMore} alt="" />
         <button
           type="button"
           className="seemorebutton"
@@ -65,7 +65,8 @@ ShowPost2.propTypes = {
     text: PropTypes.string,
     photo: PropTypes.string,
     likes: PropTypes.number
-  }).isRequired
+  }).isRequired,
+  clickHandler: PropTypes.func.isRequired
 };
 
 export default ShowPost2;
