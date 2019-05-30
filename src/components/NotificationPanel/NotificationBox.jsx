@@ -14,11 +14,11 @@ import FriendImage from "../../images/notifications/friend.png";
 }; */
 
 function NotificationBox({ content, type, time }) {
-  let color = "#D7F0F3"; //mint
+  let color = "#D7F0F3"; // mint
   let image = OtherImage;
   let text = content;
   if (type === "makePost") {
-    color = "#7B90C6"; //navy
+    color = "#7B90C6"; // navy
     image = PostImage;
     text = `${text} made a new post!`;
   } else if (type === "message") {
