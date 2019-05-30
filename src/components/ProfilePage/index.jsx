@@ -15,7 +15,7 @@ const Curve = ({
   let topPathClass = classNameTop;
   if (isAboveTabActive) topPathClass = "hidden";
   return (
-    <svg className="svg" width="100%" height="100%" viewBox="0 -5 1400 80">
+    <svg className="svg" width="100%" height="100%" viewBox="0 0 1400 77">
       <path
         className={topPathClass}
         ref={ref => {
@@ -153,7 +153,7 @@ class ProfilePage extends Component {
           </div>
         </div>
 
-        <div>
+        <div className="posts">
           {(activeTab === "friendsList" || activeTab === "") && (
             <div className="curve">
               <Curve
