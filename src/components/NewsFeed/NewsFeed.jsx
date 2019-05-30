@@ -5,12 +5,21 @@ import ShowPost2 from "./ShowPost";
 import ExpandedPost from "./ExpandedPost";
 import "./NewsFeed.css";
 
+const PopUp = ({ userId, text }) => (
+  <div className="popup">
+    <section className="popup-inner">
+      <ExpandedPost userId={userId} text={text} />
+    </section>
+  </div>
+);
+
 class NewsFeed extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
       posts: {},
-      selectedPost: ""
+      selectedPost: "",
+      showSelectedPost: false
     };
   }
 
@@ -25,18 +34,28 @@ class NewsFeed extends Component {
 
   seeMoreHandler = postId => {
     console.log("CLicked btn");
+    this.toggleSelectedPost();
     this.setState({ selectedPost: postId });
   };
 
+  toggleSelectedPost() {
+    this.setState({ showSelectedPost: true });
+  }
+
   render() {
-    const { posts, selectedPost } = this.state;
+    const { posts, selectedPost, showSelectedPost } = this.state;
     const { userId } = this.props;
-    console.log(selectedPost);
     return (
-      <div>
+      <div className="container">
         <div className="SearchBar">
           <input className="search" placeholder="SEARCH" />
         </div>
+        {showSelectedPost && posts[selectedPost] !== undefined ? (
+          <PopUp
+            userId={posts[selectedPost].userId}
+            text={posts[selectedPost].text}
+          />
+        ) : null}
         <div className="flex-container">
           {Object.keys(posts)
             .reverse()
@@ -49,9 +68,6 @@ class NewsFeed extends Component {
               />
             ))}
         </div>
-        {posts[selectedPost] !== undefined && (
-          <ExpandedPost postObject={posts[selectedPost]} />
-        )}
       </div>
     );
   }
@@ -59,5 +75,10 @@ class NewsFeed extends Component {
 
 NewsFeed.propTypes = {
   userId: PropTypes.string.isRequired
+};
+
+PopUp.propTypes = {
+  userId: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 };
 export default NewsFeed;
