@@ -1,0 +1,63 @@
+.contain {
+  display: inline-block;
+  font-size: 0;
+}
+
+.post {
+  position: relative;
+  font-size: 0;
+  border: 15px solid #edecec;
+  margin-top: 0px;
+  padding-top: 6vh;
+  border-top: 0;
+  width: 30vw;
+  height: 45vh;
+}
+
+.color {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 30vw;
+  height: 8vh;
+  padding-top: 2vh;
+  background: #d7f0f3;
+  margin-top: 0;
+  align-items: baseline;
+}
+
+.name {
+  display: inline;
+  font-size: 3vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.profpic {
+  position: absolute;
+  overflow: visible;
+  left: 50%;
+  top: -6%;
+  width: 2.5vw;
+  margin-left: -1.8vw;
+  height: 5vh;
+  border: 0.5vw solid white;
+  border-radius: 50%;
+}
+
+.dropcap {
+  display: inline-block;
+  font-size: 10vh;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+  font-weight: 800;
+}
+
+.text {
+  display: block;
+  line-height: 2.5vh;
+  text-align: left;
+  font-size: 2vh;
+  padding-left: 3vw;
+  padding-right: 3vw;
+  font-family: "Poppins", sans-serif;
+}

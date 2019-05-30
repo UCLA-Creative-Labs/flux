@@ -2,6 +2,8 @@ import React from "react";
 import "./ShowPost.css";
 import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
+import Polygon from "../../images/Polygon.svg";
+import see_more from "../../images/see_more.svg";
 
 const ShowPost = ({ postId, postObject, userId }) => (
   <div id="ShowPostContainer">
@@ -24,11 +26,22 @@ const ShowPost = ({ postId, postObject, userId }) => (
   </div>
 );
 
-const ShowPost2 = ({ postObject }) => (
+const ShowPost2 = ({ postObject, clickHandler }) => (
   <div>
-    <div className="colorbox" />
-    <div id="ShowPostContainer">
-      <div>{postObject.text[0]}</div>
+    <div className="card">
+      <div className="colorbox" />
+      <div className="ShowPostContainer">
+        <span className="letter">{postObject.text[0]}</span>
+        <img className="arrow" src={Polygon} />
+        <img className="seemore" src={see_more} />
+        <button
+          type="button"
+          className="seemorebutton"
+          onClick={clickHandler}
+        />
+      </div>
+      <div className="r1" />
+      <div className="r2" />
     </div>
   </div>
 );

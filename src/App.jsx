@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
-
+import ExpandedPost from "./components/NewsFeed/ExpandedPost";
 import Login from "./components/Login";
-import NewsFeed from "./components/NewsFeed";
+import NewsFeed from "./components/NewsFeed/NewsFeed";
 import MessageManager from "./components/MessageManager";
 import "./App.css";
-import NewsFeed from "./components/NewsFeed/NewsFeed";
 
 class App extends Component {
   constructor() {
@@ -55,6 +54,7 @@ class App extends Component {
           />
           <Route path="/login" component={Login} />
           <Route path="/post" render={() => <NewsFeed userId="2468" />} />
+          <Route path="/expand" render={() => <ExpandedPost />} />
         </Router>
       </div>
     );

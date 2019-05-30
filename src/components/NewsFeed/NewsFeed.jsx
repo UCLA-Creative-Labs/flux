@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import Firebase from "firebase";
 import PropTypes from "prop-types";
 import ShowPost2 from "./ShowPost";
+import ExpandedPost from "./ExpandedPost";
 import "./NewsFeed.css";
 
 class NewsFeed extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      posts: {}
+      posts: {},
+      openpost: null
     };
   }
 
@@ -21,9 +23,16 @@ class NewsFeed extends Component {
     });
   }
 
+  seeMoreHandler = event => {
+    console.log("CLicked btn");
+    this.setState({ openpost: event.target.postId });
+  };
+
   render() {
-    const { posts } = this.state;
+    const { posts, openpost } = this.state;
     const { userId } = this.props;
+    // console.log(posts);
+    console.log(openpost);
     return (
       <div>
         <div className="SearchBar">
@@ -37,9 +46,13 @@ class NewsFeed extends Component {
                 postId={post}
                 postObject={posts[post]}
                 userId={userId}
+                clickHandler={this.seeMoreHandler}
               />
             ))}
         </div>
+        {posts["-LePgZlvWiv0uZhjZGK_"] !== undefined && (
+          <ExpandedPost postObject={posts["-LePgZlvWiv0uZhjZGK_"]} />
+        )}
       </div>
     );
   }
