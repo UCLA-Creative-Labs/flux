@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import ControlBlob from "./ControlBlob";
+// import ControlBlob from "./ControlBlob";
 import "./styles.css";
 
 const Navbar = ({ userId, activeTab }) => {

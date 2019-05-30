@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import posed from "react-pose";
+import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
 import LikeIcon from "../../images/Navbar/like.svg";
 import DislikeIcon from "../../images/Navbar/dislike.svg";
@@ -26,13 +27,21 @@ class ControlBlob extends Component {
     this.setState({ mounted: true });
   }
 
+  onBlobKeyDown = () => {
+    // we don't care about accessibility
+  };
+
+  onBlobContentKeyDown = () => {
+    // we don't care about accessibility
+  };
+
   onBlobClick = () => {
     this.setState(
       state => {
         return { active: !state.active, postText: "" };
       },
       () => {
-        const textarea = this.textarea;
+        const { textarea } = this;
 
         if (textarea !== null) {
           textarea.focus();
@@ -54,7 +63,7 @@ class ControlBlob extends Component {
     this.setState({ photo: pic });
   };
 
-  onKeyDown = event => {
+  onTextareaKeyDown = event => {
     if (event.keyCode === 8) {
       event.preventDefault();
 
@@ -70,8 +79,20 @@ class ControlBlob extends Component {
     }
   };
 
+  determinePose = () => {
+    const { mounted, active } = this.state;
+
+    if (active) {
+      return "active";
+    }
+    if (mounted) {
+      return "visible";
+    }
+    return "hidden";
+  };
+
   render() {
-    const { mounted, active, postText } = this.state;
+    const { active, postText } = this.state;
 
     // Generate angles for icon positioning
     const numIcons = 16;
@@ -83,10 +104,7 @@ class ControlBlob extends Component {
     }
 
     return (
-      <Animate
-        pose={mounted ? (active ? "active" : "visible") : "hidden"}
-        id="control-blob"
-      >
+      <Animate pose={this.determinePose()} id="control-blob">
         <div id="circle">
           {angleClasses.map((angle, i) => {
             return (
@@ -98,15 +116,25 @@ class ControlBlob extends Component {
               />
             );
           })}
-          <div id="blob" onClick={this.onBlobClick}>
+          <div
+            id="blob"
+            onClick={this.onBlobClick}
+            onKeyDown={this.onBlobKeyDown}
+          >
             {active ? (
-              <div id="blob-content" onClick={this.onBlobContentClick}>
+              <div
+                id="blob-content"
+                onClick={this.onBlobContentClick}
+                onKeyDown={this.onBlobContentKeyDown}
+              >
                 <textarea
                   value={postText}
                   onChange={this.handleTextareaChange}
                   placeholder="Please type your message..."
-                  onKeyDown={this.onKeyDown}
-                  ref={element => (this.textarea = element)}
+                  onKeyDown={this.onTextareaKeyDown}
+                  ref={element => {
+                    this.textarea = element;
+                  }}
                 />
                 <input
                   id="fileItem"
@@ -128,5 +156,10 @@ class ControlBlob extends Component {
     );
   }
 }
+
+ControlBlob.propTypes = {
+  userId: PropTypes.string.isRequired,
+  makeNotification: PropTypes.func.isRequired
+};
 
 export default ControlBlob;
