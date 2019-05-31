@@ -6,13 +6,11 @@
   height: 18vh;
   border: 5px solid #edecec;
   border-top: 0;
-  /*background-color: aquamarine;*/
 }
 
 .card {
   text-align: center;
   font-size: 0;
-  /* background-color: aqua; */
   width: 12vw;
   height: 28vh;
   margin: 2vw;
@@ -58,7 +56,6 @@
   font-weight: 800;
   font-size: 10vh;
   text-transform: capitalize;
-  /*background-color: pink;*/
 }
 
 .colorbox {

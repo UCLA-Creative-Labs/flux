@@ -1,15 +1,21 @@
 import React, { Component } from "react";
 import Firebase from "firebase";
 import PropTypes from "prop-types";
-import ShowPost2 from "./ShowPost";
+import ShowPost from "./ShowPost";
 import ExpandedPost from "./ExpandedPost";
 import "./NewsFeed.css";
 
-const PopUp = ({ userId, text }) => (
-  <div className="popup">
-    <section className="popup-inner">
+const PopUp = ({ userId, text, onClick }) => (
+  <div className="popup" onClick={onClick}>
+    <span className="c1" />
+    <span className="c2" />
+    <span className="c3" />
+    <span className="c4" />
+    <span className="c5" />
+    <span className="c6" />
+    <div className="popup-inner">
       <ExpandedPost userId={userId} text={text} />
-    </section>
+    </div>
   </div>
 );
 
@@ -38,9 +44,13 @@ class NewsFeed extends Component {
     this.setState({ selectedPost: postId });
   };
 
-  toggleSelectedPost() {
+  toggleSelectedPost = () => {
     this.setState({ showSelectedPost: true });
-  }
+  };
+
+  toggleClose = () => {
+    this.setState({ showSelectedPost: false });
+  };
 
   render() {
     const { posts, selectedPost, showSelectedPost } = this.state;
@@ -54,13 +64,14 @@ class NewsFeed extends Component {
           <PopUp
             userId={posts[selectedPost].userId}
             text={posts[selectedPost].text}
+            onClick={this.toggleClose}
           />
         ) : null}
         <div className="flex-container">
           {Object.keys(posts)
             .reverse()
             .map(post => (
-              <ShowPost2
+              <ShowPost
                 postId={post}
                 postObject={posts[post]}
                 userId={userId}
