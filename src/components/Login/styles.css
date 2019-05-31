@@ -1,0 +1,27 @@
+#login-page {
+  /* background-color: blue; */
+  background-image: url("../../images/Login/background.svg");
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  width: 100vw;
+}
+
+#login-page .card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 350px;
+  height: 300px;
+  padding: 50px 0;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+#login-page h1 {
+  margin-bottom: 50px;
+}

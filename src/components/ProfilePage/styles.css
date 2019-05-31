@@ -1,0 +1,65 @@
+.profilePage {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: -3rem;
+    z-index: 1000;
+    width: 100%;
+}
+
+
+.profilePicture {
+    height: 12rem;
+    width: 12rem;
+    border-radius: 50%;
+    border: .5rem solid #9CB1DB;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.likedPosts {
+    display: flex;
+    background-color: #D7EFF2;
+    z-index: 998;
+    padding-top: 3rem;
+    padding-left: 1rem;
+}
+
+.userPosts {
+    display: flex;
+    background-color: #9CB1DB;
+    z-index: 999;
+    padding-top: 3rem;
+    padding-left: 1rem;
+}
+
+.friendsList {
+    display: flex;
+    justify-content: center;
+    background-color: blue;
+    padding-top: 3rem;
+    padding-left: 1rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.preview * {
+    display: none;
+}
+
+.preview {
+    height: 20vh;
+    width: 100%
+}
+
+.curves {
+    display: inline
+}

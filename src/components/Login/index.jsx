@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 import firebaseui from "firebaseui";
+import "./styles.css";
 
 class Login extends Component {
   componentDidMount() {
@@ -13,15 +14,19 @@ class Login extends Component {
       ]
     };
 
-    const ui = new firebaseui.auth.AuthUI(firebase.auth());
+    const ui =
+      firebaseui.auth.AuthUI.getInstance() ||
+      new firebaseui.auth.AuthUI(firebase.auth());
     ui.start("#firebaseui-auth-container", uiConfig);
   }
 
   render() {
     return (
-      <div>
-        <h1>Login Page</h1>
-        <div id="firebaseui-auth-container" />
+      <div id="login-page">
+        <div className="card">
+          <h1>FLUX</h1>
+          <div id="firebaseui-auth-container" />
+        </div>
       </div>
     );
   }

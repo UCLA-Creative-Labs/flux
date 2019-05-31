@@ -1,0 +1,36 @@
+.NotificationPanel {
+  height: auto;
+  border: 0.5px solid gray;
+  z-index: 3;
+
+}
+
+.NotificationText {
+  height: 5px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100;
+  height: auto;
+  background-color: gray;
+  opacity: 0.7;
+  z-index: -1;
+  overflow: auto;
+}
+
+.NotificationPanelBackground {
+  position: relative;
+  background-color: white;
+  left: 55%;
+  z-index: 2;
+  height: auto;
+  min-height: 200px;
+  top: 15%;
+  width: 380px;
+
+}
