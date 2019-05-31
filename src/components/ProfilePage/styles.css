@@ -26,7 +26,7 @@ html, body   {
     border: .5rem solid #9CB1DB;
     margin-left: 5rem;
     margin-bottom: -2rem;
-    margin-right: 3rem;
+    margin-right: 1rem;
     background-color: #9CB1DB;
     z-index: 1000;
 }
@@ -34,19 +34,19 @@ html, body   {
 .posts {
     display: flex;
     flex-direction: column;
-    margin-bottom: 3rem;
+    margin-bottom: 62px;
     min-height: 520px;
     height: 75%
 }
+
 .likedPosts {
-    flex-grow:1;
+    flex-grow: 1;
     display: flex;
     background-color: #D7EFF2;
     margin-top: -1px;
     margin-bottom: -2px;
     padding-left: 1rem;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
+    padding-top: 1rem;
 }
 
 .likedPosts:focus {
@@ -64,8 +64,7 @@ html, body   {
     margin-top: -1px;
     margin-bottom: -2px;
     padding-left: 1rem;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
+    padding-top: 1rem;
 }
 
 .userPosts:focus {
@@ -85,7 +84,6 @@ html, body   {
     margin-bottom: -2px;
     padding-left: 1rem;
     padding-top: 2rem;
-    padding-bottom: 3rem;
 }
 
 .friendsList:focus {
@@ -109,7 +107,7 @@ html, body   {
 }
 
 .active {
-    min-height: 50vh;
+    padding-bottom: 62px;
 }
 
 .profileId {
@@ -118,6 +116,7 @@ html, body   {
 
 .curve {
     display: flex;
+    min-height: 88.86px;
 }
 
 .svg {

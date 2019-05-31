@@ -15,7 +15,13 @@ const Curve = ({
   let topPathClass = classNameTop;
   if (isAboveTabActive) topPathClass = "hidden";
   return (
-    <svg className="svg" width="100%" height="100%" viewBox="0 0 1400 77">
+    <svg
+      className="svg"
+      width="100%"
+      height="100%"
+      viewBox="0 0 1400 78"
+      preserveAspectRatio="xMinYMin slice"
+    >
       <path
         className={topPathClass}
         ref={ref => {
@@ -224,6 +230,7 @@ class ProfilePage extends Component {
             <NewsFeed userId={userId} profileId={profileId} type="liked" />
           </div>
         </div>
+        <div height="62px" />
       </div>
     );
   }
