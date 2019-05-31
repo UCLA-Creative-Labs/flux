@@ -90,6 +90,7 @@ NewsFeed.propTypes = {
 
 PopUp.propTypes = {
   userId: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 export default NewsFeed;
