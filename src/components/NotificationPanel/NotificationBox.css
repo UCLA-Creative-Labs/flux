@@ -1,0 +1,26 @@
+.NotificationBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  height: 60px;
+  overflow-y: auto;
+  border: 0.5px solid rgb(92, 215, 249);
+}
+
+.color-type {
+  width: 10px;
+  height: 59px;
+  margin-right: 10px;
+}
+
+.image {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px
+}
+
+.content {
+  text-align: left;
+}

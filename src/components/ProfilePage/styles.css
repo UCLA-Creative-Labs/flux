@@ -1,0 +1,124 @@
+html, body   {
+    margin: 0;
+    height: 100%;
+}
+
+.profilePage {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-bottom: -4rem;
+}
+
+.profilePicture {
+    height: 33vh;
+    max-height: 250px;
+    width: 33vh;
+    max-width: 250px;
+    border-radius: 50%;
+    border: .5rem solid #9CB1DB;
+    margin-left: 5rem;
+    margin-bottom: -2rem;
+    margin-right: 1rem;
+    background-color: #9CB1DB;
+    z-index: 1000;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 62px;
+    min-height: 520px;
+    height: 75%
+}
+
+.likedPosts {
+    flex-grow: 1;
+    display: flex;
+    background-color: #D7EFF2;
+    margin-top: -1px;
+    margin-bottom: -2px;
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
+
+.likedPosts:focus {
+    outline-width: 0;
+}
+
+.likedPostsPath {
+    fill: #D7EFF2;
+}
+
+.userPosts {
+    flex-grow:1;
+    display: flex;
+    background-color: #9CB1DB;
+    margin-top: -1px;
+    margin-bottom: -2px;
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
+
+.userPosts:focus {
+    outline-width: 0;
+}
+
+.userPostsPath {
+    fill: #9CB1DB;
+}
+
+.friendsList {
+    display: flex;
+    flex-grow:1;
+    justify-content: center;
+    background-color: #7B90C6;
+    margin-top: -1px;
+    margin-bottom: -2px;
+    padding-left: 1rem;
+    padding-top: 2rem;
+}
+
+.friendsList:focus {
+    outline-width: 0;
+}
+
+.friendsListPath {
+    fill: #7B90C6
+}
+
+.hidden {
+    display: none;
+}
+
+.preview * {
+    display: none;
+}
+
+.preview {
+    min-height: 1rem;
+}
+
+.active {
+    padding-bottom: 62px;
+}
+
+.profileId {
+    margin-bottom: .5rem;
+}
+
+.curve {
+    display: flex;
+    min-height: 88.86px;
+}
+
+.svg {
+    width: 100%;
+}

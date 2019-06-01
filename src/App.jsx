@@ -6,23 +6,25 @@ import {
   Switch
 } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
-
 import Login from "./components/Login";
-import NewsFeed from "./components/NewsFeed";
-import MessageManager from "./components/MessageManager";
-import ProfilePage from "./components/ProfilePage";
 import Navbar from "./components/Navbar";
+import NotificationPanel from "./components/NotificationPanel";
+
+import Home from "./pages/Home";
+import Messages from "./pages/Messages";
+import Profile from "./pages/Profile";
 import "./App.css";
 
 class App extends Component {
   constructor() {
     super();
 
-    firebaseWrapper.initialize();
-
     this.state = {
-      userId: ""
+      userId: "",
+      notifications: []
     };
+
+    firebaseWrapper.initialize();
   }
 
   componentDidMount() {
@@ -36,63 +38,96 @@ class App extends Component {
     firebaseWrapper.listenForAuthStateChange(onLogin, onLogout);
   }
 
-  handleLogout = event => {
-    event.preventDefault();
-    firebaseWrapper.logout();
-
+  redirectToRoot = () => {
     setTimeout(() => {
       const redirectLocation = window.location.href.match(/.*\/\/.*?\//)[0];
       window.location.replace(redirectLocation);
     }, 100);
   };
 
-  render() {
-    const { userId } = this.state;
+  handleLogout = event => {
+    event.preventDefault();
+    firebaseWrapper.logout();
 
-    let routes;
+    this.redirectToRoot();
+  };
+
+  makeNotification = (type, content) => {
+    const { notifications } = this.state;
+    const time = `At ${new Date().toLocaleTimeString("en-GB")}, `;
+    notifications.unshift({
+      type,
+      content,
+      time
+    });
+    this.setState({ notifications });
+  };
+
+  render() {
+    const { userId, notifications } = this.state;
 
     if (userId === "") {
-      routes = (
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Login} />
-          </Switch>
-        </Router>
-      );
-    } else {
-      routes = (
-        <Router>
-          <Navbar userId={userId} />
-          <Route exact path="/" render={() => <Redirect to="/newsfeed" />} />
-          {/* Change to `userId="1234"` if testing */}
-          <Route
-            path="/newsfeed"
-            render={() => <NewsFeed userId={userId} type="home" />}
-          />
-          <Route
-            path="/messages"
-            exact
-            render={() => <MessageManager userId={userId} />}
-          />
-          <Route
-            path="/user/:profileId"
-            render={props => (
-              <ProfilePage
-                userId={userId}
-                handleLogout={this.handleLogout}
-                {...props}
-              />
-            )}
-          />
-        </Router>
+      return (
+        <div className="App">
+          <Router>
+            <Switch>
+              <Route exact path="/" component={Login} />
+            </Switch>
+          </Router>
+        </div>
       );
     }
 
     return (
       <div className="App">
-        <p>Your userId is {userId}</p>
-
-        {routes}
+        <Router>
+          <Route exact path="/" render={() => <Redirect to="/newsfeed" />} />
+          <Route
+            path="/newsfeed"
+            render={() => {
+              return (
+                <Home
+                  userId={userId}
+                  makeNotification={this.makeNotification}
+                />
+              );
+            }}
+          />
+          <Route
+            path="/messages"
+            exact
+            render={() => {
+              return <Messages userId={userId} />;
+            }}
+          />
+          <Route
+            path="/user/:profileId"
+            render={props => {
+              return (
+                <Profile
+                  userId={userId}
+                  handleLogout={this.handleLogout}
+                  {...props}
+                />
+              );
+            }}
+          />
+          <Route
+            path="/notificationpanel"
+            exact
+            render={() => (
+              <div>
+                <Navbar
+                  userId={userId}
+                  makeNotification={this.makeNotification}
+                  activeTab="notifications"
+                />
+                <NotificationPanel notifications={notifications} />
+              </div>
+            )}
+          />
+          <Route path="/login" component={Login} />
+        </Router>
       </div>
     );
   }
