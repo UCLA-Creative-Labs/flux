@@ -2,15 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../../colors.css";
 
+const rb = require("../../images/ReceivedBubble.svg");
+const sb = require("../../images/SentBubble.svg");
+
 const styles = {
   sent: {
     display: "inline-block",
     boxSizing: "border-box",
     height: "200px",
     width: "200px",
-    //borderRadius: "50%",
+    // borderRadius: "50%",
     // backgroundColor: "var(--light-teal)"
-    backgroundImage: "url(" + require("../../images/SentBubble.svg") + ")",
+    backgroundImage: `url(${sb})`,
     backgroundRepeat: "no-repeat"
   },
   received: {
@@ -18,21 +21,18 @@ const styles = {
     boxSizing: "border-box",
     height: "200px",
     width: "200px",
-    //borderRadius: "50%",
+    // borderRadius: "50%",
     // backgroundColor: "var(--blueberry)"
-    backgroundImage: "url(" + require("../../images/ReceivedBubble.svg") + ")",
+    backgroundImage: `url(${rb})`,
     backgroundRepeat: "no-repeat"
   }
-}; 
+};
 
 function Message({ text, sent }) {
   const styling = sent ? styles.sent : styles.received;
-  const bgsource = sent
-    ? "../../../images/SentBubble.svg"
-    : "../../../images/ReceivedBubble.svg";
   return (
     <div style={styling}>
-      <p style={{ padding:"50px", textAlign: "center" }}>{text}</p>
+      <p style={{ padding: "50px", textAlign: "center" }}>{text}</p>
     </div>
   );
 }
