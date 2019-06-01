@@ -9,7 +9,6 @@ import firebaseWrapper from "./firebaseWrapper";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import NotificationPanel from "./components/NotificationPanel";
-
 import Home from "./pages/Home";
 import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
@@ -126,7 +125,6 @@ class App extends Component {
               </div>
             )}
           />
-          <Route path="/login" component={Login} />
         </Router>
       </div>
     );
