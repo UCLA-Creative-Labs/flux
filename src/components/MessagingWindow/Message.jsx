@@ -7,28 +7,22 @@ const sb = require("../../images/SentBubble.svg");
 
 const styles = {
   sent: {
-    display: "inline-block",
-    boxSizing: "border-box",
-    height: "200px",
-    width: "200px",
     backgroundImage: `url(${sb})`,
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover"
   },
   received: {
-    display: "inline-block",
-    boxSizing: "border-box",
-    height: "200px",
-    width: "200px",
     backgroundImage: `url(${rb})`,
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover"
   }
 };
 
 function Message({ text, sent }) {
   const styling = sent ? styles.sent : styles.received;
   return (
-    <div style={styling}>
-      <p style={{ padding: "50px", textAlign: "center" }}>{text}</p>
+    <div style={styling} className="message">
+      <p className="text-wrapper">{text}</p>
     </div>
   );
 }
