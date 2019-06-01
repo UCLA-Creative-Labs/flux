@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import "../../colors.css";
 import firebaseWrapper from "../../firebaseWrapper";
 import Message from "./Message";
+import "./styles.css";
+import blower from "../../images/Bubbleblower.svg";
 
 class MessagingWindow extends Component {
   constructor(props) {
@@ -67,32 +70,81 @@ class MessagingWindow extends Component {
 
   render() {
     const { text, messages } = this.state;
-    const { userId, conversationId } = this.props;
+    const { userId } = this.props;
 
     return (
-      <div>
-        <h1>Temporary Messaging Window</h1>
-        <h1>{conversationId}</h1>
+      <div className="wrapper">
+        {/* <div className="friend-info"> */}
+        {/* To be added!}
+        {/* </div> */}
 
-        {/* Display all messages */}
-        {Object.keys(messages).map(messageId =>
-          messages[messageId].userId === userId ? (
-            <Message key={messageId} text={messages[messageId].text} sent />
-          ) : (
-            <Message
-              key={messageId}
-              text={messages[messageId].text}
-              sent={false}
+        <div className="messages">
+          {Object.keys(messages).map(messageId =>
+            messages[messageId].userId === userId ? (
+              <Message key={messageId} text={messages[messageId].text} sent />
+            ) : (
+              <Message
+                key={messageId}
+                text={messages[messageId].text}
+                sent={false}
+              />
+            )
+          )}
+        </div>
+
+        <div className="input-bar">
+          <form
+            onSubmit={this.handleClick}
+            style={{
+              alignContent: "center",
+              height: "45px",
+              paddingTop: "7.5px",
+              borderTop: "5px solid var(--gray)"
+            }}
+          >
+            <div
+              onClick={this.handleClick}
+              type="submit"
+              style={{
+                display: "inline-block",
+                width: "25px",
+                height: "67%",
+                float: "right"
+              }}
+            >
+              <img
+                src={blower}
+                style={{
+                  width: "25px",
+                  height: "67%",
+                  float: "right",
+                  marginRight: "15px",
+                  paddingTop: "3px"
+                }}
+                alt="send-button"
+              />
+            </div>
+            <input
+              type="text"
+              placeholder="TYPE A MESSAGE!"
+              onChange={this.handleChange}
+              value={text}
+              style={{
+                display: "inline-block",
+                borderRadius: "15px",
+                height: "67%",
+                border: "none",
+                backgroundColor: "var(--gray)",
+                paddingLeft: "5px",
+                marginRight: "20px",
+                width: "auto",
+                maxWidth: "90%",
+                float: "right",
+                outline: "none"
+              }}
             />
-          )
-        )}
-        {/* A Simple form with one text field and one submit button to send a message */}
-        <form>
-          <input type="text" onChange={this.handleChange} value={text} />
-          <button onClick={this.handleClick} type="submit">
-            Send!
-          </button>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

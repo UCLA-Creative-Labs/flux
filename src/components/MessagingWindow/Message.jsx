@@ -1,20 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "../../colors.css";
+
+const rb = require("../../images/ReceivedBubble.svg");
+const sb = require("../../images/SentBubble.svg");
 
 const styles = {
   sent: {
-    width: "40%",
-    backgroundColor: "blue"
+    display: "inline-block",
+    boxSizing: "border-box",
+    height: "200px",
+    width: "200px",
+    backgroundImage: `url(${sb})`,
+    backgroundRepeat: "no-repeat"
   },
   received: {
-    width: "40%",
-    backgroundColor: "white"
+    display: "inline-block",
+    boxSizing: "border-box",
+    height: "200px",
+    width: "200px",
+    backgroundImage: `url(${rb})`,
+    backgroundRepeat: "no-repeat"
   }
 };
 
 function Message({ text, sent }) {
   const styling = sent ? styles.sent : styles.received;
-  return <div style={styling}>{text}</div>;
+  return (
+    <div style={styling}>
+      <p style={{ padding: "50px", textAlign: "center" }}>{text}</p>
+    </div>
+  );
 }
 
 Message.propTypes = {

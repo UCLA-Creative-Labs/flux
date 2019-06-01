@@ -1,4 +1,36 @@
-.friend-name{
-    height: 40px;
-    background-color: #cccccc
+.window-wrapper {
+  height: calc(100vh - 62px);
+  width: 100%;
+  position: fixed;
+}
+
+.topBar {
+  display: inline-block;
+  width: 100%;
+  height: 45px;
+  position: relative;
+}
+
+.topBar p {
+  text-align: left;
+  font-weight: bold;
+  font-size: 32px;
+  margin: 0;
+  padding: 0;
+}
+.conversationWindow {
+  display: inline-block;
+  width: calc(100% - 455px);
+  height: calc(100% - 45px);
+  float: left;
+  position: relative;
+}
+
+.conversationList {
+  display: inline-block;
+  width: 455px;
+  height: calc(100% - 45px);
+  float: left;
+  position: relative;
+  overflow-y: auto;
 }
