@@ -77,7 +77,7 @@ class MessageManager extends Component {
               </button> */}
               <MessageTile
                 userId={friendId}
-                isSelected={activeConversation == friendId ? true : false}
+                isSelected={activeConversation === friendId}
               />
             </div>
           ))}

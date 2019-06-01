@@ -18,23 +18,27 @@ class MessageTile extends Component {
   componentDidMount() {
     const { userId } = this.props;
 
-    //Fetch user data!
+    // Fetch user data!
+    /*
     const updateName = name => {
       this.setState({
-        name: name
+        name
       });
     };
+    */
+
     const updatePicture = picurl => {
       this.setState({
         photoURL: picurl
       });
     };
-    //firebaseWrapper.getName(userId, updateName); Not implemented yet!
+    // firebaseWrapper.getName(userId, updateName); Not implemented yet!
     firebaseWrapper.getProfilePicture(userId, updatePicture);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.isSelected != this.state.isSelected) {
+    const { isSelected } = this.state;
+    if (nextProps.isSelected !== isSelected) {
       this.setState({
         isSelected: nextProps.isSelected
       });
