@@ -65,8 +65,6 @@ class MessageManager extends Component {
           {/* List of friends */}
           {Object.keys(friends).map(friendId => (
             <div
-              role="button"
-              tabIndex="0"
               key={friendId}
               onClick={() => this.handleFriendClick(friendId)}
             >

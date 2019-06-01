@@ -105,8 +105,6 @@ class MessagingWindow extends Component {
             }}
           >
             <div
-              role="button"
-              tabIndex="0"
               onClick={this.handleClick}
               type="submit"
               style={{
@@ -135,7 +133,8 @@ class MessagingWindow extends Component {
                 backgroundColor: "var(--gray)",
                 paddingLeft: "10px",
                 width: "1100px",
-                float: "right"
+                float: "right",
+                outline: "none"
               }}
             />
           </form>
