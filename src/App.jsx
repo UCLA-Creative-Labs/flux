@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 import Login from "./components/Login";
+
 import Navbar from "./components/Navbar";
 import NotificationPanel from "./components/NotificationPanel";
 import Home from "./pages/Home";

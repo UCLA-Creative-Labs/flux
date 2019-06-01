@@ -7,15 +7,15 @@ import NewsFeed from "../../components/NewsFeed";
 const Home = ({ userId, makeNotification }) => {
   return (
     <div>
-      <Navbar
-        userId={userId}
-        makeNotification={makeNotification}
-        activeTab="home"
-      />
       <NewsFeed
         makeNotification={makeNotification}
         userId={userId}
         type="home"
+      />
+      <Navbar
+        userId={userId}
+        makeNotification={makeNotification}
+        activeTab="home"
       />
     </div>
   );
