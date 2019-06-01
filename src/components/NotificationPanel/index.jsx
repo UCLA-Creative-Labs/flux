@@ -6,7 +6,7 @@ import NotificationBox from "./NotificationBox";
 const NotificationPanel = ({ notifications }) => (
   <div className="overlay">
     <div className="NotificationPanelBackground">
-      <p className="NotificationText">Notifications</p>
+      <div className="NotificationText">Notifications</div>
       <div className="NotificationPanel">
         {Object.keys(notifications).map(notificationId => (
           <NotificationBox
