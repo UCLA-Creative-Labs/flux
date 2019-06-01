@@ -6,8 +6,8 @@ const styles = {
   sent: {
     display: "inline-block",
     boxSizing: "border-box",
-    height: "auto",
-    width: "auto",
+    height: "200px",
+    width: "200px",
     //borderRadius: "50%",
     // backgroundColor: "var(--light-teal)"
     backgroundImage: "url(" + require("../../images/SentBubble.svg") + ")",
@@ -16,14 +16,14 @@ const styles = {
   received: {
     display: "inline-block",
     boxSizing: "border-box",
-    height: "auto",
-    width: "auto",
+    height: "200px",
+    width: "200px",
     //borderRadius: "50%",
     // backgroundColor: "var(--blueberry)"
     backgroundImage: "url(" + require("../../images/ReceivedBubble.svg") + ")",
     backgroundRepeat: "no-repeat"
   }
-};
+}; 
 
 function Message({ text, sent }) {
   const styling = sent ? styles.sent : styles.received;
@@ -32,7 +32,7 @@ function Message({ text, sent }) {
     : "../../../images/ReceivedBubble.svg";
   return (
     <div style={styling}>
-      <p style={{ textAlign: "center" }}>{text}</p>
+      <p style={{ padding:"50px", textAlign: "center" }}>{text}</p>
     </div>
   );
 }

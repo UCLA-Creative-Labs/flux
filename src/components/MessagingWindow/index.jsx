@@ -95,7 +95,7 @@ class MessagingWindow extends Component {
 
         <div className="input-bar">
           {/* A Simple form with one text field and one submit button to send a message */}
-          <form style={{alignContent: "center", height:"45px", paddingTop: "7.5px", borderTop: "2px solid var(--gray)"}}>
+          <form onSubmit={this.handleClick} style={{alignContent: "center", height:"45px", paddingTop: "7.5px", borderTop: "2px solid var(--gray)"}}>
             <div onClick={this.handleClick} type="submit" style={{display: "inline-block",width: "25px", height:"30px", float:"right"}}>
               <img src={blower} style={{width: "25px", height:"30px",float:"right"}}></img>
             </div>
