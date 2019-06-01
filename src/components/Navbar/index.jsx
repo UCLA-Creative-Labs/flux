@@ -30,11 +30,15 @@ const Navbar = ({ userId, activeTab, makeNotification }) => {
   );
 };
 
+Navbar.defaultProps = {
+  makeNotification: null
+};
+
 Navbar.propTypes = {
   userId: PropTypes.string.isRequired,
   activeTab: PropTypes.oneOf(["home", "messages", "notifications", "profile"])
     .isRequired,
-  makeNotification: PropTypes.func.isRequired
+  makeNotification: PropTypes.func
 };
 
 export default Navbar;
