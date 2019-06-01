@@ -4,7 +4,7 @@ import "../../colors.css";
 import firebaseWrapper from "../../firebaseWrapper";
 import Message from "./Message";
 import "./styles.css";
-import blower from "../../images/Bubbleblower.svg"
+import blower from "../../images/Bubbleblower.svg";
 
 class MessagingWindow extends Component {
   constructor(props) {
@@ -70,7 +70,7 @@ class MessagingWindow extends Component {
 
   render() {
     const { text, messages } = this.state;
-    const { userId, conversationId } = this.props;
+    const { userId } = this.props;
 
     return (
       <div className="wrapper">
@@ -95,11 +95,46 @@ class MessagingWindow extends Component {
 
         <div className="input-bar">
           {/* A Simple form with one text field and one submit button to send a message */}
-          <form onSubmit={this.handleClick} style={{alignContent: "center", height:"45px", paddingTop: "7.5px", borderTop: "2px solid var(--gray)"}}>
-            <div onClick={this.handleClick} type="submit" style={{display: "inline-block",width: "25px", height:"30px", float:"right"}}>
-              <img src={blower} style={{width: "25px", height:"30px",float:"right"}}></img>
+          <form
+            onSubmit={this.handleClick}
+            style={{
+              alignContent: "center",
+              height: "45px",
+              paddingTop: "7.5px",
+              borderTop: "2px solid var(--gray)"
+            }}
+          >
+            <div
+              onClick={this.handleClick}
+              type="submit"
+              style={{
+                display: "inline-block",
+                width: "25px",
+                height: "30px",
+                float: "right"
+              }}
+            >
+              <img
+                src={blower}
+                style={{ width: "25px", height: "30px", float: "right" }}
+              />
             </div>
-            <input type="text"  placeholder= "TYPE A MESSAGE!" onChange={this.handleChange} value={text} style={{display: "inline-block", borderRadius: "15px", height:"30px", border:"none", backgroundColor:"var(--gray)", paddingLeft: "10px", width:"1100px", float:"right"}}/>
+            <input
+              type="text"
+              placeholder="TYPE A MESSAGE!"
+              onChange={this.handleChange}
+              value={text}
+              style={{
+                display: "inline-block",
+                borderRadius: "15px",
+                height: "30px",
+                border: "none",
+                backgroundColor: "var(--gray)",
+                paddingLeft: "10px",
+                width: "1100px",
+                float: "right"
+              }}
+            />
           </form>
         </div>
       </div>
