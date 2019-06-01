@@ -15,7 +15,6 @@ const Navbar = ({ userId, activeTab, makeNotification }) => {
           <Link to="/messages">Messages</Link>
         </li>
         <li id="control-blob">
-          {/* uncomment if we decide to include ControlBlob in Navbar instead of App */}
           {activeTab === "home" && (
             <ControlBlob userId={userId} makeNotification={makeNotification} />
           )}

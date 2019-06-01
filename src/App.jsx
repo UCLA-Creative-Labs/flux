@@ -152,10 +152,6 @@ class App extends Component {
                     makeNotification={this.makeNotification}
                     activeTab="home"
                   />
-                  {/* <ControlBlob
-                    userId={userId}
-                    makeNotification={this.makeNotification}
-                  /> */}
                   <NewsFeed
                     makeNotification={this.makeNotification}
                     userId={userId}
