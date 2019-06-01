@@ -24,7 +24,7 @@ function NotificationBox({ content, type, time }) {
     text = `${text} just friended you!`;
   }
   const BoxColor = {
-    borderLeft: "10px solid" + `${color}`
+    borderLeft: `10px solid ${color}`
   };
   return (
     <div className="NotificationBox" style={BoxColor}>
