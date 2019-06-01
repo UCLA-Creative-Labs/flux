@@ -6,7 +6,7 @@ import "./styles.css";
 class Login extends Component {
   componentDidMount() {
     const uiConfig = {
-      signInSuccessUrl: "/",
+      signInSuccessUrl: "/loading",
       signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         firebase.auth.FacebookAuthProvider.PROVIDER_ID,
