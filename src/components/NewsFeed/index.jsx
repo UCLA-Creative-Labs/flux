@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
 import ShowPost from "./ShowPost";
 import ExpandedPostModal from "./ExpandedPostModal";
-import "./NewsFeed.css";
+import "./styles.css";
 
 class NewsFeed extends Component {
   constructor(props) {
@@ -63,7 +63,7 @@ class NewsFeed extends Component {
     const { posts, selectedPost, showSelectedPost } = this.state;
     const { userId } = this.props;
     return (
-      <div>
+      <div className="newsfeed">
         <div className="SearchBar">
           <input className="search" placeholder="SEARCH" />
         </div>
