@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import firebaseWrapper from "../../firebaseWrapper";
 import "./ExpandedPost.css";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import firebaseWrapper from "../../firebaseWrapper";
 
 class ExpandedPost extends Component {
   constructor(props) {
