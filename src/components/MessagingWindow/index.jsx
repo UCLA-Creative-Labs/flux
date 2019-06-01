@@ -132,7 +132,8 @@ class MessagingWindow extends Component {
                 border: "none",
                 backgroundColor: "var(--gray)",
                 paddingLeft: "10px",
-                width: "1100px",
+                width: "auto",
+                maxWidth: "90%",
                 float: "right",
                 outline: "none"
               }}
