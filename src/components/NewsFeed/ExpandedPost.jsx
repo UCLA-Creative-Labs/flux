@@ -1,31 +1,57 @@
-import React from "react";
+import React, { Component } from "react";
 import "./ExpandedPost.css";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import firebaseWrapper from "../../firebaseWrapper";
 
-const ExpandedPost = ({ userId, text, photo }) => (
-  <div className="contain">
-    <div className="color">
-      <h1 className="name">{userId}</h1>
-    </div>
-    <div className="expandedPost">
-      <img
-        className="profpic"
-        src="https://picsum.photos/id/736/200/200"
-        alt=""
-      />
-      <div className="postcontents">
-        {text !== "" ? (
-          <p className="text">
-            <span className="dropcap">{text[0]}</span>
-            {text.substr(1)}
-          </p>
-        ) : null}
+class ExpandedPost extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      profilePicture: null
+    };
+  }
 
-        <img className="postphoto" src={photo} alt="" />
+  componentDidMount() {
+    this.getProfilePicture();
+  }
+
+  getProfilePicture = () => {
+    const { userId } = this.props;
+    firebaseWrapper.getProfilePicture(userId, this.setProfilePicture);
+  };
+
+  setProfilePicture = url => {
+    this.setState({ profilePicture: url });
+  };
+
+  render() {
+    const { userId, text, photo } = this.props;
+    const { profilePicture } = this.state;
+    return (
+      <div className="contain">
+        <div className="color">
+          <Link to={`/user/${userId}`} className="name">
+            {userId}
+          </Link>
+        </div>
+        <div className="expandedPost">
+          <img className="profpic" src={profilePicture} alt="" />
+          <div className="postcontents">
+            {text !== "" ? (
+              <p className="text">
+                <span className="dropcap">{text[0]}</span>
+                {text.substr(1)}
+              </p>
+            ) : null}
+
+            <img className="postphoto" src={photo} alt="" />
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-);
+    );
+  }
+}
 
 ExpandedPost.propTypes = {
   userId: PropTypes.number.isRequired,
