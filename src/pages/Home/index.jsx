@@ -2,20 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Navbar from "../../components/Navbar";
-import NewsFeed from "../../components/NewsFeed";
+import NewsFeed from "../../components/NewsFeed/NewsFeed";
 
 const Home = ({ userId, makeNotification }) => {
   return (
     <div>
-      <Navbar
-        userId={userId}
-        makeNotification={makeNotification}
-        activeTab="home"
-      />
       <NewsFeed
         makeNotification={makeNotification}
         userId={userId}
         type="home"
+      />
+      <Navbar
+        userId={userId}
+        makeNotification={makeNotification}
+        activeTab="home"
       />
     </div>
   );

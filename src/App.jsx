@@ -6,15 +6,8 @@ import {
   Switch
 } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
-<<<<<<< HEAD
-import ExpandedPost from "./components/NewsFeed/ExpandedPost";
 import Login from "./components/Login";
-import NewsFeed from "./components/NewsFeed/NewsFeed";
-import MessageManager from "./components/MessageManager";
-import ProfilePage from "./components/ProfilePage";
-=======
-import Login from "./components/Login";
->>>>>>> 7553b54ddd5bf2df4d42d4d08a74dcd62c4d879c
+
 import Navbar from "./components/Navbar";
 import NotificationPanel from "./components/NotificationPanel";
 
@@ -94,25 +87,10 @@ class App extends Component {
             path="/newsfeed"
             render={() => {
               return (
-<<<<<<< HEAD
-                <div>
-                  <NewsFeed
-                    makeNotification={this.makeNotification}
-                    userId={userId}
-                    type="home"
-                  />
-                  <Navbar userId={userId} activeTab="home" />
-                  <ControlBlob
-                    userId={userId}
-                    makeNotification={this.makeNotification}
-                  />
-                </div>
-=======
                 <Home
                   userId={userId}
                   makeNotification={this.makeNotification}
                 />
->>>>>>> 7553b54ddd5bf2df4d42d4d08a74dcd62c4d879c
               );
             }}
           />
@@ -150,11 +128,6 @@ class App extends Component {
             )}
           />
           <Route path="/login" component={Login} />
-<<<<<<< HEAD
-          <Route path="/post" render={() => <NewsFeed userId="2468" />} />
-          <Route path="/expand" render={() => <ExpandedPost />} />
-=======
->>>>>>> 7553b54ddd5bf2df4d42d4d08a74dcd62c4d879c
         </Router>
       </div>
     );
