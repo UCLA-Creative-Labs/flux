@@ -20,7 +20,73 @@ class App extends Component {
 
     this.state = {
       userId: "",
-      notifications: []
+      notifications: [
+        {
+          type: "default",
+          content: "flux",
+          time: "before the beginning of time"
+        },
+        {
+          type: "makePost",
+          content: "is",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "the",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "best",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "you love milk",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "C's get degrees",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "8clap",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "i want to play pokemon go",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "image is a fb stickers",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "called yuttari dragon",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "its great but no one should see this",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "12th notification",
+          time: "before the beginning of time"
+        },
+        {
+          type: "default",
+          content: "hello there",
+          time: "before the beginning of time"
+        }
+      ]
     };
 
     firebaseWrapper.initialize();

@@ -5,13 +5,6 @@ import OtherImage from "../../images/notifications/other.png";
 import PostImage from "../../images/notifications/post.png";
 import MessageImage from "../../images/notifications/message.png";
 import FriendImage from "../../images/notifications/friend.png";
-/* const NotificationTypes = {
-  makePost: {
-    color: "blue",
-    content: `${content} made a new post!`,
-    image: PostImage
-  }
-}; */
 
 function NotificationBox({ content, type, time }) {
   let color = "#D7F0F3"; // mint

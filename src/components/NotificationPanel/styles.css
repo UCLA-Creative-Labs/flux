@@ -1,8 +1,7 @@
 .NotificationPanel {
   height: auto;
-  border: 0.5px solid gray;
   z-index: 3;
-
+  overflow-y: auto;
 }
 
 .NotificationText {
@@ -24,12 +23,12 @@
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100;
   height: auto;
   background-color: gray;
   opacity: 0.7;
   z-index: -1;
   overflow-y: auto;
+
 }
 
 .NotificationPanelBackground {
@@ -38,7 +37,7 @@
   left: 64%;
   z-index: 2;
   height: auto;
-  min-height: 200px;
+  min-height: 100vh;
   top: 0%;
   width: 380px;
 }
