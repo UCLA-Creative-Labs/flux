@@ -148,15 +148,15 @@ class App extends Component {
             render={() => {
               return (
                 <div>
-                  <Navbar userId={userId} activeTab="home" />
-                  <ControlBlob
-                    userId={userId}
-                    makeNotification={this.makeNotification}
-                  />
                   <NewsFeed
                     makeNotification={this.makeNotification}
                     userId={userId}
                     type="home"
+                  />
+                  <Navbar userId={userId} activeTab="home" />
+                  <ControlBlob
+                    userId={userId}
+                    makeNotification={this.makeNotification}
                   />
                 </div>
               );

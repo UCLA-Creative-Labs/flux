@@ -3,15 +3,15 @@
   font-size: 0;
 }
 
-.post {
+.expandedPost {
   position: relative;
   font-size: 0;
-  border: 15px solid #edecec;
+  border: 10px solid #edecec;
   margin-top: 0px;
-  padding-top: 6vh;
+  padding-top: 2vh;
   border-top: 0;
   width: 25vw;
-  height: 33vh;
+  height: 40vh;
   background-color: white;
 }
 
@@ -19,7 +19,7 @@
   position: relative;
   display: inline-block;
   text-align: center;
-  border: 15px solid #edecec;
+  border: 10px solid #edecec;
   border-bottom: 0;
   width: 25vw;
   height: 6vh;
@@ -55,12 +55,32 @@
   font-weight: 800;
 }
 
+.postcontents {
+  overflow: scroll;
+}
+
 .text {
   display: block;
+  height: 15vh;
+  /* overflow: scroll; */
   line-height: 2.5vh;
   text-align: left;
-  font-size: 2vh;
+  font-size: 12px;
+  padding-top: 5vh;
   padding-left: 3vw;
   padding-right: 3vw;
   font-family: "Poppins", sans-serif;
+  background-color: green;
+}
+
+.postphoto {
+  display: inline-block;
+  position: absolute;
+  margin-left: -11.5vw;
+  /* overflow: scroll; */
+  /* object-fit: contain; */
+  /* width: 23vw; */
+  /* height: 15vh; */
+  max-width: 25vw;
+  background-color: pink;
 }
