@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-// import ControlBlob from "./ControlBlob";
+import ControlBlob from "./ControlBlob";
 import "./styles.css";
 
-const Navbar = ({ userId, activeTab }) => {
+const Navbar = ({ userId, activeTab, makeNotification }) => {
   return (
     <nav id="navbar">
       <ul>
@@ -15,8 +15,9 @@ const Navbar = ({ userId, activeTab }) => {
           <Link to="/messages">Messages</Link>
         </li>
         <li id="control-blob">
-          {/* uncomment if we decide to include ControlBlob in Navbar instead of App */}
-          {/* {activeTab === "home" && <ControlBlob />} */}
+          {activeTab === "home" && (
+            <ControlBlob userId={userId} makeNotification={makeNotification} />
+          )}
         </li>
         <li className={activeTab === "notifications" ? "activeTab" : ""}>
           <Link to="/notificationpanel">Notifications</Link>
@@ -29,10 +30,15 @@ const Navbar = ({ userId, activeTab }) => {
   );
 };
 
+Navbar.defaultProps = {
+  makeNotification: null
+};
+
 Navbar.propTypes = {
   userId: PropTypes.string.isRequired,
   activeTab: PropTypes.oneOf(["home", "messages", "notifications", "profile"])
-    .isRequired
+    .isRequired,
+  makeNotification: PropTypes.func
 };
 
 export default Navbar;
