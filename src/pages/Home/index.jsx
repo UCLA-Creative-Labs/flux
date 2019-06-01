@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Navbar from "../../components/Navbar";
-import NewsFeed from "../../components/NewsFeed/NewsFeed";
+import NewsFeed from "../../components/NewsFeed";
 
 const Home = ({ userId, makeNotification }) => {
   return (
