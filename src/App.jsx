@@ -13,7 +13,6 @@ import MessageManager from "./components/MessageManager";
 import ProfilePage from "./components/ProfilePage";
 import Navbar from "./components/Navbar";
 import NotificationPanel from "./components/NotificationPanel";
-import ControlBlob from "./components/ControlBlob";
 import "./App.css";
 
 class App extends Component {
@@ -148,10 +147,10 @@ class App extends Component {
             render={() => {
               return (
                 <div>
-                  <Navbar userId={userId} activeTab="home" />
-                  <ControlBlob
+                  <Navbar
                     userId={userId}
                     makeNotification={this.makeNotification}
+                    activeTab="home"
                   />
                   <NewsFeed
                     makeNotification={this.makeNotification}
@@ -168,7 +167,11 @@ class App extends Component {
             render={() => {
               return (
                 <div>
-                  <Navbar userId={userId} activeTab="messages" />
+                  <Navbar
+                    userId={userId}
+                    makeNotification={this.makeNotification}
+                    activeTab="messages"
+                  />
                   <MessageManager userId={userId} />
                 </div>
               );
@@ -179,7 +182,11 @@ class App extends Component {
             render={props => {
               return (
                 <div>
-                  <Navbar userId={userId} activeTab="profile" />
+                  <Navbar
+                    userId={userId}
+                    makeNotification={this.makeNotification}
+                    activeTab="profile"
+                  />
                   <ProfilePage
                     userId={userId}
                     handleLogout={this.handleLogout}
@@ -194,7 +201,11 @@ class App extends Component {
             exact
             render={() => (
               <div>
-                <Navbar userId={userId} activeTab="notifications" />
+                <Navbar
+                  userId={userId}
+                  makeNotification={this.makeNotification}
+                  activeTab="notifications"
+                />
                 <NotificationPanel notifications={notifications} />
               </div>
             )}
