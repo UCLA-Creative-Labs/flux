@@ -101,7 +101,7 @@ class MessagingWindow extends Component {
               alignContent: "center",
               height: "45px",
               paddingTop: "7.5px",
-              borderTop: "2px solid var(--gray)"
+              borderTop: "5px solid var(--gray)"
             }}
           >
             <div
