@@ -33,6 +33,8 @@
   display: inline;
   font-size: 3vh;
   font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  color: black;
 }
 
 .newsfeed .profpic {
