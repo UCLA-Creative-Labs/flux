@@ -13,11 +13,11 @@
 .messages {
   display: inline-block;
   width: 100%;
-  height: 70%;
+  height: 67%;
   overflow-y: auto;
 }
 .input-bar {
   width: 100%;
-  height: 5%;
+  height: 8%;
   display: inline-block;
 }
