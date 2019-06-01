@@ -23,7 +23,8 @@ class MessageManager extends Component {
       const updateFriends = (friends, newFriendsRef) => {
         this.setState({
           friends,
-          friendsRef: newFriendsRef
+          friendsRef: newFriendsRef,
+          activeConversation: Object.keys(friends)[0]
         });
       };
       firebaseWrapper.listenForFriends(userId, updateFriends);
@@ -57,24 +58,15 @@ class MessageManager extends Component {
 
     return (
       <div className="window-wrapper">
-        {/* <h1>Temporary Message Manager</h1> */}
         <div className="topBar">
           <p> Direct Messages</p>
         </div>
         <div className="conversationList">
-          {/* List of friends */}
           {Object.keys(friends).map(friendId => (
             <div
               key={friendId}
               onClick={() => this.handleFriendClick(friendId)}
             >
-              {/* <button
-                className="friend-name"
-                type="button"
-                onClick={() => this.handleFriendClick(friendId)}
-              >
-                Friend {friendId}
-              </button> */}
               <MessageTile
                 userId={friendId}
                 isSelected={activeConversation === friendId}
@@ -84,13 +76,11 @@ class MessageManager extends Component {
         </div>
 
         <div className="conversationWindow">
-          {activeConversation != null ? (
+          {activeConversation != null && (
             <MessagingWindow
               userId={userId}
               conversationId={friends[activeConversation]}
             />
-          ) : (
-            <p> Click a friend to get started! </p>
           )}
         </div>
       </div>

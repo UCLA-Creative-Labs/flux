@@ -75,11 +75,10 @@ class MessagingWindow extends Component {
     return (
       <div className="wrapper">
         {/* <div className="friend-info"> */}
-        {/* <h1>{conversationId}</h1> replace this with the user photo */}
+        {/* To be added!}
         {/* </div> */}
 
         <div className="messages">
-          {/* Display all messages */}
           {Object.keys(messages).map(messageId =>
             messages[messageId].userId === userId ? (
               <Message key={messageId} text={messages[messageId].text} sent />
@@ -94,7 +93,6 @@ class MessagingWindow extends Component {
         </div>
 
         <div className="input-bar">
-          {/* A Simple form with one text field and one submit button to send a message */}
           <form
             onSubmit={this.handleClick}
             style={{

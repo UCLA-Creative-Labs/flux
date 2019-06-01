@@ -11,8 +11,6 @@ const styles = {
     boxSizing: "border-box",
     height: "200px",
     width: "200px",
-    // borderRadius: "50%",
-    // backgroundColor: "var(--light-teal)"
     backgroundImage: `url(${sb})`,
     backgroundRepeat: "no-repeat"
   },
@@ -21,8 +19,6 @@ const styles = {
     boxSizing: "border-box",
     height: "200px",
     width: "200px",
-    // borderRadius: "50%",
-    // backgroundColor: "var(--blueberry)"
     backgroundImage: `url(${rb})`,
     backgroundRepeat: "no-repeat"
   }
