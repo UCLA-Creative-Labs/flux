@@ -110,13 +110,19 @@ class MessagingWindow extends Component {
               style={{
                 display: "inline-block",
                 width: "25px",
-                height: "30px",
+                height: "67%",
                 float: "right"
               }}
             >
               <img
                 src={blower}
-                style={{ width: "25px", height: "30px", float: "right" }}
+                style={{
+                  width: "25px",
+                  height: "67%",
+                  float: "right",
+                  marginRight: "15px",
+                  paddingTop: "3px"
+                }}
                 alt="send-button"
               />
             </div>
@@ -128,10 +134,11 @@ class MessagingWindow extends Component {
               style={{
                 display: "inline-block",
                 borderRadius: "15px",
-                height: "30px",
+                height: "67%",
                 border: "none",
                 backgroundColor: "var(--gray)",
-                paddingLeft: "10px",
+                paddingLeft: "5px",
+                marginRight: "20px",
                 width: "auto",
                 maxWidth: "90%",
                 float: "right",

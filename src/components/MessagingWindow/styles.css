@@ -3,7 +3,7 @@
   height: 100%;
   width: 100%;
   display: inline-block;
-  border: 5px solid var(--light-teal);
+  border-left: 5px solid var(--light-teal);
 }
 .friend-info {
   display: inline-block;
