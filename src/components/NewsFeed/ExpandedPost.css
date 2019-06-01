@@ -57,30 +57,22 @@
 
 .postcontents {
   overflow: scroll;
+  height: 95%;
+  width: 100%;
 }
 
 .text {
   display: block;
-  height: 15vh;
-  /* overflow: scroll; */
   line-height: 2.5vh;
   text-align: left;
   font-size: 12px;
-  padding-top: 5vh;
+  padding-top: 2vh;
   padding-left: 3vw;
   padding-right: 3vw;
   font-family: "Poppins", sans-serif;
-  background-color: green;
 }
 
 .postphoto {
   display: inline-block;
-  position: absolute;
-  margin-left: -11.5vw;
-  /* overflow: scroll; */
-  /* object-fit: contain; */
-  /* width: 23vw; */
-  /* height: 15vh; */
-  max-width: 25vw;
-  background-color: pink;
+  max-width: 23vw;
 }

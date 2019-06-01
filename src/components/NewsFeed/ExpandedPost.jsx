@@ -14,10 +14,13 @@ const ExpandedPost = ({ userId, text, photo }) => (
         alt=""
       />
       <div className="postcontents">
-        <p className="text">
-          <span className="dropcap">{text[0]}</span>
-          {text.substr(1)}
-        </p>
+        {text !== "" ? (
+          <p className="text">
+            <span className="dropcap">{text[0]}</span>
+            {text.substr(1)}
+          </p>
+        ) : null}
+
         <img className="postphoto" src={photo} alt="" />
       </div>
     </div>
