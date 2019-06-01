@@ -105,6 +105,8 @@ class MessagingWindow extends Component {
             }}
           >
             <div
+              role="button"
+              tabIndex="0"
               onClick={this.handleClick}
               type="submit"
               style={{
@@ -117,6 +119,7 @@ class MessagingWindow extends Component {
               <img
                 src={blower}
                 style={{ width: "25px", height: "30px", float: "right" }}
+                alt="send-button"
               />
             </div>
             <input

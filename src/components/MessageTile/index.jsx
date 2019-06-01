@@ -62,7 +62,7 @@ class MessageTile extends Component {
           }}
         />
         <div className="profile-picture">
-          <img src={photoURL} />
+          <img src={photoURL} alt="profile-pic" />
         </div>
         <div className="user-name">
           <p>{name}</p>
