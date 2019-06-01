@@ -6,6 +6,7 @@
   height: 18vh;
   border: 5px solid #edecec;
   border-top: 0;
+  background-color: white;
 }
 
 .newsfeed .card {
