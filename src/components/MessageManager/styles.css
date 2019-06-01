@@ -6,7 +6,7 @@
 }
 
 .window-wrapper {
-  height: 87.5%;
+  height: 95%;
   width: 100%;
   position: fixed;
 }
@@ -28,7 +28,7 @@
 }
 .conversationWindow {
   display: inline-block;
-  width: 70%;
+  width: 74%;
   height: 90%;
   float: left;
   position: relative;
