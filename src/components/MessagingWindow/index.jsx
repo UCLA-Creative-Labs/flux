@@ -74,9 +74,9 @@ class MessagingWindow extends Component {
 
     return (
       <div className="wrapper">
-        <div className="friend-info">
-          {/* <h1>{conversationId}</h1> replace this with the user photo */}
-        </div>
+        {/* <div className="friend-info"> */}
+        {/* <h1>{conversationId}</h1> replace this with the user photo */}
+        {/* </div> */}
 
         <div className="messages">
           {/* Display all messages */}
