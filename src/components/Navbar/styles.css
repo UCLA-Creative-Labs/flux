@@ -38,15 +38,13 @@
   width: 200px;
   background-color: rgba(0, 0, 0, 0);
   border: none;
+  font-family: Poppins;
 }
 
-button:focus {
+#navbar ul li button:focus {
   outline: 0;
 }
 
-button {
-  font-family: Poppins;
-}
 
 #navbar ul li.activeTab a {
   background-image: url("../../images/Navbar/tab.svg");
