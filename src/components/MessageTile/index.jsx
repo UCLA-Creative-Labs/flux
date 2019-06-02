@@ -52,13 +52,13 @@ class MessageTile extends Component {
       <div
         className="tile-wrapper"
         style={{
-          "background-color": isSelected ? "var(--light-teal)" : "var(--white)"
+          backgroundColor: isSelected ? "var(--light-teal)" : "var(--white)"
         }}
       >
         <div
           className="empty-box"
           style={{
-            "background-color": isSelected ? "var(--dark-teal)" : "var(--white)"
+            backgroundColor: isSelected ? "var(--dark-teal)" : "var(--white)"
           }}
         />
         <div className="profile-picture">
