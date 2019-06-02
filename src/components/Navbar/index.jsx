@@ -29,7 +29,7 @@ class Navbar extends Component {
         <NotificationPanel userId={userId} notifications={notifications} />
       );
     } else {
-      Notifications = <></>;
+      Notifications = null;
     }
     return (
       <nav id="navbar">
