@@ -40,11 +40,15 @@ class ExpandedPostModal extends Component {
   }
 }
 
+ExpandedPostModal.defaultProps = {
+  photo: null
+};
+
 ExpandedPostModal.propTypes = {
   userId: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  photo: PropTypes.string.isRequired
+  photo: PropTypes.string
 };
 
 export default ExpandedPostModal;
