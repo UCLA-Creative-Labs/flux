@@ -131,7 +131,8 @@ NewsFeed.defaultProps = {
 NewsFeed.propTypes = {
   userId: PropTypes.string.isRequired,
   profileId: PropTypes.string,
-  type: PropTypes.oneOf(["home", "user", "liked"]).isRequired
+  type: PropTypes.oneOf(["home", "user", "liked"]).isRequired,
+  makeNotification: PropTypes.func.isRequired
 };
 
 export default NewsFeed;
