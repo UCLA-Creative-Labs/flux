@@ -12,8 +12,12 @@ class MessagingWindow extends Component {
 
     this.state = {
       messages: [],
-      text: ""
+      text: "",
+      w: 150,
+      t: null
     };
+
+    this.textInput = React.createRef();
   }
 
   componentDidMount() {
@@ -58,27 +62,49 @@ class MessagingWindow extends Component {
 
   handleClick = e => {
     e.preventDefault();
-
+    clearInterval(this.timer);
     const { text } = this.state;
     const { userId, conversationId } = this.props;
     const message = { text, userId };
     firebaseWrapper.sendMessage(conversationId, message);
     this.setState({
-      text: ""
+      text: "",
+      w: 150
     });
   };
 
+  startTimer = () => {
+    this.textInput.current.focus();
+
+    this.ti = setInterval(() => {
+      this.setState(state => {
+        return { w: state.w + 1 };
+      }, this.textInput.current.focus());
+    }, 100);
+
+    this.setState({ t: this.ti });
+  };
+
+  stopTimer = () => {
+    clearInterval(this.state.t);
+    clearInterval(this.ti);
+  };
+
   render() {
-    const { text, messages } = this.state;
+    const { w, text, messages } = this.state;
     const { userId } = this.props;
+    const climit = w / 12;
+    const barWidth = w;
 
     return (
-      <div className="wrapper">
+      <div className="wrapper" onDragEnd={this.stopTimer}>
         {/* <div className="friend-info"> */}
         {/* To be added!}
         {/* </div> */}
 
         <div className="messages">
+          {" "}
+          onMouseUp={this.stopTimer}
           {Object.keys(messages).map(messageId =>
             messages[messageId].userId === userId ? (
               <Message key={messageId} text={messages[messageId].text} sent />
@@ -92,7 +118,7 @@ class MessagingWindow extends Component {
           )}
         </div>
 
-        <div className="input-bar">
+        <div className="input-bar" onMouseUp={this.stopTimer}>
           <form
             onSubmit={this.handleClick}
             style={{
@@ -104,6 +130,8 @@ class MessagingWindow extends Component {
           >
             <div
               onClick={this.handleClick}
+              onMouseDown={this.startTimer}
+              onMouseUp={this.stopTimer}
               type="submit"
               style={{
                 display: "inline-block",
@@ -125,7 +153,9 @@ class MessagingWindow extends Component {
               />
             </div>
             <input
+              ref={this.textInput}
               type="text"
+              maxLength={climit}
               placeholder="TYPE A MESSAGE!"
               onChange={this.handleChange}
               value={text}
@@ -137,7 +167,7 @@ class MessagingWindow extends Component {
                 backgroundColor: "var(--gray)",
                 paddingLeft: "5px",
                 marginRight: "20px",
-                width: "auto",
+                width: `${barWidth}px`,
                 maxWidth: "90%",
                 float: "right",
                 outline: "none"
