@@ -61,11 +61,11 @@ class NewsFeed extends Component {
     this.setState({ showSelectedPost: false });
   };
 
-  handleTextareaChange = event => {
+  handleSearchBarChange = event => {
     this.setState({ postText: event.target.value });
   };
 
-  onTextareaKeyDown = event => {
+  onSearchBarKeyDown = event => {
     if (event.keyCode === 8) {
       event.preventDefault();
 
@@ -92,8 +92,8 @@ class NewsFeed extends Component {
               value={postText}
               className="search"
               placeholder="SEARCH"
-              onChange={this.handleTextareaChange}
-              onKeyDown={this.onTextareaKeyDown}
+              onChange={this.handleSearchBarChange}
+              onKeyDown={this.onSearchBarKeyDown}
             />
           </div>
         ) : null}
