@@ -1,5 +1,4 @@
 .newsfeed .flex-container {
-  /* position: absolute; */
   justify-content: center;
   display: flex;
   flex-direction: row;
