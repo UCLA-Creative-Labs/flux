@@ -7,10 +7,10 @@ import {
 } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 import Login from "./components/Login";
-import Navbar from "./components/Navbar";
-import NotificationPanel from "./components/NotificationPanel";
 import Home from "./pages/Home";
 import Messages from "./pages/Messages";
+import Notifications from "./pages/Notifications";
+import NotificationPanel from "./components/NotificationPanel/index.jsx";
 import Profile from "./pages/Profile";
 import "./App.css";
 
@@ -88,9 +88,9 @@ class App extends Component {
                 <>
                   <Home
                     userId={userId}
+                    notifications={notifications}
                     makeNotification={this.makeNotification}
                   />
-                  <NotificationPanel notifications={notifications} />
                 </>
               );
             }}
@@ -99,7 +99,7 @@ class App extends Component {
             path="/messages"
             exact
             render={() => {
-              return <Messages userId={userId} />;
+              return <Messages userId={userId} notifications={notifications} />;
             }}
           />
           <Route
@@ -108,6 +108,7 @@ class App extends Component {
               return (
                 <Profile
                   userId={userId}
+                  notifications={notifications}
                   handleLogout={this.handleLogout}
                   {...props}
                 />
@@ -118,14 +119,7 @@ class App extends Component {
             path="/notificationpanel"
             exact
             render={() => (
-              <div>
-                <Navbar
-                  userId={userId}
-                  makeNotification={this.makeNotification}
-                  activeTab="notifications"
-                />
-                <NotificationPanel notifications={notifications} />
-              </div>
+              <Notifications userId={userId} notifications={notifications} />
             )}
           />
         </Router>

@@ -5,10 +5,14 @@ import Navbar from "../../components/Navbar";
 import ProfilePage from "../../components/ProfilePage";
 
 const Profile = props => {
-  const { userId, handleLogout } = props;
+  const { userId, handleLogout, notifications } = props;
   return (
     <div>
-      <Navbar userId={userId} activeTab="profile" />
+      <Navbar
+        userId={userId}
+        activeTab="profile"
+        notifications={notifications}
+      />
       <ProfilePage userId={userId} handleLogout={handleLogout} {...props} />
     </div>
   );
