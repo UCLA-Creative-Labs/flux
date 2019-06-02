@@ -23,9 +23,11 @@ function NotificationBox({ content, type, time }) {
     image = FriendImage;
     text = `${text} just friended you!`;
   }
+  const BoxColor = {
+    borderLeft: `10px solid ${color}`
+  };
   return (
-    <div className="NotificationBox">
-      <div className="color-type" style={{ backgroundColor: color }} />
+    <div className="NotificationBox" style={BoxColor}>
       <img className="image" src={image} alt="Notification" />
       <p className="content">
         {time}
