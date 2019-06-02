@@ -1,11 +1,10 @@
 .newsfeed .flex-container {
-  position: absolute;
   justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding-top: 5vh;
-  padding-bottom: 10vh;
+  padding-bottom: 70px;
+  width: 100%;
 }
 
 .newsfeed .SearchBar {
@@ -13,6 +12,7 @@
   align-items: center;
   justify-content: center;
   height: 8vh;
+  padding-bottom: 10px;
   box-shadow: 0px 1px 6px 0px;
 }
 

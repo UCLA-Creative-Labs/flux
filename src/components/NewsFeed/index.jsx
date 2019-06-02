@@ -61,12 +61,15 @@ class NewsFeed extends Component {
 
   render() {
     const { posts, selectedPost, showSelectedPost } = this.state;
-    const { userId } = this.props;
+    const { type, userId } = this.props;
     return (
       <div className="newsfeed">
-        <div className="SearchBar">
-          <input className="search" placeholder="SEARCH" />
-        </div>
+        {type === "home" ? (
+          <div className="SearchBar">
+            <input className="search" placeholder="SEARCH" />
+          </div>
+        ) : null}
+
         <div className="flex-container">
           {Object.keys(posts)
             .reverse()
