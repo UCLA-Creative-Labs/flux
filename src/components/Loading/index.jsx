@@ -26,7 +26,7 @@ class Loading extends Component {
   };
 
   handleChange = event => {
-    const value = parseInt(event.target.value);
+    const value = parseInt(event.target.value, 10);
 
     if (value === 100) {
       this.redirectToRoot();
@@ -41,7 +41,7 @@ class Loading extends Component {
     return (
       <div className="loading">
         <div className="loading-bar">
-          <img src={Logo} />
+          <img src={Logo} alt="logo" />
           <input
             type="range"
             min="1"
