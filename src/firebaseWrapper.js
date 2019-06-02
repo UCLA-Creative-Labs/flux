@@ -221,7 +221,7 @@ const getProfilePicture = (userId, done) => {
     if (picture === null) {
       done(DefaultProfilePicture);
     } else {
-      done(snapshot.val());
+      done(picture);
     }
   });
 };
