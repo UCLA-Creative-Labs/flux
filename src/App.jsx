@@ -83,13 +83,11 @@ class App extends Component {
             path="/newsfeed"
             render={() => {
               return (
-                <>
-                  <Home
-                    userId={userId}
-                    notifications={notifications}
-                    makeNotification={this.makeNotification}
-                  />
-                </>
+                <Home
+                  userId={userId}
+                  notifications={notifications}
+                  makeNotification={this.makeNotification}
+                />
               );
             }}
           />

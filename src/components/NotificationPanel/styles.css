@@ -1,6 +1,6 @@
 .NotificationPanel {
   height: auto;
-  z-index: 4000;
+  z-index: -1;
   overflow-y: auto;
 }
 
@@ -26,7 +26,7 @@
   height: calc(100vh - 62px);
   background-color: gray;
   opacity: 0.7;
-  z-index: 2000;
+  z-index: -3;
   overflow-y: auto;
 
 }
@@ -36,7 +36,7 @@
   position: relative;
   background-color: white;
   left: 64%;
-  z-index: 3;
+  z-index: -2;
   height: calc(100vh - 62px);
   opacity: 3000;
   top: 0%;
