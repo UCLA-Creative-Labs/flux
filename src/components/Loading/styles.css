@@ -19,6 +19,29 @@
     box-shadow: -900px 0 0 900px #a4b1fd;
   }
 }
+
+/** FF*/
+input[type="range"]::-moz-range-progress {
+  background-color: #a4b1fd;
+  height: 35px;
+}
+input[type="range"]::-moz-range-track {
+  background-color: #f1f1f1;
+  height: 35px;
+}
+input[type="range"]::-moz-range-thumb {
+  height: 0;
+  width: 0;
+  border: none;
+}
+/* IE*/
+input[type="range"]::-ms-fill-lower {
+  background-color: #a4b1fd;
+}
+input[type="range"]::-ms-fill-upper {
+  background-color: #f1f1f1;
+}
+
 .loading {
   background-image: url("../../images/Login/background.svg");
   background-size: cover;
@@ -55,18 +78,3 @@
   right: 50px;
   margin: auto;
 }
-
-/** FF*/
-/* input[type="range"]::-moz-range-progress {
-  background-color: #43e5f7;
-}
-input[type="range"]::-moz-range-track {
-  background-color: #9a905d;
-} */
-/* IE*/
-/* input[type="range"]::-ms-fill-lower {
-  background-color: #43e5f7;
-}
-input[type="range"]::-ms-fill-upper {
-  background-color: #9a905d;
-} */
