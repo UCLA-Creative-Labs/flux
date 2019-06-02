@@ -49,7 +49,9 @@ class Navbar extends Component {
             )}
           </li>
           <li className={activeTab === "notifications" ? "activeTab" : ""}>
-            <button onClick={this.handleClick}>Notifications</button>
+            <button type="button" onClick={this.handleClick}>
+              Notifications
+            </button>
             {Notifications}
           </li>
           <li className={activeTab === "profile" ? "activeTab" : ""}>
