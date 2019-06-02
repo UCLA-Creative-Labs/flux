@@ -24,6 +24,7 @@
   left: 0;
   right: 0;
   height: calc(100vh - 62px);
+  width: 100vw;
   background-color: gray;
   opacity: 0.7;
   z-index: -3;

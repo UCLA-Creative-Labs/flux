@@ -43,6 +43,10 @@ button:focus {
   outline: 0;
 }
 
+button {
+  font-family: Poppins;
+}
+
 #navbar ul li.activeTab a {
   background-image: url("../../images/Navbar/tab.svg");
   background-repeat: no-repeat;
