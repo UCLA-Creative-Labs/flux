@@ -86,7 +86,8 @@ class MessagingWindow extends Component {
   };
 
   stopTimer = () => {
-    clearInterval(this.state.t);
+    const { t } = this.state;
+    clearInterval(t);
     clearInterval(this.ti);
   };
 

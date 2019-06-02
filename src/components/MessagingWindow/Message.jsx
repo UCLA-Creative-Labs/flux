@@ -6,7 +6,7 @@ const rb = require("../../images/ReceivedBubble.svg");
 const sb = require("../../images/SentBubble.svg");
 
 function Message({ text, sent }) {
-  const s = parseInt(Math.sqrt(text.length)) * 30;
+  const s = parseInt(Math.sqrt(text.length), 10) * 30;
   const styles = {
     sent: {
       backgroundImage: `url(${sb})`,
