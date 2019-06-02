@@ -20,7 +20,14 @@ const Profile = props => {
 
 Profile.propTypes = {
   userId: PropTypes.string.isRequired,
-  handleLogout: PropTypes.func.isRequired
+  handleLogout: PropTypes.func.isRequired,
+  notifications: PropTypes.PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.string,
+      content: PropTypes.string,
+      time: PropTypes.string
+    })
+  ).isRequired
 };
 
 export default Profile;

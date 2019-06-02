@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import ControlBlob from "./ControlBlob";
-import NotificationPanel from "../NotificationPanel/index.jsx";
+import NotificationPanel from "../NotificationPanel";
 import "./styles.css";
 
 class Navbar extends Component {
@@ -13,11 +13,13 @@ class Navbar extends Component {
     };
   }
 
-  handleClick = event => {
-    if (this.state.renderNotificationPanel === true)
+  handleClick = () => {
+    const { renderNotificationPanel } = this.state;
+    if (renderNotificationPanel === true)
       this.setState({ renderNotificationPanel: false });
     else this.setState({ renderNotificationPanel: true });
   };
+
   render() {
     const { renderNotificationPanel } = this.state;
     const { userId, activeTab, makeNotification, notifications } = this.props;
