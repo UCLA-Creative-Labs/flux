@@ -31,13 +31,26 @@ class Navbar extends Component {
     } else {
       Notifications = null;
     }
+    console.log(activeTab);
     return (
       <nav id="navbar">
         <ul>
-          <li className={activeTab === "home" ? "activeTab" : ""}>
+          <li
+            className={
+              activeTab === "home" && !renderNotificationPanel
+                ? "activeTab"
+                : ""
+            }
+          >
             <Link to="/newsfeed">Home</Link>
           </li>
-          <li className={activeTab === "messages" ? "activeTab" : ""}>
+          <li
+            className={
+              activeTab === "messages" && !renderNotificationPanel
+                ? "activeTab"
+                : ""
+            }
+          >
             <Link to="/messages">Messages</Link>
           </li>
           <li id="control-blob">
@@ -48,13 +61,19 @@ class Navbar extends Component {
               />
             )}
           </li>
-          <li className={activeTab === "notifications" ? "activeTab" : ""}>
+          <li className={renderNotificationPanel ? "activeTab" : ""}>
             <button type="button" onClick={this.handleClick}>
               Notifications
             </button>
             {Notifications}
           </li>
-          <li className={activeTab === "profile" ? "activeTab" : ""}>
+          <li
+            className={
+              activeTab === "profile" && !renderNotificationPanel
+                ? "activeTab"
+                : ""
+            }
+          >
             <Link to={`/user/${userId}`}>Profile</Link>
           </li>
         </ul>
