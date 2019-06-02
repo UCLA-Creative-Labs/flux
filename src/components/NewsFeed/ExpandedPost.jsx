@@ -53,6 +53,10 @@ class ExpandedPost extends Component {
   }
 }
 
+ExpandedPost.defaultProps = {
+  photo: null
+};
+
 ExpandedPost.propTypes = {
   userId: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,

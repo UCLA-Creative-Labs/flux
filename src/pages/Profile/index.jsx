@@ -8,8 +8,8 @@ const Profile = props => {
   const { userId, handleLogout } = props;
   return (
     <div>
-      <Navbar userId={userId} activeTab="profile" />
       <ProfilePage userId={userId} handleLogout={handleLogout} {...props} />
+      <Navbar userId={userId} activeTab="profile" />
     </div>
   );
 };
