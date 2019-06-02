@@ -103,8 +103,6 @@ class MessagingWindow extends Component {
         {/* </div> */}
 
         <div className="messages">
-          {" "}
-          onMouseUp={this.stopTimer}
           {Object.keys(messages).map(messageId =>
             messages[messageId].userId === userId ? (
               <Message key={messageId} text={messages[messageId].text} sent />
