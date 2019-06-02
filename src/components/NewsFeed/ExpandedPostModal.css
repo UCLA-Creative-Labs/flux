@@ -8,7 +8,7 @@
   right: 0;
   bottom: 0;
   margin: auto;
-  z-index: 1001;
+  z-index: 3000;
 }
 
 .newsfeed .expandedPostPopup-inner {
@@ -27,11 +27,9 @@
   border-radius: 50%;
   width: 350px;
   height: 350px;
-  background: linear-gradient(
-    180deg,
-    #a4b0fc 26.19%,
-    rgba(159, 203, 254, 0.38) 68.21%
-  );
+  background: linear-gradient(180deg,
+      #a4b0fc 26.19%,
+      rgba(159, 203, 254, 0.38) 68.21%);
   transform: rotate(-45deg);
 }
 
@@ -72,11 +70,9 @@
   border-radius: 50%;
   width: 350px;
   height: 350px;
-  background: linear-gradient(
-    180deg,
-    #a4b0fc 26.19%,
-    rgba(159, 203, 254, 0.38) 68.21%
-  );
+  background: linear-gradient(180deg,
+      #a4b0fc 26.19%,
+      rgba(159, 203, 254, 0.38) 68.21%);
   transform: rotate(133.73deg);
 }
 
