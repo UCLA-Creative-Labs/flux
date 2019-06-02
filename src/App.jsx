@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import Home from "./pages/Home";
 import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
+import Loading from "./components/Loading";
 import "./App.css";
 
 class App extends Component {
@@ -79,6 +80,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <Route exact path="/" render={() => <Redirect to="/newsfeed" />} />
+          <Route path="/loading" component={Loading} />
           <Route
             path="/newsfeed"
             render={() => {

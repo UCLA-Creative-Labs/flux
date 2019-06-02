@@ -1,0 +1,80 @@
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type="range"] {
+    overflow: hidden;
+    -webkit-appearance: none;
+    background-color: #f1f1f1;
+    width: 50vw;
+    border-radius: 35px;
+    height: 35px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    cursor: ew-resize;
+
+    width: 10px;
+    height: 35px;
+
+    background: #a4b1fd;
+    box-shadow: -900px 0 0 900px #a4b1fd;
+  }
+}
+
+/** FF*/
+input[type="range"]::-moz-range-progress {
+  background-color: #a4b1fd;
+  height: 35px;
+}
+input[type="range"]::-moz-range-track {
+  background-color: #f1f1f1;
+  height: 35px;
+}
+input[type="range"]::-moz-range-thumb {
+  height: 0;
+  width: 0;
+  border: none;
+}
+/* IE*/
+input[type="range"]::-ms-fill-lower {
+  background-color: #a4b1fd;
+}
+input[type="range"]::-ms-fill-upper {
+  background-color: #f1f1f1;
+}
+
+.loading {
+  background-image: url("../../images/Login/background.svg");
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.loading input:focus {
+  outline-width: 0;
+}
+
+.loading-bar {
+  width: 50vw;
+  height: 300px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  padding: 75px 50px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.loading img {
+  height: 200px;
+}
+
+.loading-bar p {
+  position: absolute;
+  right: 50px;
+  margin: auto;
+}

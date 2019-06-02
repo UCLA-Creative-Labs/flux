@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
-import MakePost from "./MakePost";
-import Post from "./Post";
+import ShowPost from "./ShowPost";
+import ExpandedPostModal from "./ExpandedPostModal";
+import "./styles.css";
 
 class NewsFeed extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      posts: {}
+      posts: {},
+      selectedPost: "",
+      showSelectedPost: false
     };
   }
 
@@ -43,24 +46,48 @@ class NewsFeed extends Component {
     }
   }
 
+  seeMoreHandler = postId => {
+    this.toggleSelectedPost();
+    this.setState({ selectedPost: postId });
+  };
+
+  toggleSelectedPost = () => {
+    this.setState({ showSelectedPost: true });
+  };
+
+  toggleClose = () => {
+    this.setState({ showSelectedPost: false });
+  };
+
   render() {
-    const { posts } = this.state;
-    const { userId, type, makeNotification } = this.props;
+    const { posts, selectedPost, showSelectedPost } = this.state;
+    const { userId } = this.props;
     return (
-      <div>
-        {type === "home" && (
-          <MakePost makeNotification={makeNotification} userId={userId} />
-        )}
-        {Object.keys(posts)
-          .reverse()
-          .map(postId => (
-            <Post
-              key={postId}
-              postId={postId}
-              postObject={posts[postId]}
-              userId={userId}
-            />
-          ))}
+      <div className="newsfeed">
+        <div className="SearchBar">
+          <input className="search" placeholder="SEARCH" />
+        </div>
+        <div className="flex-container">
+          {Object.keys(posts)
+            .reverse()
+            .map(postId => (
+              <ShowPost
+                key={postId}
+                postId={postId}
+                postObject={posts[postId]}
+                userId={userId}
+                onClick={this.seeMoreHandler}
+              />
+            ))}
+        </div>
+        {showSelectedPost && posts[selectedPost] !== undefined ? (
+          <ExpandedPostModal
+            userId={posts[selectedPost].userId}
+            text={posts[selectedPost].text}
+            photo={posts[selectedPost].photo}
+            onClick={this.toggleClose}
+          />
+        ) : null}
       </div>
     );
   }
@@ -73,7 +100,7 @@ NewsFeed.defaultProps = {
 NewsFeed.propTypes = {
   userId: PropTypes.string.isRequired,
   profileId: PropTypes.string,
-  type: PropTypes.oneOf(["home", "user", "liked"]).isRequired,
-  makeNotification: PropTypes.func.isRequired
+  type: PropTypes.oneOf(["home", "user", "liked"]).isRequired
 };
+
 export default NewsFeed;

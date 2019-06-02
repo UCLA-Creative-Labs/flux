@@ -219,6 +219,13 @@ const getProfilePicture = (userId, done) => {
   });
 };
 
+const getName = (userId, done) => {
+  const nameRef = firebase.database().ref(`users/${userId}/name`);
+  nameRef.once("value", snapshot => {
+    done(snapshot.val());
+  });
+};
+
 export default {
   initialize,
   listenForAuthStateChange,
@@ -235,5 +242,6 @@ export default {
   addFriend,
   listenForUserPosts,
   listenForLikedPosts,
-  getProfilePicture
+  getProfilePicture,
+  getName
 };
