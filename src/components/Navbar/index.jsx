@@ -31,7 +31,6 @@ class Navbar extends Component {
     } else {
       Notifications = null;
     }
-    console.log(activeTab);
     return (
       <nav id="navbar">
         <ul>
