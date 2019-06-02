@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import { firebaseConfig } from "./config/firebase";
+import DefaultProfilePicture from "./images/Profile/default-profile-picture.svg";
 
 /**
  * Helper Functions
@@ -215,7 +216,13 @@ const listenForLikedPosts = (userId, done) => {
 const getProfilePicture = (userId, done) => {
   const picRef = firebase.database().ref(`users/${userId}/profilePicture`);
   picRef.once("value", snapshot => {
-    done(snapshot.val());
+    const picture = snapshot.val();
+
+    if (picture === null) {
+      done(DefaultProfilePicture);
+    } else {
+      done(picture);
+    }
   });
 };
 
