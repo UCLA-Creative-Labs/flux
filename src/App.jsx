@@ -9,8 +9,6 @@ import firebaseWrapper from "./firebaseWrapper";
 import Login from "./components/Login";
 import Home from "./pages/Home";
 import Messages from "./pages/Messages";
-import Notifications from "./pages/Notifications";
-import NotificationPanel from "./components/NotificationPanel/index.jsx";
 import Profile from "./pages/Profile";
 import "./App.css";
 
@@ -114,13 +112,6 @@ class App extends Component {
                 />
               );
             }}
-          />
-          <Route
-            path="/notificationpanel"
-            exact
-            render={() => (
-              <Notifications userId={userId} notifications={notifications} />
-            )}
           />
         </Router>
       </div>
