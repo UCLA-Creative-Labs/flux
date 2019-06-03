@@ -1,7 +1,6 @@
 .NotificationPanel {
   height: auto;
   z-index: -1;
-  opacity: 1.0;
   overflow-y: auto;
 }
 
