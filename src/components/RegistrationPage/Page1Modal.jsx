@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import RegistrationBackground from "../../images/RegistrationBackground.svg";
+// import PropTypes from "prop-types";
 import "./Page1Modal.css";
 
 class Page1Modal extends Component {

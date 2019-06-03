@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import RegistrationBackground from "../../images/RegistrationBackground.svg";
+// import PropTypes from "prop-types";
 import "./Registration.css";
 import Page1Modal from "./Page1Modal";
 
