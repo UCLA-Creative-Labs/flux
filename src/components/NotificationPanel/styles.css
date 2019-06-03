@@ -8,10 +8,6 @@
   height: 40px;
   font-size: 20px;
   font-weight: bold;
-  border-top: 2px solid black;
-  border-right: 2px solid black;
-  border-left: 2px solid black;
-  border-bottom: 1px solid black;
   text-align: center;
   vertical-align: middle;
   line-height: 40px;
@@ -25,8 +21,7 @@
   right: 0;
   height: calc(100vh - 62px);
   width: 100vw;
-  background-color: gray;
-  opacity: 0.7;
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: -3;
   overflow-y: auto;
 
@@ -39,7 +34,6 @@
   left: 64%;
   z-index: -2;
   height: calc(100vh - 62px);
-  opacity: 3000;
   top: 0%;
   width: 380px;
 }

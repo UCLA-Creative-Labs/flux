@@ -46,7 +46,8 @@
 }
 
 
-#navbar ul li.activeTab a {
+#navbar ul li.activeTab a,
+#navbar ul li.activeTab button {
   background-image: url("../../images/Navbar/tab.svg");
   background-repeat: no-repeat;
   color: inherit;
