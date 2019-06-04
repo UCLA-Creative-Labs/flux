@@ -21,7 +21,8 @@ class Loading extends Component {
   }
 
   redirectToRoot = () => {
-    const redirectLocation = window.location.href.match(/.*\/\/.*?\//)[0];
+    const rootLocation = window.location.href.match(/.*\/\/.*?\//)[0];
+    const redirectLocation = `${rootLocation}newsfeed`;
     window.location.replace(redirectLocation);
   };
 

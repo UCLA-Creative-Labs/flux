@@ -7,9 +7,6 @@ import {
 } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 import Login from "./components/Login";
-
-import Navbar from "./components/Navbar";
-import NotificationPanel from "./components/NotificationPanel";
 import Home from "./pages/Home";
 import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
@@ -91,6 +88,7 @@ class App extends Component {
               return (
                 <Home
                   userId={userId}
+                  notifications={notifications}
                   makeNotification={this.makeNotification}
                 />
               );
@@ -100,7 +98,7 @@ class App extends Component {
             path="/messages"
             exact
             render={() => {
-              return <Messages userId={userId} />;
+              return <Messages userId={userId} notifications={notifications} />;
             }}
           />
           <Route
@@ -115,25 +113,12 @@ class App extends Component {
               return (
                 <Profile
                   userId={userId}
+                  notifications={notifications}
                   handleLogout={this.handleLogout}
                   {...props}
                 />
               );
             }}
-          />
-          <Route
-            path="/notificationpanel"
-            exact
-            render={() => (
-              <div>
-                <Navbar
-                  userId={userId}
-                  makeNotification={this.makeNotification}
-                  activeTab="notifications"
-                />
-                <NotificationPanel notifications={notifications} />
-              </div>
-            )}
           />
         </Router>
       </div>
