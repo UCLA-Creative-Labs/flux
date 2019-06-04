@@ -22,7 +22,7 @@ function NotificationBox({ content, type, time }) {
     color = "blue";
     image = FriendImage;
     text = `${text} just friended you!`;
-  } else if (type == "clickTab") {
+  } else if (type === "clickTab") {
     text = "You just clicked a tab!";
   }
   const BoxColor = {
