@@ -9,7 +9,7 @@ const Profile = props => {
   const { userId, handleLogout, notifications } = props;
   return (
     <div>
-      <TopBar />
+      <TopBar type="profile" />
       <Navbar
         userId={userId}
         activeTab="profile"

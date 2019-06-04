@@ -51,16 +51,22 @@ class TopBar extends Component {
             onKeyDown={this.onSearchBarKeyDown}
           />
         ) : null}
-        <div className="plus">
-          <img src={plus} alt="" />
-        </div>
+        {type === "profile" ? (
+          <div className="plus">
+            <img src={plus} alt="" />
+          </div>
+        ) : null}
+
+        {type === "profile" ? (
+          <button type="button" className="plusbutton" />
+        ) : null}
+
         <div className="questionmark">
           <span>?</span>
         </div>
         <div className="gear">
           <img src={gear} alt="" />
         </div>
-        <button type="button" className="plusbutton" />
         <button type="button" className="qmarkbutton" />
         <button type="button" className="gearbutton" />
       </div>
@@ -71,7 +77,7 @@ class TopBar extends Component {
 TopBar.propTypes = {
   userId: PropTypes.string.isRequired,
   makeNotification: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(["home", "messages"]).isRequired
+  type: PropTypes.oneOf(["home", "messages", "profile"]).isRequired
 };
 
 export default TopBar;
