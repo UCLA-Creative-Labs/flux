@@ -9,7 +9,8 @@ class MessageTile extends Component {
     super(props);
 
     this.state = {
-      name: "John Doe",
+      firstName: "",
+      lastName: "",
       photoURL: "",
       isSelected: false
     };
@@ -18,21 +19,18 @@ class MessageTile extends Component {
   componentDidMount() {
     const { userId } = this.props;
 
-    // Fetch user data!
-    /*
-    const updateName = name => {
+    const updateName = (firstName, lastName) => {
       this.setState({
-        name
+        firstName,
+        lastName
       });
     };
-    */
-
     const updatePicture = picurl => {
       this.setState({
         photoURL: picurl
       });
     };
-    // firebaseWrapper.getName(userId, updateName); Not implemented yet!
+    firebaseWrapper.getName(userId, updateName);
     firebaseWrapper.getProfilePicture(userId, updatePicture);
   }
 
@@ -46,26 +44,28 @@ class MessageTile extends Component {
   }
 
   render() {
-    const { name, photoURL } = this.state;
+    const { firstName, lastName, photoURL } = this.state;
     const { isSelected } = this.props;
     return (
       <div
         className="tile-wrapper"
         style={{
-          "background-color": isSelected ? "var(--light-teal)" : "var(--white)"
+          backgroundColor: isSelected ? "var(--light-teal)" : "var(--white)"
         }}
       >
         <div
           className="empty-box"
           style={{
-            "background-color": isSelected ? "var(--dark-teal)" : "var(--white)"
+            backgroundColor: isSelected ? "var(--dark-teal)" : "var(--white)"
           }}
         />
         <div className="profile-picture">
           <img src={photoURL} alt="profile-pic" />
         </div>
         <div className="user-name">
-          <p>{name}</p>
+          <p>
+            {firstName} {lastName}
+          </p>
         </div>
       </div>
     );
