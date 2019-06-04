@@ -4,15 +4,16 @@ import PropTypes from "prop-types";
 import Navbar from "../../components/Navbar";
 import MessageManager from "../../components/MessageManager";
 
-const Messages = ({ userId, notifications }) => {
+const Messages = ({ userId, notifications, makeNotification }) => {
   return (
     <div>
       <Navbar
         userId={userId}
         activeTab="messages"
         notifications={notifications}
+        makeNotification={makeNotification}
       />
-      <MessageManager userId={userId} />
+      <MessageManager userId={userId} makeNotification={makeNotification} />
     </div>
   );
 };
@@ -25,7 +26,8 @@ Messages.propTypes = {
       content: PropTypes.string,
       time: PropTypes.string
     })
-  ).isRequired
+  ).isRequired,
+  makeNotification: PropTypes.func.isRequired
 };
 
 export default Messages;

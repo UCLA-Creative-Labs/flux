@@ -24,14 +24,14 @@ const Home = ({ userId, makeNotification, notifications }) => {
 
 Home.propTypes = {
   userId: PropTypes.string.isRequired,
-  makeNotification: PropTypes.func.isRequired,
   notifications: PropTypes.PropTypes.arrayOf(
     PropTypes.shape({
       type: PropTypes.string,
       content: PropTypes.string,
       time: PropTypes.string
     })
-  ).isRequired
+  ).isRequired,
+  makeNotification: PropTypes.func.isRequired
 };
 
 export default Home;

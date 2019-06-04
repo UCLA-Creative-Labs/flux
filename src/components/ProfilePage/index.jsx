@@ -77,9 +77,10 @@ class ProfilePage extends Component {
       userId,
       match: {
         params: { profileId }
-      }
+      },
+      makeNotification
     } = this.props;
-
+    makeNotification("addFriend", profileId);
     firebaseWrapper.addFriend(userId, profileId);
   };
 
