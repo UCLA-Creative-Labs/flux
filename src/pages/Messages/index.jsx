@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 
 import Navbar from "../../components/Navbar";
 import MessageManager from "../../components/MessageManager";
+import TopBar from "../../components/TopBar";
 
 const Messages = ({ userId, notifications }) => {
   return (
     <div>
+      <TopBar type="message" />
       <Navbar
         userId={userId}
         activeTab="messages"

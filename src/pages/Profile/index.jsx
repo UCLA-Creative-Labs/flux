@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 
 import Navbar from "../../components/Navbar";
 import ProfilePage from "../../components/ProfilePage";
+import TopBar from "../../components/TopBar";
 
 const Profile = props => {
   const { userId, handleLogout, notifications } = props;
   return (
     <div>
+      <TopBar />
       <Navbar
         userId={userId}
         activeTab="profile"
