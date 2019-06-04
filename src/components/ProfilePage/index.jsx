@@ -41,33 +41,35 @@ const Curve = ({
 };
 
 const WavyLines = () => {
-    return (
+  return (
     <div className="wavylines">
-    <svg
-    className="svg"
-    width="100%"
-    height="100%"
-    viewBox="0 -30 1400 87"
-    preserveAspectRatio="xMinYMin slice">
-    <path
-    d="m 0,48.867516 v -50 c 500,99.999994 949.99997,-99.999996 1400,0 v 50 z"
-    style={{ fill: '#9cb1db'}} 
-    />
-    <path
-    style={{ fill: '#ffffff'}}
-    d="m 0,58.867516 v -50 c 500,99.999994 949.99997,-99.999996 1400,0 v 50 z" />
-    <path
-    d="m 0,68.867516 v -50 c 500,99.999994 949.99997,-99.999996 1400,0 v 50 z"
-    style={{ fill: '#9cb1db'}} 
-    />
-    <path
-    style={{ fill: '#ffffff'}}
-    d="m 0,78.867516 v -50 c 500,99.999994 949.99997,-99.999996 1400,0 v 50 z" />
-    </svg>
+      <svg
+        className="svg"
+        width="100%"
+        height="100%"
+        viewBox="0 -30 1400 87"
+        preserveAspectRatio="xMinYMin slice"
+      >
+        <path
+          d="m 0,48.867516 v -50 c 500,99.999994 949.99997,-99.999996 1400,0 v 50 z"
+          style={{ fill: "#9cb1db" }}
+        />
+        <path
+          style={{ fill: "#ffffff" }}
+          d="m 0,58.867516 v -50 c 500,99.999994 949.99997,-99.999996 1400,0 v 50 z"
+        />
+        <path
+          d="m 0,68.867516 v -50 c 500,99.999994 949.99997,-99.999996 1400,0 v 50 z"
+          style={{ fill: "#9cb1db" }}
+        />
+        <path
+          style={{ fill: "#ffffff" }}
+          d="m 0,78.867516 v -50 c 500,99.999994 949.99997,-99.999996 1400,0 v 50 z"
+        />
+      </svg>
     </div>
-    );
-}
-    
+  );
+};
 
 class ProfilePage extends Component {
   constructor(props) {
