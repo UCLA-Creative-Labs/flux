@@ -18,25 +18,26 @@ html, body   {
 }
 
 .profilePicture {
-    height: 33vh;
-    max-height: 250px;
-    width: 33vh;
-    max-width: 250px;
-    border-radius: 50%;
-    border: .5rem solid #9CB1DB;
-    margin-left: 5rem;
-    margin-bottom: -2rem;
-    margin-right: 1rem;
-    background-color: #9CB1DB;
-    z-index: 1000;
+  height: 30vh;
+  max-height: 250px;
+  width: 30vh;
+  max-width: 250px;
+  border-radius: 50%;
+  border: 0.5rem solid #7b90c6;
+  margin-left: 5rem;
+  margin-bottom: -2rem;
+  margin-right: 1rem;
+  background-color: #7b90c6;
+  z-index: 1000;
 }
 
 .posts {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 62px;
-    min-height: 520px;
-    height: 75%
+  display: flex;
+  flex-direction: column;
+  margin-top: -20px;
+  margin-bottom: 62px;
+  min-height: 520px;
+  height: 70vh
 }
 
 .likedPosts {
@@ -114,11 +115,11 @@ html, body   {
     margin-bottom: .5rem;
 }
 
-.curve {
-    display: flex;
-    min-height: 88.86px;
+.svg {
+  width: 100%;
+  margin-bottom: 5px
 }
 
-.svg {
-    width: 100%;
+.wavylines {
+    margin-bottom: -3px
 }
