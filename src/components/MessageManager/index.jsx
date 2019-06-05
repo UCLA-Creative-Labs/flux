@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import firebaseWrapper from "../../firebaseWrapper";
 import MessagingWindow from "../MessagingWindow/index";
 import "./styles.css";
+import MessageTile from "../MessageTile";
 
 class MessageManager extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class MessageManager extends Component {
       const updateFriends = (friends, newFriendsRef) => {
         this.setState({
           friends,
-          friendsRef: newFriendsRef
+          friendsRef: newFriendsRef,
+          activeConversation: Object.keys(friends)[0]
         });
       };
       firebaseWrapper.listenForFriends(userId, updateFriends);
@@ -52,40 +54,44 @@ class MessageManager extends Component {
 
   render() {
     const { friends, activeConversation } = this.state;
-    const { userId } = this.props;
+    const { userId, makeNotification } = this.props;
 
     return (
-      <div>
-        {/* <h1>Temporary Message Manager</h1> */}
-
-        {/* List of friends */}
-        {Object.keys(friends).map(friendId => (
-          <div key={friendId}>
-            <button
-              className="friend-name"
-              type="button"
+      <div className="window-wrapper">
+        <div className="topBar">
+          <p> Direct Messages</p>
+        </div>
+        <div className="conversationList">
+          {Object.keys(friends).map(friendId => (
+            <div
+              key={friendId}
               onClick={() => this.handleFriendClick(friendId)}
             >
-              Friend {friendId}
-            </button>
-          </div>
-        ))}
+              <MessageTile
+                userId={friendId}
+                isSelected={activeConversation === friendId}
+              />
+            </div>
+          ))}
+        </div>
 
-        {activeConversation != null ? (
-          <MessagingWindow
-            userId={userId}
-            conversationId={friends[activeConversation]}
-          />
-        ) : (
-          <p> Click a friend to get started! </p>
-        )}
+        <div className="conversationWindow">
+          {activeConversation != null && (
+            <MessagingWindow
+              userId={userId}
+              conversationId={friends[activeConversation]}
+              makeNotification={makeNotification}
+            />
+          )}
+        </div>
       </div>
     );
   }
 }
 
 MessageManager.propTypes = {
-  userId: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired,
+  makeNotification: PropTypes.func.isRequired
 };
 
 export default MessageManager;

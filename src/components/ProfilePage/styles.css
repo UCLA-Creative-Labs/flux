@@ -1,12 +1,7 @@
-html, body   {
-    margin: 0;
-    height: 100%;
-}
-
 .profilePage {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .userInfo {
@@ -52,11 +47,15 @@ html, body   {
 }
 
 .likedPosts:focus {
-    outline-width: 0;
+  outline-width: 0;
 }
 
 .likedPostsPath {
-    fill: #D7EFF2;
+  fill: #d7eff2;
+}
+
+.pagetitle {
+  text-align: left;
 }
 
 .userPosts {
@@ -70,50 +69,50 @@ html, body   {
 }
 
 .userPosts:focus {
-    outline-width: 0;
+  outline-width: 0;
 }
 
 .userPostsPath {
-    fill: #9CB1DB;
+  fill: #9cb1db;
 }
 
 .friendsList {
-    display: flex;
-    flex-grow:1;
-    justify-content: center;
-    background-color: #7B90C6;
-    margin-top: -1px;
-    margin-bottom: -2px;
-    padding-left: 1rem;
-    padding-top: 2rem;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  background-color: #7b90c6;
+  margin-top: -1px;
+  margin-bottom: -2px;
+  padding-left: 1rem;
+  padding-top: 2rem;
 }
 
 .friendsList:focus {
-    outline-width: 0;
+  outline-width: 0;
 }
 
 .friendsListPath {
-    fill: #7B90C6
+  fill: #7b90c6;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .preview * {
-    display: none;
+  display: none;
 }
 
 .preview {
-    min-height: 1rem;
+  min-height: 1rem;
 }
 
 .active {
-    padding-bottom: 62px;
+  padding-bottom: 62px;
 }
 
-.profileId {
-    margin-bottom: .5rem;
+.name {
+  margin-bottom: 0.5rem;
 }
 
 .svg {

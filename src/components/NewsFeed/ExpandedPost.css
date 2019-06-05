@@ -1,0 +1,80 @@
+.newsfeed .contain {
+  display: inline-block;
+  font-size: 0;
+}
+
+.newsfeed .expandedPost {
+  position: relative;
+  font-size: 0;
+  border: 10px solid #edecec;
+  margin-top: 0px;
+  padding-top: 20px;
+  border-top: 0;
+  width: 350px;
+  height: 280px;
+  background-color: white;
+}
+
+.newsfeed .color {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  border: 10px solid #edecec;
+  border-bottom: 0;
+  width: 350px;
+  height: 50px;
+  padding-top: 10px;
+  background: #d7f0f3;
+  margin-top: 0;
+  align-items: baseline;
+}
+
+.newsfeed .name {
+  display: inline;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+.newsfeed .profpic {
+  position: absolute;
+  overflow: visible;
+  left: 50%;
+  top: -6%;
+  width: 40px;
+  margin-left: -20px;
+  height: 40px;
+  border: 8px solid white;
+  border-radius: 50%;
+}
+
+.newsfeed .dropcap {
+  display: inline-block;
+  font-size: 80px;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+  font-weight: 800;
+}
+
+.newsfeed .postcontents {
+  overflow: scroll;
+  height: 95%;
+  width: 100%;
+}
+
+.newsfeed .text {
+  display: block;
+  line-height: 15px;
+  text-align: left;
+  font-size: 12px;
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-family: "Poppins", sans-serif;
+}
+
+.newsfeed .postphoto {
+  display: inline-block;
+  max-width: 320px;
+}

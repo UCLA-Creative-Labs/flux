@@ -1,0 +1,83 @@
+.newsfeed .ShowPostContainer {
+  font-size: 10px;
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 140px;
+  border: 5px solid #edecec;
+  border-top: 0;
+  background-color: white;
+}
+
+.newsfeed .card {
+  text-align: center;
+  font-size: 0;
+  width: 180px;
+  height: 200px;
+  margin: 30px;
+  margin-bottom: 0;
+}
+
+.newsfeed .arrow {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  height: 30px;
+}
+
+.newsfeed .seemore {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 40px;
+  height: 40px;
+}
+
+.newsfeed .seemorebutton {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.newsfeed .letter {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 50%;
+  top: 34%;
+  margin-top: -40px;
+  margin-left: -40px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: 80px;
+  text-transform: capitalize;
+}
+
+.newsfeed .colorbox {
+  display: inline-block;
+  background: #7b90c6;
+  width: 150px;
+  height: 15px;
+}
+
+.newsfeed .r1 {
+  display: inline-block;
+  margin-top: 2px;
+  width: 150px;
+  height: 5px;
+  background: #edecec;
+}
+
+.newsfeed .r2 {
+  display: inline-block;
+  margin-top: 2px;
+  width: 135px;
+  height: 5px;
+  background: #edecec;
+}

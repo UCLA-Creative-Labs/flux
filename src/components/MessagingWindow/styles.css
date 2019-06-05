@@ -1,0 +1,52 @@
+@import "../../colors.css";
+.wrapper {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  border-left: 5px solid var(--light-teal);
+  font-size: 0;
+}
+.friend-info {
+  z-index: 1000;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: -60px;
+  background-color: var(--gray);
+  font-size: 16px;
+}
+
+.messages {
+  display: inline-block;
+  width: 100%;
+  height: calc(100% - 55px);
+  overflow-y: scroll;
+  font-size: 16px;
+}
+.input-bar {
+  width: 100%;
+  height: 55px;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.message {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  padding: 50px;
+  word-wrap: break-word;
+
+  display: table;
+  table-layout: fixed;
+  overflow: hidden;
+}
+
+.text-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}

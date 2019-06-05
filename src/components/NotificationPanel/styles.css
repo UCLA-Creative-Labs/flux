@@ -1,12 +1,16 @@
 .NotificationPanel {
   height: auto;
-  border: 0.5px solid gray;
-  z-index: 3;
-
+  z-index: -1;
+  overflow-y: auto;
 }
 
 .NotificationText {
-  height: 5px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
 }
 
 .overlay {
@@ -15,22 +19,22 @@
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100;
-  height: auto;
-  background-color: gray;
-  opacity: 0.7;
-  z-index: -1;
-  overflow: auto;
+  height: calc(100vh - 62px);
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -3;
+  overflow-y: auto;
+
 }
 
 .NotificationPanelBackground {
+  /* Navbar z-index is 4 */
   position: relative;
   background-color: white;
-  left: 55%;
-  z-index: 2;
+  left: 64%;
+  z-index: -2;
   height: auto;
-  min-height: 200px;
-  top: 15%;
+  min-height: calc(100vh - 62px);
+  top: 0%;
   width: 380px;
-
 }

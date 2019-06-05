@@ -3,24 +3,22 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  height: 60px;
+  height: auto;
   overflow-y: auto;
-  border: 0.5px solid rgb(92, 215, 249);
-}
-
-.color-type {
-  width: 10px;
-  height: 59px;
-  margin-right: 10px;
+  border: 0.5px solid rgba(128, 128, 128, 0.5);
+  padding-right: 10px;
 }
 
 .image {
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  margin-right: 10px
+  margin-right: 15px;
+  margin-left: 15px;
 }
 
 .content {
   text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

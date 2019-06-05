@@ -1,0 +1,44 @@
+.tile-wrapper {
+  height: 80px;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+}
+
+.empty-box {
+  display: inline-block;
+  width: 2%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+}
+
+.profile-picture {
+  box-sizing: border-box;
+  margin-top: 7.5px;
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+}
+
+.profile-picture img {
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+}
+
+.user-name {
+  display: inline-block;
+  width: 70%;
+  height: 100%;
+}
+
+.user-name p {
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 20px;
+  font: "Poppins";
+}
