@@ -22,25 +22,29 @@
 
 .newsfeed .c1 {
   position: absolute;
-  left: 27%;
+  left: 2%;
   top: 5%;
   border-radius: 50%;
   width: 350px;
   height: 350px;
-  background: linear-gradient(180deg,
-      #a4b0fc 26.19%,
-      rgba(159, 203, 254, 0.38) 68.21%);
+  background: linear-gradient(
+    180deg,
+    #a4b0fc 26.19%,
+    rgba(159, 203, 254, 0.38) 68.21%
+  );
   transform: rotate(-45deg);
+  border: none;
 }
 
 .newsfeed .c2 {
   position: absolute;
-  left: 45%;
+  left: 25%;
   top: 13%;
   border-radius: 50%;
   width: 150px;
   height: 150px;
   background: rgba(160, 221, 217, 0.8);
+  border: none;
 }
 
 .newsfeed .c3 {
@@ -51,6 +55,7 @@
   width: 220px;
   height: 220px;
   background: #d7f0f3;
+  border: none;
 }
 
 .newsfeed .c4 {
@@ -61,6 +66,7 @@
   width: 150px;
   height: 150px;
   background: rgba(160, 221, 217, 0.8);
+  border: none;
 }
 
 .newsfeed .c5 {
@@ -70,10 +76,13 @@
   border-radius: 50%;
   width: 350px;
   height: 350px;
-  background: linear-gradient(180deg,
-      #a4b0fc 26.19%,
-      rgba(159, 203, 254, 0.38) 68.21%);
+  background: linear-gradient(
+    180deg,
+    #a4b0fc 26.19%,
+    rgba(159, 203, 254, 0.38) 68.21%
+  );
   transform: rotate(133.73deg);
+  border: none;
 }
 
 .newsfeed .c6 {
@@ -84,4 +93,5 @@
   width: 220px;
   height: 220px;
   background: #d7f0f3;
+  border: none;
 }
