@@ -49,13 +49,20 @@ class MessagingWindow extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { conversationId } = nextProps;
+    const { friendId, conversationId } = nextProps;
     const { prevConversationRef } = this.state;
 
     const updateMessages = (messages, prevRef) => {
       this.setState({
+        friendId,
         messages,
         prevConversationRef: prevRef
+      });
+    };
+
+    const updatePicture = picurl => {
+      this.setState({
+        photoURL: picurl
       });
     };
 
@@ -64,6 +71,8 @@ class MessagingWindow extends Component {
       conversationId,
       updateMessages
     );
+
+    firebaseWrapper.getProfilePicture(friendId, updatePicture);
   }
 
   handleChange = e => {
