@@ -89,6 +89,7 @@
   height: 55px;
   display: inline-block;
   font-size: 16px;
+  padding: 0 20px;
 }
 
 .message {

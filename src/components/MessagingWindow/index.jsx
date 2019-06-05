@@ -18,7 +18,7 @@ class MessagingWindow extends Component {
       lastName: "",
       text: "",
       photoURL: "",
-      w: 150,
+      w: 0,
       t: null
     };
 
@@ -108,7 +108,7 @@ class MessagingWindow extends Component {
     firebaseWrapper.sendMessage(conversationId, message);
     this.setState({
       text: "",
-      w: 150
+      w: 0
     });
   };
 
@@ -119,7 +119,7 @@ class MessagingWindow extends Component {
       this.setState(state => {
         return { w: state.w + 1 };
       }, this.textInput.current.focus());
-    }, 100);
+    }, 15);
 
     this.setState({ t: this.ti });
   };
