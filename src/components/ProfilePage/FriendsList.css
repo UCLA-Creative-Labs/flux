@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.friendListing {
+    display: flex;
+    align-items: center;
+    width: 100%
+}
+
+.picture {
+    height: 82px;
+    width: 82px;
+    border-radius: 50%;
+    border: 0.5rem solid white;
+    background-color: white;
+    margin-right: 1rem
+}
+.title {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    font-weight: 900;
+    font-size: 60px;
+    weight: 75%
+}
+
+.friendName {
+    color: white;
+    font-size: 36px;
+    font-weight: 700;
+}
