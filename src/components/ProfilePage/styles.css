@@ -24,8 +24,8 @@
 .addFriendButton {
     background: transparent;
     border: none;
-    margin-bottom: 10px;
-    font-weight: 700
+    margin-bottom: 20px;
+    font-weight: 800
 }
 .profilePicture {
   height: 30vh;
