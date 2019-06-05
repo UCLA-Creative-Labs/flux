@@ -59,6 +59,15 @@
     margin-right: 20%
 }
 
+.title {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    font-weight: 900;
+    font-size: 50px;
+    margin-right: 20%
+}
+
 .likedPosts {
   flex-grow: 1;
   display: flex;
