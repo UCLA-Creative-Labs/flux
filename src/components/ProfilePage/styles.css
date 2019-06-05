@@ -5,28 +5,27 @@
 }
 
 .userInfo {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-left: 10rem;
-    margin-bottom: -1rem;
-    margin-top: 3rem;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 10rem;
+  margin-bottom: -1rem;
 }
 
 .profileName {
-    font-weight: 900;
-    font-size: 40px;
-    margin: 10px;
-    margin-bottom: 0
+  font-weight: 900;
+  font-size: 40px;
+  margin: 10px;
+  margin-bottom: 0;
 }
 
 .addFriendButton {
-    background: transparent;
-    border: none;
-    margin-bottom: 20px;
-    font-weight: 800;
-    cursor: pointer
+  background: transparent;
+  border: none;
+  margin-bottom: 20px;
+  font-weight: 800;
+  cursor: pointer;
 }
 
 .profilePicture {
@@ -48,17 +47,17 @@
   margin-top: -20px;
   margin-bottom: 62px;
   min-height: 520px;
-  height: 70vh
+  height: 70vh;
 }
 
 .likedPosts {
-    flex-grow: 1;
-    display: flex;
-    background-color: #D7EFF2;
-    margin-top: -1px;
-    padding-left: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 62px;
+  flex-grow: 1;
+  display: flex;
+  background-color: #d7eff2;
+  margin-top: -1px;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 62px;
 }
 
 .likedPosts:focus {
@@ -70,13 +69,13 @@
 }
 
 .userPosts {
-    flex-grow: 1;
-    display: flex;
-    background-color: #9CB1DB;
-    margin-top: -1px;
-    margin-bottom: -2px;
-    padding-left: 1rem;
-    padding-top: 1rem;
+  flex-grow: 1;
+  display: flex;
+  background-color: #9cb1db;
+  margin-top: -1px;
+  margin-bottom: -2px;
+  padding-left: 1rem;
+  padding-top: 1rem;
 }
 
 .userPosts:focus {
@@ -128,10 +127,10 @@
 
 .svg {
   width: 100%;
-  margin-bottom: 5px
+  margin-bottom: 5px;
 }
 
 .wavylines {
-    margin-bottom: -3px;
-    margin-top: 5rem
+  margin-bottom: -3px;
+  margin-top: 5rem;
 }
