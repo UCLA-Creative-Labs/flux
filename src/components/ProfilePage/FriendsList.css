@@ -3,14 +3,14 @@
     flex-direction: column;
     width: 60%;
     margin-left: 35%;
-    padding-bottom: 3rem;
 }
 
 .friendListing {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 100%
+    width: 100%;
+    margin-top: 1rem;
 }
 
 .picture {
@@ -20,7 +20,6 @@
     border: 0.4rem solid white;
     background-color: white;
     margin-right: 1rem;
-    margin-top: 1rem;
 }
 
 .friendName {
