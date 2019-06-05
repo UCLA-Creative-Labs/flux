@@ -8,7 +8,7 @@ import TopBar from "../../components/TopBar";
 const Messages = ({ userId, notifications, makeNotification }) => {
   return (
     <div>
-      <TopBar userId={userId} type="message" handleLogout={handleLogout} />
+      <TopBar userId={userId} type="message" />
       <Navbar
         userId={userId}
         activeTab="messages"
