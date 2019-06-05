@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import "../../colors.css";
 import firebaseWrapper from "../../firebaseWrapper";
 import Message from "./Message";
@@ -113,14 +114,16 @@ class MessagingWindow extends Component {
 
   render() {
     const { photoURL, w, text, messages } = this.state;
-    const { userId } = this.props;
+    const { friendId, userId } = this.props;
     const climit = w / 12;
     const barWidth = w;
 
     return (
       <div className="wrapper" onDragEnd={this.stopTimer}>
         <div className="friend-info">
-          <p>John Doe</p>
+          <Link to={`/user/${friendId}`} className="name">
+            <p>John Doe</p>
+          </Link>
           <div className="pictureWrapper">
             <div className="friend-picture">
               <img src={photoURL} alt="profile-pic" />
