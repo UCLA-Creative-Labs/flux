@@ -93,8 +93,16 @@ const listenForMessages = (prevRef, conversationId, done) => {
     .database()
     .ref(`/conversations/${conversationId}/messages/`);
   conversationRef.on("value", snapshot => {
-    done(snapshot.val(), conversationRef);
+    done(snapshot.val() != null ? snapshot.val() : {}, conversationRef);
   });
+};
+
+const deleteMessage = (conversationId, message) => {
+  const messageRef = firebase
+    .database()
+    .ref(`/conversations/${conversationId}/messages/${message}`);
+
+  messageRef.remove();
 };
 
 /**
@@ -269,6 +277,7 @@ export default {
 
   sendMessage,
   listenForMessages,
+  deleteMessage,
 
   sendPost,
   listenForPosts,

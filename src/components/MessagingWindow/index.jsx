@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import "../../colors.css";
 import firebaseWrapper from "../../firebaseWrapper";
 import Message from "./Message";
@@ -9,16 +10,24 @@ import blower from "../../images/Bubbleblower.svg";
 class MessagingWindow extends Component {
   constructor(props) {
     super(props);
-
+    const { friendId } = this.props;
     this.state = {
       messages: [],
-      text: ""
+      friendId,
+      firstName: "",
+      lastName: "",
+      text: "",
+      photoURL: "",
+      w: 0,
+      t: null
     };
+
+    this.textInput = React.createRef();
   }
 
   componentDidMount() {
     const { conversationId } = this.props;
-    const { prevConversationRef } = this.state;
+    const { friendId, prevConversationRef } = this.state;
 
     const updateMessages = (messages, prevRef) => {
       this.setState({
@@ -27,21 +36,51 @@ class MessagingWindow extends Component {
       });
     };
 
+    const updateName = (firstName, lastName) => {
+      this.setState({
+        firstName,
+        lastName
+      });
+    };
+
+    const updatePicture = picurl => {
+      this.setState({
+        photoURL: picurl
+      });
+    };
+
     firebaseWrapper.listenForMessages(
       prevConversationRef,
       conversationId,
       updateMessages
     );
+
+    firebaseWrapper.getName(friendId, updateName);
+    firebaseWrapper.getProfilePicture(friendId, updatePicture);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { conversationId } = nextProps;
+    const { friendId, conversationId } = nextProps;
     const { prevConversationRef } = this.state;
 
     const updateMessages = (messages, prevRef) => {
       this.setState({
+        friendId,
         messages,
         prevConversationRef: prevRef
+      });
+    };
+
+    const updatePicture = picurl => {
+      this.setState({
+        photoURL: picurl
+      });
+    };
+
+    const updateName = (firstName, lastName) => {
+      this.setState({
+        firstName,
+        lastName
       });
     };
 
@@ -50,6 +89,9 @@ class MessagingWindow extends Component {
       conversationId,
       updateMessages
     );
+
+    firebaseWrapper.getName(friendId, updateName);
+    firebaseWrapper.getProfilePicture(friendId, updatePicture);
   }
 
   handleChange = e => {
@@ -58,41 +100,79 @@ class MessagingWindow extends Component {
 
   handleClick = e => {
     e.preventDefault();
+    clearInterval(this.timer);
     const { text } = this.state;
     const { userId, conversationId, makeNotification } = this.props;
     const message = { text, userId };
     makeNotification("message", userId);
     firebaseWrapper.sendMessage(conversationId, message);
     this.setState({
-      text: ""
+      text: "",
+      w: 0
     });
   };
 
+  startTimer = () => {
+    this.textInput.current.focus();
+
+    this.ti = setInterval(() => {
+      this.setState(state => {
+        return { w: state.w + 1 };
+      }, this.textInput.current.focus());
+    }, 15);
+
+    this.setState({ t: this.ti });
+  };
+
+  stopTimer = () => {
+    const { t } = this.state;
+    clearInterval(t);
+    clearInterval(this.ti);
+  };
+
   render() {
-    const { text, messages } = this.state;
-    const { userId } = this.props;
+    const { firstName, lastName, photoURL, w, text, messages } = this.state;
+    const { conversationId, friendId, userId } = this.props;
+    const climit = w / 12;
+    const barWidth = w;
 
     return (
-      <div className="wrapper">
-        {/* <div className="friend-info"> */}
-        {/* To be added!}
-        {/* </div> */}
-
+      <div className="wrapper" onDragEnd={this.stopTimer}>
+        <div className="friend-info">
+          <Link to={`/user/${friendId}`} className="name">
+            <p>
+              {firstName} {lastName}
+            </p>
+          </Link>
+          <div className="pictureWrapper">
+            <div className="friend-picture">
+              <img src={photoURL} alt="profile-pic" />
+            </div>
+          </div>
+        </div>
         <div className="messages">
           {Object.keys(messages).map(messageId =>
             messages[messageId].userId === userId ? (
-              <Message key={messageId} text={messages[messageId].text} sent />
+              <Message
+                key={messageId}
+                text={messages[messageId].text}
+                sent
+                id={messageId}
+                cid={conversationId}
+              />
             ) : (
               <Message
                 key={messageId}
                 text={messages[messageId].text}
                 sent={false}
+                id={messageId}
+                cid={conversationId}
               />
             )
           )}
         </div>
 
-        <div className="input-bar">
+        <div className="input-bar" onMouseUp={this.stopTimer}>
           <form
             onSubmit={this.handleClick}
             style={{
@@ -104,6 +184,8 @@ class MessagingWindow extends Component {
           >
             <div
               onClick={this.handleClick}
+              onMouseDown={this.startTimer}
+              onMouseUp={this.stopTimer}
               type="submit"
               style={{
                 display: "inline-block",
@@ -116,28 +198,30 @@ class MessagingWindow extends Component {
                 src={blower}
                 style={{
                   width: "25px",
-                  height: "67%",
+                  height: "25px",
                   float: "right",
-                  marginRight: "15px",
+                  marginRight: "25px",
                   paddingTop: "3px"
                 }}
                 alt="send-button"
               />
             </div>
             <input
+              ref={this.textInput}
               type="text"
+              maxLength={climit}
               placeholder="TYPE A MESSAGE!"
               onChange={this.handleChange}
               value={text}
               style={{
                 display: "inline-block",
                 borderRadius: "15px",
-                height: "67%",
+                height: "25px",
                 border: "none",
                 backgroundColor: "var(--gray)",
-                paddingLeft: "5px",
-                marginRight: "20px",
-                width: "auto",
+                paddingLeft: "10px",
+                marginRight: "30px",
+                width: `${barWidth}px`,
                 maxWidth: "90%",
                 float: "right",
                 outline: "none"
@@ -152,6 +236,7 @@ class MessagingWindow extends Component {
 
 MessagingWindow.propTypes = {
   userId: PropTypes.string.isRequired,
+  friendId: PropTypes.string.isRequired,
   conversationId: PropTypes.string.isRequired,
   makeNotification: PropTypes.func.isRequired
 };

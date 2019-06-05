@@ -8,18 +8,70 @@
 }
 .friend-info {
   z-index: 1000;
-  width: 200px;
-  height: 200px;
+  width: 350px;
+  height: 350px;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  top: -175px;
   margin: auto;
   margin-top: -60px;
-  background-color: var(--gray);
+  background: rgb(145, 175, 252);
+  background: linear-gradient(
+    0deg,
+    rgba(145, 175, 252, 1) 0%,
+    rgba(255, 255, 255, 1) 66%
+  );
+  border-radius: 50%;
+  font-size: 16px;
+}
+.friend-info p {
+  font-size: 24px;
+  height: 20px;
+  width: 200px;
+  z-index: 1001;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-top: 0;
+  transform: translate(40%, 1200%);
+  font-weight: bold;
+  color: #222222;
+}
+
+.pictureWrapper {
+  z-index: 1002;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-top: 0;
+  transform: translate(125%, 275%);
+  top: 75px;
+  position: absolute;
+  margin-top: -60px;
+  background-color: var(--blueberry);
+  border-radius: 50%;
   font-size: 16px;
 }
 
+.friend-picture {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-top: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.friend-picture img {
+  width: 100%;
+  height: 100%;
+}
 .messages {
   display: inline-block;
   width: 100%;
@@ -32,6 +84,7 @@
   height: 55px;
   display: inline-block;
   font-size: 16px;
+  padding: 0 20px;
 }
 
 .message {

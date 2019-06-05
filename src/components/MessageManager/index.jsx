@@ -77,6 +77,7 @@ class MessageManager extends Component {
             <MessagingWindow
               userId={userId}
               conversationId={friends[activeConversation]}
+              friendId={activeConversation}
               makeNotification={makeNotification}
             />
           )}
