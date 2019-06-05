@@ -166,15 +166,19 @@ class ProfilePage extends Component {
           </button>
         </div>
         <div className="userInfo">
-          {/* <h2 className="profileId">{profileId}</h2> */}
+          <h1 className="profileName">
+            {firstName} {lastName}
+          </h1>
+          {profileId !== userId && !(userId in friends) && (
+            <button
+              type="button"
+              className="addFriendButton"
+              onClick={this.addFriend}
+            >
+              + Add Friend
+            </button>
+          )}
           <img src={profilePicture} alt="Profile" className="profilePicture" />
-          <div>
-            {/* {profileId !== userId && !(userId in friends) && (
-              <button type="button" onClick={this.addFriend}>
-                Add Friend
-              </button>
-            )} */}
-          </div>
         </div>
         <WavyLines />
         <div className="posts">

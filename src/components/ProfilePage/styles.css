@@ -7,21 +7,34 @@
 .userInfo {
     position: absolute;
     display: flex;
+    align-items: center;
     flex-direction: column;
+    margin-left: 10rem;
     margin-bottom: -1rem;
-    margin-top: 5rem;
+    margin-top: 3rem;
 }
 
+.profileName {
+    font-weight: 900;
+    font-size: 40px;
+    margin: 10px;
+    margin-bottom: 0
+}
+
+.addFriendButton {
+    background: transparent;
+    border: none;
+    margin-bottom: 10px;
+    font-weight: 700
+}
 .profilePicture {
-  height: 33vh;
+  height: 30vh;
   max-height: 250px;
-  width: 33vh;
+  width: 30vh;
   max-width: 250px;
   border-radius: 50%;
   border: 0.5rem solid #7b90c6;
-  margin-left: 5rem;
   margin-bottom: -2rem;
-  margin-right: 1rem;
   background-color: white;
   z-index: 1000;
 }
