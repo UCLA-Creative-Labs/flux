@@ -113,12 +113,7 @@ class App extends Component {
               );
             }}
           />
-          <Route
-            path="/register"
-            render={() => {
-              return <Registration />;
-            }}
-          />
+
           <Route
             path="/user/:profileId"
             render={props => {
