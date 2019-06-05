@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 
 import Navbar from "../../components/Navbar";
 import ProfilePage from "../../components/ProfilePage";
+import NotificationAlert from "../../components/NotificationAlert";
 
 const Profile = props => {
   const { userId, handleLogout, notifications, makeNotification } = props;
   return (
     <div>
+      <NotificationAlert numNotifications={notifications.length} />
       <Navbar
         userId={userId}
         activeTab="profile"
