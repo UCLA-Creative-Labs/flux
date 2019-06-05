@@ -175,7 +175,7 @@ class ProfilePage extends Component {
               className="addFriendButton"
               onClick={this.addFriend}
             >
-              + Add Friend
+              + ADD FRIEND
             </button>
           )}
           <img src={profilePicture} alt="Profile" className="profilePicture" />
