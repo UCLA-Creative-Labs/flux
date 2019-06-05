@@ -245,10 +245,6 @@ class ProfilePage extends Component {
 ProfilePage.propTypes = {
   match: PropTypes.shape({}).isRequired,
   userId: PropTypes.string.isRequired,
-<<<<<<< HEAD
-  handleLogout: PropTypes.func.isRequired,
-=======
->>>>>>> master
   makeNotification: PropTypes.func.isRequired
 };
 
