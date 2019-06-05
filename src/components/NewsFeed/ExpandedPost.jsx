@@ -8,31 +8,35 @@ class ExpandedPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      profilePicture: null
+      profilePicture: null,
+      firstName: "",
+      lastName: ""
     };
   }
 
   componentDidMount() {
-    this.getProfilePicture();
-  }
-
-  getProfilePicture = () => {
     const { userId } = this.props;
-    firebaseWrapper.getProfilePicture(userId, this.setProfilePicture);
-  };
 
-  setProfilePicture = url => {
-    this.setState({ profilePicture: url });
-  };
+    const setName = (firstName, lastName) => {
+      this.setState({ firstName, lastName });
+    };
+    const setProfilePicture = url => {
+      this.setState({ profilePicture: url });
+    };
+
+    firebaseWrapper.getProfilePicture(userId, setProfilePicture);
+    firebaseWrapper.getName(userId, setName);
+  }
 
   render() {
     const { userId, text, photo } = this.props;
-    const { profilePicture } = this.state;
+
+    const { profilePicture, firstName, lastName } = this.state;
     return (
       <div className="contain">
         <div className="color">
           <Link to={`/user/${userId}`} className="name">
-            {userId}
+            {firstName} {lastName}
           </Link>
         </div>
         <div className="expandedPost">

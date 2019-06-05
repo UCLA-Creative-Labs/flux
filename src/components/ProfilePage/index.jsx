@@ -45,10 +45,10 @@ class ProfilePage extends Component {
     super(props);
 
     this.state = {
-      //   likedPosts: [],
-      //   userPosts: [],
       friends: {},
-      activeTab: ""
+      activeTab: "",
+      firstName: "",
+      lastName: ""
     };
   }
 
@@ -67,9 +67,16 @@ class ProfilePage extends Component {
         friends
       });
     };
+    const updateName = (firstName, lastName) => {
+      this.setState({
+        firstName,
+        lastName
+      });
+    };
 
     firebaseWrapper.getProfilePicture(profileId, updateProfilePicture);
     firebaseWrapper.listenForFriends(profileId, updateFriends);
+    firebaseWrapper.getName(profileId, updateName);
   }
 
   addFriend = () => {
@@ -93,11 +100,12 @@ class ProfilePage extends Component {
   render() {
     const {
       userId,
-      handleLogout,
       match: {
         params: { profileId }
       }
     } = this.props;
+    const { firstName, lastName } = this.state;
+
     const { friends, profilePicture, activeTab } = this.state;
     let userPostsClass;
     let likedPostsClass;
@@ -143,15 +151,12 @@ class ProfilePage extends Component {
 
     return (
       <div className="profilePage">
-        <div>
-          <button type="submit" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
         <div className="userInfo">
           <img src={profilePicture} alt="Profile" className="profilePicture" />
           <div>
-            <h2 className="profileId">{profileId}</h2>
+            <h2 className="name">
+              {firstName} {lastName}
+            </h2>
             {profileId !== userId && !(userId in friends) && (
               <button type="button" onClick={this.addFriend}>
                 Add Friend
@@ -240,7 +245,10 @@ class ProfilePage extends Component {
 ProfilePage.propTypes = {
   match: PropTypes.shape({}).isRequired,
   userId: PropTypes.string.isRequired,
+<<<<<<< HEAD
   handleLogout: PropTypes.func.isRequired,
+=======
+>>>>>>> master
   makeNotification: PropTypes.func.isRequired
 };
 

@@ -4,11 +4,18 @@ import PropTypes from "prop-types";
 import Navbar from "../../components/Navbar";
 import NewsFeed from "../../components/NewsFeed";
 import NotificationAlert from "../../components/NotificationAlert";
+import TopBar from "../../components/TopBar";
 
-const Home = ({ userId, makeNotification, notifications }) => {
+const Home = ({ userId, makeNotification, notifications, handleLogout }) => {
   return (
     <div>
       <NotificationAlert numNotifications={notifications.length} />
+      <TopBar
+        userId={userId}
+        type="home"
+        makeNotification={makeNotification}
+        handleLogout={handleLogout}
+      />
       <Navbar
         userId={userId}
         makeNotification={makeNotification}
@@ -33,7 +40,8 @@ Home.propTypes = {
       time: PropTypes.string
     })
   ).isRequired,
-  makeNotification: PropTypes.func.isRequired
+  makeNotification: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired
 };
 
 export default Home;
