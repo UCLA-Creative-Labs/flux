@@ -1,27 +1,27 @@
 import React from "react";
 import "./NotificationBox.css";
 import PropTypes from "prop-types";
-import OtherImage from "../../images/notifications/other.png";
+import TabImage from "../../images/notifications/tab.png";
 import PostImage from "../../images/notifications/post.png";
 import MessageImage from "../../images/notifications/message.png";
 import FriendImage from "../../images/notifications/friend.png";
 
 function NotificationBox({ content, type, time }) {
   let color = "#D7F0F3"; // mint
-  let image = OtherImage;
+  let image = TabImage;
   let text = content;
   if (type === "makePost") {
     color = "#7B90C6"; // navy
     image = PostImage;
-    text = `${text} made a new post!`;
+    text = `You just made a new post!`;
   } else if (type === "message") {
-    color = "teal";
+    color = "#A0DDD9";
     image = MessageImage;
-    text = `${text} just messaged you!`;
+    text = `You just sent a message!`;
   } else if (type === "addFriend") {
-    color = "blue";
+    color = "#91AFFC";
     image = FriendImage;
-    text = `${text} just friended you!`;
+    text = `You just added a friend!`;
   } else if (type === "clickTab") {
     text = "You just clicked a tab!";
   }
