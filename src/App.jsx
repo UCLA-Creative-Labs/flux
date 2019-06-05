@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
 import Loading from "./components/Loading";
+import Register from "./components/Register";
 import "./App.css";
 
 class App extends Component {
@@ -82,6 +83,12 @@ class App extends Component {
           <Route exact path="/" render={() => <Redirect to="/newsfeed" />} />
           <Route path="/loading" component={Loading} />
           <Route
+            path="/register"
+            render={() => {
+              return <Register userId={userId} />;
+            }}
+          />
+          <Route
             path="/newsfeed"
             render={() => {
               return (
@@ -89,6 +96,7 @@ class App extends Component {
                   userId={userId}
                   notifications={notifications}
                   makeNotification={this.makeNotification}
+                  handleLogout={this.handleLogout}
                 />
               );
             }}
@@ -102,10 +110,15 @@ class App extends Component {
                   userId={userId}
                   notifications={notifications}
                   makeNotification={this.makeNotification}
+<<<<<<< HEAD
+=======
+                  handleLogout={this.handleLogout}
+>>>>>>> master
                 />
               );
             }}
           />
+
           <Route
             path="/user/:profileId"
             render={props => {
