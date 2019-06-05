@@ -69,7 +69,7 @@ class Message extends Component {
       };
     }
 
-    let styling = sent ? styles.sent : styles.received;
+    const styling = sent ? styles.sent : styles.received;
 
     return (
       <Animate
