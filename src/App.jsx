@@ -110,10 +110,7 @@ class App extends Component {
                   userId={userId}
                   notifications={notifications}
                   makeNotification={this.makeNotification}
-<<<<<<< HEAD
-=======
                   handleLogout={this.handleLogout}
->>>>>>> master
                 />
               );
             }}
