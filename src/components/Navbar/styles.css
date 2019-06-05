@@ -207,8 +207,8 @@
 
 #navbar #numNot {
   position: absolute;
-  top: -22px;
-  right: 15px;
+  top: 8px;
+  right: -15px;
   margin: auto;
 
   height: 35px;
