@@ -9,10 +9,10 @@ import blower from "../../images/Bubbleblower.svg";
 class MessagingWindow extends Component {
   constructor(props) {
     super(props);
-
+    const { friendId } = this.props;
     this.state = {
       messages: [],
-      friendId: this.props.friendId,
+      friendId,
       text: "",
       photoURL: "",
       w: 150,
@@ -195,6 +195,7 @@ class MessagingWindow extends Component {
 
 MessagingWindow.propTypes = {
   userId: PropTypes.string.isRequired,
+  friendId: PropTypes.string.isRequired,
   conversationId: PropTypes.string.isRequired
 };
 
