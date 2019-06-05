@@ -77,9 +77,10 @@ class ProfilePage extends Component {
       userId,
       match: {
         params: { profileId }
-      }
+      },
+      makeNotification
     } = this.props;
-
+    makeNotification("addFriend", profileId);
     firebaseWrapper.addFriend(userId, profileId);
   };
 
@@ -239,7 +240,8 @@ class ProfilePage extends Component {
 ProfilePage.propTypes = {
   match: PropTypes.shape({}).isRequired,
   userId: PropTypes.string.isRequired,
-  handleLogout: PropTypes.func.isRequired
+  handleLogout: PropTypes.func.isRequired,
+  makeNotification: PropTypes.func.isRequired
 };
 
 Curve.propTypes = {

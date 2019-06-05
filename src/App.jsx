@@ -98,7 +98,13 @@ class App extends Component {
             path="/messages"
             exact
             render={() => {
-              return <Messages userId={userId} notifications={notifications} />;
+              return (
+                <Messages
+                  userId={userId}
+                  notifications={notifications}
+                  makeNotification={this.makeNotification}
+                />
+              );
             }}
           />
           <Route
@@ -114,6 +120,7 @@ class App extends Component {
                 <Profile
                   userId={userId}
                   notifications={notifications}
+                  makeNotification={this.makeNotification}
                   handleLogout={this.handleLogout}
                   {...props}
                 />

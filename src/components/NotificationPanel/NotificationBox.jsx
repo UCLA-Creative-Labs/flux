@@ -18,10 +18,12 @@ function NotificationBox({ content, type, time }) {
     color = "teal";
     image = MessageImage;
     text = `${text} just messaged you!`;
-  } else if (type === "friend") {
+  } else if (type === "addFriend") {
     color = "blue";
     image = FriendImage;
     text = `${text} just friended you!`;
+  } else if (type === "clickTab") {
+    text = "You just clicked a tab!";
   }
   const BoxColor = {
     borderLeft: `10px solid ${color}`

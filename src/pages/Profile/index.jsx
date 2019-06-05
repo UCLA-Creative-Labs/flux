@@ -6,7 +6,7 @@ import ProfilePage from "../../components/ProfilePage";
 import TopBar from "../../components/TopBar";
 
 const Profile = props => {
-  const { userId, handleLogout, notifications } = props;
+  const { userId, handleLogout, notifications, makeNotification } = props;
   return (
     <div>
       <TopBar type="profile" />
@@ -14,6 +14,7 @@ const Profile = props => {
         userId={userId}
         activeTab="profile"
         notifications={notifications}
+        makeNotification={makeNotification}
       />
       <ProfilePage userId={userId} handleLogout={handleLogout} {...props} />
     </div>
@@ -29,7 +30,8 @@ Profile.propTypes = {
       content: PropTypes.string,
       time: PropTypes.string
     })
-  ).isRequired
+  ).isRequired,
+  makeNotification: PropTypes.func.isRequired
 };
 
 export default Profile;

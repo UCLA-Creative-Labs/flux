@@ -54,7 +54,7 @@ class MessageManager extends Component {
 
   render() {
     const { friends, activeConversation } = this.state;
-    const { userId } = this.props;
+    const { userId, makeNotification } = this.props;
 
     return (
       <div className="window-wrapper">
@@ -78,6 +78,7 @@ class MessageManager extends Component {
             <MessagingWindow
               userId={userId}
               conversationId={friends[activeConversation]}
+              makeNotification={makeNotification}
             />
           )}
         </div>
@@ -87,7 +88,8 @@ class MessageManager extends Component {
 }
 
 MessageManager.propTypes = {
-  userId: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired,
+  makeNotification: PropTypes.func.isRequired
 };
 
 export default MessageManager;

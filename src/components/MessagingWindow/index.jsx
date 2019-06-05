@@ -58,10 +58,10 @@ class MessagingWindow extends Component {
 
   handleClick = e => {
     e.preventDefault();
-
     const { text } = this.state;
-    const { userId, conversationId } = this.props;
+    const { userId, conversationId, makeNotification } = this.props;
     const message = { text, userId };
+    makeNotification("message", userId);
     firebaseWrapper.sendMessage(conversationId, message);
     this.setState({
       text: ""
@@ -152,7 +152,8 @@ class MessagingWindow extends Component {
 
 MessagingWindow.propTypes = {
   userId: PropTypes.string.isRequired,
-  conversationId: PropTypes.string.isRequired
+  conversationId: PropTypes.string.isRequired,
+  makeNotification: PropTypes.func.isRequired
 };
 
 export default MessagingWindow;
