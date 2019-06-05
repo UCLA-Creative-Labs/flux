@@ -17,13 +17,15 @@
     height: 82px;
     width: 82px;
     border-radius: 50%;
-    border: 0.5rem solid white;
+    border: 0.4rem solid white;
     background-color: white;
-    margin-right: 1rem
+    margin-right: 1rem;
+    margin-top: 1rem;
 }
 
 .friendName {
     color: white;
     font-size: 30px;
     font-weight: 700;
+    text-decoration: none
 }
