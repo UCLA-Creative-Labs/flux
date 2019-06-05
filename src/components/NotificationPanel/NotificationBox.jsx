@@ -1,14 +1,14 @@
 import React from "react";
 import "./NotificationBox.css";
 import PropTypes from "prop-types";
-import OtherImage from "../../images/notifications/other.png";
+import TabImage from "../../images/notifications/tab.png";
 import PostImage from "../../images/notifications/post.png";
 import MessageImage from "../../images/notifications/message.png";
 import FriendImage from "../../images/notifications/friend.png";
 
 function NotificationBox({ content, type, time }) {
   let color = "#D7F0F3"; // mint
-  let image = OtherImage;
+  let image = TabImage;
   let text = content;
   if (type === "makePost") {
     color = "#7B90C6"; // navy
