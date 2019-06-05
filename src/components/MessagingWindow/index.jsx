@@ -132,7 +132,7 @@ class MessagingWindow extends Component {
 
   render() {
     const { firstName, lastName, photoURL, w, text, messages } = this.state;
-    const { friendId, userId } = this.props;
+    const { conversationId, friendId, userId } = this.props;
     const climit = w / 12;
     const barWidth = w;
 
@@ -153,12 +153,20 @@ class MessagingWindow extends Component {
         <div className="messages">
           {Object.keys(messages).map(messageId =>
             messages[messageId].userId === userId ? (
-              <Message key={messageId} text={messages[messageId].text} sent />
+              <Message
+                key={messageId}
+                text={messages[messageId].text}
+                sent={true}
+                id={messageId}
+                cid={conversationId}
+              />
             ) : (
               <Message
                 key={messageId}
                 text={messages[messageId].text}
                 sent={false}
+                id={messageId}
+                cid={conversationId}
               />
             )
           )}

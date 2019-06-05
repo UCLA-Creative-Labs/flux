@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import posed from "react-pose";
 import PropTypes from "prop-types";
 import "../../colors.css";
+import firebaseWrapper from "../../firebaseWrapper";
 
 const rb = require("../../images/ReceivedBubble.svg");
 const sb = require("../../images/SentBubble.svg");
@@ -33,6 +34,11 @@ class Message extends Component {
       });
     }, randomTime);
   }
+
+  popBubble = () => {
+    const { id, cid } = this.props;
+    firebaseWrapper.deleteMessage(cid, id);
+  };
 
   render() {
     const { text, sent } = this.props;
@@ -87,6 +93,7 @@ class Message extends Component {
         style={styling}
         className="message"
         pose={mounted ? "top" : "bottom"}
+        onClick={this.popBubble}
       >
         <p className="text-wrapper">{text}</p>
       </Animate>
@@ -96,7 +103,9 @@ class Message extends Component {
 
 Message.propTypes = {
   text: PropTypes.string.isRequired,
-  sent: PropTypes.bool.isRequired
+  sent: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  cid: PropTypes.string.isRequired
 };
 
 export default Message;
