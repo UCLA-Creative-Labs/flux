@@ -53,10 +53,31 @@ class ProfilePage extends Component {
   }
 
   componentDidMount() {
+    this.renderProfilePage();
+  }
+
+  toggleActiveTab = activeTab => {
+    this.setState({
+      activeTab
+    });
+  };
+
+  addFriend = () => {
+    const {
+      userId,
+      match: {
+        params: { profileId }
+      },
+      makeNotification
+    } = this.props;
+    makeNotification("addFriend", profileId);
+    firebaseWrapper.addFriend(userId, profileId);
+  };
+
+  renderProfilePage() {
     const { match } = this.props;
     const { params } = match;
     const { profileId } = params;
-
     const updateProfilePicture = profilePicture => {
       this.setState({
         profilePicture
@@ -73,29 +94,10 @@ class ProfilePage extends Component {
         lastName
       });
     };
-
     firebaseWrapper.getProfilePicture(profileId, updateProfilePicture);
     firebaseWrapper.listenForFriends(profileId, updateFriends);
     firebaseWrapper.getName(profileId, updateName);
   }
-
-  addFriend = () => {
-    const {
-      userId,
-      match: {
-        params: { profileId }
-      },
-      makeNotification
-    } = this.props;
-    makeNotification("addFriend", profileId);
-    firebaseWrapper.addFriend(userId, profileId);
-  };
-
-  toggleActiveTab = activeTab => {
-    this.setState({
-      activeTab
-    });
-  };
 
   render() {
     const {
@@ -149,7 +151,6 @@ class ProfilePage extends Component {
     likedPostsPath = likedPostsPath.concat(" likedPostsPath");
     friendsListClass = friendsListClass.concat(" friendsList");
     friendsListPath = friendsListPath.concat(" friendsListPath");
-
     return (
       <div className="profilePage">
         <div>
@@ -193,7 +194,7 @@ class ProfilePage extends Component {
             onKeyDown={() => {}}
           >
             <h1 className="title">FRIENDS</h1>
-            <FriendsList friends={friends} />
+            <FriendsList friends={friends} action={this.renderProfilePage} />
           </div>
 
           {(activeTab === "userPosts" || activeTab === "") && (

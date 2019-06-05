@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./FriendsList.css";
+import { Link } from "react-router-dom";
 import firebaseWrapper from "../../firebaseWrapper";
 
 class FriendListing extends Component {
@@ -30,17 +31,21 @@ class FriendListing extends Component {
 
   render() {
     const { name, pictureURL } = this.state;
+    const { id, action } = this.props;
     return (
       <div className="friendListing">
         <img alt="profile" className="picture" src={pictureURL} />
-        <p className="friendName">{name}</p>
+        <Link to={`/user/${id}`} className="friendName" onClick={action}>
+          {name}
+        </Link>
       </div>
     );
   }
 }
 
 FriendListing.propTypes = {
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  action: PropTypes.func.isRequired
 };
 
 export default FriendListing;
