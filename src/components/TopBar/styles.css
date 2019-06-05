@@ -5,18 +5,6 @@
   box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.6);
 }
 
-.plus {
-  background: url("../../images/plus.svg") no-repeat;
-  background-position: center;
-  background-color: #9cb1db;
-  position: absolute;
-  right: 110px;
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-}
-
 .questionmark {
   background: url("../../images/qmark.svg") no-repeat;
   background-position: center;

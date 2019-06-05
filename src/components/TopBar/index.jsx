@@ -15,7 +15,7 @@ class TopBar extends Component {
   };
 
   onSearchBarKeyDown = event => {
-    if (event.keyCode === 8) {
+    if (event.keyCode === 8 || event.keyCode === 13) {
       event.preventDefault();
 
       const { userId, makeNotification } = this.props;
@@ -47,7 +47,6 @@ class TopBar extends Component {
             onKeyDown={this.onSearchBarKeyDown}
           />
         ) : null}
-        {type === "profile" ? <button type="button" className="plus" /> : null}
         <button type="button" className="questionmark" />
         <button type="button" className="gear" onClick={handleLogout} />
       </div>
