@@ -130,7 +130,6 @@ class ProfilePage extends Component {
   render() {
     const {
       userId,
-      handleLogout,
       match: {
         params: { profileId }
       }
@@ -160,11 +159,6 @@ class ProfilePage extends Component {
 
     return (
       <div className="profilePage">
-        <div>
-          <button type="submit" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
         <div className="userInfo">
           <h1 className="profileName">
             {firstName} {lastName}
@@ -245,7 +239,6 @@ class ProfilePage extends Component {
 ProfilePage.propTypes = {
   match: PropTypes.shape({}).isRequired,
   userId: PropTypes.string.isRequired,
-  handleLogout: PropTypes.func.isRequired,
   makeNotification: PropTypes.func.isRequired
 };
 

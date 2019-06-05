@@ -44,6 +44,10 @@
   display: table;
   table-layout: fixed;
   overflow: hidden;
+
+  position: absolute;
+  top: 0;
+  margin: auto;
 }
 
 .text-wrapper {

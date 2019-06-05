@@ -12,9 +12,7 @@ class NewsFeed extends Component {
     this.state = {
       posts: {},
       selectedPost: "",
-      showSelectedPost: false,
-      postText: "",
-      photo: null
+      showSelectedPost: false
     };
   }
 
@@ -61,43 +59,11 @@ class NewsFeed extends Component {
     this.setState({ showSelectedPost: false });
   };
 
-  handleSearchBarChange = event => {
-    this.setState({ postText: event.target.value });
-  };
-
-  onSearchBarKeyDown = event => {
-    if (event.keyCode === 8) {
-      event.preventDefault();
-
-      const { userId, makeNotification } = this.props;
-      const { postText, photo } = this.state;
-
-      const resetState = () => {
-        this.setState({ postText: "", photo: null });
-      };
-
-      makeNotification("makePost", `${userId}`);
-      firebaseWrapper.sendPost(userId, postText, photo, resetState);
-    }
-  };
-
   render() {
-    const { posts, selectedPost, showSelectedPost, postText } = this.state;
-    const { type, userId } = this.props;
+    const { posts, selectedPost, showSelectedPost } = this.state;
+    const { userId } = this.props;
     return (
       <div className="newsfeed">
-        {type === "home" ? (
-          <div className="SearchBar">
-            <input
-              value={postText}
-              className="search"
-              placeholder="SEARCH"
-              onChange={this.handleSearchBarChange}
-              onKeyDown={this.onSearchBarKeyDown}
-            />
-          </div>
-        ) : null}
-
         <div className="flex-container">
           {Object.keys(posts)
             .reverse()
@@ -131,8 +97,7 @@ NewsFeed.defaultProps = {
 NewsFeed.propTypes = {
   userId: PropTypes.string.isRequired,
   profileId: PropTypes.string,
-  type: PropTypes.oneOf(["home", "user", "liked"]).isRequired,
-  makeNotification: PropTypes.func.isRequired
+  type: PropTypes.oneOf(["home", "user", "liked"]).isRequired
 };
 
 export default NewsFeed;
