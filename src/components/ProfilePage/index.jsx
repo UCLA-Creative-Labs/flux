@@ -191,6 +191,7 @@ class ProfilePage extends Component {
             tabIndex="-1"
             onKeyDown={() => {}}
           >
+            <h1 className="title">FRIENDS</h1>
             <FriendsList friends={friends} />
           </div>
 
@@ -209,6 +210,7 @@ class ProfilePage extends Component {
             tabIndex="-1"
             onKeyDown={() => {}}
           >
+            <h1 className="title">USER POSTS</h1>
             <NewsFeed userId={userId} profileId={profileId} type="user" />
           </div>
 
@@ -227,6 +229,7 @@ class ProfilePage extends Component {
             tabIndex="-1"
             onKeyDown={() => {}}
           >
+            <h1 className="title">LIKED POSTS</h1>
             <NewsFeed userId={userId} profileId={profileId} type="liked" />
           </div>
         </div>
