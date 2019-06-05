@@ -7,12 +7,11 @@ import {
 } from "react-router-dom";
 import firebaseWrapper from "./firebaseWrapper";
 import Login from "./components/Login";
-
-import Navbar from "./components/Navbar";
-import NotificationPanel from "./components/NotificationPanel";
 import Home from "./pages/Home";
 import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
+import Loading from "./components/Loading";
+import Register from "./components/Register";
 import "./App.css";
 
 class App extends Component {
@@ -82,13 +81,22 @@ class App extends Component {
       <div className="App">
         <Router>
           <Route exact path="/" render={() => <Redirect to="/newsfeed" />} />
+          <Route path="/loading" component={Loading} />
+          <Route
+            path="/register"
+            render={() => {
+              return <Register userId={userId} />;
+            }}
+          />
           <Route
             path="/newsfeed"
             render={() => {
               return (
                 <Home
                   userId={userId}
+                  notifications={notifications}
                   makeNotification={this.makeNotification}
+                  handleLogout={this.handleLogout}
                 />
               );
             }}
@@ -97,34 +105,30 @@ class App extends Component {
             path="/messages"
             exact
             render={() => {
-              return <Messages userId={userId} />;
+              return (
+                <Messages
+                  userId={userId}
+                  notifications={notifications}
+                  makeNotification={this.makeNotification}
+                  handleLogout={this.handleLogout}
+                />
+              );
             }}
           />
+
           <Route
             path="/user/:profileId"
             render={props => {
               return (
                 <Profile
                   userId={userId}
+                  notifications={notifications}
+                  makeNotification={this.makeNotification}
                   handleLogout={this.handleLogout}
                   {...props}
                 />
               );
             }}
-          />
-          <Route
-            path="/notificationpanel"
-            exact
-            render={() => (
-              <div>
-                <Navbar
-                  userId={userId}
-                  makeNotification={this.makeNotification}
-                  activeTab="notifications"
-                />
-                <NotificationPanel notifications={notifications} />
-              </div>
-            )}
           />
         </Router>
       </div>

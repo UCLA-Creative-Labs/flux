@@ -45,10 +45,10 @@ class ProfilePage extends Component {
     super(props);
 
     this.state = {
-      //   likedPosts: [],
-      //   userPosts: [],
       friends: {},
-      activeTab: ""
+      activeTab: "",
+      firstName: "",
+      lastName: ""
     };
   }
 
@@ -67,9 +67,16 @@ class ProfilePage extends Component {
         friends
       });
     };
+    const updateName = (firstName, lastName) => {
+      this.setState({
+        firstName,
+        lastName
+      });
+    };
 
     firebaseWrapper.getProfilePicture(profileId, updateProfilePicture);
     firebaseWrapper.listenForFriends(profileId, updateFriends);
+    firebaseWrapper.getName(profileId, updateName);
   }
 
   addFriend = () => {
@@ -77,9 +84,10 @@ class ProfilePage extends Component {
       userId,
       match: {
         params: { profileId }
-      }
+      },
+      makeNotification
     } = this.props;
-
+    makeNotification("addFriend", profileId);
     firebaseWrapper.addFriend(userId, profileId);
   };
 
@@ -92,11 +100,12 @@ class ProfilePage extends Component {
   render() {
     const {
       userId,
-      handleLogout,
       match: {
         params: { profileId }
       }
     } = this.props;
+    const { firstName, lastName } = this.state;
+
     const { friends, profilePicture, activeTab } = this.state;
     let userPostsClass;
     let likedPostsClass;
@@ -142,15 +151,12 @@ class ProfilePage extends Component {
 
     return (
       <div className="profilePage">
-        <div>
-          <button type="submit" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
         <div className="userInfo">
           <img src={profilePicture} alt="Profile" className="profilePicture" />
           <div>
-            <h2 className="profileId">{profileId}</h2>
+            <h2 className="name">
+              {firstName} {lastName}
+            </h2>
             {profileId !== userId && !(userId in friends) && (
               <button type="button" onClick={this.addFriend}>
                 Add Friend
@@ -203,7 +209,7 @@ class ProfilePage extends Component {
             tabIndex="-1"
             onKeyDown={() => {}}
           >
-            <h2>User Posts</h2>
+            <h2 className="pagetitle">User Posts</h2>
             <NewsFeed userId={userId} profileId={profileId} type="user" />
           </div>
 
@@ -226,7 +232,7 @@ class ProfilePage extends Component {
             tabIndex="-1"
             onKeyDown={() => {}}
           >
-            <h2>Liked Posts</h2>
+            <h2 className="pagetitle">Liked Posts</h2>
             <NewsFeed userId={userId} profileId={profileId} type="liked" />
           </div>
         </div>
@@ -239,7 +245,7 @@ class ProfilePage extends Component {
 ProfilePage.propTypes = {
   match: PropTypes.shape({}).isRequired,
   userId: PropTypes.string.isRequired,
-  handleLogout: PropTypes.func.isRequired
+  makeNotification: PropTypes.func.isRequired
 };
 
 Curve.propTypes = {

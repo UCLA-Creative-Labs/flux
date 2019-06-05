@@ -5,6 +5,7 @@
   left: 0;
   right: 0;
   margin: 0;
+  z-index: 2000;
 }
 
 #navbar ul {
@@ -22,7 +23,8 @@
   flex: 3;
 }
 
-#navbar ul li a {
+#navbar ul li a,
+#navbar ul li button {
   display: block;
   padding: 11px 0;
   margin-bottom: 10px;
@@ -34,9 +36,18 @@
   font-size: 20px;
 
   width: 200px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  font-family: Poppins;
 }
 
-#navbar ul li.activeTab a {
+#navbar ul li button:focus {
+  outline: 0;
+}
+
+
+#navbar ul li.activeTab a,
+#navbar ul li.activeTab button {
   background-image: url("../../images/Navbar/tab.svg");
   background-repeat: no-repeat;
   color: inherit;
@@ -115,48 +126,63 @@
 .deg0 {
   transform: rotate(-90deg) translate(19.5vw) rotate(90deg);
 }
+
 .deg22_5 {
   transform: rotate(-67.5deg) translate(19.5vw) rotate(67.5deg);
 }
+
 .deg45 {
   transform: rotate(-45deg) translate(19.5vw) rotate(45deg);
 }
+
 .deg67_5 {
   transform: rotate(-22.5deg) translate(19.5vw) rotate(22.5deg);
 }
+
 .deg90 {
   transform: translate(19.5vw);
 }
+
 .deg112_5 {
   transform: rotate(22.5deg) translate(19.5vw) rotate(-22.5deg);
 }
+
 .deg135 {
   transform: rotate(45deg) translate(19.5vw) rotate(-45deg);
 }
+
 .deg157_5 {
   transform: rotate(67.5deg) translate(19.5vw) rotate(-67.5deg);
 }
+
 .deg180 {
   transform: rotate(90deg) translate(19.5vw) rotate(-90deg);
 }
+
 .deg202_5 {
   transform: rotate(-67.5deg) translate(-19.5vw) rotate(67.5deg);
 }
+
 .deg225 {
   transform: rotate(-45deg) translate(-19.5vw) rotate(45deg);
 }
+
 .deg247_5 {
   transform: rotate(-22.5deg) translate(-19.5vw) rotate(22.5deg);
 }
+
 .deg270 {
   transform: translate(-19.5vw);
 }
+
 .deg292_5 {
   transform: rotate(22.5deg) translate(-19.5vw) rotate(-22.5deg);
 }
+
 .deg315 {
   transform: rotate(45deg) translate(-19.5vw) rotate(-45deg);
 }
+
 .deg337_5 {
   transform: rotate(67.5deg) translate(-19.5vw) rotate(-67.5deg);
 }

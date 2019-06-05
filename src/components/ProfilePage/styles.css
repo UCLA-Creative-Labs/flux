@@ -18,11 +18,11 @@
   width: 33vh;
   max-width: 250px;
   border-radius: 50%;
-  border: .5rem solid #9CB1DB;
+  border: 0.5rem solid #9cb1db;
   margin-left: 5rem;
   margin-bottom: -2rem;
   margin-right: 1rem;
-  background-color: #9CB1DB;
+  background-color: #9cb1db;
   z-index: 1000;
 }
 
@@ -31,13 +31,13 @@
   flex-direction: column;
   margin-bottom: 62px;
   min-height: 520px;
-  height: 75%
+  height: 75%;
 }
 
 .likedPosts {
   flex-grow: 1;
-  display: flex;
-  background-color: #D7EFF2;
+  display: inline;
+  background-color: #d7eff2;
   margin-top: -1px;
   margin-bottom: -2px;
   padding-left: 1rem;
@@ -49,13 +49,17 @@
 }
 
 .likedPostsPath {
-  fill: #D7EFF2;
+  fill: #d7eff2;
+}
+
+.pagetitle {
+  text-align: left;
 }
 
 .userPosts {
   flex-grow: 1;
-  display: flex;
-  background-color: #9CB1DB;
+  display: inline;
+  background-color: #9cb1db;
   margin-top: -1px;
   margin-bottom: -2px;
   padding-left: 1rem;
@@ -67,14 +71,14 @@
 }
 
 .userPostsPath {
-  fill: #9CB1DB;
+  fill: #9cb1db;
 }
 
 .friendsList {
   display: flex;
   flex-grow: 1;
   justify-content: center;
-  background-color: #7B90C6;
+  background-color: #7b90c6;
   margin-top: -1px;
   margin-bottom: -2px;
   padding-left: 1rem;
@@ -86,7 +90,7 @@
 }
 
 .friendsListPath {
-  fill: #7B90C6
+  fill: #7b90c6;
 }
 
 .hidden {
@@ -105,8 +109,8 @@
   padding-bottom: 62px;
 }
 
-.profileId {
-  margin-bottom: .5rem;
+.name {
+  margin-bottom: 0.5rem;
 }
 
 .curve {

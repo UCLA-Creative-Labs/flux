@@ -64,9 +64,6 @@ class NewsFeed extends Component {
     const { userId } = this.props;
     return (
       <div className="newsfeed">
-        <div className="SearchBar">
-          <input className="search" placeholder="SEARCH" />
-        </div>
         <div className="flex-container">
           {Object.keys(posts)
             .reverse()

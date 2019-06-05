@@ -1,32 +1,8 @@
 .newsfeed .flex-container {
-  position: absolute;
   justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding-top: 5vh;
-  padding-bottom: 10vh;
-}
-
-.newsfeed .SearchBar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 8vh;
-  box-shadow: 0px 1px 6px 0px;
-}
-
-.newsfeed .search {
-  width: 50vw;
-  height: 4vh;
-  margin: auto;
-  display: block;
-  border-radius: 3vh;
-  border-style: none;
-  padding-left: 15px;
-  outline-style: none;
-  background-color: #f1f1f1;
-  font-family: "Helvetica Neue";
-  font-weight: bold;
-  color: #a09e9e;
+  padding-bottom: 70px;
+  width: 100%;
 }

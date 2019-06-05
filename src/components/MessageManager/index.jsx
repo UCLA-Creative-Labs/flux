@@ -54,13 +54,10 @@ class MessageManager extends Component {
 
   render() {
     const { friends, activeConversation } = this.state;
-    const { userId } = this.props;
+    const { userId, makeNotification } = this.props;
 
     return (
       <div className="window-wrapper">
-        <div className="topBar">
-          <p> Direct Messages</p>
-        </div>
         <div className="conversationList">
           {Object.keys(friends).map(friendId => (
             <div
@@ -81,6 +78,7 @@ class MessageManager extends Component {
               userId={userId}
               conversationId={friends[activeConversation]}
               friendId={activeConversation}
+              makeNotification={makeNotification}
             />
           )}
         </div>
@@ -90,7 +88,8 @@ class MessageManager extends Component {
 }
 
 MessageManager.propTypes = {
-  userId: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired,
+  makeNotification: PropTypes.func.isRequired
 };
 
 export default MessageManager;

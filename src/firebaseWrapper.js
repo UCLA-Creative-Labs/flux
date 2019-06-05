@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import { firebaseConfig } from "./config/firebase";
+import DefaultProfilePicture from "./images/Profile/default-profile-picture.svg";
 
 /**
  * Helper Functions
@@ -215,14 +216,43 @@ const listenForLikedPosts = (userId, done) => {
 const getProfilePicture = (userId, done) => {
   const picRef = firebase.database().ref(`users/${userId}/profilePicture`);
   picRef.once("value", snapshot => {
-    done(snapshot.val());
+    const picture = snapshot.val();
+
+    if (picture === null) {
+      done(DefaultProfilePicture);
+    } else {
+      done(picture);
+    }
+  });
+};
+
+const updateName = (userId, firstName, lastName) => {
+  const userRef = firebase.database().ref(`users/${userId}`);
+
+  userRef.update({
+    firstName,
+    lastName
   });
 };
 
 const getName = (userId, done) => {
-  const nameRef = firebase.database().ref(`users/${userId}/name`);
-  nameRef.once("value", snapshot => {
-    done(snapshot.val());
+  const firstNameRef = firebase.database().ref(`users/${userId}/firstName`);
+  const lastNameRef = firebase.database().ref(`users/${userId}/lastName`);
+  firstNameRef.once("value", snapshot1 => {
+    let firstName = snapshot1.val();
+
+    lastNameRef.once("value", snapshot2 => {
+      let lastName = snapshot2.val();
+
+      if (firstName === null) {
+        firstName = "John";
+      }
+      if (lastName === null) {
+        lastName = "Doe";
+      }
+
+      done(firstName, lastName);
+    });
   });
 };
 
@@ -243,5 +273,6 @@ export default {
   listenForUserPosts,
   listenForLikedPosts,
   getProfilePicture,
+  updateName,
   getName
 };

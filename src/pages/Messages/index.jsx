@@ -3,18 +3,39 @@ import PropTypes from "prop-types";
 
 import Navbar from "../../components/Navbar";
 import MessageManager from "../../components/MessageManager";
+import TopBar from "../../components/TopBar";
 
-const Messages = ({ userId }) => {
+const Messages = ({
+  userId,
+  notifications,
+  makeNotification,
+  handleLogout
+}) => {
   return (
     <div>
-      <Navbar userId={userId} activeTab="messages" />
-      <MessageManager userId={userId} />
+      <TopBar userId={userId} type="message" handleLogout={handleLogout} />
+      <Navbar
+        userId={userId}
+        activeTab="messages"
+        notifications={notifications}
+        makeNotification={makeNotification}
+      />
+      <MessageManager userId={userId} makeNotification={makeNotification} />
     </div>
   );
 };
 
 Messages.propTypes = {
-  userId: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired,
+  notifications: PropTypes.PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.string,
+      content: PropTypes.string,
+      time: PropTypes.string
+    })
+  ).isRequired,
+  makeNotification: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired
 };
 
 export default Messages;

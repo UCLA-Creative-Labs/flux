@@ -8,10 +8,10 @@
   font-size: 0;
   border: 10px solid #edecec;
   margin-top: 0px;
-  padding-top: 2vh;
+  padding-top: 20px;
   border-top: 0;
-  width: 25vw;
-  height: 40vh;
+  width: 350px;
+  height: 280px;
   background-color: white;
 }
 
@@ -21,9 +21,9 @@
   text-align: center;
   border: 10px solid #edecec;
   border-bottom: 0;
-  width: 25vw;
-  height: 6vh;
-  padding-top: 2vh;
+  width: 350px;
+  height: 50px;
+  padding-top: 10px;
   background: #d7f0f3;
   margin-top: 0;
   align-items: baseline;
@@ -31,7 +31,7 @@
 
 .newsfeed .name {
   display: inline;
-  font-size: 3vh;
+  font-size: 20px;
   font-family: "Poppins", sans-serif;
   text-decoration: none;
   color: black;
@@ -42,16 +42,16 @@
   overflow: visible;
   left: 50%;
   top: -6%;
-  width: 2.5vw;
-  margin-left: -1.8vw;
-  height: 5vh;
-  border: 0.5vw solid white;
+  width: 40px;
+  margin-left: -20px;
+  height: 40px;
+  border: 8px solid white;
   border-radius: 50%;
 }
 
 .newsfeed .dropcap {
   display: inline-block;
-  font-size: 10vh;
+  font-size: 80px;
   font-family: "Poppins", sans-serif;
   text-transform: capitalize;
   font-weight: 800;
@@ -65,16 +65,16 @@
 
 .newsfeed .text {
   display: block;
-  line-height: 2.5vh;
+  line-height: 15px;
   text-align: left;
   font-size: 12px;
-  padding-top: 2vh;
-  padding-left: 3vw;
-  padding-right: 3vw;
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
   font-family: "Poppins", sans-serif;
 }
 
 .newsfeed .postphoto {
   display: inline-block;
-  max-width: 23vw;
+  max-width: 320px;
 }
