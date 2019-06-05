@@ -61,7 +61,7 @@ class NewsFeed extends Component {
 
   render() {
     const { posts, selectedPost, showSelectedPost } = this.state;
-    const { userId } = this.props;
+    const { userId, type } = this.props;
 
     return (
       <div className="newsfeed">
@@ -75,6 +75,7 @@ class NewsFeed extends Component {
                 postObject={posts[postId]}
                 userId={userId}
                 onClick={this.seeMoreHandler}
+                type={type}
               />
             ))}
         </div>

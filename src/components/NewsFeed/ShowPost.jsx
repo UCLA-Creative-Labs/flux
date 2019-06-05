@@ -63,10 +63,32 @@ class ShowPost extends Component {
   };
 
   render() {
-    const { postId, postObject, onClick } = this.props;
+    const { postId, postObject, onClick, type } = this.props;
+
+    if (type === "home") {
+      return (
+        <Animate onDragEnd={this.onDragEnd} className="showPost">
+          <div className="card">
+            <div className="colorbox" />
+            <div className="ShowPostContainer">
+              <span className="letter">{postObject.text[0]}</span>
+              <img className="arrow" src={Polygon} alt="" />
+              <img className="seemore" src={seeMore} alt="" />
+              <button
+                type="button"
+                className="seemorebutton"
+                onClick={() => onClick(postId)}
+              />
+            </div>
+            <div className="r1" />
+            <div className="r2" />
+          </div>
+        </Animate>
+      );
+    }
 
     return (
-      <Animate onDragEnd={this.onDragEnd} className="showPost">
+      <div className="showPost">
         <div className="card">
           <div className="colorbox" />
           <div className="ShowPostContainer">
@@ -82,7 +104,7 @@ class ShowPost extends Component {
           <div className="r1" />
           <div className="r2" />
         </div>
-      </Animate>
+      </div>
     );
   }
 }
@@ -97,7 +119,8 @@ ShowPost.propTypes = {
   }).isRequired,
   postId: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  userId: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["home", "user", "liked"]).isRequired
 };
 
 export default ShowPost;
