@@ -15,6 +15,11 @@
   background-color: white;
 }
 
+.newsfeed .expandedPost .likeCount {
+  margin-top: 20px;
+  font-size: 15px;
+}
+
 .newsfeed .color {
   position: relative;
   display: inline-block;
@@ -40,10 +45,11 @@
 .newsfeed .profpic {
   position: absolute;
   overflow: visible;
-  left: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
   top: -6%;
   width: 40px;
-  margin-left: -20px;
   height: 40px;
   border: 8px solid white;
   border-radius: 50%;

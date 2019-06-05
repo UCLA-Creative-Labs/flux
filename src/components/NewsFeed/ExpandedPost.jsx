@@ -29,7 +29,7 @@ class ExpandedPost extends Component {
   }
 
   render() {
-    const { userId, text, photo } = this.props;
+    const { userId, text, photo, likes } = this.props;
 
     const { profilePicture, firstName, lastName } = this.state;
     return (
@@ -42,6 +42,9 @@ class ExpandedPost extends Component {
         <div className="expandedPost">
           <img className="profpic" src={profilePicture} alt="" />
           <div className="postcontents">
+            <p className="likeCount">
+              {likes} LIKE{likes === 1 ? null : "S"}
+            </p>
             {text !== "" ? (
               <p className="text">
                 <span className="dropcap">{text[0]}</span>
@@ -64,7 +67,8 @@ ExpandedPost.defaultProps = {
 ExpandedPost.propTypes = {
   userId: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  photo: PropTypes.string
+  photo: PropTypes.string,
+  likes: PropTypes.number.isRequired
 };
 
 export default ExpandedPost;
