@@ -45,10 +45,10 @@ class ProfilePage extends Component {
     super(props);
 
     this.state = {
-      //   likedPosts: [],
-      //   userPosts: [],
       friends: {},
-      activeTab: ""
+      activeTab: "",
+      firstName: "",
+      lastName: ""
     };
   }
 
@@ -67,9 +67,16 @@ class ProfilePage extends Component {
         friends
       });
     };
+    const updateName = (firstName, lastName) => {
+      this.setState({
+        firstName,
+        lastName
+      });
+    };
 
     firebaseWrapper.getProfilePicture(profileId, updateProfilePicture);
     firebaseWrapper.listenForFriends(profileId, updateFriends);
+    firebaseWrapper.getName(profileId, updateName);
   }
 
   addFriend = () => {
@@ -98,6 +105,8 @@ class ProfilePage extends Component {
         params: { profileId }
       }
     } = this.props;
+    const { firstName, lastName } = this.state;
+
     const { friends, profilePicture, activeTab } = this.state;
     let userPostsClass;
     let likedPostsClass;
@@ -151,7 +160,9 @@ class ProfilePage extends Component {
         <div className="userInfo">
           <img src={profilePicture} alt="Profile" className="profilePicture" />
           <div>
-            <h2 className="profileId">{profileId}</h2>
+            <h2 className="name">
+              {firstName} {lastName}
+            </h2>
             {profileId !== userId && !(userId in friends) && (
               <button type="button" onClick={this.addFriend}>
                 Add Friend
