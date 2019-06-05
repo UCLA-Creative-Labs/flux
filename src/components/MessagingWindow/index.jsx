@@ -12,7 +12,9 @@ class MessagingWindow extends Component {
 
     this.state = {
       messages: [],
+      friendId: this.props.friendId,
       text: "",
+      photoURL: "",
       w: 150,
       t: null
     };
@@ -22,7 +24,7 @@ class MessagingWindow extends Component {
 
   componentDidMount() {
     const { conversationId } = this.props;
-    const { prevConversationRef } = this.state;
+    const { friendId, prevConversationRef } = this.state;
 
     const updateMessages = (messages, prevRef) => {
       this.setState({
@@ -31,11 +33,19 @@ class MessagingWindow extends Component {
       });
     };
 
+    const updatePicture = picurl => {
+      this.setState({
+        photoURL: picurl
+      });
+    };
+
     firebaseWrapper.listenForMessages(
       prevConversationRef,
       conversationId,
       updateMessages
     );
+
+    firebaseWrapper.getProfilePicture(friendId, updatePicture);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -92,17 +102,21 @@ class MessagingWindow extends Component {
   };
 
   render() {
-    const { w, text, messages } = this.state;
+    const { photoURL, w, text, messages } = this.state;
     const { userId } = this.props;
     const climit = w / 12;
     const barWidth = w;
 
     return (
       <div className="wrapper" onDragEnd={this.stopTimer}>
-        {/* <div className="friend-info"> */}
-        {/* To be added!}
-        {/* </div> */}
-
+        <div className="friend-info">
+          <p>John Doe</p>
+          <div className="pictureWrapper">
+            <div className="friend-picture">
+              <img src={photoURL} alt="profile-pic" />
+            </div>
+          </div>
+        </div>
         <div className="messages">
           {Object.keys(messages).map(messageId =>
             messages[messageId].userId === userId ? (
