@@ -156,7 +156,7 @@ class MessagingWindow extends Component {
               <Message
                 key={messageId}
                 text={messages[messageId].text}
-                sent={true}
+                sent
                 id={messageId}
                 cid={conversationId}
               />
