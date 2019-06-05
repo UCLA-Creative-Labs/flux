@@ -1,19 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./FriendsList.css";
+import FriendListing from "./FriendListing";
 
-const FriendsList = ({ friends }) => {
+const FriendsList = ({ friends, action }) => {
   return (
-    <div>
-      <h1>Friends:</h1>
+    <div className="container">
       {Object.keys(friends).map(friendId => (
-        <p key={friendId}>{friendId}</p>
+        <FriendListing key={friendId} id={friendId} action={action} />
       ))}
     </div>
   );
 };
 
 FriendsList.propTypes = {
-  friends: PropTypes.shape({}).isRequired
+  friends: PropTypes.shape({}).isRequired,
+  action: PropTypes.func.isRequired
 };
 
 export default FriendsList;
