@@ -1,14 +1,16 @@
 .container {
     display: flex;
     flex-direction: column;
-    width: 75%
+    width: 60%;
+    margin-left: 35%;
+    padding-bottom: 3rem;
 }
 
 .friendListing {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-left: 30%
+    width: 100%
 }
 
 .picture {
@@ -18,13 +20,6 @@
     border: 0.5rem solid white;
     background-color: white;
     margin-right: 1rem
-}
-.title {
-    display: flex;
-    justify-content: flex-end;
-    color: white;
-    font-weight: 900;
-    font-size: 50px;
 }
 
 .friendName {
