@@ -143,9 +143,15 @@ const incrementLike = (likes, postId, userId) => {
     });
     if (alreadyLiked === false) {
       likedPostsRef.push(postId);
-      postsRef.child(postId).update({ likes: likes + 1 });
     }
+    postsRef.child(postId).update({ likes: likes + 1 });
   });
+};
+
+const decrementLike = (likes, postId) => {
+  const postsRef = firebase.database().ref("posts");
+
+  postsRef.child(postId).update({ likes: likes - 1 });
 };
 
 /**
@@ -267,6 +273,7 @@ export default {
   sendPost,
   listenForPosts,
   incrementLike,
+  decrementLike,
 
   listenForFriends,
   addFriend,

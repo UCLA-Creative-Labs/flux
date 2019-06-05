@@ -62,6 +62,7 @@ class NewsFeed extends Component {
   render() {
     const { posts, selectedPost, showSelectedPost } = this.state;
     const { userId } = this.props;
+
     return (
       <div className="newsfeed">
         <div className="flex-container">
@@ -82,6 +83,7 @@ class NewsFeed extends Component {
             userId={posts[selectedPost].userId}
             text={posts[selectedPost].text}
             photo={posts[selectedPost].photo}
+            likes={posts[selectedPost].likes}
             onClick={this.toggleClose}
           />
         ) : null}
