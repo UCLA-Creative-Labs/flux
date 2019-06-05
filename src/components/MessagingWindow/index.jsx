@@ -14,6 +14,8 @@ class MessagingWindow extends Component {
     this.state = {
       messages: [],
       friendId,
+      firstName: "",
+      lastName: "",
       text: "",
       photoURL: "",
       w: 150,
@@ -34,6 +36,13 @@ class MessagingWindow extends Component {
       });
     };
 
+    const updateName = (firstName, lastName) => {
+      this.setState({
+        firstName,
+        lastName
+      });
+    };
+
     const updatePicture = picurl => {
       this.setState({
         photoURL: picurl
@@ -46,6 +55,7 @@ class MessagingWindow extends Component {
       updateMessages
     );
 
+    firebaseWrapper.getName(friendId, updateName);
     firebaseWrapper.getProfilePicture(friendId, updatePicture);
   }
 
@@ -67,12 +77,20 @@ class MessagingWindow extends Component {
       });
     };
 
+    const updateName = (firstName, lastName) => {
+      this.setState({
+        firstName,
+        lastName
+      });
+    };
+
     firebaseWrapper.listenForMessages(
       prevConversationRef,
       conversationId,
       updateMessages
     );
 
+    firebaseWrapper.getName(friendId, updateName);
     firebaseWrapper.getProfilePicture(friendId, updatePicture);
   }
 
@@ -113,7 +131,7 @@ class MessagingWindow extends Component {
   };
 
   render() {
-    const { photoURL, w, text, messages } = this.state;
+    const { firstName, lastName, photoURL, w, text, messages } = this.state;
     const { friendId, userId } = this.props;
     const climit = w / 12;
     const barWidth = w;
@@ -122,7 +140,9 @@ class MessagingWindow extends Component {
       <div className="wrapper" onDragEnd={this.stopTimer}>
         <div className="friend-info">
           <Link to={`/user/${friendId}`} className="name">
-            <p>John Doe</p>
+            <p>
+              {firstName} {lastName}
+            </p>
           </Link>
           <div className="pictureWrapper">
             <div className="friend-picture">
