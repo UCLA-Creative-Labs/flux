@@ -36,7 +36,8 @@ class Message extends Component {
 
   render() {
     const { text, sent } = this.props;
-    const { s, mounted, offset } = this.state;
+    const { s, mounted } = this.state;
+    let { offset } = this.state;
 
     let styles = {
       sent: {
@@ -45,7 +46,7 @@ class Message extends Component {
         backgroundSize: "cover",
         height: `${s}px`,
         width: `${s}px`,
-        left: `calc(${offset}% - ${s}px)`
+        left: `calc(${offset}% )`
       },
       received: {
         backgroundImage: `url(${rb})`,
@@ -53,11 +54,12 @@ class Message extends Component {
         backgroundSize: "cover",
         height: `${s}px`,
         width: `${s}px`,
-        left: `calc(${offset}% - ${s}px)`
+        left: `calc(${offset}% )`
       }
     };
 
-    if (offset < 50) {
+    if (offset > 50) {
+      offset = 100 - offset;
       styles = {
         sent: {
           backgroundImage: `url(${sb})`,
@@ -65,7 +67,7 @@ class Message extends Component {
           backgroundSize: "cover",
           height: `${s}px`,
           width: `${s}px`,
-          right: `calc(${offset}% + ${s}px)`
+          right: `calc(${offset}%)`
         },
         received: {
           backgroundImage: `url(${rb})`,
@@ -73,7 +75,7 @@ class Message extends Component {
           backgroundSize: "cover",
           height: `${s}px`,
           width: `${s}px`,
-          right: `calc(${offset}% + ${s}px)`
+          right: `calc(${offset}% )`
         }
       };
     }
