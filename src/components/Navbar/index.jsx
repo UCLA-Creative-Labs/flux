@@ -14,6 +14,8 @@ class Navbar extends Component {
   }
 
   handleClick = () => {
+    const { makeNotification } = this.props;
+    makeNotification("clickTab", "You just clicked a tab!");
     const { renderNotificationPanel } = this.state;
     if (renderNotificationPanel === true)
       this.setState({ renderNotificationPanel: false });
@@ -41,7 +43,12 @@ class Navbar extends Component {
                 : ""
             }
           >
-            <Link to="/newsfeed">Home</Link>
+            <Link
+              to="/newsfeed"
+              onClick={() => makeNotification("clickTab", "")}
+            >
+              Home
+            </Link>
           </li>
           <li
             className={
@@ -50,13 +57,19 @@ class Navbar extends Component {
                 : ""
             }
           >
-            <Link to="/messages">Messages</Link>
+            <Link
+              to="/messages"
+              onClick={() => makeNotification("clickTab", "")}
+            >
+              Messages
+            </Link>
           </li>
           <li id="control-blob">
             {activeTab === "home" && (
               <ControlBlob
                 userId={userId}
                 makeNotification={makeNotification}
+                onClick={() => makeNotification("clickTab", "")}
               />
             )}
           </li>
@@ -73,7 +86,12 @@ class Navbar extends Component {
                 : ""
             }
           >
-            <Link to={`/user/${userId}`}>Profile</Link>
+            <Link
+              to={`/user/${userId}`}
+              onClick={() => makeNotification("clickTab", "")}
+            >
+              Profile
+            </Link>
           </li>
         </ul>
       </nav>
@@ -81,15 +99,11 @@ class Navbar extends Component {
   }
 }
 
-Navbar.defaultProps = {
-  makeNotification: null
-};
-
 Navbar.propTypes = {
   userId: PropTypes.string.isRequired,
   activeTab: PropTypes.oneOf(["home", "messages", "notifications", "profile"])
     .isRequired,
-  makeNotification: PropTypes.func,
+  makeNotification: PropTypes.func.isRequired,
   notifications: PropTypes.PropTypes.arrayOf(
     PropTypes.shape({
       type: PropTypes.string,
