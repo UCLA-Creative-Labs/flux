@@ -1,12 +1,15 @@
 .container {
     display: flex;
     flex-direction: column;
+    width: 75%
 }
 
 .friendListing {
     display: flex;
     align-items: center;
-    width: 100%
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: 30%
 }
 
 .picture {
@@ -22,11 +25,11 @@
     justify-content: flex-end;
     color: white;
     font-weight: 900;
-    font-size: 60px;
+    font-size: 50px;
 }
 
 .friendName {
     color: white;
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 700;
 }
