@@ -67,10 +67,6 @@
   fill: #d7eff2;
 }
 
-.pagetitle {
-  text-align: left;
-}
-
 .userPosts {
     flex-grow: 1;
     display: flex;

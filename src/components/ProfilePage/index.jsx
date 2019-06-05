@@ -215,7 +215,6 @@ class ProfilePage extends Component {
             tabIndex="-1"
             onKeyDown={() => {}}
           >
-            <h2 className="pagetitle">User Posts</h2>
             <NewsFeed userId={userId} profileId={profileId} type="user" />
           </div>
 
@@ -234,7 +233,6 @@ class ProfilePage extends Component {
             tabIndex="-1"
             onKeyDown={() => {}}
           >
-            <h2 className="pagetitle">Liked Posts</h2>
             <NewsFeed userId={userId} profileId={profileId} type="liked" />
           </div>
         </div>
