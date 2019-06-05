@@ -93,8 +93,16 @@ const listenForMessages = (prevRef, conversationId, done) => {
     .database()
     .ref(`/conversations/${conversationId}/messages/`);
   conversationRef.on("value", snapshot => {
-    done(snapshot.val(), conversationRef);
+    done(snapshot.val() != null ? snapshot.val() : {}, conversationRef);
   });
+};
+
+const deleteMessage = (conversationId, message) => {
+  const messageRef = firebase
+    .database()
+    .ref(`/conversations/${conversationId}/messages/${message}`);
+
+  messageRef.remove();
 };
 
 /**
@@ -143,9 +151,15 @@ const incrementLike = (likes, postId, userId) => {
     });
     if (alreadyLiked === false) {
       likedPostsRef.push(postId);
-      postsRef.child(postId).update({ likes: likes + 1 });
     }
+    postsRef.child(postId).update({ likes: likes + 1 });
   });
+};
+
+const decrementLike = (likes, postId) => {
+  const postsRef = firebase.database().ref("posts");
+
+  postsRef.child(postId).update({ likes: likes - 1 });
 };
 
 /**
@@ -263,10 +277,12 @@ export default {
 
   sendMessage,
   listenForMessages,
+  deleteMessage,
 
   sendPost,
   listenForPosts,
   incrementLike,
+  decrementLike,
 
   listenForFriends,
   addFriend,

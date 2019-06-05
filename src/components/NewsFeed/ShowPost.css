@@ -1,3 +1,7 @@
+.showPost {
+  position: relative;
+}
+
 .newsfeed .ShowPostContainer {
   font-size: 10px;
   position: relative;

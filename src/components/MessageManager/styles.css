@@ -2,6 +2,7 @@
   height: calc(100vh - 62px);
   width: 100%;
   position: fixed;
+  color: #222222;
 }
 
 .topBar {
