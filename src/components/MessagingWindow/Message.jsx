@@ -43,12 +43,16 @@ class Message extends Component {
         backgroundImage: `url(${sb})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        height: `${s}px`,
+        width: `${s}px`,
         left: `calc(${offset}% - ${s}px)`
       },
       received: {
         backgroundImage: `url(${rb})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        height: `${s}px`,
+        width: `${s}px`,
         left: `calc(${offset}% - ${s}px)`
       }
     };
@@ -59,12 +63,16 @@ class Message extends Component {
           backgroundImage: `url(${sb})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          height: `${s}px`,
+          width: `${s}px`,
           right: `calc(${offset}% + ${s}px)`
         },
         received: {
           backgroundImage: `url(${rb})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          height: `${s}px`,
+          width: `${s}px`,
           right: `calc(${offset}% + ${s}px)`
         }
       };
