@@ -10,29 +10,30 @@ html, body   {
 }
 
 .userInfo {
+    position: absolute;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    margin-bottom: -4rem;
+    flex-direction: column;
+    margin-bottom: -1rem;
+    margin-top: 5rem;
 }
 
 .profilePicture {
-  height: 30vh;
+  height: 33vh;
   max-height: 250px;
-  width: 30vh;
+  width: 33vh;
   max-width: 250px;
   border-radius: 50%;
   border: 0.5rem solid #7b90c6;
   margin-left: 5rem;
   margin-bottom: -2rem;
   margin-right: 1rem;
-  background-color: #7b90c6;
+  background-color: white;
   z-index: 1000;
 }
 
 .posts {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   margin-top: -20px;
   margin-bottom: 62px;
@@ -45,9 +46,9 @@ html, body   {
     display: flex;
     background-color: #D7EFF2;
     margin-top: -1px;
-    margin-bottom: -2px;
     padding-left: 1rem;
     padding-top: 1rem;
+    padding-bottom: 62px;
 }
 
 .likedPosts:focus {
@@ -59,7 +60,7 @@ html, body   {
 }
 
 .userPosts {
-    flex-grow:1;
+    flex-grow: 1;
     display: flex;
     background-color: #9CB1DB;
     margin-top: -1px;
@@ -121,5 +122,6 @@ html, body   {
 }
 
 .wavylines {
-    margin-bottom: -3px
+    margin-bottom: -3px;
+    margin-top: 5rem
 }
