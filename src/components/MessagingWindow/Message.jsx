@@ -36,20 +36,20 @@ class Message extends Component {
 
   render() {
     const { text, sent } = this.props;
-    const { mounted, offset } = this.state;
+    const { s, mounted, offset } = this.state;
 
     let styles = {
       sent: {
         backgroundImage: `url(${sb})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        left: `calc(${offset}% - 250px)` // 250px is size of bubble. change once dynamic
+        left: `calc(${offset}% - ${s}px)`
       },
       received: {
         backgroundImage: `url(${rb})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        left: `calc(${offset}% - 250px)` // 250px is size of bubble. change once dynamic
+        left: `calc(${offset}% - ${s}px)`
       }
     };
 
@@ -59,13 +59,13 @@ class Message extends Component {
           backgroundImage: `url(${sb})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          right: `calc(${offset}% + 250px)` // 250px is size of bubble. change once dynamic
+          right: `calc(${offset}% + ${s}px)`
         },
         received: {
           backgroundImage: `url(${rb})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          right: `calc(${offset}% + 250px)` // 250px is size of bubble. change once dynamic
+          right: `calc(${offset}% + ${s}px)`
         }
       };
     }
