@@ -45,7 +45,6 @@
   outline: 0;
 }
 
-
 #navbar ul li.activeTab a,
 #navbar ul li.activeTab button {
   background-image: url("../../images/Navbar/tab.svg");
@@ -200,4 +199,23 @@
 
   color: white;
   font-size: 14px;
+}
+
+#navbar #notificationTab {
+  position: relative;
+}
+
+#navbar #numNot {
+  position: absolute;
+  top: 8px;
+  right: -15px;
+  margin: auto;
+
+  height: 35px;
+  width: 35px;
+  background-color: #ff4b4b;
+  line-height: 35px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
 }

@@ -23,7 +23,7 @@ class ExpandedPostModal extends Component {
   }
 
   render() {
-    const { onClick, userId, text, photo } = this.props;
+    const { onClick, userId, text, photo, likes } = this.props;
     return (
       <div className="expandedPostPopUp" onClick={onClick}>
         <span className="c2" />
@@ -33,7 +33,12 @@ class ExpandedPostModal extends Component {
         <span className="c6" />
         <span className="c5" />
         <div className="expandedPostPopup-inner">
-          <ExpandedPost userId={userId} text={text} photo={photo} />
+          <ExpandedPost
+            userId={userId}
+            text={text}
+            photo={photo}
+            likes={likes}
+          />
         </div>
       </div>
     );
@@ -48,7 +53,8 @@ ExpandedPostModal.propTypes = {
   userId: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  photo: PropTypes.string
+  photo: PropTypes.string,
+  likes: PropTypes.number.isRequired
 };
 
 export default ExpandedPostModal;

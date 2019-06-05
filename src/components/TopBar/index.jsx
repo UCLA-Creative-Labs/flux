@@ -30,6 +30,10 @@ class TopBar extends Component {
     }
   };
 
+  redirectToAbout = () => {
+    window.location = "https://github.com/UCLA-Creative-Labs/flux/wiki";
+  };
+
   render() {
     const { postText } = this.state;
     const { type, handleLogout } = this.props;
@@ -47,7 +51,11 @@ class TopBar extends Component {
             onKeyDown={this.onSearchBarKeyDown}
           />
         ) : null}
-        <button type="button" className="questionmark" />
+        <button
+          type="button"
+          className="questionmark"
+          onClick={this.redirectToAbout}
+        />
         <button type="button" className="gear" onClick={handleLogout} />
       </div>
     );

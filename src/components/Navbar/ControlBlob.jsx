@@ -105,6 +105,7 @@ class ControlBlob extends Component {
                 alt={i % 2 === 0 ? "like icon" : "dislike icon"}
                 className={`icon deg${angle}`}
                 key={angle}
+                id={`icon${i}`}
               />
             );
           })}
