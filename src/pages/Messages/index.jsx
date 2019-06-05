@@ -5,10 +5,15 @@ import Navbar from "../../components/Navbar";
 import MessageManager from "../../components/MessageManager";
 import TopBar from "../../components/TopBar";
 
-const Messages = ({ userId, notifications, makeNotification }) => {
+const Messages = ({
+  userId,
+  notifications,
+  makeNotification,
+  handleLogout
+}) => {
   return (
     <div>
-      <TopBar type="message" />
+      <TopBar userId={userId} type="message" handleLogout={handleLogout} />
       <Navbar
         userId={userId}
         activeTab="messages"
@@ -29,7 +34,8 @@ Messages.propTypes = {
       time: PropTypes.string
     })
   ).isRequired,
-  makeNotification: PropTypes.func.isRequired
+  makeNotification: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired
 };
 
 export default Messages;

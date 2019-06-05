@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import "./styles.css";
 import PropTypes from "prop-types";
-
 import firebaseWrapper from "../../firebaseWrapper";
-
-import plus from "../../images/plus.svg";
-import gear from "../../images/gear.svg";
 
 class TopBar extends Component {
   constructor(props) {
@@ -36,7 +32,7 @@ class TopBar extends Component {
 
   render() {
     const { postText } = this.state;
-    const { type } = this.props;
+    const { type, handleLogout } = this.props;
     return (
       <div className="topbar">
         {type === "message" ? (
@@ -51,33 +47,23 @@ class TopBar extends Component {
             onKeyDown={this.onSearchBarKeyDown}
           />
         ) : null}
-        {type === "profile" ? (
-          <div className="plus">
-            <img src={plus} alt="" />
-          </div>
-        ) : null}
-
-        {type === "profile" ? (
-          <button type="button" className="plusbutton" />
-        ) : null}
-
-        <div className="questionmark">
-          <span>?</span>
-        </div>
-        <div className="gear">
-          <img src={gear} alt="" />
-        </div>
-        <button type="button" className="qmarkbutton" />
-        <button type="button" className="gearbutton" />
+        {type === "profile" ? <button type="button" className="plus" /> : null}
+        <button type="button" className="questionmark" />
+        <button type="button" className="gear" onClick={handleLogout} />
       </div>
     );
   }
 }
 
+TopBar.defaultProps = {
+  makeNotification: null
+};
+
 TopBar.propTypes = {
   userId: PropTypes.string.isRequired,
-  makeNotification: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(["home", "messages", "profile"]).isRequired
+  makeNotification: PropTypes.func,
+  type: PropTypes.oneOf(["home", "message", "profile"]).isRequired,
+  handleLogout: PropTypes.func.isRequired
 };
 
 export default TopBar;
