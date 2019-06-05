@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 75%
+}
+
+.title {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    font-weight: 900;
+    font-size: 60px;
+}
