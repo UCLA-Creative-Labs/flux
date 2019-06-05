@@ -13,15 +13,15 @@ function NotificationBox({ content, type, time }) {
   if (type === "makePost") {
     color = "#7B90C6"; // navy
     image = PostImage;
-    text = `${text} made a new post!`;
+    text = `You just made a new post!`;
   } else if (type === "message") {
-    color = "teal";
+    color = "#A0DDD9";
     image = MessageImage;
-    text = `${text} just messaged you!`;
+    text = `You just sent a message!`;
   } else if (type === "addFriend") {
-    color = "blue";
+    color = "#91AFFC";
     image = FriendImage;
-    text = `${text} just friended you!`;
+    text = `You just added a friend!`;
   } else if (type === "clickTab") {
     text = "You just clicked a tab!";
   }

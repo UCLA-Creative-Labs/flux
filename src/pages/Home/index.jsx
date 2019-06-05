@@ -3,13 +3,11 @@ import PropTypes from "prop-types";
 
 import Navbar from "../../components/Navbar";
 import NewsFeed from "../../components/NewsFeed";
-import NotificationAlert from "../../components/NotificationAlert";
 import TopBar from "../../components/TopBar";
 
 const Home = ({ userId, makeNotification, notifications, handleLogout }) => {
   return (
     <div>
-      <NotificationAlert numNotifications={notifications.length} />
       <TopBar
         userId={userId}
         type="home"

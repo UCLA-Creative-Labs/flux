@@ -73,10 +73,14 @@ class Navbar extends Component {
               />
             )}
           </li>
-          <li className={renderNotificationPanel ? "activeTab" : ""}>
+          <li
+            className={renderNotificationPanel ? "activeTab" : ""}
+            id="notificationTab"
+          >
             <button type="button" onClick={this.handleClick}>
               Notifications
             </button>
+            <div id="numNot">{notifications.length}</div>
             {Notifications}
           </li>
           <li
