@@ -58,9 +58,6 @@ class MessageManager extends Component {
 
     return (
       <div className="window-wrapper">
-        <div className="topBar">
-          <p> Direct Messages</p>
-        </div>
         <div className="conversationList">
           {Object.keys(friends).map(friendId => (
             <div

@@ -96,6 +96,7 @@ class App extends Component {
                   userId={userId}
                   notifications={notifications}
                   makeNotification={this.makeNotification}
+                  handleLogout={this.handleLogout}
                 />
               );
             }}
@@ -109,10 +110,12 @@ class App extends Component {
                   userId={userId}
                   notifications={notifications}
                   makeNotification={this.makeNotification}
+                  handleLogout={this.handleLogout}
                 />
               );
             }}
           />
+
           <Route
             path="/user/:profileId"
             render={props => {
