@@ -53,11 +53,6 @@
   top: 75px;
   position: absolute;
   margin-top: -60px;
-  /* background: linear-gradient(
-    0deg,
-    rgba(145, 175, 252, 1) 0%,
-    rgba(255, 255, 255, 1) 50%
-  ); */
   background-color: var(--blueberry);
   border-radius: 50%;
   font-size: 16px;

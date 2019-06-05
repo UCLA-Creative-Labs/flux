@@ -8,7 +8,7 @@ const rb = require("../../images/ReceivedBubble.svg");
 const sb = require("../../images/SentBubble.svg");
 
 const Animate = posed.div({
-  top: { y: 0, transition: { stiffness: 50, type: "spring" } },
+  top: { y: 0, transition: { stiffness: 20, type: "spring" } },
   bottom: { y: "100vh" }
 });
 

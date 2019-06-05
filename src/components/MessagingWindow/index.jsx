@@ -198,9 +198,9 @@ class MessagingWindow extends Component {
                 src={blower}
                 style={{
                   width: "25px",
-                  height: "67%",
+                  height: "25px",
                   float: "right",
-                  marginRight: "15px",
+                  marginRight: "25px",
                   paddingTop: "3px"
                 }}
                 alt="send-button"
@@ -216,11 +216,11 @@ class MessagingWindow extends Component {
               style={{
                 display: "inline-block",
                 borderRadius: "15px",
-                height: "67%",
+                height: "25px",
                 border: "none",
                 backgroundColor: "var(--gray)",
-                paddingLeft: "5px",
-                marginRight: "20px",
+                paddingLeft: "10px",
+                marginRight: "30px",
                 width: `${barWidth}px`,
                 maxWidth: "90%",
                 float: "right",
